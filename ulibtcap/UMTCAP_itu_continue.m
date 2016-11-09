@@ -45,8 +45,8 @@
     if(applicationContext)
     {
         q.dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
-        q.dialoguePortion.dialogRequest = [[UMTCAP_asn1_AARE_apdu alloc]init];
-        q.dialoguePortion.dialogRequest.objectIdentifier = applicationContext;
+        q.dialoguePortion.dialogResponse = [[UMTCAP_asn1_AARE_apdu alloc]init];
+        q.dialoguePortion.dialogResponse.objectIdentifier = applicationContext;
     }
     else
     {
