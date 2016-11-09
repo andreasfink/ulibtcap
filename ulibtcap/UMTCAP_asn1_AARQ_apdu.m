@@ -85,12 +85,13 @@
     int pos = 0;
     UMASN1Object *o = [self getObjectAtPosition:pos++];
     
-    if(o)
+    if((o) && (o.asn1_tag.tagNumber == 0) && (o.asn1_tag.tagClass = UMASN1Class_ContextSpecific))
+        
     {
         protocolVersion = [[UMASN1BitString alloc]initWithASN1Object:o context:context];
         o = [self getObjectAtPosition:pos++];
     }
-    if(o)
+    if((o) && (o.asn1_tag.tagNumber == 1) && (o.asn1_tag.tagClass = UMASN1Class_ContextSpecific))
     {
         UMASN1ObjectConstructed *application_context_name = [[UMASN1ObjectConstructed alloc]initWithASN1Object:o context:context];
         o = [application_context_name getObjectAtPosition:0];
@@ -98,9 +99,10 @@
     context:context];
         o = [self getObjectAtPosition:pos++];
     }
-    if(o)
+    if((o) && (o.asn1_tag.tagNumber == 30) && (o.asn1_tag.tagClass = UMASN1Class_ContextSpecific))
     {
         user_information = [[UMTCAP_asn1_userInformation alloc]initWithASN1Object:o context:context];
+        o = [self getObjectAtPosition:pos++];
     }
     return self;
 }
