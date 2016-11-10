@@ -75,9 +75,7 @@
                              user:(id<UMTCAP_UserProtocol>)user
                    callingAddress:(SccpAddress *)src
                     calledAddress:(SccpAddress *)dst
-               applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                         userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-            dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+                  dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                        components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                           options:(NSDictionary *)options;
 
@@ -88,9 +86,7 @@
                     user:(id<UMTCAP_UserProtocol>)user
           callingAddress:(SccpAddress *)src
            calledAddress:(SccpAddress *)dst
-      applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-   dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+         dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
               components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                  options:(NSDictionary *)options;
 
@@ -100,9 +96,7 @@
                        user:(id<UMTCAP_UserProtocol>)user
              callingAddress:(SccpAddress *)src
               calledAddress:(SccpAddress *)dst
-         applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                   userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-      dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+            dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                  components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                     options:(NSDictionary *)options;
 
@@ -113,9 +107,7 @@
                   user:(id<UMTCAP_UserProtocol>)user
         callingAddress:(SccpAddress *)src
          calledAddress:(SccpAddress *)dst
-    applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-              userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
- dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+       dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
             components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                options:(NSDictionary *)options;
 
@@ -125,9 +117,7 @@
                      user:(id<UMTCAP_UserProtocol>)user
            callingAddress:(SccpAddress *)src
             calledAddress:(SccpAddress *)dst
-       applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                 userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-    dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+          dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
              callingLayer:(UMLayer *)tcapLayer
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options;
@@ -216,7 +206,5 @@
 - (NSString *)decodePdu:(NSData *)data;
 + (NSString *)decodePdu:(NSData *)data;
 
-- (BOOL)isTimedOut;
-- (void)timeOut;
 
 @end

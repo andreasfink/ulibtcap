@@ -37,10 +37,10 @@
     if((xdialogProtocolVersion) || (xappContext) || (xuserInfo))
     {
         itu_dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
-        itu_dialoguePortion.dialogRequest = [[UMTCAP_asn1_AARE_apdu alloc]init];
-        itu_dialoguePortion.dialogRequest.protocolVersion = xdialogProtocolVersion;
-        itu_dialoguePortion.dialogRequest.objectIdentifier = xappContext;
-        itu_dialoguePortion.dialogRequest.user_information = xuserInfo;
+        itu_dialoguePortion.dialogResponse= [[UMTCAP_asn1_AARE_apdu alloc]init];
+        itu_dialoguePortion.dialogResponse.protocolVersion = xdialogProtocolVersion;
+        itu_dialoguePortion.dialogResponse.objectIdentifier = xappContext;
+        itu_dialoguePortion.dialogResponse.user_information = xuserInfo;
     }
     
     return [super initForTcap:xtcap

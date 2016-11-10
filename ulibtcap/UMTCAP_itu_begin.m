@@ -26,7 +26,7 @@
                callingAddress:(SccpAddress *)xsrc
                 calledAddress:(SccpAddress *)xdst
            applicationContext:(UMTCAP_asn1_objectIdentifier *)xapplicationContext
-                     userInfo:(UMTCAP_asn1_external *)xuserInfo
+                     userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
         dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
                    components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
                       options:(NSDictionary *)xoptions
@@ -73,7 +73,7 @@
     otid.transactionId = transactionId;
 
     q.otid = otid;
-    q.dialoguePortion = dialoguePortion;
+    q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
         
     if(components.count > 0)
     {

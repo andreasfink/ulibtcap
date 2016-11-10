@@ -192,11 +192,11 @@
             currentTransaction.userDialogId = userDialogId;
             destoryTransaction = NO;
 
-
+/*
             UMTCAP_itu_asn1_begin *o = [[UMTCAP_itu_asn1_begin alloc]initWithASN1Object:asn1 context:self];
             UMTCAP_asn1_userInformation *userInfo = o.dialoguePortion.dialogRequest.user_information;
             UMTCAP_asn1_objectIdentifier *objectIdentifier = o.dialoguePortion.dialogRequest.objectIdentifier;
-
+*/
             [tcapUser tcapBeginIndication:userDialogId
                         tcapTransactionId:currentTransaction.localTransactionId
                   tcapRemoteTransactionId:currentTransaction.remoteTransactionId

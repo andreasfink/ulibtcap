@@ -110,11 +110,11 @@
     int p=0;
     UMASN1Object *o = [self getObjectAtPosition:p++];
 
-    if(self.asn1_tag.tagNumber = 1)
+    if(self.asn1_tag.tagNumber == 1)
     {
         dialogue_service_user = [[UMASN1Integer alloc]initWithASN1Object:o context:context];
     }
-    else if(self.asn1_tag.tagNumber = 2)
+    else if(self.asn1_tag.tagNumber == 2)
     {
         dialogue_service_provider = [[UMASN1Integer alloc]initWithASN1Object:o context:context];
     }
