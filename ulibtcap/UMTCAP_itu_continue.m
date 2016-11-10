@@ -20,9 +20,7 @@
 - (void)main
 {
     UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
-
     UMTCAP_itu_asn1_continue *q = [[UMTCAP_itu_asn1_continue alloc]init];
-    
     
     if(components.count>0)
     {
@@ -41,7 +39,6 @@
     
     q.otid = otid;
     q.dtid = dtid;
-    
     q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
     
     NSData *pdu = [q berEncoded];

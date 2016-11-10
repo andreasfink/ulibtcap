@@ -34,6 +34,16 @@
 @synthesize timeoutValue;
 @synthesize timeoutDate;
 
+- (UMTCAP_Transaction *)init
+{
+    self = [super init];
+    if(self)
+    {
+        started = [NSDate date];
+        [self touch];
+    }
+    return self;
+}
 
 - (void)touch
 {

@@ -248,7 +248,7 @@
         @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapContinueRequest with unknown transaction ID" userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
     }
     [transaction touch];
-    UMTCAP_continue *continueRequest;
+    UMTCAP_continue *continueRequest = NULL;
     
     if(variant ==TCAP_VARIANT_ITU)
     {
