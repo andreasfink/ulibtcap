@@ -436,31 +436,15 @@
     dialoguePortion = dp;
     if(dp.dialogRequest)
     {
-        if(dp.dialogRequest.protocolVersion)
-        {
-            dialogProtocolVersion = dp.dialogRequest.protocolVersion;
-        }
-        UMTCAP_asn1_userInformation *ui = dp.dialogRequest.user_information;
-        
-        if(ui.external)
-        {
-            UMASN1Object *a1 = ui.external.externalObject;
-            applicationContext = [[UMTCAP_asn1_objectIdentifier alloc]initWithASN1Object:a1 context:self];
-        }
+        dialogProtocolVersion = dp.dialogRequest.protocolVersion;
+        applicationContext = dp.dialogRequest.objectIdentifier;
+        userInfo =  dp.dialogRequest.user_information;
     }
     else if(dp.dialogResponse)
     {
-        if(dp.dialogResponse.protocolVersion)
-        {
-            dialogProtocolVersion = dp.dialogResponse.protocolVersion;
-        }
-        UMTCAP_asn1_userInformation *ui = dp.dialogResponse.user_information;
-        
-        if(ui.external)
-        {
-            UMASN1Object *a1 = ui.external.externalObject;
-            applicationContext = [[UMTCAP_asn1_objectIdentifier alloc]initWithASN1Object:a1 context:self];
-        }
+        dialogProtocolVersion = dp.dialogResponse.protocolVersion;
+        userInfo = dp.dialogResponse.user_information;
+        applicationContext = dp.dialogResponse.objectIdentifier;
     }
 }
 

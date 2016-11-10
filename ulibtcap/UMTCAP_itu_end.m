@@ -64,28 +64,7 @@
     UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
     dtid.transactionId = t.remoteTransactionId;
     q.dtid = dtid;
-
-    if(applicationContext)
-    {
-        q.dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
-        q.dialoguePortion.dialogResponse = [[UMTCAP_asn1_AARE_apdu alloc]init];
-
-        unsigned char byte = 0x80 ;
-        NSData *d = [NSData dataWithBytes:&byte length:1];
-
-        q.dialoguePortion.dialogResponse.protocolVersion = [[UMASN1BitString alloc]initWithValue:d bitcount:1];
-        q.dialoguePortion.dialogResponse.protocolVersion.asn1_tag.tagNumber = 0;
-        q.dialoguePortion.dialogResponse.protocolVersion.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-
-        q.dialoguePortion.dialogResponse.objectIdentifier = applicationContext;
-        q.dialoguePortion.dialogResponse.result = [[UMTCAP_asn1_Associate_result alloc]initWithValue:0];
-        q.dialoguePortion.dialogResponse.result_source_diagnostic = [[UMTCAP_asn1_Associate_source_diagnostic alloc]init];
-        q.dialoguePortion.dialogResponse.result_source_diagnostic.dialogue_service_user =[[UMASN1Integer alloc]initWithValue:0];
-    }
-    else
-    {
-        q.dialoguePortion = NULL;
-    }
+    q.dialoguePortion = dialoguePortion;
     
     if(components.count > 0)
     {
