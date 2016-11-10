@@ -13,9 +13,45 @@
 #import "UMTCAP_itu_asn1_continue.h"
 #import "UMTCAP_Transaction.h"
 #import "UMLayerTCAP.h"
-
+#import "UMTCAP_itu_asn1_dialoguePortion.h"
 
 @implementation UMTCAP_itu_continue
+
+
+- (UMTCAP_continue *)initForTcap:(UMLayerTCAP *)xtcap
+                   transactionId:(NSString *)transactionId
+                    userDialogId:(NSString *)userDialogId
+                         variant:(UMTCAP_Variant)variant
+                            user:(id<UMLayerUserProtocol>)xuser
+                  callingAddress:(SccpAddress *)xsrc
+                   calledAddress:(SccpAddress *)xdst
+              applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
+                        userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+           dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+                      components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
+                         options:(NSDictionary *)xoptions
+{
+    UMTCAP_itu_asn1_dialoguePortion *itu_dialoguePortion = NULL;
+    if((xdialogProtocolVersion) || (xappContext) || (xuserInfo))
+    {
+        itu_dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
+        itu_dialoguePortion.dialogRequest = [[UMTCAP_asn1_AARE_apdu alloc]init];
+        itu_dialoguePortion.dialogRequest.protocolVersion = xdialogProtocolVersion;
+        itu_dialoguePortion.dialogRequest.objectIdentifier = xappContext;
+        itu_dialoguePortion.dialogRequest.user_information = xuserInfo;
+    }
+
+    return [super initForTcap:xtcap
+            transactionId:transactionId
+                 userDialogId:userDialogId
+                      variant:variant
+                         user:xuser
+               callingAddress:xsrc
+                calledAddress:xdst
+              dialoguePortion:itu_dialoguePortion
+                   components:xcomponents
+                      options:xoptions];
+}
 
 - (void)main
 {
@@ -42,19 +78,9 @@
     q.otid = otid;
     q.dtid = dtid;
     
-    if(applicationContext)
-    {
-        q.dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
-        q.dialoguePortion.dialogResponse = [[UMTCAP_asn1_AARE_apdu alloc]init];
-        q.dialoguePortion.dialogResponse.objectIdentifier = applicationContext;
-    }
-    else
-    {
-        q.dialoguePortion = NULL;
-    }
+    q.dialoguePortion = dialoguePortion;
     
     NSData *pdu = [q berEncoded];
-    
     [tcap.attachedLayer sccpNUnidata:pdu
                         callingLayer:tcap
                              calling:callingAddress

@@ -77,6 +77,7 @@
                     calledAddress:(SccpAddress *)dst
                applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
                          userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+            dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
                        components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                           options:(NSDictionary *)options;
 
@@ -89,6 +90,7 @@
            calledAddress:(SccpAddress *)dst
       applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
                 userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+   dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
               components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                  options:(NSDictionary *)options;
 
@@ -100,6 +102,7 @@
               calledAddress:(SccpAddress *)dst
          applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
                    userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+      dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
                  components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                     options:(NSDictionary *)options;
 
@@ -112,6 +115,7 @@
          calledAddress:(SccpAddress *)dst
     applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
               userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+ dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
             components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                options:(NSDictionary *)options;
 
@@ -123,6 +127,7 @@
             calledAddress:(SccpAddress *)dst
        applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
                  userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+    dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
              callingLayer:(UMLayer *)tcapLayer
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options;

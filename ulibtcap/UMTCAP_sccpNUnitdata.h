@@ -69,6 +69,7 @@
     NSString                *dtid;
     UMTCAP_asn1_objectIdentifier *applicationContext;
     UMTCAP_asn1_userInformation *userInfo;
+    UMASN1BitString *dialogProtocolVersion;
     NSString                *ansiTransactionId;
 
     NSString                *currentLocalTransactionId;

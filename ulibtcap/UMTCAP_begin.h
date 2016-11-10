@@ -20,6 +20,7 @@
 
 @class UMLayerTCAP;
 @class UMTCAP_generic_asn1_componentPDU;
+@class UMTCAP_asn1_dialoguePortion;
 
 @interface UMTCAP_begin : UMLayerTask
 {
@@ -29,12 +30,11 @@
     NSString *userDialogId;
     UMTCAP_Variant variant;
     id<UMLayerUserProtocol> user;
-    UMTCAP_asn1_objectIdentifier *applicationContext;
-    UMTCAP_asn1_userInformation *userInfo;
     SccpAddress *callingAddress;
     SccpAddress *calledAddress;
     TCAP_NSARRAY_OF_COMPONENT_PDU *components;
     NSDictionary *options;
+    UMTCAP_asn1_dialoguePortion *dialoguePortion;
 }
 
 - (UMTCAP_begin *)initForTcap:(UMLayerTCAP *)xtcap
@@ -44,8 +44,7 @@
                          user:(id<UMLayerUserProtocol>)xuser
                callingAddress:(SccpAddress *)xsrc
                 calledAddress:(SccpAddress *)xdst
-           applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
-                     userInfo:(UMTCAP_asn1_external *)userInfo
+              dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                    components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
                       options:(NSDictionary *)xoptions;
 

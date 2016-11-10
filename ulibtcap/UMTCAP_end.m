@@ -22,15 +22,14 @@
                        user:(id<UMLayerUserProtocol>)xuser
              callingAddress:(SccpAddress *)xsrc
               calledAddress:(SccpAddress *)xdst
-         applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
-                   userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+            dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                  components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
                  permission:(BOOL)xpermission /* only relevant for ANSI */
                     options:(NSDictionary *)xoptions
 {
     NSAssert(xtcap != NULL,@"tcap is null");
     NSAssert(xuser != NULL,@"user can not be null");
-
+    
     self = [super initWithName:@"UMTCAP_end"
                       receiver:xtcap
                         sender:xuser
@@ -42,7 +41,7 @@
         userDialogId = xuserDialogId;
         variant = xvariant;
         user =xuser;
-        applicationContext=xappContext;
+        dialoguePortion = xdialoguePortion;
         callingAddress=xsrc;
         calledAddress=xdst;
         components=xcomponents;

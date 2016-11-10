@@ -19,6 +19,42 @@
 
 @implementation UMTCAP_ansi_end
 
+- (UMTCAP_ansi_end *)initForTcap:(UMLayerTCAP *)xtcap
+                  transactionId:(NSString *)xtransactionId
+                   userDialogId:(NSString *)xuserDialogId
+                        variant:(UMTCAP_Variant)xvariant
+                           user:(id<UMLayerUserProtocol>)xuser
+                 callingAddress:(SccpAddress *)xsrc
+                  calledAddress:(SccpAddress *)xdst
+             applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
+                       userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+          dialogProtocolVersion:(UMASN1Object *)xdialogProtocolVersion
+                     components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
+                     permission:(BOOL)xpermission /* only relevant for ANSI */
+                        options:(NSDictionary *)xoptions
+{
+    UMTCAP_ansi_asn1_dialoguePortion *ansi_dialogPortion = NULL;
+    if((xdialogProtocolVersion) || (xappContext) || (xuserInfo))
+    {
+        ansi_dialogPortion = [[UMTCAP_ansi_asn1_dialoguePortion alloc]init];
+        ansi_dialogPortion.objectApplicationId = xappContext;
+        ansi_dialogPortion.userInformation = xuserInfo;
+        ansi_dialogPortion.version = xdialogProtocolVersion;
+    }
+
+    return [super initForTcap:xtcap
+                transactionId:transactionId
+                 userDialogId:userDialogId
+                      variant:variant
+                         user:xuser
+               callingAddress:xsrc
+                calledAddress:xdst
+              dialoguePortion:ansi_dialogPortion
+                   components:xcomponents
+                   permission:xpermission
+                      options:xoptions];
+}
+
 - (void)main
 {
     UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];

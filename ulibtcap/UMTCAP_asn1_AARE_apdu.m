@@ -28,13 +28,8 @@
     asn1_tag.tagClass = UMASN1Class_Application;
     asn1_list = [[NSMutableArray alloc]init];
     
-    /* FIXME: VERIFX options & tags */
-    if(protocolVersion == NULL)
+    if(protocolVersion)
     {
-        unsigned char byte = 0x80 ;
-        NSData *d = [NSData dataWithBytes:&byte length:1];
-
-        protocolVersion = [[UMASN1BitString alloc]initWithValue:d bitcount:1];
         protocolVersion.asn1_tag.tagNumber = 0;
         protocolVersion.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
         [asn1_list addObject:protocolVersion];

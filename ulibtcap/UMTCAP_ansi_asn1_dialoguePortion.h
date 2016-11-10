@@ -10,7 +10,7 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-
+#import "UMTCAP_asn1_dialoguePortion.h"
 /*
 DialoguePortion
 ATIS-1000114.2004
@@ -29,7 +29,7 @@ confidentiality IMPLICIT Confidentiality OPTIONAL, }
   */
 @class UMTCAP_ansi_asn1_confidentiality;
 
-@interface UMTCAP_ansi_asn1_dialoguePortion : UMASN1ObjectConstructed
+@interface UMTCAP_ansi_asn1_dialoguePortion : UMTCAP_asn1_dialoguePortion
 {
     UMASN1Object *version;
     UMASN1Integer *integerApplicationId;

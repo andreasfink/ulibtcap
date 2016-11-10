@@ -17,6 +17,8 @@
 #import "UMTCAP_Variant.h"
 #import "UMTCAP_UserProtocol.h"
 #import "UMTCAP_asn1_objectIdentifier.h"
+#import "UMTCAP_asn1_dialoguePortion.h"
+
 @class UMLayerTCAP;
 @class UMTCAP_generic_asn1_componentPDU;
 
@@ -29,24 +31,26 @@
     UMTCAP_Variant variant;
     id<UMLayerUserProtocol> user;
     UMTCAP_asn1_objectIdentifier *applicationContext;
+    UMTCAP_asn1_userInformation *userInfo;
+    UMASN1BitString *dialogProtocolVersion;
     SccpAddress *callingAddress;
     SccpAddress *calledAddress;
     TCAP_NSARRAY_OF_COMPONENT_PDU *components;
+    UMTCAP_asn1_dialoguePortion *dialoguePortion;
     BOOL permission;
     NSDictionary *options;
 }
 
 - (UMTCAP_end *)initForTcap:(UMLayerTCAP *)xtcap
-              transactionId:(NSString *)transactionId
-               userDialogId:(NSString *)userDialogId
-                    variant:(UMTCAP_Variant)variant
+              transactionId:(NSString *)xtransactionId
+               userDialogId:(NSString *)xuserDialogId
+                    variant:(UMTCAP_Variant)xvariant
                        user:(id<UMLayerUserProtocol>)xuser
              callingAddress:(SccpAddress *)xsrc
               calledAddress:(SccpAddress *)xdst
-         applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
-                   userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+            dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                  components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
-                 permission:(BOOL)withPermission /* only relevant for ANSI */
+                 permission:(BOOL)xpermission /* only relevant for ANSI */
                     options:(NSDictionary *)xoptions;
 
 @end

@@ -184,6 +184,7 @@
            calledAddress:(SccpAddress *)dst
       applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
                 userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+   dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
               components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                  options:(NSDictionary *)options
 {
@@ -210,9 +211,9 @@
                                        calledAddress:dst
                                   applicationContext:appContext
                                             userInfo:xuserInfo
+                               dialogProtocolVersion:xdialogProtocolVersion
                                           components:components
                                              options:options];
-
     }
     else if(variant ==TCAP_VARIANT_ANSI)
     {
@@ -225,6 +226,7 @@
                                         calledAddress:dst
                                    applicationContext:appContext
                                              userInfo:xuserInfo
+                                dialogProtocolVersion:xdialogProtocolVersion
                                            components:components
                                               options:options];
 
@@ -298,6 +300,7 @@
          calledAddress:(SccpAddress *)dst
     applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
               userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+ dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
             components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                options:(NSDictionary *)options
 {
@@ -323,6 +326,7 @@
                                           calledAddress:dst
                                      applicationContext:appContext
                                                userInfo:xuserInfo
+                                  dialogProtocolVersion:xdialogProtocolVersion
                                              components:components
                                              permission:transaction.withPermission
                                                 options:options];
@@ -338,6 +342,7 @@
                                            calledAddress:dst
                                       applicationContext:appContext
                                                 userInfo:xuserInfo
+                                   dialogProtocolVersion:xdialogProtocolVersion
                                               components:components
                                               permission:transaction.withPermission
                                                  options:options];

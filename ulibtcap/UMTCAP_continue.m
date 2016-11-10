@@ -11,6 +11,7 @@
 
 #import "UMTCAP_continue.h"
 #import "UMLayerTCAP.h"
+#import "UMTCAP_asn1_dialoguePortion.h"
 
 @implementation UMTCAP_continue
 
@@ -21,8 +22,7 @@
                             user:(id<UMLayerUserProtocol>)xuser
                   callingAddress:(SccpAddress *)xsrc
                    calledAddress:(SccpAddress *)xdst
-              applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
-                        userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+                 dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                       components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
                          options:(NSDictionary *)xoptions
 {
@@ -40,7 +40,7 @@
         userDialogId = xuserDialogId;
         variant = xvariant;
         user =xuser;
-        applicationContext=xappContext;
+        dialoguePortion = xdialoguePortion;
         callingAddress=xsrc;
         calledAddress=xdst;
         components=xcomponents;

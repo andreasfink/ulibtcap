@@ -18,6 +18,43 @@
 
 @implementation UMTCAP_itu_end
 
+- (UMTCAP_itu_end *)initForTcap:(UMLayerTCAP *)xtcap
+                  transactionId:(NSString *)xtransactionId
+                   userDialogId:(NSString *)xuserDialogId
+                        variant:(UMTCAP_Variant)xvariant
+                           user:(id<UMLayerUserProtocol>)xuser
+                 callingAddress:(SccpAddress *)xsrc
+                  calledAddress:(SccpAddress *)xdst
+             applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
+                       userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+          dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+                     components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
+                     permission:(BOOL)xpermission /* only relevant for ANSI */
+                        options:(NSDictionary *)xoptions
+{
+    
+    UMTCAP_itu_asn1_dialoguePortion *itu_dialoguePortion = NULL;
+    if((xdialogProtocolVersion) || (xappContext) || (xuserInfo))
+    {
+        itu_dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
+        itu_dialoguePortion.dialogRequest = [[UMTCAP_asn1_AARE_apdu alloc]init];
+        itu_dialoguePortion.dialogRequest.protocolVersion = xdialogProtocolVersion;
+        itu_dialoguePortion.dialogRequest.objectIdentifier = xappContext;
+        itu_dialoguePortion.dialogRequest.user_information = xuserInfo;
+    }
+    
+    return [super initForTcap:xtcap
+                transactionId:transactionId
+                 userDialogId:userDialogId
+                      variant:variant
+                         user:xuser
+               callingAddress:xsrc
+                calledAddress:xdst
+              dialoguePortion:itu_dialoguePortion
+                   components:xcomponents
+                   permission:xpermission
+                      options:xoptions];
+}
 
 - (void)main
 {

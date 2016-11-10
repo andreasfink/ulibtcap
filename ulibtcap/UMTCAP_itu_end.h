@@ -14,4 +14,17 @@
 
 @interface UMTCAP_itu_end : UMTCAP_end
 
+- (UMTCAP_itu_end *)initForTcap:(UMLayerTCAP *)xtcap
+                  transactionId:(NSString *)xtransactionId
+                   userDialogId:(NSString *)xuserDialogId
+                        variant:(UMTCAP_Variant)xvariant
+                           user:(id<UMLayerUserProtocol>)xuser
+                 callingAddress:(SccpAddress *)xsrc
+                  calledAddress:(SccpAddress *)xdst
+             applicationContext:(UMTCAP_asn1_objectIdentifier *)xappContext
+                       userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+          dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+                     components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
+                     permission:(BOOL)xpermission /* only relevant for ANSI */
+                        options:(NSDictionary *)xoptions;
 @end

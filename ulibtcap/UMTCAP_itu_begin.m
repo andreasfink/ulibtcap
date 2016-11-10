@@ -18,6 +18,44 @@
 
 @implementation UMTCAP_itu_begin
 
+- (UMTCAP_begin *)initForTcap:(UMLayerTCAP *)xtcap
+                transactionId:(NSString *)xtransactionId
+                 userDialogId:(NSString *)xuserDialogId
+                      variant:(UMTCAP_Variant)xvariant
+                         user:(id<UMLayerUserProtocol>)xuser
+               callingAddress:(SccpAddress *)xsrc
+                calledAddress:(SccpAddress *)xdst
+           applicationContext:(UMTCAP_asn1_objectIdentifier *)xapplicationContext
+                     userInfo:(UMTCAP_asn1_external *)xuserInfo
+        dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+                   components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
+                      options:(NSDictionary *)xoptions
+{
+    NSAssert(xtcap != NULL,@"tcap is null");
+    NSAssert(xuser != NULL,@"user can not be null");
+    
+    
+    UMTCAP_itu_asn1_dialoguePortion *itu_dialoguePortion = NULL;
+    if((xdialogProtocolVersion) || (xapplicationContext) || (xuserInfo))
+    {
+        itu_dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
+        itu_dialoguePortion.dialogRequest = [[UMTCAP_asn1_AARQ_apdu alloc]init];
+        itu_dialoguePortion.dialogRequest.protocolVersion = xdialogProtocolVersion;
+        itu_dialoguePortion.dialogRequest.objectIdentifier = xapplicationContext;
+        itu_dialoguePortion.dialogRequest.user_information = xuserInfo;
+    }
+    return [super initForTcap:xtcap
+                transactionId:xtransactionId
+                 userDialogId:xuserDialogId
+                      variant:xvariant
+                         user:xuser
+               callingAddress:xsrc
+                calledAddress:xdst
+              dialoguePortion:itu_dialoguePortion
+                   components:xcomponents
+                      options:xoptions];
+}
+
 
 - (void)main
 {
@@ -35,19 +73,8 @@
     otid.transactionId = transactionId;
 
     q.otid = otid;
-    
-    if((applicationContext) || (userInfo))
-    {
-        q.dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]init];
-        q.dialoguePortion.dialogRequest = [[UMTCAP_asn1_AARQ_apdu alloc]init];
-        q.dialoguePortion.dialogRequest.objectIdentifier = applicationContext;
-        q.dialoguePortion.dialogRequest.user_information = userInfo;
-    }
-    else
-    {
-        q.dialoguePortion = NULL;
-    }
-    
+    q.dialoguePortion = dialoguePortion;
+        
     if(components.count > 0)
     {
         UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];

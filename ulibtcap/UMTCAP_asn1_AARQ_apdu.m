@@ -24,17 +24,12 @@
     asn1_tag.tagClass = UMASN1Class_Application;
     asn1_list = [[NSMutableArray alloc]init];
 
-    /* FIXME: VERIFX options & tags */
-    if(protocolVersion == NULL)
+    if(protocolVersion)
     {
-        uint8_t ver[]  ={ 0x07,0x80 };
-        protocolVersion = [[UMASN1BitString alloc] init];
-        protocolVersion.asn1_data = [NSData dataWithBytes:ver  length:sizeof(ver)]; /* dont ask why */
         protocolVersion.asn1_tag.tagNumber = 0;
         protocolVersion.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+        [asn1_list addObject:protocolVersion];
     }
-    [asn1_list addObject:protocolVersion];
-    
     UMASN1ObjectConstructed *application_context_name = [[UMASN1ObjectConstructed alloc]init];
     application_context_name.asn1_tag.tagNumber = 1;
     application_context_name.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
@@ -86,7 +81,6 @@
     UMASN1Object *o = [self getObjectAtPosition:pos++];
     
     if((o) && (o.asn1_tag.tagNumber == 0) && (o.asn1_tag.tagClass = UMASN1Class_ContextSpecific))
-        
     {
         protocolVersion = [[UMASN1BitString alloc]initWithASN1Object:o context:context];
         o = [self getObjectAtPosition:pos++];

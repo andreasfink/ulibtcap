@@ -14,8 +14,9 @@
 #import "UMTCAP_asn1_AARE_apdu.h"
 #import "UMTCAP_asn1_ABRT_apdu.h"
 #import "UMTCAP_asn1_external.h"
+#import "UMTCAP_asn1_dialoguePortion.h"
 
-@interface UMTCAP_itu_asn1_dialoguePortion : UMASN1ObjectConstructed
+@interface UMTCAP_itu_asn1_dialoguePortion : UMTCAP_asn1_dialoguePortion
 {
     UMTCAP_asn1_AARQ_apdu *dialogRequest;
     UMTCAP_asn1_AARE_apdu *dialogResponse;
