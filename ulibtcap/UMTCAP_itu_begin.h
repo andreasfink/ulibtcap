@@ -16,18 +16,4 @@
 {
 }
 
-/* for old compatibility */
-- (UMTCAP_begin *)initForTcap:(UMLayerTCAP *)xtcap
-                transactionId:(NSString *)xtransactionId
-                 userDialogId:(NSString *)xuserDialogId
-                      variant:(UMTCAP_Variant)xvariant
-                         user:(id<UMLayerUserProtocol>)xuser
-               callingAddress:(SccpAddress *)xsrc
-                calledAddress:(SccpAddress *)xdst
-           applicationContext:(UMTCAP_asn1_objectIdentifier *)xapplicationContext
-                     userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-        dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
-                   components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
-                      options:(NSDictionary *)xoptions;
-
 @end

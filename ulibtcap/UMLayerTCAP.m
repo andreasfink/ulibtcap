@@ -156,15 +156,13 @@
 
 /* Dialog Handling primmitives */
 
-
 - (void)tcapUnidirectionalRequest:(NSString *)tcapTransactionId
                      userDialogId:(NSString *)userDialogId
                           variant:(UMTCAP_Variant)variant
                              user:(id<UMTCAP_UserProtocol>)user
                    callingAddress:(SccpAddress *)src
                     calledAddress:(SccpAddress *)dst
-               applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                         userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+                  dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                        components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                           options:(NSDictionary *)options
 {
@@ -182,9 +180,7 @@
                     user:(id<UMTCAP_UserProtocol>)user
           callingAddress:(SccpAddress *)src
            calledAddress:(SccpAddress *)dst
-      applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-   dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+         dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
               components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                  options:(NSDictionary *)options
 {
@@ -209,9 +205,7 @@
                                                 user:user
                                       callingAddress:src
                                        calledAddress:dst
-                                  applicationContext:appContext
-                                            userInfo:xuserInfo
-                               dialogProtocolVersion:xdialogProtocolVersion
+                                     dialoguePortion:xdialoguePortion
                                           components:components
                                              options:options];
     }
@@ -224,9 +218,7 @@
                                                  user:user
                                        callingAddress:src
                                         calledAddress:dst
-                                   applicationContext:appContext
-                                             userInfo:xuserInfo
-                                dialogProtocolVersion:xdialogProtocolVersion
+                                      dialoguePortion:xdialoguePortion
                                            components:components
                                               options:options];
 
@@ -295,9 +287,7 @@
                   user:(id<UMTCAP_UserProtocol>)user
         callingAddress:(SccpAddress *)src
          calledAddress:(SccpAddress *)dst
-    applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-              userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
- dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+       dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
             components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                options:(NSDictionary *)options
 {
@@ -321,9 +311,7 @@
                                                    user:user
                                          callingAddress:src
                                           calledAddress:dst
-                                     applicationContext:appContext
-                                               userInfo:xuserInfo
-                                  dialogProtocolVersion:xdialogProtocolVersion
+                                        dialoguePortion:xdialoguePortion
                                              components:components
                                              permission:transaction.withPermission
                                                 options:options];
@@ -337,9 +325,7 @@
                                                     user:user
                                           callingAddress:src
                                            calledAddress:dst
-                                      applicationContext:appContext
-                                                userInfo:xuserInfo
-                                   dialogProtocolVersion:xdialogProtocolVersion
+                                         dialoguePortion:xdialoguePortion
                                               components:components
                                               permission:transaction.withPermission
                                                  options:options];
@@ -353,8 +339,7 @@
                      user:(id<UMTCAP_UserProtocol>)user
            callingAddress:(SccpAddress *)src
             calledAddress:(SccpAddress *)dst
-       applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                 userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
+          dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
              callingLayer:(UMLayer *)tcapLayer
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options
@@ -866,7 +851,7 @@ NSDate *timeoutDate;
 
 - (NSString *)status
 {
-    return [NSString stringWithFormat:@"IS:%d",(unsigned long)[transactionsByLocalTransactionId count]];
+    return [NSString stringWithFormat:@"IS:%lu",(unsigned long)[transactionsByLocalTransactionId count]];
 }
 
 
