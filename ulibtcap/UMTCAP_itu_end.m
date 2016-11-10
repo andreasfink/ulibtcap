@@ -64,7 +64,7 @@
     UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
     dtid.transactionId = t.remoteTransactionId;
     q.dtid = dtid;
-    q.dialoguePortion = dialoguePortion;
+    q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
     
     if(components.count > 0)
     {
