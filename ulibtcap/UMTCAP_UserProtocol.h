@@ -18,6 +18,7 @@
 #import "UMTCAP_asn1_objectIdentifier.h"
 #import "UMTCAP_asn1_external.h"
 #import "UMTCAP_asn1_userInformation.h"
+#import "UMTCAP_asn1_dialoguePortion.h"
 
 @class UMLayerTCAP;
 @class UMTCAP_generic_asn1_componentPDU;
@@ -38,9 +39,7 @@
                     variant:(UMTCAP_Variant)var
              callingAddress:(SccpAddress *)src
               calledAddress:(SccpAddress *)dst
-         applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                   userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-      dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+            dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                callingLayer:(UMLayerTCAP *)tcapLayer
                  components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                     options:(NSDictionary *)options;
@@ -51,9 +50,7 @@
                        variant:(UMTCAP_Variant)var
                 callingAddress:(SccpAddress *)src
                  calledAddress:(SccpAddress *)dst
-            applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                      userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-         dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+               dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                   callingLayer:(UMLayerTCAP *)tcapLayer
                     components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                        options:(NSDictionary *)options;
@@ -64,9 +61,7 @@
                   variant:(UMTCAP_Variant)var
            callingAddress:(SccpAddress *)src
             calledAddress:(SccpAddress *)dst
-       applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                 userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-    dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+          dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
              callingLayer:(UMLayerTCAP *)tcapLayer
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options;
@@ -78,9 +73,7 @@
                              variant:(UMTCAP_Variant)variant
                       callingAddress:(SccpAddress *)src
                        calledAddress:(SccpAddress *)dst
-                  applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                            userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-               dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+                     dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                         callingLayer:(UMLayerTCAP *)tcapLayer
                           components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                              options:(NSDictionary *)options;
@@ -92,9 +85,7 @@
                      variant:(UMTCAP_Variant)variant
               callingAddress:(SccpAddress *)src
                calledAddress:(SccpAddress *)dst
-          applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                    userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-       dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+             dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                 callingLayer:(UMLayerTCAP *)tcapLayer
                   components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                       reason:(SCCP_ReturnCause)reason
@@ -108,9 +99,7 @@
                      variant:(UMTCAP_Variant)variant
               callingAddress:(SccpAddress *)src
                calledAddress:(SccpAddress *)dst
-          applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                    userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-       dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+             dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                 callingLayer:(UMLayerTCAP *)tcapLayer
                         asn1:(UMASN1Object *)asn1
                      options:(NSDictionary *)options;
@@ -122,9 +111,7 @@
                      variant:(UMTCAP_Variant)variant
               callingAddress:(SccpAddress *)src
                calledAddress:(SccpAddress *)dst
-          applicationContext:(UMTCAP_asn1_objectIdentifier *)appContext
-                    userInfo:(UMTCAP_asn1_userInformation *)xuserInfo
-       dialogProtocolVersion:(UMASN1BitString *)xdialogProtocolVersion
+             dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                 callingLayer:(UMLayerTCAP *)tcapLayer
                         asn1:(UMASN1Object *)asn1
                      options:(NSDictionary *)options;

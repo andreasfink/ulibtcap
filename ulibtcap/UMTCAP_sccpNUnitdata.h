@@ -32,6 +32,7 @@
 @class UMTCAP_itu_asn1_returnError;
 @class UMTCAP_itu_asn1_returnResult;
 @class UMTCAP_itu_asn1_reject;
+@class UMTCAP_asn1_dialoguePortion;
 
 @interface UMTCAP_sccpNUnitdata : UMLayerTask
 {
@@ -70,6 +71,7 @@
     UMTCAP_asn1_objectIdentifier *applicationContext;
     UMTCAP_asn1_userInformation *userInfo;
     UMASN1BitString *dialogProtocolVersion;
+    UMTCAP_asn1_dialoguePortion *dialoguePortion;
     NSString                *ansiTransactionId;
 
     NSString                *currentLocalTransactionId;

@@ -168,9 +168,7 @@
                            variant:tcapVariant
                     callingAddress:src
                      calledAddress:dst
-                applicationContext:NULL
-                          userInfo:NULL
-             dialogProtocolVersion:NULL
+                   dialoguePortion:NULL
                       callingLayer:tcapLayer
                         components:currentComponents
                             reason:reason

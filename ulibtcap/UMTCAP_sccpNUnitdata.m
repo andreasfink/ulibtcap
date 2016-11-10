@@ -145,9 +145,7 @@
                                            variant:tcapVariant
                                     callingAddress:src
                                      calledAddress:dst
-                                applicationContext:applicationContext
-                                          userInfo:userInfo
-                             dialogProtocolVersion:dialogProtocolVersion
+                                   dialoguePortion:dialoguePortion
                                       callingLayer:tcapLayer
                                         components:currentComponents
                                            options:options];
@@ -174,9 +172,7 @@
                                       variant:tcapVariant
                                callingAddress:src
                                 calledAddress:dst
-                           applicationContext:applicationContext
-                                     userInfo:userInfo
-                        dialogProtocolVersion:dialogProtocolVersion
+                              dialoguePortion:dialoguePortion
                                  callingLayer:tcapLayer
                                    components:currentComponents
                                       options:options];
@@ -207,9 +203,7 @@
                                   variant:tcapVariant
                            callingAddress:src
                             calledAddress:dst
-                       applicationContext:objectIdentifier
-                                 userInfo:userInfo
-                    dialogProtocolVersion:dialogProtocolVersion
+                          dialoguePortion:dialoguePortion
                              callingLayer:tcapLayer
                                components:currentComponents
                                   options:options];
@@ -233,9 +227,7 @@
                                 variant:tcapVariant
                          callingAddress:src
                           calledAddress:dst
-                     applicationContext:applicationContext
-                               userInfo:userInfo
-                  dialogProtocolVersion:dialogProtocolVersion
+                        dialoguePortion:dialoguePortion
                            callingLayer:tcapLayer
                              components:currentComponents
                                 options:options];
@@ -257,9 +249,7 @@
                                 variant:tcapVariant
                          callingAddress:src
                           calledAddress:dst
-                     applicationContext:applicationContext
-                               userInfo:userInfo
-                  dialogProtocolVersion:dialogProtocolVersion
+                        dialoguePortion:dialoguePortion
                            callingLayer:tcapLayer
                              components:currentComponents
                                 options:options];
@@ -283,9 +273,7 @@
                                          variant:tcapVariant
                                   callingAddress:src
                                    calledAddress:dst
-                              applicationContext:applicationContext
-                                        userInfo:userInfo
-                           dialogProtocolVersion:dialogProtocolVersion
+                                 dialoguePortion:dialoguePortion
                                     callingLayer:tcapLayer
                                       components:currentComponents
                                          options:options];
@@ -306,9 +294,7 @@
                                          variant:tcapVariant
                                   callingAddress:src
                                    calledAddress:dst
-                              applicationContext:applicationContext
-                                        userInfo:userInfo
-                           dialogProtocolVersion:dialogProtocolVersion
+                                 dialoguePortion:dialoguePortion
                                     callingLayer:tcapLayer
                                       components:currentComponents
                                          options:options];
@@ -331,9 +317,7 @@
                                        variant:tcapVariant
                                 callingAddress:src
                                  calledAddress:dst
-                            applicationContext:applicationContext
-                                      userInfo:userInfo
-                         dialogProtocolVersion:dialogProtocolVersion
+                               dialoguePortion:dialoguePortion
                                   callingLayer:tcapLayer
                                           asn1:(UMASN1Object *)asn1
                                        options:options];
@@ -353,9 +337,7 @@
                                        variant:tcapVariant
                                 callingAddress:src
                                  calledAddress:dst
-                            applicationContext:applicationContext
-                                      userInfo:userInfo
-                         dialogProtocolVersion:dialogProtocolVersion
+                               dialoguePortion:dialoguePortion
                                   callingLayer:tcapLayer
                                           asn1:(UMASN1Object *)asn1
                                        options:options
@@ -451,6 +433,7 @@
 
 - (void)handleItuDialogue:(UMTCAP_itu_asn1_dialoguePortion *)dp
 {
+    dialoguePortion = dp;
     if(dp.dialogRequest)
     {
         if(dp.dialogRequest.protocolVersion)
