@@ -39,6 +39,7 @@
     int64_t lastDialogId;
     int64_t lastTransactionId;
     UMTimer *houseKeepingTimer;
+    BOOL houseKeepingRunning;
 }
 
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapDefaultUser;

@@ -789,6 +789,13 @@ NSDate *timeoutDate;
 
 - (void)housekeeping
 {
+
+    if(houseKeepingRunning)
+    {
+        return;
+    }
+    houseKeepingRunning = YES;
+
     NSArray *keys = [transactionsByLocalTransactionId allKeys];
     for(NSString *key in keys)
     {
@@ -802,6 +809,8 @@ NSDate *timeoutDate;
             [t timeOut];
         }
     }
+    houseKeepingRunning = NO;
+
 }
 
 - (NSString *)decodePdu:(NSData *)data
