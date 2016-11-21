@@ -689,7 +689,7 @@
         [attachedLayer setDefaultUser:self];
     }
     /* lets call housekeeping once per second */
-    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self selector:@selector(housekeeping) object:NULL duration:1000000 name:@"tcap-housekeeping" repeats:YES];
+    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self selector:@selector(housekeeping) object:NULL duration:1000000 name:@"tcap-housekeeping" repeats:NO];
     [houseKeepingTimer start];
 }
 
@@ -789,13 +789,6 @@ NSDate *timeoutDate;
 
 - (void)housekeeping
 {
-
-    if(houseKeepingRunning)
-    {
-        return;
-    }
-    houseKeepingRunning = YES;
-
     NSArray *keys = [transactionsByLocalTransactionId allKeys];
     for(NSString *key in keys)
     {
@@ -809,8 +802,7 @@ NSDate *timeoutDate;
             [t timeOut];
         }
     }
-    houseKeepingRunning = NO;
-
+    [houseKeepingTimer start];
 }
 
 - (NSString *)decodePdu:(NSData *)data
