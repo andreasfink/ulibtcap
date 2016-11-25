@@ -69,7 +69,7 @@
     self = [super initWithName:@"UMSCCP_sccpNUnitdata"
                       receiver:tcap
                         sender:sccp
-       requiresSynchronisation:YES];
+       requiresSynchronisation:NO];
     if(self)
     {
         sccpLayer = sccp;
