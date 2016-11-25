@@ -33,7 +33,7 @@
     self = [super initWithName:@"UMTCAP_end"
                       receiver:xtcap
                         sender:xuser
-       requiresSynchronisation:YES];
+       requiresSynchronisation:NO];
     if(self)
     {
         tcap = xtcap;

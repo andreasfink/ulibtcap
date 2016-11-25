@@ -80,7 +80,7 @@
     self = [super initWithName:@"UMTCAP_sccpNNotice"
                       receiver:tcap
                         sender:sccp
-       requiresSynchronisation:YES];
+       requiresSynchronisation:NO];
     if(self)
     {
         sccpLayer = sccp;
