@@ -688,8 +688,8 @@
     {
         [attachedLayer setDefaultUser:self];
     }
-    /* lets call housekeeping once per second */
-    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self selector:@selector(housekeeping) object:NULL duration:1000000 name:@"tcap-housekeeping" repeats:NO];
+    /* lets call housekeeping once per 2.6 seconds */
+    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self selector:@selector(housekeeping) object:NULL duration:2600000 name:@"tcap-housekeeping" repeats:NO];
     [houseKeepingTimer start];
 }
 
