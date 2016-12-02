@@ -48,14 +48,14 @@
     }
     
     NSData *pdu = [q berEncoded];
-    
+    [t touch];
+
     [tcap.attachedLayer sccpNUnidata:pdu
                         callingLayer:tcap
                              calling:callingAddress
                               called:calledAddress
                     qualityOfService:0
                              options:options];
-    [t touch];
 }
 
 @end

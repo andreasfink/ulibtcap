@@ -47,25 +47,31 @@
 
 - (void)touch
 {
-    if(timeoutValue==0)
+    @synchronized(self)
     {
-        timeoutValue=90;
+        if(timeoutValue==0)
+        {
+            timeoutValue=90;
+        }
+        timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutValue];
     }
-    timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutValue];
 }
 
 - (BOOL)isTimedOut
 {
-    if(timeoutDate == NULL)
+    @synchronized(self)
     {
+        if(timeoutDate == NULL)
+        {
+            return NO;
+        }
+        NSDate *now = [NSDate date];
+        if([now compare:timeoutDate] == NSOrderedDescending)
+        {
+            return YES;
+        }
         return NO;
     }
-    NSDate *now = [NSDate date];
-    if([now compare:timeoutDate] == NSOrderedDescending)
-    {
-        return YES;
-    }
-    return NO;
 }
 
 - (void)timeOut
