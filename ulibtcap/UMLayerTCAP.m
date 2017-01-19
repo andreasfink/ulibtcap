@@ -805,7 +805,7 @@ NSDate *timeoutDate;
     [houseKeepingTimer start];
 }
 
-- (NSString *)decodePdu:(NSData *)data
+- (id)decodePdu:(NSData *)data /* should return a type which can be converted to json */
 {
     UMTCAP_sccpNUnitdata *task;
     task = [[UMTCAP_sccpNUnitdata alloc]initForTcap:self
@@ -819,16 +819,17 @@ NSDate *timeoutDate;
     UMASN1Object *asn1 = task.asn1;
     if(asn1)
     {
-        NSString *s = asn1.objectValue;
-        return [s jsonString];
+        return asn1.objectValue;
     }
     else
     {
-        return task.decodeError;
+        UMSynchronizedSortedDictionary *e = [[UMSynchronizedSortedDictionary alloc]init];
+        e[@"decode-error"] = task.decodeError;
+        return e;
     }
 }
 
-+ (NSString *)decodePdu:(NSData *)pdu
++ (id)decodePdu:(NSData *)pdu /* should return a type which can be converted to json */
 {
     UMTCAP_sccpNUnitdata *task;
     task = [[UMTCAP_sccpNUnitdata alloc]initForTcap:NULL
@@ -842,11 +843,13 @@ NSDate *timeoutDate;
     UMASN1Object *asn1 = task.asn1;
     if(asn1)
     {
-        return [asn1.objectValue description];
+        return asn1.objectValue;
     }
     else
     {
-        return task.decodeError;
+        UMSynchronizedSortedDictionary *e = [[UMSynchronizedSortedDictionary alloc]init];
+        e[@"decode-error"] = task.decodeError;
+        return e;
     }
 }
 
