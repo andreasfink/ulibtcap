@@ -187,7 +187,7 @@
 
 /* internal methods to keep track of transactions */
 
-- (void)setConfig:(NSDictionary *)cfg;
+- (void)setConfig:(NSDictionary *)cfg applicationContext:(id<UMSS7Stack_ApplicationContext_protocol>)appContext;
 - (NSDictionary *)config;
 - (id<UMTCAP_UserProtocol>)getUserForOperation:(int64_t)operationCode;
 - (void) setUser:(id<UMTCAP_UserProtocol>)user forOperation:(int64_t)operationCode;
