@@ -187,7 +187,7 @@
 
 /* internal methods to keep track of transactions */
 
-- (void)setConfig:(NSDictionary *)cfg applicationContext:(id<UMSS7Stack_ApplicationContext_protocol>)appContext;
+- (void)setConfig:(NSDictionary *)cfg applicationContext:(id<UMLayerTCAPApplicationContextProtocol>)appContext;
 - (NSDictionary *)config;
 - (id<UMTCAP_UserProtocol>)getUserForOperation:(int64_t)operationCode;
 - (void) setUser:(id<UMTCAP_UserProtocol>)user forOperation:(int64_t)operationCode;
@@ -201,7 +201,7 @@
 - (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(NSString *)userDialogId user:(id <UMTCAP_UserProtocol>)usr;
 - (UMTCAP_Transaction *)getNewIncomingTransactionForRemoteTransactionId:(NSString *)remoteTransactionId;
 - (void)removeTransaction:(UMTCAP_Transaction *)t;
-
+- (void)housekeeping;
 
 - (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */
 + (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */

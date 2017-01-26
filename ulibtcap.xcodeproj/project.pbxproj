@@ -120,8 +120,13 @@
 		A69B5B6E1CD0BA9E00711600 /* UMTCAP_State_operation_sent.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B5B6C1CD0BA9E00711600 /* UMTCAP_State_operation_sent.m */; };
 		A69B5B711CD0BAAE00711600 /* UMTCAP_State_wait_for_reject.h in Headers */ = {isa = PBXBuildFile; fileRef = A69B5B6F1CD0BAAE00711600 /* UMTCAP_State_wait_for_reject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A69B5B721CD0BAAE00711600 /* UMTCAP_State_wait_for_reject.m in Sources */ = {isa = PBXBuildFile; fileRef = A69B5B701CD0BAAE00711600 /* UMTCAP_State_wait_for_reject.m */; };
+		A69DB8101E390D2000E0C84E /* UMTCAP_HousekeepingTask.h in Headers */ = {isa = PBXBuildFile; fileRef = A69DB80E1E390D2000E0C84E /* UMTCAP_HousekeepingTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A69DB8111E390D2000E0C84E /* UMTCAP_HousekeepingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = A69DB80F1E390D2000E0C84E /* UMTCAP_HousekeepingTask.m */; };
+		A69DB81C1E3936EC00E0C84E /* UMTCAP_TimeoutTask.h in Headers */ = {isa = PBXBuildFile; fileRef = A69DB81A1E3936EC00E0C84E /* UMTCAP_TimeoutTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A69DB81D1E3936EC00E0C84E /* UMTCAP_TimeoutTask.m in Sources */ = {isa = PBXBuildFile; fileRef = A69DB81B1E3936EC00E0C84E /* UMTCAP_TimeoutTask.m */; };
 		A69E3DCF1DAB062B00264617 /* UMTCAP_ansi_end.h in Headers */ = {isa = PBXBuildFile; fileRef = A69E3DCD1DAB062B00264617 /* UMTCAP_ansi_end.h */; };
 		A69E3DD01DAB062B00264617 /* UMTCAP_ansi_end.m in Sources */ = {isa = PBXBuildFile; fileRef = A69E3DCE1DAB062B00264617 /* UMTCAP_ansi_end.m */; };
+		A6A2B8D41E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6A2D7141CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A2D7121CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6A2D7151CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A2D7131CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m */; };
 		A6B7FBC91B44B97F00854472 /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC81B44B97F00854472 /* sctp.framework */; };
@@ -317,8 +322,13 @@
 		A69B5B6C1CD0BA9E00711600 /* UMTCAP_State_operation_sent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_State_operation_sent.m; sourceTree = "<group>"; };
 		A69B5B6F1CD0BAAE00711600 /* UMTCAP_State_wait_for_reject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_State_wait_for_reject.h; sourceTree = "<group>"; };
 		A69B5B701CD0BAAE00711600 /* UMTCAP_State_wait_for_reject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_State_wait_for_reject.m; sourceTree = "<group>"; };
+		A69DB80E1E390D2000E0C84E /* UMTCAP_HousekeepingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_HousekeepingTask.h; sourceTree = "<group>"; };
+		A69DB80F1E390D2000E0C84E /* UMTCAP_HousekeepingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_HousekeepingTask.m; sourceTree = "<group>"; };
+		A69DB81A1E3936EC00E0C84E /* UMTCAP_TimeoutTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TimeoutTask.h; sourceTree = "<group>"; };
+		A69DB81B1E3936EC00E0C84E /* UMTCAP_TimeoutTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TimeoutTask.m; sourceTree = "<group>"; };
 		A69E3DCD1DAB062B00264617 /* UMTCAP_ansi_end.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_end.h; sourceTree = "<group>"; };
 		A69E3DCE1DAB062B00264617 /* UMTCAP_ansi_end.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_end.m; sourceTree = "<group>"; };
+		A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMLayerTCAPApplicationContextProtocol.h; sourceTree = "<group>"; };
 		A6A2D7121CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_generic_asn1_componentPDU.h; sourceTree = "<group>"; };
 		A6A2D7131CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_generic_asn1_componentPDU.m; sourceTree = "<group>"; };
 		A6B7FBC81B44B97F00854472 /* sctp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sctp.framework; path = /Library/Frameworks/sctp.framework; sourceTree = "<absolute>"; };
@@ -449,11 +459,16 @@
 				A641CE561B42010A00854472 /* Supporting Files */,
 				A641CE581B42010A00854472 /* ulibtcap.h */,
 				A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */,
+				A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */,
 				A6DDA3EA1CAD262100754B9E /* UMTCAP_UserProtocol.h */,
 				A6ED5C501B4358F100854472 /* UMLayerTCAP.h */,
 				A6ED5C511B4358F100854472 /* UMLayerTCAP.m */,
 				A658BC5A1CAB6A0F00211137 /* UMTCAP_Transaction.h */,
 				A658BC5B1CAB6A0F00211137 /* UMTCAP_Transaction.m */,
+				A69DB80E1E390D2000E0C84E /* UMTCAP_HousekeepingTask.h */,
+				A69DB80F1E390D2000E0C84E /* UMTCAP_HousekeepingTask.m */,
+				A69DB81A1E3936EC00E0C84E /* UMTCAP_TimeoutTask.h */,
+				A69DB81B1E3936EC00E0C84E /* UMTCAP_TimeoutTask.m */,
 				A60A3DB11CC9738D00211137 /* UMTCAP_Command.h */,
 				A6955FD21CC8132F00211137 /* UMTCAP_Operation.h */,
 				A6DDA3F21CAD341C00754B9E /* UMTCAP_operationClass.h */,
@@ -755,8 +770,10 @@
 				A6814B961CA96B3000211137 /* UMTCAP_ansi_asn1_transactionPDU.h in Headers */,
 				A6814BDE1CAA126700211137 /* UMTCAP_itu_asn1_begin.h in Headers */,
 				A6BCE1AB1CD8B00800415D67 /* UMTCAP_asn1_Associate_source_diagnostic.h in Headers */,
+				A69DB81C1E3936EC00E0C84E /* UMTCAP_TimeoutTask.h in Headers */,
 				A6814B821CA963E000211137 /* UMTCAP_ansi_asn1_conversationWithPerm.h in Headers */,
 				A6814BBE1CA987F900211137 /* UMTCAP_ansi_asn1_invoke.h in Headers */,
+				A6A2B8D41E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h in Headers */,
 				A68252751CCFD9F000211137 /* UMTCAP_asn1_AARE_apdu.h in Headers */,
 				A6091FC61CB53FA40076BD59 /* UMTCAP_ansi_asn1_componentIDs.h in Headers */,
 				A69B5B6D1CD0BA9E00711600 /* UMTCAP_State_operation_sent.h in Headers */,
@@ -795,6 +812,7 @@
 				A6D03B501CA4893C00211137 /* UMTCAP_begin.h in Headers */,
 				A6C446121CAA767C005A860B /* UMTCAP_itu_asn1_reject.h in Headers */,
 				A688B7381CCA2211005D3906 /* UMTCAP_end.h in Headers */,
+				A69DB8101E390D2000E0C84E /* UMTCAP_HousekeepingTask.h in Headers */,
 				A6814BFA1CAA145700211137 /* UMTCAP_itu_asn1_dtid.h in Headers */,
 				A688B7301CCA2189005D3906 /* UMTCAP_continue.h in Headers */,
 				A6814BA21CA96F6700211137 /* UMTCAP_ansi_asn1_transactionID.h in Headers */,
@@ -944,6 +962,7 @@
 				A6C446131CAA767C005A860B /* UMTCAP_itu_asn1_reject.m in Sources */,
 				A6814BF71CAA144C00211137 /* UMTCAP_itu_asn1_otid.m in Sources */,
 				A6A2D7151CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m in Sources */,
+				A69DB8111E390D2000E0C84E /* UMTCAP_HousekeepingTask.m in Sources */,
 				A6814BE71CAA127F00211137 /* UMTCAP_itu_asn1_continue.m in Sources */,
 				A6D03B6D1CA489DA00211137 /* UMTCAP_ansi_abort.m in Sources */,
 				A6814B831CA963E000211137 /* UMTCAP_ansi_asn1_conversationWithPerm.m in Sources */,
@@ -993,6 +1012,7 @@
 				A69E3DD01DAB062B00264617 /* UMTCAP_ansi_end.m in Sources */,
 				A69B5B6A1CD0BA8700711600 /* UMTCAP_State_idle.m in Sources */,
 				A69B5B6E1CD0BA9E00711600 /* UMTCAP_State_operation_sent.m in Sources */,
+				A69DB81D1E3936EC00E0C84E /* UMTCAP_TimeoutTask.m in Sources */,
 				A6814B771CA9636800211137 /* UMTCAP_ansi_asn1_queryWithoutPerm.m in Sources */,
 				A6D03B511CA4893C00211137 /* UMTCAP_begin.m in Sources */,
 				A6814BDB1CAA125800211137 /* UMTCAP_itu_asn1_unidirectional.m in Sources */,

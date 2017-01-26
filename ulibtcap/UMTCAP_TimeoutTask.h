@@ -8,6 +8,16 @@
 
 #import <ulib/ulib.h>
 
+@class UMLayerTCAP;
+@class UMTCAP_Transaction;
+
 @interface UMTCAP_TimeoutTask : UMLayerTask
+{
+    UMLayerTCAP *tcap;
+    UMTCAP_Transaction *transaction;
+}
+
+- (UMTCAP_TimeoutTask *)initForTCAP:(UMLayerTCAP *)g transaction:(UMTCAP_Transaction *)t;
+- (void)main;
 
 @end

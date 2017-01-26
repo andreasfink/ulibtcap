@@ -38,6 +38,8 @@
 #import "UMTCAP_itu_begin.h"
 #import "UMTCAP_sccpNUnitdata.h"
 #import "UMTCAP_sccpNNotice.h"
+#import "UMLayerTCAPApplicationContextProtocol.h"
+#import "UMTCAP_HousekeepingTask.h"
 
 @implementation UMLayerTCAP
 
@@ -612,7 +614,7 @@
     @throw([NSException exceptionWithName:@"not yet implemented" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
 }
 
-- (void)setConfig:(NSDictionary *)cfg applicationContext:(id<UMSS7Stack_ApplicationContext_protocol>)appContext
+- (void)setConfig:(NSDictionary *)cfg applicationContext:(id<UMLayerTCAPApplicationContextProtocol>)appContext
 {
     [self readLayerConfig:cfg];
     if (cfg[@"attach-to"])
@@ -689,7 +691,7 @@
         [attachedLayer setDefaultUser:self];
     }
     /* lets call housekeeping once per 2.6 seconds */
-    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self selector:@selector(housekeeping) object:NULL duration:2600000 name:@"tcap-housekeeping" repeats:NO];
+    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self selector:@selector(houseKeepingTask) object:NULL duration:2600000 name:@"tcap-housekeeping" repeats:YES];
     [houseKeepingTimer start];
 }
 
@@ -787,24 +789,6 @@
 NSTimeInterval timeoutValue;
 NSDate *timeoutDate;
 
-- (void)housekeeping
-{
-    NSArray *keys = [transactionsByLocalTransactionId allKeys];
-    for(NSString *key in keys)
-    {
-        UMTCAP_Transaction *t = transactionsByLocalTransactionId[key];
-        if(t.transactionIsClosed)
-        {
-            [self removeTransaction:t];
-        }
-        if([t isTimedOut]==YES)
-        {
-            [t timeOut];
-        }
-    }
-    [houseKeepingTimer start];
-}
-
 - (id)decodePdu:(NSData *)data /* should return a type which can be converted to json */
 {
     UMTCAP_sccpNUnitdata *task;
@@ -858,5 +842,33 @@ NSDate *timeoutDate;
     return [NSString stringWithFormat:@"IS:%lu",(unsigned long)[transactionsByLocalTransactionId count]];
 }
 
+
+- (void)housekeeping
+{
+    [houseKeepingTimer stop];
+    @synchronized(self)
+    {
+        NSArray *keys = [transactionsByLocalTransactionId allKeys];
+        for(NSString *key in keys)
+        {
+            UMTCAP_Transaction *t = transactionsByLocalTransactionId[key];
+            if(t.transactionIsClosed)
+            {
+                [self removeTransaction:t];
+            }
+            if([t isTimedOut]==YES)
+            {
+                [t timeOut];
+            }
+        }
+    }
+    [houseKeepingTimer start];
+}
+
+- (void)houseKeepingTask
+{
+    UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
+    [self queueFromLower:task];
+}
 
 @end

@@ -17,6 +17,7 @@
 #import <ulibsccp/ulibsccp.h>
 #import <ulibgt/ulibgt.h>
 
+#import "UMLayerTCAPApplicationContextProtocol.h"
 #import "UMTCAP_Variant.h"
 #import "UMTCAP_operationClass.h"
 

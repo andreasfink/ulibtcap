@@ -8,6 +8,28 @@
 
 #import "UMTCAP_TimeoutTask.h"
 
+#import "UMLayerTCAP.h"
+#import "UMTCAP_Transaction.h"
+
 @implementation UMTCAP_TimeoutTask
+
+- (UMTCAP_TimeoutTask *)initForGSMMAP:(UMLayerTCAP *)g dialog:(UMTCAP_Transaction *)t
+{
+    self = [super initWithName:@"UMTCAP_TimeoutTask"
+                      receiver:g
+                        sender:NULL
+       requiresSynchronisation:NO];
+    if(self)
+    {
+        tcap = g;
+        transaction = t;
+    }
+    return self;
+}
+
+- (void) main
+{
+    [transaction timeOut];
+}
 
 @end

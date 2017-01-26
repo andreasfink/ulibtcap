@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ulib/ulib.h>
 
-@interface UMTCAP_HousekeepingTask : NSObject
+@class UMLayerTCAP;
+
+@interface UMTCAP_HousekeepingTask : UMLayerTask
+{
+    UMLayerTCAP *tcapLayer;
+}
+
+- (UMTCAP_HousekeepingTask *)initForTcap:(UMLayerTCAP *)tcap;
+- (void)main;
 
 @end

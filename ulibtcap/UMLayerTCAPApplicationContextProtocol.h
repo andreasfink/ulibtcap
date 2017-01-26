@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UMLayerTCAPApplicationContextProtocol : NSObject
+@class UMLayerSCCP;
 
+@protocol UMLayerTCAPApplicationContextProtocol<NSObject>
+- (UMLayerSCCP *)getSCCP:(NSString *)name;
 @end

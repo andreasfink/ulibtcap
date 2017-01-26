@@ -7,7 +7,27 @@
 //
 
 #import "UMTCAP_HousekeepingTask.h"
+#import "UMLayerTCAP.h"
 
 @implementation UMTCAP_HousekeepingTask
+
+
+- (UMTCAP_HousekeepingTask *)initForTcap:(UMLayerTCAP *)tcap
+{
+    self = [super initWithName:@"UMTCAP_HousekeepingTask"
+                      receiver:tcap
+                        sender:NULL
+       requiresSynchronisation:NO];
+    if(self)
+    {
+        tcapLayer = tcap;
+    }
+    return self;
+}
+
+- (void)main
+{
+    [tcapLayer housekeeping];
+}
 
 @end
