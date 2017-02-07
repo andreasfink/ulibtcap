@@ -868,7 +868,8 @@ NSDate *timeoutDate;
 - (void)houseKeepingTask
 {
     UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
-    [self queueFromLower:task];
+   // [self queueFromLower:task];
+    [task main];
 }
 
 @end
