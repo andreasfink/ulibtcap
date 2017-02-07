@@ -13,7 +13,8 @@
 
 @implementation UMTCAP_TimeoutTask
 
-- (UMTCAP_TimeoutTask *)initForGSMMAP:(UMLayerTCAP *)g dialog:(UMTCAP_Transaction *)t
+
+- (UMTCAP_TimeoutTask *)initForTCAP:(UMLayerTCAP *)g transaction:(UMTCAP_Transaction *)t
 {
     self = [super initWithName:@"UMTCAP_TimeoutTask"
                       receiver:g
