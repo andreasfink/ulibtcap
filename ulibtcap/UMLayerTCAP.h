@@ -39,6 +39,7 @@
     int64_t lastDialogId;
     int64_t lastTransactionId;
     UMTimer *houseKeepingTimer;
+    BOOL _housekeeping_running;
 }
 
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapDefaultUser;
@@ -51,6 +52,8 @@
 @property(readwrite,strong) UMLayerSCCP     *attachedLayer;
 @property(readwrite,strong) SccpSubSystemNumber *ssn;
 @property(readwrite,assign) BOOL transactionIsClosed;
+@property(readwrite,assign,atomic)  BOOL housekeeping_running;
+
 
 
 /* this is called from lower layer to deliver data to the TCAP Layer */

@@ -40,6 +40,7 @@
 #import "UMTCAP_sccpNNotice.h"
 #import "UMLayerTCAPApplicationContextProtocol.h"
 #import "UMTCAP_HousekeepingTask.h"
+#import "UMTCAP_TimeoutTask.h"
 
 @implementation UMLayerTCAP
 
@@ -845,31 +846,37 @@ NSDate *timeoutDate;
 
 - (void)housekeeping
 {
-    [houseKeepingTimer stop];
-    @synchronized(self)
+    if(self.housekeeping_running)
     {
-        NSArray *keys = [transactionsByLocalTransactionId allKeys];
-        for(NSString *key in keys)
+            return;
+    }
+    self.housekeeping_running = YES;
+
+    [houseKeepingTimer stop];
+    NSArray *keys = [transactionsByLocalTransactionId allKeys];
+    for(NSString *key in keys)
+    {
+        UMTCAP_Transaction *t = transactionsByLocalTransactionId[key];
+        if(t.transactionIsClosed)
         {
-            UMTCAP_Transaction *t = transactionsByLocalTransactionId[key];
-            if(t.transactionIsClosed)
-            {
-                [self removeTransaction:t];
-            }
-            if([t isTimedOut]==YES)
-            {
-                [t timeOut];
-            }
+            [self removeTransaction:t];
+        }
+        if([t isTimedOut]==YES)
+        {
+            UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
+            [self queueFromLower:task];
         }
     }
     [houseKeepingTimer start];
+
+    self.housekeeping_running = NO;
 }
 
 - (void)houseKeepingTask
 {
     UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
-   // [self queueFromLower:task];
-    [task main];
+    [self queueFromLower:task];
+   // [task main];
 }
 
 @end
