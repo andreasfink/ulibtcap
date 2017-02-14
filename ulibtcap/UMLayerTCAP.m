@@ -692,7 +692,12 @@
         [attachedLayer setDefaultUser:self];
     }
     /* lets call housekeeping once per 2.6 seconds */
-    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self selector:@selector(houseKeepingTask) object:NULL duration:2600000 name:@"tcap-housekeeping" repeats:YES];
+    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self
+                                              selector:@selector(houseKeepingTask)
+                                                object:NULL
+                                              duration:2600000
+                                                  name:@"tcap-housekeeping"
+                                               repeats:YES];
     [houseKeepingTimer start];
 }
 
@@ -848,11 +853,10 @@ NSDate *timeoutDate;
 {
     if(self.housekeeping_running)
     {
-            return;
+        return;
     }
     self.housekeeping_running = YES;
 
-    [houseKeepingTimer stop];
     NSArray *keys = [transactionsByLocalTransactionId allKeys];
     for(NSString *key in keys)
     {
@@ -867,8 +871,6 @@ NSDate *timeoutDate;
             [self queueFromLower:task];
         }
     }
-    [houseKeepingTimer start];
-
     self.housekeeping_running = NO;
 }
 
@@ -876,7 +878,6 @@ NSDate *timeoutDate;
 {
     UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
     [self queueFromLower:task];
-   // [task main];
 }
 
 @end
