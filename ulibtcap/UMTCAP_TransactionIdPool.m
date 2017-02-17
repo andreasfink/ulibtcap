@@ -7,6 +7,7 @@
 //
 
 #import "UMTCAP_TransactionIdPool.h"
+#include <stdlib.h>
 
 @implementation UMTCAP_TransactionIdPool
 
