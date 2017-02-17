@@ -20,6 +20,7 @@
 
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;
+@class UMTCAP_TransactionIdPool;
 
 @interface UMLayerTCAP : UMLayer<UMSCCP_UserProtocol>
 {
@@ -40,6 +41,7 @@
     int64_t lastTransactionId;
     UMTimer *houseKeepingTimer;
     BOOL _housekeeping_running;
+    UMTCAP_TransactionIdPool *_tidPool;
 }
 
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapDefaultUser;
@@ -54,7 +56,7 @@
 @property(readwrite,assign) BOOL transactionIsClosed;
 @property(readwrite,assign,atomic)  BOOL housekeeping_running;
 
-
+- (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(UMTCAP_TransactionIdPool *)tidPool;
 
 /* this is called from lower layer to deliver data to the TCAP Layer */
 - (NSString *)status;
@@ -198,6 +200,7 @@
 - (void)startUp;
 
 - (NSString *)getNewTransactionId;
+- (void)returnTransactionId:(NSString *)tid;
 
 - (UMTCAP_Transaction *)findTransactionByLocalTransactionId:(NSString *)tid;
 - (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(NSString *)userDialogId;

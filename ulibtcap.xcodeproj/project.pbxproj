@@ -27,6 +27,8 @@
 		A658BC601CAB6A4600211137 /* UMTCAP_TransactionInvoke.h in Headers */ = {isa = PBXBuildFile; fileRef = A658BC5E1CAB6A4600211137 /* UMTCAP_TransactionInvoke.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A658BC611CAB6A4600211137 /* UMTCAP_TransactionInvoke.m in Sources */ = {isa = PBXBuildFile; fileRef = A658BC5F1CAB6A4600211137 /* UMTCAP_TransactionInvoke.m */; };
 		A658BC641CAB6E5000211137 /* UMTCAP_Variant.h in Headers */ = {isa = PBXBuildFile; fileRef = A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A678596B1E56D54400FF1075 /* UMTCAP_TransactionIdPool.h in Headers */ = {isa = PBXBuildFile; fileRef = A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A678596C1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m in Sources */ = {isa = PBXBuildFile; fileRef = A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */; };
 		A6814B3C1CA94E0B00211137 /* UMTCAP_ansi_asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = A6814B3A1CA94E0B00211137 /* UMTCAP_ansi_asn1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6814B3D1CA94E0B00211137 /* UMTCAP_ansi_asn1.m in Sources */ = {isa = PBXBuildFile; fileRef = A6814B3B1CA94E0B00211137 /* UMTCAP_ansi_asn1.m */; };
 		A6814B401CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.h in Headers */ = {isa = PBXBuildFile; fileRef = A6814B3E1CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -230,6 +232,8 @@
 		A658BC5E1CAB6A4600211137 /* UMTCAP_TransactionInvoke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionInvoke.h; sourceTree = "<group>"; };
 		A658BC5F1CAB6A4600211137 /* UMTCAP_TransactionInvoke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionInvoke.m; sourceTree = "<group>"; };
 		A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_Variant.h; sourceTree = "<group>"; };
+		A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPool.h; sourceTree = "<group>"; };
+		A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionIdPool.m; sourceTree = "<group>"; };
 		A6814B3A1CA94E0B00211137 /* UMTCAP_ansi_asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1.h; sourceTree = "<group>"; };
 		A6814B3B1CA94E0B00211137 /* UMTCAP_ansi_asn1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1.m; sourceTree = "<group>"; };
 		A6814B3E1CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_queryWithPerm.h; sourceTree = "<group>"; };
@@ -458,6 +462,8 @@
 			children = (
 				A641CE561B42010A00854472 /* Supporting Files */,
 				A641CE581B42010A00854472 /* ulibtcap.h */,
+				A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */,
+				A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */,
 				A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */,
 				A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */,
 				A6DDA3EA1CAD262100754B9E /* UMTCAP_UserProtocol.h */,
@@ -788,6 +794,7 @@
 				A6D03B5C1CA4898D00211137 /* UMTCAP_ansi_queryWithoutPermission.h in Headers */,
 				A6814BC61CA98AE600211137 /* UMTCAP_ansi_asn1_reject.h in Headers */,
 				A6814B8E1CA964C700211137 /* UMTCAP_ansi_asn1_abort.h in Headers */,
+				A678596B1E56D54400FF1075 /* UMTCAP_TransactionIdPool.h in Headers */,
 				A6814BAE1CA96FC800211137 /* UMTCAP_ansi_asn1_dialoguePortion.h in Headers */,
 				A6D03B801CA48A4700211137 /* UMTCAP_itu_unidirectional.h in Headers */,
 				A6DE4EA81CC2EEF000211137 /* UMTCAP_itu_asn1_errorCode.h in Headers */,
@@ -1017,6 +1024,7 @@
 				A6D03B511CA4893C00211137 /* UMTCAP_begin.m in Sources */,
 				A6814BDB1CAA125800211137 /* UMTCAP_itu_asn1_unidirectional.m in Sources */,
 				A69B5B661CD0BA7500711600 /* UMTCAP_State.m in Sources */,
+				A678596C1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m in Sources */,
 				A6814B871CA963F000211137 /* UMTCAP_ansi_asn1_conversationWithoutPerm.m in Sources */,
 				A61BC5361DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.m in Sources */,
 				A6814BAB1CA96F8700211137 /* UMTCAP_ansi_asn1_componentSequence.m in Sources */,

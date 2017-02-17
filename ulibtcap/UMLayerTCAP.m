@@ -41,6 +41,7 @@
 #import "UMLayerTCAPApplicationContextProtocol.h"
 #import "UMTCAP_HousekeepingTask.h"
 #import "UMTCAP_TimeoutTask.h"
+#import "UMTCAP_TransactionIdPool.h"
 
 @implementation UMLayerTCAP
 
@@ -54,12 +55,33 @@
 @synthesize attachedLayer;
 @synthesize ssn;
 
+
+- (void)genericInitialisation
+{
+    transactionsByLocalTransactionId = [[UMSynchronizedDictionary alloc]init];
+    tcapUserByOperation = [[UMSynchronizedDictionary alloc]init];
+    transactionTimeout = 90.0; /* default timeout */
+    invokeTimeout = 80.0; /* default timeout */
+}
+
+
 - (UMLayerTCAP *)init
 {
     self = [super init];
     if(self)
     {
         [self genericInitialisation];
+    }
+    return self;
+}
+
+- (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(UMTCAP_TransactionIdPool *)tidPool
+{
+    self = [super initWithTaskQueueMulti:tq];
+    if(self)
+    {
+        [self genericInitialisation];
+        _tidPool = tidPool;
     }
     return self;
 }
@@ -72,14 +94,6 @@
         [self genericInitialisation];
     }
     return self;
-}
-
-- (void)genericInitialisation
-{
-    transactionsByLocalTransactionId = [[UMSynchronizedDictionary alloc]init];
-    tcapUserByOperation = [[UMSynchronizedDictionary alloc]init];
-    transactionTimeout = 90.0; /* default timeout */
-    invokeTimeout = 80.0; /* default timeout */
 }
 
 - (void)sccpNUnitdata:(NSData *)data
@@ -731,6 +745,10 @@
 
 - (NSString *)getNewTransactionId
 {
+    if(_tidPool)
+    {
+        return [_tidPool newTransactionIdForInstance:self.layerName];
+    }
     int64_t tid;
     @synchronized(self)
     {
@@ -740,6 +758,14 @@
     return [NSString stringWithFormat:@"%08lX",(long)tid];
 }
 
+- (void)returnTransactionId:(NSString *)tid
+{
+    if(_tidPool)
+    {
+        [_tidPool returnTransactionId:tid];
+
+    }
+}
 
 
 - (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(NSString *)userDialogId
@@ -788,9 +814,9 @@
     if(t.localTransactionId)
     {
         [transactionsByLocalTransactionId removeObjectForKey:t.localTransactionId];
+        [self returnTransactionId:t.localTransactionId];
     }
 }
-
 
 NSTimeInterval timeoutValue;
 NSDate *timeoutDate;
