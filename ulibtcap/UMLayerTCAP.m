@@ -707,7 +707,7 @@
     }
     /* lets call housekeeping once per 2.6 seconds */
     houseKeepingTimer = [[UMTimer alloc]initWithTarget:self
-                                              selector:@selector(houseKeepingTask)
+                                              selector:@selector(housekeepingTask)
                                                 object:NULL
                                               duration:2600000
                                                   name:@"tcap-housekeeping"
@@ -900,10 +900,11 @@ NSDate *timeoutDate;
     self.housekeeping_running = NO;
 }
 
-- (void)houseKeepingTask
+- (void)housekeepingTask
 {
     UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
-    [self queueFromLower:task];
+    //[self queueFromLower:task];
+    [task main];
 }
 
 @end
