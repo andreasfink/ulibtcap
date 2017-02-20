@@ -37,7 +37,7 @@
     NSString *tidString = @"00000000";
     do
     {
-        u_int32_t tid = arc4random_uniform(0x3FFFFFFF);
+        u_int32_t tid = [UMUtil random:0x3FFFFFFF];
         tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
         if(freeTransactionIds[tidString] ==NULL)
         {
