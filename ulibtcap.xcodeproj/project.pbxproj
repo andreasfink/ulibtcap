@@ -105,11 +105,11 @@
 		A68252851CCFE49400211137 /* UMTCAP_asn1_external.h in Headers */ = {isa = PBXBuildFile; fileRef = A68252831CCFE49400211137 /* UMTCAP_asn1_external.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A68252861CCFE49400211137 /* UMTCAP_asn1_external.m in Sources */ = {isa = PBXBuildFile; fileRef = A68252841CCFE49400211137 /* UMTCAP_asn1_external.m */; };
 		A688B72D1CC9FAC1005D3906 /* UMTCAP_Command.h in Headers */ = {isa = PBXBuildFile; fileRef = A60A3DB11CC9738D00211137 /* UMTCAP_Command.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A688B7301CCA2189005D3906 /* UMTCAP_continue.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B72E1CCA2189005D3906 /* UMTCAP_continue.h */; };
+		A688B7301CCA2189005D3906 /* UMTCAP_continue.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B72E1CCA2189005D3906 /* UMTCAP_continue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A688B7311CCA2189005D3906 /* UMTCAP_continue.m in Sources */ = {isa = PBXBuildFile; fileRef = A688B72F1CCA2189005D3906 /* UMTCAP_continue.m */; };
-		A688B7341CCA2199005D3906 /* UMTCAP_ansi_continue.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B7321CCA2199005D3906 /* UMTCAP_ansi_continue.h */; };
+		A688B7341CCA2199005D3906 /* UMTCAP_ansi_continue.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B7321CCA2199005D3906 /* UMTCAP_ansi_continue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A688B7351CCA2199005D3906 /* UMTCAP_ansi_continue.m in Sources */ = {isa = PBXBuildFile; fileRef = A688B7331CCA2199005D3906 /* UMTCAP_ansi_continue.m */; };
-		A688B7381CCA2211005D3906 /* UMTCAP_end.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B7361CCA2211005D3906 /* UMTCAP_end.h */; };
+		A688B7381CCA2211005D3906 /* UMTCAP_end.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B7361CCA2211005D3906 /* UMTCAP_end.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A688B7391CCA2211005D3906 /* UMTCAP_end.m in Sources */ = {isa = PBXBuildFile; fileRef = A688B7371CCA2211005D3906 /* UMTCAP_end.m */; };
 		A688B7401CCA2286005D3906 /* UMTCAP_abort.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B73E1CCA2286005D3906 /* UMTCAP_abort.h */; };
 		A688B7411CCA2286005D3906 /* UMTCAP_abort.m in Sources */ = {isa = PBXBuildFile; fileRef = A688B73F1CCA2286005D3906 /* UMTCAP_abort.m */; };
@@ -126,7 +126,7 @@
 		A69DB8111E390D2000E0C84E /* UMTCAP_HousekeepingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = A69DB80F1E390D2000E0C84E /* UMTCAP_HousekeepingTask.m */; };
 		A69DB81C1E3936EC00E0C84E /* UMTCAP_TimeoutTask.h in Headers */ = {isa = PBXBuildFile; fileRef = A69DB81A1E3936EC00E0C84E /* UMTCAP_TimeoutTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A69DB81D1E3936EC00E0C84E /* UMTCAP_TimeoutTask.m in Sources */ = {isa = PBXBuildFile; fileRef = A69DB81B1E3936EC00E0C84E /* UMTCAP_TimeoutTask.m */; };
-		A69E3DCF1DAB062B00264617 /* UMTCAP_ansi_end.h in Headers */ = {isa = PBXBuildFile; fileRef = A69E3DCD1DAB062B00264617 /* UMTCAP_ansi_end.h */; };
+		A69E3DCF1DAB062B00264617 /* UMTCAP_ansi_end.h in Headers */ = {isa = PBXBuildFile; fileRef = A69E3DCD1DAB062B00264617 /* UMTCAP_ansi_end.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A69E3DD01DAB062B00264617 /* UMTCAP_ansi_end.m in Sources */ = {isa = PBXBuildFile; fileRef = A69E3DCE1DAB062B00264617 /* UMTCAP_ansi_end.m */; };
 		A6A2B8D41E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6A2D7141CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A2D7121CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -238,7 +238,7 @@
 		A6814B3B1CA94E0B00211137 /* UMTCAP_ansi_asn1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1.m; sourceTree = "<group>"; };
 		A6814B3E1CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_queryWithPerm.h; sourceTree = "<group>"; };
 		A6814B3F1CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1_queryWithPerm.m; sourceTree = "<group>"; };
-		A6814B6E1CA95B9200211137 /* ulibasn1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ulibasn1.framework; sourceTree = "<group>"; };
+		A6814B6E1CA95B9200211137 /* ulibasn1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibasn1.framework; path = /Library/Frameworks/ulibasn1.framework; sourceTree = "<absolute>"; };
 		A6814B701CA9634C00211137 /* UMTCAP_ansi_asn1_unidirectional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_unidirectional.h; sourceTree = "<group>"; };
 		A6814B711CA9634C00211137 /* UMTCAP_ansi_asn1_unidirectional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1_unidirectional.m; sourceTree = "<group>"; };
 		A6814B741CA9636800211137 /* UMTCAP_ansi_asn1_queryWithoutPerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_queryWithoutPerm.h; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 		A6C4460D1CAA7668005A860B /* UMTCAP_itu_asn1_returnError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_itu_asn1_returnError.m; sourceTree = "<group>"; };
 		A6C446101CAA767C005A860B /* UMTCAP_itu_asn1_reject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_itu_asn1_reject.h; sourceTree = "<group>"; };
 		A6C446111CAA767C005A860B /* UMTCAP_itu_asn1_reject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_itu_asn1_reject.m; sourceTree = "<group>"; };
-		A6CDA3B31CBF7DA6003AADE0 /* ulibgt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ulibgt.framework; sourceTree = "<group>"; };
+		A6CDA3B31CBF7DA6003AADE0 /* ulibgt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibgt.framework; path = /Library/Frameworks/ulibgt.framework; sourceTree = "<absolute>"; };
 		A6D03B4E1CA4893C00211137 /* UMTCAP_begin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_begin.h; sourceTree = "<group>"; };
 		A6D03B4F1CA4893C00211137 /* UMTCAP_begin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_begin.m; sourceTree = "<group>"; };
 		A6D03B521CA4896900211137 /* UMTCAP_ansi_unidirectional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_unidirectional.h; sourceTree = "<group>"; };
