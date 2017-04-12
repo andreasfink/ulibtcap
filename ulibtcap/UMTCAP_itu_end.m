@@ -43,10 +43,10 @@
         itu_dialoguePortion.dialogResponse.user_information = xuserInfo;
     }
     
-    return [super initForTcap:xtcap
-                transactionId:transactionId
-                 userDialogId:userDialogId
-                      variant:variant
+    self = [super initForTcap:xtcap
+                transactionId:xtransactionId
+                 userDialogId:xuserDialogId
+                      variant:xvariant
                          user:xuser
                callingAddress:xsrc
                 calledAddress:xdst
@@ -54,6 +54,11 @@
                    components:xcomponents
                    permission:xpermission
                       options:xoptions];
+    if(self)
+    {
+        //
+    }
+    return self;
 }
 
 - (void)main

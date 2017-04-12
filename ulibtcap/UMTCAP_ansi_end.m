@@ -43,9 +43,9 @@
     }
 
     return [super initForTcap:xtcap
-                transactionId:transactionId
-                 userDialogId:userDialogId
-                      variant:variant
+                transactionId:xtransactionId
+                 userDialogId:xuserDialogId
+                      variant:xvariant
                          user:xuser
                callingAddress:xsrc
                 calledAddress:xdst
