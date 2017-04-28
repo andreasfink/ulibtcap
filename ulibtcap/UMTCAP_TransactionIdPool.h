@@ -19,5 +19,6 @@
 - (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(int)count;
 - (NSString *)newTransactionIdForInstance:(NSString *)instance;
 - (void)returnTransactionId:(NSString *)tidString;
+- (NSString *)findInstanceForTransaction:(NSString *)tid;
 
 @end

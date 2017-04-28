@@ -214,7 +214,18 @@
         case TCAP_TAG_ANSI_RESPONSE:
         {
             tcapVariant = TCAP_VARIANT_ANSI;
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:ansiTransactionId];
+
+            UMLayerTCAP *otherLayer = tcapLayer;
+            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+            if(currentTransaction==NULL)
+            {
+                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
+                if(instance)
+                {
+                    otherLayer = [tcapLayer.appContext getTCAP:instance];
+                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
+                }
+            }
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -228,7 +239,7 @@
                          callingAddress:src
                           calledAddress:dst
                         dialoguePortion:dialoguePortion
-                           callingLayer:tcapLayer
+                           callingLayer:otherLayer
                              components:currentComponents
                                 options:options];
             /* remove transaction data */
@@ -237,7 +248,17 @@
         case TCAP_TAG_ITU_END:
         {
             tcapVariant = TCAP_VARIANT_ITU;
+            UMLayerTCAP *otherLayer = tcapLayer;
             currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+            if(currentTransaction==NULL)
+            {
+                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
+                if(instance)
+                {
+                    otherLayer = [tcapLayer.appContext getTCAP:instance];
+                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
+                }
+            }
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -250,7 +271,7 @@
                          callingAddress:src
                           calledAddress:dst
                         dialoguePortion:dialoguePortion
-                           callingLayer:tcapLayer
+                           callingLayer:otherLayer
                              components:currentComponents
                                 options:options];
             /* remove transaction data */
@@ -261,7 +282,17 @@
         case TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM:
             tcapVariant = TCAP_VARIANT_ANSI;
         {
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:ansiTransactionId];
+            UMLayerTCAP *otherLayer = tcapLayer;
+            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+            if(currentTransaction==NULL)
+            {
+                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
+                if(instance)
+                {
+                    otherLayer = [tcapLayer.appContext getTCAP:instance];
+                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
+                }
+            }
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -274,14 +305,25 @@
                                   callingAddress:src
                                    calledAddress:dst
                                  dialoguePortion:dialoguePortion
-                                    callingLayer:tcapLayer
+                                    callingLayer:otherLayer
                                       components:currentComponents
                                          options:options];
         }
             break;
         case TCAP_TAG_ITU_CONTINUE:
         {
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:dtid];
+            UMLayerTCAP *otherLayer = tcapLayer;
+            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+            if(currentTransaction==NULL)
+            {
+                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
+                if(instance)
+                {
+                    otherLayer = [tcapLayer.appContext getTCAP:instance];
+                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
+                }
+            }
+
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -295,7 +337,7 @@
                                   callingAddress:src
                                    calledAddress:dst
                                  dialoguePortion:dialoguePortion
-                                    callingLayer:tcapLayer
+                                    callingLayer:otherLayer
                                       components:currentComponents
                                          options:options];
         }
@@ -305,7 +347,18 @@
         case TCAP_TAG_ANSI_ABORT:
             tcapVariant = TCAP_VARIANT_ANSI;
         {
+            UMLayerTCAP *otherLayer = tcapLayer;
+
             currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentRemoteTransactionId];
+            if(currentTransaction==NULL)
+            {
+                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
+                if(instance)
+                {
+                    otherLayer = [tcapLayer.appContext getTCAP:instance];
+                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
+                }
+            }
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -318,14 +371,24 @@
                                 callingAddress:src
                                  calledAddress:dst
                                dialoguePortion:dialoguePortion
-                                  callingLayer:tcapLayer
+                                  callingLayer:otherLayer
                                           asn1:(UMASN1Object *)asn1
                                        options:options];
         }
             break;
         case TCAP_TAG_ITU_ABORT:
         {
+            UMLayerTCAP *otherLayer = tcapLayer;
             currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+            if(currentTransaction==NULL)
+            {
+                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
+                if(instance)
+                {
+                    otherLayer = [tcapLayer.appContext getTCAP:instance];
+                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
+                }
+            }
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -338,7 +401,7 @@
                                 callingAddress:src
                                  calledAddress:dst
                                dialoguePortion:dialoguePortion
-                                  callingLayer:tcapLayer
+                                  callingLayer:otherLayer
                                           asn1:(UMASN1Object *)asn1
                                        options:options
                  ];

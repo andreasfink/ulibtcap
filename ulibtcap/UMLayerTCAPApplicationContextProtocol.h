@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class UMLayerSCCP;
+@class UMLayerTCAP;
 
 @protocol UMLayerTCAPApplicationContextProtocol<NSObject>
 - (UMLayerSCCP *)getSCCP:(NSString *)name;
+- (UMLayerTCAP *)getTCAP:(NSString *)name;
+
 @end

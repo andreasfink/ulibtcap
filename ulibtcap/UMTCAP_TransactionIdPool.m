@@ -70,6 +70,14 @@
     }
 }
 
+- (NSString *)findInstanceForTransaction:(NSString *)tid
+{
+    @synchronized (self)
+    {
+        return inUseTransactionIds[tid];
+    }
+}
+
 - (void)returnTransactionId:(NSString *)tidString
 {
     @synchronized (self)

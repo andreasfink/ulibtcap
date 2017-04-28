@@ -42,6 +42,8 @@
     UMTimer *houseKeepingTimer;
     BOOL _housekeeping_running;
     UMTCAP_TransactionIdPool *_tidPool;
+
+    id<UMLayerTCAPApplicationContextProtocol> _appContext;
 }
 
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapDefaultUser;
@@ -55,6 +57,10 @@
 @property(readwrite,strong) SccpSubSystemNumber *ssn;
 @property(readwrite,assign) BOOL transactionIsClosed;
 @property(readwrite,assign,atomic)  BOOL housekeeping_running;
+@property(readwrite,strong,atomic)  UMTCAP_TransactionIdPool *tidPool;
+@property(readwrite,strong,atomic) id<UMLayerTCAPApplicationContextProtocol> appContext;
+
+
 
 - (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(UMTCAP_TransactionIdPool *)tidPool;
 

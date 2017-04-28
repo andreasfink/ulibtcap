@@ -315,8 +315,9 @@
     UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
     if(transaction == NULL)
     {
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapContinueRequest with unknown transaction ID" userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapEndRequest with unknown transaction ID" userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
     }
+
     [transaction touch];
     UMTCAP_end *endRequest;
     if(variant ==TCAP_VARIANT_ITU)
@@ -631,6 +632,7 @@
 
 - (void)setConfig:(NSDictionary *)cfg applicationContext:(id<UMLayerTCAPApplicationContextProtocol>)appContext
 {
+    _appContext = appContext;
     [self readLayerConfig:cfg];
     if (cfg[@"attach-to"])
     {
@@ -808,6 +810,9 @@
     UMTCAP_Transaction *t = transactionsByLocalTransactionId[s];
     return t;
 }
+
+
+
 
 - (void)removeTransaction:(UMTCAP_Transaction *)t
 {
