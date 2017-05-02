@@ -60,7 +60,7 @@
 @property(readwrite,strong,atomic)  UMTCAP_TransactionIdPool *tidPool;
 @property(readwrite,strong,atomic) id<UMLayerTCAPApplicationContextProtocol> appContext;
 
-
+- (UMMTP3Variant) variant;
 
 - (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(UMTCAP_TransactionIdPool *)tidPool;
 

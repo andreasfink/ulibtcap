@@ -55,6 +55,10 @@
 @synthesize attachedLayer;
 @synthesize ssn;
 
+-(UMMTP3Variant) variant
+{
+    return attachedLayer.variant;
+}
 
 - (void)genericInitialisation
 {
@@ -640,11 +644,11 @@
     }
     if (cfg[@"attach-number"])
     {
-        attachNumber =  [[SccpAddress alloc]initWithHumanReadableString:[cfg[@"attach-number"] stringValue]];
+        attachNumber =  [[SccpAddress alloc]initWithHumanReadableString:[cfg[@"attach-number"] stringValue] variant:self.variant];
     }
     else
     {
-        attachNumber =  [[SccpAddress alloc]initWithHumanReadableString:@"any"];
+        attachNumber =  [[SccpAddress alloc]initWithHumanReadableString:@"any" variant:self.variant];
     }
     if (cfg[@"attach-ssn"])
     {
