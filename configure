@@ -585,6 +585,9 @@ PACKAGE_URL=''
 
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+REVISION
+MINORVER
+MAJORVER
 CONFIGURATION
 INSTALL_DATA
 INSTALL_SCRIPT
@@ -596,6 +599,7 @@ CPPFLAGS
 LDFLAGS
 CFLAGS
 CC
+SHARED_LIBRARY_EXTENSION
 RANLIB
 LIBTOOL
 EXE_EXT
@@ -1812,11 +1816,14 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-COPYRIGHT="Copyright 2016 Andreas Fink"
+COPYRIGHT="Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved."
 PROJECT_NAME="ulibtcap"
 AUTHOR="Andreas Fink <andreas@fink.org>"
 CONFIG_DEFINE="ULIBTCAP_CONFIG"
 VERSION=`head -n 1 VERSION`
+MAJORVER=`echo $VERSION | cut -f1 -d.`
+MINORVER=`echo $VERSION | cut -f2 -d.`
+REVISION=`echo $VERSION | cut -f3 -d.`
 CONFIG_HEADER=ulibtcap_config.h
 DEPENDENT_PKGCONFIGS="ulibsccp"
 FRAMEWORKS="-framework ulib"
@@ -1870,7 +1877,6 @@ ac_configure="$SHELL $ac_aux_dir/configure"  # Please don't use this var.
   esac
 
 ac_config_headers="$ac_config_headers ${CONFIG_HEADER}"
-
 
 
 
@@ -1982,6 +1988,7 @@ case "$host" in
 	CFLAGS="$CFLAGS -D_REENTRANT=1 -DDARWIN=1 ${ARCH}"
 	LDFLAGS="-framework CoreFoundation -framework IOKit -framework Security  -F /Library/Frameworks ${FRAMEWORK}"
 	LIBTOOL="libtool -static -o"
+	SHARED_LIBRARY_EXTENSION=dylib
     ;;
 
   *-linux-*)
@@ -2013,6 +2020,7 @@ case "$host" in
     SHARED_FLAGS="-shared"
     ;;
 esac
+
 
 
 
@@ -3084,6 +3092,11 @@ fi
   nl='
 '
   echo "${nl}${T_MD}Generating output files ...${T_ME}"
+
+
+
+
+
 
 
 
