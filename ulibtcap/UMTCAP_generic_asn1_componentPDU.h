@@ -27,6 +27,7 @@
     UMTCAP_Operation operationType;
     id operationUser;
     int64_t err;
+    BOOL _errPrivate;
 }
 
 @property(readwrite,assign) UMTCAP_Variant variant;

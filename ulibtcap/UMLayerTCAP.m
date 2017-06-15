@@ -615,7 +615,6 @@
     err.errorCode = errCode;
     err.errorCodePrivate = priv;
     return err;
-    
 }
 
 - (UMASN1Object *)tcapURejectRequest:(UMASN1Object *)error

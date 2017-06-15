@@ -71,7 +71,7 @@
 
 - (void) setOperationCodeFamily:(int64_t)i
 {
-    @throw(NOT_IMPLEMENTED_EXCEPTION);
+     @throw(NOT_IMPLEMENTED_EXCEPTION);
 }
 
 - (BOOL)operationNational
@@ -87,12 +87,12 @@
 
 - (BOOL)errorCodePrivate
 {
-    @throw(NOT_IMPLEMENTED_EXCEPTION);
+    return _errPrivate;
 }
 
 - (void) setErrorCodePrivate:(BOOL)i
 {
-    @throw(NOT_IMPLEMENTED_EXCEPTION);
+    _errPrivate = i;
 }
 
 - (NSString *)objectName

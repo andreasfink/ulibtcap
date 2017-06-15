@@ -56,11 +56,11 @@
     [super processBeforeEncode];
     
     asn1_tag.tagNumber = 3;
-    asn1_tag.tagClass  = UMASN1Class_Universal;
+    asn1_tag.tagClass  = UMASN1Class_ContextSpecific;
     
     asn1_list = [[NSMutableArray alloc]init];
     
-    itu_invokeId.asn1_tag.tagNumber = 1;
+    itu_invokeId.asn1_tag.tagNumber = 2;
     if(itu_invokeId==NULL)
     {
         @throw([NSException exceptionWithName:@"missing invokeId section in UMTCAP_itu_asn1_returnError" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
