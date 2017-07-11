@@ -37,6 +37,8 @@
     {
         external = [[UMTCAP_asn1_external alloc]initWithASN1Object:o context:context];
         o = [self getObjectAtPosition:p++];
+#pragma unused(o)
+        /* FIXME */
     }
     return self;
 }

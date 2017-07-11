@@ -187,9 +187,9 @@
                        components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                           options:(NSDictionary *)options
 {
-    if(variant == TCAP_VARIANT_DEFAULT)
+    if(variant != TCAP_VARIANT_DEFAULT)
     {
-        variant = tcapVariant;
+        tcapVariant = variant;
     }
     /* FIXME: to be done */
 }

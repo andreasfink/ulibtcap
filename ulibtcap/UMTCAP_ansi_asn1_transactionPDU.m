@@ -30,6 +30,8 @@
     else if ([context isKindOfClass:[UMTCAP_sccpNNotice class ]])
     {
         notice = (UMTCAP_sccpNNotice *)context;
+#pragma unused(notice)
+/* FIMXE */
     }
 
     UMASN1Object *o = [self getObjectAtPosition:0];
