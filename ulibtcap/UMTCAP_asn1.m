@@ -43,6 +43,7 @@
     {
         notice = (UMTCAP_sccpNNotice *)context;
     }
+#pragma unused(notice)
 
 
     if(asn1_tag.tagClass ==UMASN1Class_Private)

@@ -148,6 +148,7 @@
             dialogue_service_provider = [[UMASN1Integer alloc]initWithASN1Object:o2 context:context];
         }
         o = [self getObjectAtPosition:pos++];
+#pragma unused(o)
     }
     return self;
 }

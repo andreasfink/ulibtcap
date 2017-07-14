@@ -366,10 +366,11 @@
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options
 {
-    if(variant == TCAP_VARIANT_DEFAULT)
+    if(variant==TCAP_VARIANT_DEFAULT)
     {
         variant = tcapVariant;
     }
+#pragma unused(variant)
 }
 
 - (void)setGenericComponents:(UMTCAP_generic_asn1_componentPDU *)pdu
@@ -410,7 +411,7 @@
                        opCodeFamily:(int64_t)opf
                      opCodeNational:(BOOL)nat
 {
-    if(variant == TCAP_VARIANT_DEFAULT)
+    if(variant==TCAP_VARIANT_DEFAULT)
     {
         variant = tcapVariant;
     }
@@ -435,7 +436,7 @@
                     opCodeFamily:(int64_t)opf
                   opCodeNational:(BOOL)nat
 {
-    if(variant == TCAP_VARIANT_DEFAULT)
+    if(variant==TCAP_VARIANT_DEFAULT)
     {
         variant = tcapVariant;
     }
@@ -629,6 +630,7 @@
     {
         variant = tcapVariant;
     }
+#pragma unused(variant)
     /* FIXME: to be done */
     @throw([NSException exceptionWithName:@"not yet implemented" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
 }

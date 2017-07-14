@@ -29,6 +29,12 @@
         notice = (UMTCAP_sccpNNotice *)context;
     }
 
+/* FIXME: maybe we should implemented it one day */
+/* silence warnings for now */
+
+#pragma unused(notice)
+#pragma unused(task)
+
     [super processAfterDecodeWithContext:context];
     return self;
 }

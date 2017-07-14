@@ -96,7 +96,7 @@
     if((o) && (o.asn1_tag.tagNumber == 30) && (o.asn1_tag.tagClass = UMASN1Class_ContextSpecific))
     {
         user_information = [[UMTCAP_asn1_userInformation alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:pos++];
+//        o = [self getObjectAtPosition:pos++];
     }
     return self;
 }

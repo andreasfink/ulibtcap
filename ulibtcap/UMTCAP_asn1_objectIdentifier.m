@@ -38,7 +38,6 @@
     return @"objectIdentifier";
 }
 
-
 - (id)objectValue
 {
     UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
@@ -137,7 +136,7 @@
                     s = @"imsiRetrievalContext";
                     break;
                 case 27:
-                    s = @"msPurgingContext-v2";
+                    s = @"msPurgingContext";
                     break;
                 case 28:
                     s = @"subscriberInfoEnquiryContext";
