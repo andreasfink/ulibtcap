@@ -19,14 +19,17 @@
     itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o0 context:context];
 
     UMASN1Object *o1 = [self getObjectAtPosition:1];
-    UMASN1Sequence *result = [[UMASN1Sequence alloc]initWithASN1Object:o1 context:context];
-    if(result)
+    if(o1)
     {
-        UMASN1Object *op = [result getObjectAtPosition:0];
-        itu_operationCode = [[UMASN1Integer alloc]initWithASN1Object:op context:context];
-        //self.operationCode = itu_operationCode;
+        UMASN1Sequence *result = [[UMASN1Sequence alloc]initWithASN1Object:o1 context:context];
+        if(result)
+        {
+            UMASN1Object *op = [result getObjectAtPosition:0];
+            itu_operationCode = [[UMASN1Integer alloc]initWithASN1Object:op context:context];
+            //self.operationCode = itu_operationCode;
 
-        params = [result getObjectAtPosition:1];
+            params = [result getObjectAtPosition:1];
+        }
     }
     return self;
 }
