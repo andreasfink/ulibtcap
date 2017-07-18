@@ -58,13 +58,11 @@
     {
         UMASN1Sequence *seq = [[UMASN1Sequence alloc]init];
         [seq appendValue:itu_operationCode];
-        if(params)
-        {
-            [seq appendValue:params];
-        }
+        [seq appendValue:params];
         [asn1_list addObject:seq];
     }
 }
+
 - (NSString *)objectName
 {
     return @"returnResult";
