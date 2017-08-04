@@ -64,12 +64,16 @@
         [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: encoding PDU now",transactionId]];
     }
 
-    NSData *pdu = [q berEncoded];
-    if(pdu == NULL)
+    NSData *pdu;
+    @try
     {
-        [tcap.logFeed minorErrorText:@"BER encoding of PDU failed"];
+        pdu = [q berEncoded];
     }
-    else
+    @catch(NSException *e)
+    {
+        [tcap.logFeed majorErrorText:[NSString stringWithFormat:@"BER encoding of PDU failed with exception %@",e]];
+    }
+    if(pdu)
     {
         if(tcap.logLevel <= UMLOG_DEBUG)
         {
