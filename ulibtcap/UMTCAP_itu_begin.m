@@ -46,16 +46,27 @@
         }
         q.componentPortion = componentsPortion;
     }
-    
-    NSData *pdu = [q berEncoded];
     [t touch];
 
-    [tcap.attachedLayer sccpNUnidata:pdu
-                        callingLayer:tcap
-                             calling:callingAddress
-                              called:calledAddress
-                    qualityOfService:0
-                             options:options];
+    NSData *pdu = [q berEncoded];
+    if(pdu == NULL)
+    {
+        [tcap.logFeed minorErrorText:@"BER encoding of PDU failed"];
+    }
+    else
+    {
+        if(tcap.logLevel <= UMLOG_DEBUG)
+        {
+            NSString *s = [NSString stringWithFormat:@"Sending PDU to %@: %@", tcap.attachedLayer.layerName, pdu];
+            [tcap.logFeed debugText:s];
+        }
+        [tcap.attachedLayer sccpNUnidata:pdu
+                            callingLayer:tcap
+                                 calling:callingAddress
+                                  called:calledAddress
+                        qualityOfService:0
+                                 options:options];
+    }
 }
 
 @end
