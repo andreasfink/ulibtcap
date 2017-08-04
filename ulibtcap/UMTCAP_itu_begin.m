@@ -43,6 +43,10 @@
         
     if(components.count > 0)
     {
+        if(tcap.logLevel <= UMLOG_DEBUG)
+        {
+            [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: components count = %d",transactionId,(int)components.count]];
+        }
         UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
         for(id item in components)
         {
@@ -55,6 +59,10 @@
         [tcap.logFeed majorErrorText:@"componentsCount is zero"];
     }
     [t touch];
+    if(tcap.logLevel <= UMLOG_DEBUG)
+    {
+        [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction encoding PDU now",transactionId];
+    }
 
     NSData *pdu = [q berEncoded];
     if(pdu == NULL)
@@ -74,6 +82,10 @@
                                   called:calledAddress
                         qualityOfService:0
                                  options:options];
+    }
+    if(tcap.logLevel <= UMLOG_DEBUG)
+    {
+        [tcap.logFeed debugText:[NSString stringWithFormat:@" done with transaction %@",transactionId]];
     }
 }
 
