@@ -61,7 +61,7 @@
     [t touch];
     if(tcap.logLevel <= UMLOG_DEBUG)
     {
-        [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction encoding PDU now",transactionId];
+        [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: encoding PDU now",transactionId];
     }
 
     NSData *pdu = [q berEncoded];
