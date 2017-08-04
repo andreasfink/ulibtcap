@@ -21,14 +21,18 @@
 
 - (void)main
 {
-    UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
+    if(tcap.logLevel <= UMLOG_DEBUG)
+    {
+        [tcap.logFeed debugText:[NSString stringWithFormat:@"UMTCAP_itu_begin for transaction %@",transactionId]];
+    }
 
+    UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
     UMTCAP_itu_asn1_begin *q = [[UMTCAP_itu_asn1_begin alloc]init];
     UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
     
     if(transactionId == NULL)
     {
-        NSLog(@"why is the transaction ID not yet set?!?");
+        [tcap.logFeed majorErrorText:@"why is the transaction ID not yet set?!?"];
         transactionId = [tcap getNewTransactionId];
     }
 
@@ -45,6 +49,10 @@
             [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
         }
         q.componentPortion = componentsPortion;
+    }
+    else
+    {
+        [tcap.logFeed majorErrorText:@"componentsCount is zero"];
     }
     [t touch];
 
