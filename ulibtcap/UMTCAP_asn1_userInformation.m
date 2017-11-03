@@ -13,17 +13,38 @@
 #import "UMTCAP_asn1_external.h"
 
 @implementation UMTCAP_asn1_userInformation
-@synthesize external;
 
+
+- (void)setExternal:(UMTCAP_asn1_external *)external
+{
+    UMSynchronizedArray *e = [[UMSynchronizedArray alloc]init];
+    [e addObject:external];
+    externals = e;
+}
+
+- (UMTCAP_asn1_external *):external
+{
+    return externals[0];
+}
+
+- (void)addExternal:(UMTCAP_asn1_external *)external
+{
+    [externals addObject:external];
+}
 
 - (void) processBeforeEncode
 {
     [super processBeforeEncode];
     [asn1_tag setTagIsConstructed];
     asn1_list = [[NSMutableArray alloc]init];
-    if(external)
+    if(externals)
     {
-        [asn1_list addObject:external];
+        NSInteger n = [externals count];
+        for(NSInteger i=0;i<n;i++)
+        {
+            UMTCAP_asn1_external *external = externals[i];
+            [asn1_list addObject:external];
+        }
     }
     asn1_tag.tagClass = UMASN1Class_ContextSpecific;
     asn1_tag.tagNumber = 30;
@@ -31,14 +52,14 @@
 
 - (UMTCAP_asn1_userInformation *) processAfterDecodeWithContext:(id)context
 {
-    int p=0;
-    UMASN1Object *o = [self getObjectAtPosition:p++];
-    if(o)
+    for(NSInteger i=0;i<asn1_list.count;i++)
     {
-        external = [[UMTCAP_asn1_external alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:p++];
-#pragma unused(o)
-        /* FIXME */
+        UMASN1Object *o = [self getObjectAtPosition:i];
+        UMTCAP_asn1_external *external = [[UMTCAP_asn1_external alloc]initWithASN1Object:o context:context];
+        if(external)
+        {
+            [externals addObject:external];
+        }
     }
     return self;
 }
@@ -51,9 +72,9 @@
 - (id) objectValue
 {
     UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
-    if(external)
+    if(externals)
     {
-        dict[@"external"] = external.objectValue;
+        dict[@"externals"] = externals;
     }
     return dict;
 }

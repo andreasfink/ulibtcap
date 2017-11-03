@@ -29,11 +29,14 @@
 
 #import "UMTCAP_asn1_external.h"
 
-@interface UMTCAP_asn1_userInformation : UMTCAP_asn1_external //UMASN1Sequence
+@interface UMTCAP_asn1_userInformation : UMASN1Sequence
 {
-    UMTCAP_asn1_external *external;
+    UMSynchronizedArray *externals;
 }
 
-@property(readwrite,strong)    UMTCAP_asn1_external *external;
+- (void) addExternal:(UMTCAP_asn1_external *)external;
+/*backwards compatibility */
+- (void)setExternal:(UMTCAP_asn1_external *)external;
+- (UMTCAP_asn1_external *):external;
 
 @end
