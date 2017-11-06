@@ -11,25 +11,23 @@
 
 #import "UMTCAP_asn1_userInformation.h"
 #import "UMTCAP_asn1_external.h"
+#import "UMTCAP_asn1_userInformationIdentification.h"
 
 @implementation UMTCAP_asn1_userInformation
 
 
-- (void)setExternal:(UMTCAP_asn1_external *)external
+- (UMTCAP_asn1_userInformation *)init
 {
-    UMSynchronizedArray *e = [[UMSynchronizedArray alloc]init];
-    [e addObject:external];
-    externals = e;
+    self = [super init];
+    if(self)
+    {
+        identifications = [[UMSynchronizedArray alloc]init];
+    }
+    return self;
 }
-
-- (UMTCAP_asn1_external *):external
+- (void)addIdentification:(UMTCAP_asn1_userInformationIdentification *)identification
 {
-    return externals[0];
-}
-
-- (void)addExternal:(UMTCAP_asn1_external *)external
-{
-    [externals addObject:external];
+    [identifications addObject:identification];
 }
 
 - (void) processBeforeEncode
@@ -37,13 +35,12 @@
     [super processBeforeEncode];
     [asn1_tag setTagIsConstructed];
     asn1_list = [[NSMutableArray alloc]init];
-    if(externals)
+    NSUInteger n = [identifications count];
+    if(n > 0)
     {
-        NSInteger n = [externals count];
-        for(NSInteger i=0;i<n;i++)
+        for(NSUInteger i=0;i<n;i++)
         {
-            UMTCAP_asn1_external *external = externals[i];
-            [asn1_list addObject:external];
+            [asn1_list addObject:identifications[i]];
         }
     }
     asn1_tag.tagClass = UMASN1Class_ContextSpecific;
@@ -52,14 +49,16 @@
 
 - (UMTCAP_asn1_userInformation *) processAfterDecodeWithContext:(id)context
 {
-    for(NSInteger i=0;i<asn1_list.count;i++)
+    NSInteger pos=0;
+    UMASN1Object *o = [self getObjectAtPosition:pos++];
+    identifications = [[UMSynchronizedArray alloc]init];
+
+    while(o && o.asn1_tag.tagNumber == UMASN1Primitive_external && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
-        UMASN1Object *o = [self getObjectAtPosition:i];
-        UMTCAP_asn1_external *external = [[UMTCAP_asn1_external alloc]initWithASN1Object:o context:context];
-        if(external)
-        {
-            [externals addObject:external];
-        }
+        UMTCAP_asn1_external *e = [[UMTCAP_asn1_external alloc]initWithASN1Object:o context:context];
+        //UMTCAP_asn1_userInformationIdentification *ui = [[UMTCAP_asn1_userInformationIdentification alloc]initWithASN1Object:o context:context];
+        [identifications addObject:e];
+        o = [self getObjectAtPosition:pos++];
     }
     return self;
 }
@@ -72,9 +71,16 @@
 - (id) objectValue
 {
     UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
-    if(externals)
+    if(identifications)
     {
-        dict[@"externals"] = externals;
+        UMSynchronizedArray *arr = [[UMSynchronizedArray alloc]init];
+        NSUInteger n = identifications.count;
+        for(NSUInteger i=0;i<n;i++)
+        {
+            UMTCAP_asn1_external *e = identifications[i];
+            [arr addObject:e.objectValue];
+        }
+        dict[@"identifications"] = arr;
     }
     return dict;
 }

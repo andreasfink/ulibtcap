@@ -66,13 +66,10 @@
 
 - (UMTCAP_asn1_external *)processAfterDecodeWithContext:(id)context
 {
-    
     int pos = 0;
     UMASN1Object *o = [self getObjectAtPosition:pos++];
-    
-    
-    
-    if((o) &&  (o.asn1_tag.tagClass == UMASN1Class_Universal) && (o.asn1_tag.tagNumber == 6))
+
+    if((o) &&  (o.asn1_tag.tagClass == UMASN1Class_Universal) && (o.asn1_tag.tagNumber == UMASN1Primitive_object_identifier))
     {
         objectIdentifier = [[UMTCAP_asn1_objectIdentifier alloc]initWithASN1Object:o context:context];
         o = [self getObjectAtPosition:pos++];
@@ -88,6 +85,5 @@
     }
     return self;
 }
-
 
 @end

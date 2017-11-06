@@ -11,32 +11,34 @@
 
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
+#import "UMTCAP_asn1_userInformationIdentification.h"
 
 /*
+
+ user-information          [30] IMPLICIT SEQUENCE OF [UNIVERSAL 8] IMPLICIT SEQUENCE
  {
-	identification CHOICE {
- syntax OBJECT IDENTIFIER,
- presentation-context-id INTEGER,
- context-negotiation SEQUENCE {
- presentation-context-id INTEGER,
- transfer-syntax OBJECT IDENTIFIER
- }
-	},
-	data-value-descriptor ObjectDescriptor OPTIONAL,
-	data-value OCTET STRING
- }
+    identification CHOICE
+    {
+        syntax OBJECT IDENTIFIER,
+        presentation-context-id INTEGER,
+        context-negotiation SEQUENCE
+        {
+            presentation-context-id INTEGER,
+            transfer-syntax OBJECT IDENTIFIER
+        }
+        data-value-descriptor ObjectDescriptor OPTIONAL,
+        data-value OCTET STRING
+    }
+ } OPTIONAL
  */
 
 #import "UMTCAP_asn1_external.h"
 
 @interface UMTCAP_asn1_userInformation : UMASN1Sequence
 {
-    UMSynchronizedArray *externals;
+    UMSynchronizedArray *identifications;
 }
 
-- (void) addExternal:(UMTCAP_asn1_external *)external;
-/*backwards compatibility */
-- (void)setExternal:(UMTCAP_asn1_external *)external;
-- (UMTCAP_asn1_external *):external;
+- (void) addIdentification:(UMTCAP_asn1_userInformationIdentification *)identification;
 
 @end
