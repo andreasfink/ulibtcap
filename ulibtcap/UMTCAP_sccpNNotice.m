@@ -158,9 +158,8 @@
             tcapVariant = TCAP_VARIANT_ITU;
             break;
         default:
-            NSLog(@"Ignoring unexpected pdu type in sccpNNotice");
+            NSLog(@"Ignoring unexpected pdu type in sccpNNotice. Can not decode %@->%@ %@",src.stringValueE164,dst.stringValueE164,data);
             break;
-            
     }
     [tcapUser tcapNoticeIndication:currentTransaction.userDialogId
                  tcapTransactionId:currentLocalTransactionId
