@@ -97,7 +97,8 @@
 - (void)main
 {
     NSUInteger pos = 0;
-    
+    BOOL decodeOnly = [options[@"decode-only"] boolValue];
+
     if(options)
     {
         NSMutableDictionary *o = [options mutableCopy];
@@ -108,24 +109,27 @@
     {
         options = @{@"tcap-pdu":[data hexString]};
     }
-    [self startDecodingOfPdu];
     @try
     {
+        [self startDecodingOfPdu];
         asn1 = [[UMTCAP_asn1 alloc] initWithBerData:data atPosition:&pos context:self];
+        [self endDecodingOfPdu];
     }
     @catch(NSException *ex)
     {
         NSLog(@"Exception: %@",ex);
         [self errorDecodingPdu];
-        
+        if(decodeOnly)
+        {
+            decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
+        }
     }
-    [self endDecodingOfPdu];
 }
 
 - (void) startDecodingOfPdu
 {
-    currentCommand = 0;
-    currentOperationType = 0;
+    currentCommand = -1;
+    currentOperationType = -1;
     currentComponents = [[NSMutableArray alloc]init];
     currentOperationCode = 0;
 }
@@ -158,7 +162,7 @@
             tcapVariant = TCAP_VARIANT_ITU;
             break;
         default:
-            NSLog(@"Ignoring unexpected pdu type in sccpNNotice. Can not decode %@->%@ %@",src.stringValueE164,dst.stringValueE164,data);
+            // NSLog(@"Ignoring unexpected pdu type in sccpNNotice. Can not decode %@->%@ %@",src.stringValueE164,dst.stringValueE164,data);
             break;
     }
     [tcapUser tcapNoticeIndication:currentTransaction.userDialogId

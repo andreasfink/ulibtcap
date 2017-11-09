@@ -64,6 +64,7 @@
     NSString                *ansiTransactionId;
     NSString                *currentLocalTransactionId;
     NSString                *currentRemoteTransactionId;
+    NSString *decodeError;
 }
 
 
