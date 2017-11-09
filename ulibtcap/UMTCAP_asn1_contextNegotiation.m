@@ -50,7 +50,7 @@
     if(o && o.asn1_tag.tagNumber == UMASN1Primitive_object_identifier && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
         _transferSyntax = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:pos++];
+        //o = [self getObjectAtPosition:pos++];
     }
     return self;
 }

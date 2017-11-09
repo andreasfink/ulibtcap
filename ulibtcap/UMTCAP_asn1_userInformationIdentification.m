@@ -67,27 +67,27 @@
     if(o && o.asn1_tag.tagNumber == UMASN1Primitive_object_identifier && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
         _syntax = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:pos++];
+        //o = [self getObjectAtPosition:pos++];
     }
     else if(o && o.asn1_tag.tagNumber == UMASN1Primitive_integer && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
         _presentationContextId = [[UMASN1Integer alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:pos++];
+        //o = [self getObjectAtPosition:pos++];
     }
     else if(o && o.asn1_tag.tagNumber == UMASN1Primitive_sequence && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
         _contextNegotiation = [[UMTCAP_asn1_contextNegotiation alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:pos++];
+        //o = [self getObjectAtPosition:pos++];
     }
     else if(o && o.asn1_tag.tagNumber == UMASN1Primitive_object_descriptor && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
         _dataValueDescriptor = [[UMASN1ObjectDescriptor alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:pos++];
+        //o = [self getObjectAtPosition:pos++];
     }
     else if(o && o.asn1_tag.tagNumber == UMASN1Primitive_octetstring && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
         _dataValue = [[UMASN1OctetString alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:pos++];
+        //o = [self getObjectAtPosition:pos++];
     }
     return self;
 }
