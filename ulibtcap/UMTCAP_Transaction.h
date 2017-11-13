@@ -41,7 +41,7 @@
     BOOL transactionIsClosed;
     NSTimeInterval timeoutValue;
     NSDate *timeoutDate;
-
+    UMMutex *_transactionLock;
 }
 
 @property(readwrite,assign) UMTCAP_Variant tcapVariant;

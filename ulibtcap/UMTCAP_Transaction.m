@@ -40,6 +40,7 @@
     if(self)
     {
         started = [NSDate date];
+        _transactionLock = [[UMMutex alloc] init];
         [self touch];
     }
     return self;
@@ -47,31 +48,29 @@
 
 - (void)touch
 {
-    @synchronized(self)
+    [_transactionLock lock];
+    if(timeoutValue==0)
     {
-        if(timeoutValue==0)
-        {
-            timeoutValue=90;
-        }
-        timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutValue];
+        timeoutValue=90;
     }
+    timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutValue];
+    [_transactionLock unlock];
 }
 
 - (BOOL)isTimedOut
 {
-    @synchronized(self)
+    BOOL r = NO;
+    [_transactionLock lock];
+    if(timeoutDate != NULL)
     {
-        if(timeoutDate == NULL)
-        {
-            return NO;
-        }
         NSDate *now = [NSDate date];
         if([now compare:timeoutDate] == NSOrderedDescending)
         {
-            return YES;
+            r = YES;
         }
-        return NO;
     }
+    [_transactionLock unlock];
+    return r;
 }
 
 - (void)timeOut
