@@ -198,6 +198,27 @@
             UMTCAP_asn1_userInformation *userInfo = o.dialoguePortion.dialogRequest.user_information;
             UMTCAP_asn1_objectIdentifier *objectIdentifier = o.dialoguePortion.dialogRequest.objectIdentifier;
 */
+            if(tcapLayer.logLevel <= UMLOG_DEBUG)
+            {
+                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapBeginIndication:\n"
+                                         @"userDialogId:%@\n"
+                                         @"SccpCallingAddress:%@\n"
+                                         @"SccpCalledAddress:%@\n"
+                                         @"localTransactionId:%@\n"
+                                         @"remoteTransactionId:%@\n"
+                                         @"dialoguePortion:%@\n"
+                                         @"components:%@\n"
+                                         @"options:%@\n",
+                                         userDialogId,
+                                         src,
+                                         dst,
+                                         currentTransaction.localTransactionId,
+                                         currentTransaction.remoteTransactionId,
+                                         dialoguePortion,
+                                         currentComponents,
+                                         options
+                                         ]];
+            }
             [tcapUser tcapBeginIndication:userDialogId
                         tcapTransactionId:currentTransaction.localTransactionId
                   tcapRemoteTransactionId:currentTransaction.remoteTransactionId
@@ -265,6 +286,27 @@
                 tcapUser = currentTransaction.user;
             }
             destoryTransaction = YES;
+            if(tcapLayer.logLevel <= UMLOG_DEBUG)
+            {
+                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapEndIndication:\n"
+                                         @"userDialogId:%@\n"
+                                         @"SccpCallingAddress:%@\n"
+                                         @"SccpCalledAddress:%@\n"
+                                         @"localTransactionId:%@\n"
+                                         @"remoteTransactionId:%@\n"
+                                         @"dialoguePortion:%@\n"
+                                         @"components:%@\n"
+                                         @"options:%@\n",
+                                         currentTransaction.userDialogId,
+                                         src,
+                                         dst,
+                                         currentTransaction.localTransactionId,
+                                         currentTransaction.remoteTransactionId,
+                                         dialoguePortion,
+                                         currentComponents,
+                                         options
+                                         ]];
+            }
             [tcapUser tcapEndIndication:currentTransaction.userDialogId
                       tcapTransactionId:currentTransaction.localTransactionId
                 tcapRemoteTransactionId:currentTransaction.remoteTransactionId
@@ -332,7 +374,28 @@
             }
             currentTransaction.remoteTransactionId = otid;
             destoryTransaction = NO;
-                [tcapUser tcapContinueIndication:currentTransaction.userDialogId
+            if(tcapLayer.logLevel <= UMLOG_DEBUG)
+            {
+                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapContinueIndication:\n"
+                                         @"userDialogId:%@\n"
+                                         @"SccpCallingAddress:%@\n"
+                                         @"SccpCalledAddress:%@\n"
+                                         @"localTransactionId:%@\n"
+                                         @"remoteTransactionId:%@\n"
+                                         @"dialoguePortion:%@\n"
+                                         @"components:%@\n"
+                                         @"options:%@\n",
+                                         currentTransaction.userDialogId,
+                                         src,
+                                         dst,
+                                         currentTransaction.localTransactionId,
+                                         currentTransaction.remoteTransactionId,
+                                         dialoguePortion,
+                                         currentComponents,
+                                         options
+                                         ]];
+            }
+            [tcapUser tcapContinueIndication:currentTransaction.userDialogId
                                tcapTransactionId:currentTransaction.localTransactionId
                          tcapRemoteTransactionId:currentTransaction.remoteTransactionId
                                          variant:tcapVariant
@@ -396,17 +459,38 @@
                 tcapUser = currentTransaction.user;
             }
             destoryTransaction = YES;
-                [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
-                             tcapTransactionId:currentTransaction.localTransactionId
-                       tcapRemoteTransactionId:currentTransaction.remoteTransactionId
-                                       variant:tcapVariant
-                                callingAddress:src
-                                 calledAddress:dst
-                               dialoguePortion:dialoguePortion
-                                  callingLayer:otherLayer
-                                          asn1:(UMASN1Object *)asn1
-                                       options:options
-                 ];
+            if(tcapLayer.logLevel <= UMLOG_DEBUG)
+            {
+                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
+                                         @"userDialogId:%@\n"
+                                         @"SccpCallingAddress:%@\n"
+                                         @"SccpCalledAddress:%@\n"
+                                         @"localTransactionId:%@\n"
+                                         @"remoteTransactionId:%@\n"
+                                         @"dialoguePortion:%@\n"
+                                         @"components:%@\n"
+                                         @"options:%@\n",
+                                         currentTransaction.userDialogId,
+                                         src,
+                                         dst,
+                                         currentTransaction.localTransactionId,
+                                         currentTransaction.remoteTransactionId,
+                                         dialoguePortion,
+                                         currentComponents,
+                                         options
+                                         ]];
+            }
+            [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
+                         tcapTransactionId:currentTransaction.localTransactionId
+                   tcapRemoteTransactionId:currentTransaction.remoteTransactionId
+                                   variant:tcapVariant
+                            callingAddress:src
+                             calledAddress:dst
+                           dialoguePortion:dialoguePortion
+                              callingLayer:otherLayer
+                                      asn1:(UMASN1Object *)asn1
+                                   options:options
+             ];
         }
         default:
             break;

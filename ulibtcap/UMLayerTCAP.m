@@ -126,6 +126,17 @@
     }
     task.sccpVariant = sccpLayer.sccpVariant;
 
+    if(logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"sccpNUnidata:\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"PDU:%@\n",
+                                 src,
+                                 dst,
+                                 [data hexString]
+                                 ]];
+    }
     task = [task initForTcap:self
                         sccp:sccpLayer
                     userData:data
@@ -162,6 +173,19 @@
     }
     task.sccpVariant = sccpLayer.sccpVariant;
     
+    if(logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"sccpNNotice:\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"PDU:%@\n"
+                                 @"Reason:%d",
+                                 src,
+                                 dst,
+                                 [data hexString],
+                                 reason
+                                 ]];
+    }
     task = [task initForTcap:self
                         sccp:sccpLayer
                     userData:data
@@ -191,6 +215,26 @@
     {
         tcapVariant = variant;
     }
+    if(logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUnidirectionalRequest:\n"
+                                 @"userDialogId:%@\n"
+                                 @"transactionId:%@\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"dialoguePortion:%@\n"
+                                 @"components:%@\n"
+                                 @"options:%@\n",
+                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                 userDialogId,
+                                 tcapTransactionId,
+                                 src,
+                                 dst,
+                                 xdialoguePortion,
+                                 components,
+                                 options
+                                 ]];
+    }
     /* FIXME: to be done */
 }
 
@@ -217,6 +261,28 @@
     }
     [transaction touch];
     UMTCAP_begin *begin;
+    
+    
+    if(logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapBeginReq:\n"
+                                 @"userDialogId:%@\n"
+                                 @"transactionId:%@\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"dialoguePortion:%@\n"
+                                 @"components:%@\n"
+                                 @"options:%@\n",
+                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                 userDialogId,
+                                 tcapTransactionId,
+                                 src,
+                                 dst,
+                                 xdialoguePortion,
+                                 components,
+                                 options
+                                 ]];
+    }
     if(variant ==TCAP_VARIANT_ITU)
     {
         begin = [[UMTCAP_itu_begin alloc]initForTcap:self
@@ -271,6 +337,26 @@
     [transaction touch];
     UMTCAP_continue *continueRequest = NULL;
     
+    if(logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapContinueReq:\n"
+                                 @"userDialogId:%@\n"
+                                 @"transactionId:%@\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"dialoguePortion:%@\n"
+                                 @"components:%@\n"
+                                 @"options:%@\n",
+                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                 userDialogId,
+                                 tcapTransactionId,
+                                 src,
+                                 dst,
+                                 xdialoguePortion,
+                                 components,
+                                 options
+                                 ]];
+    }
     if(variant ==TCAP_VARIANT_ITU)
     {
         continueRequest = [[UMTCAP_itu_continue alloc]initForTcap:self
@@ -324,6 +410,27 @@
 
     [transaction touch];
     UMTCAP_end *endRequest;
+    
+    if(logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapEndReq:\n"
+                                 @"userDialogId:%@\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"localTransactionId:%@\n"
+                                 @"dialoguePortion:%@\n"
+                                 @"components:%@\n"
+                                 @"options:%@\n",
+                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                 userDialogId,
+                                 src,
+                                 dst,
+                                 tcapTransactionId,
+                                 xdialoguePortion,
+                                 components,
+                                 options
+                                 ]];
+    }
     if(variant ==TCAP_VARIANT_ITU)
     {
         endRequest = [[UMTCAP_itu_end alloc]initForTcap:self
@@ -356,7 +463,7 @@
     [self queueFromUpper:endRequest];
 }
 
-- (void)tcapUAbortRequest:(NSString *)invokeId
+- (void)tcapUAbortRequest:(NSString *)userDialogId
                   variant:(UMTCAP_Variant)variant
                      user:(id<UMTCAP_UserProtocol>)user
            callingAddress:(SccpAddress *)src
@@ -370,7 +477,24 @@
     {
         variant = tcapVariant;
     }
-#pragma unused(variant)
+    if(logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUAbortReq:\n"
+                                 @"userDialogId:%@\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"dialoguePortion:%@\n"
+                                 @"components:%@\n"
+                                 @"options:%@\n",
+                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                 userDialogId,
+                                 src,
+                                 dst,
+                                 xdialoguePortion,
+                                 components,
+                                 options
+                                 ]];
+    }
 }
 
 - (void)setGenericComponents:(UMTCAP_generic_asn1_componentPDU *)pdu
