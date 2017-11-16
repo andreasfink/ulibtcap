@@ -481,8 +481,8 @@
                                          ]];
             }
             [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
-                         tcapTransactionId:currentTransaction.localTransactionId
-                   tcapRemoteTransactionId:currentTransaction.remoteTransactionId
+                         tcapTransactionId:currentLocalTransactionId
+                   tcapRemoteTransactionId:currentRemoteTransactionId
                                    variant:tcapVariant
                             callingAddress:src
                              calledAddress:dst
