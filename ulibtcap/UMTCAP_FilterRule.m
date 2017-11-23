@@ -83,7 +83,7 @@
     {
         context = @"none";
     }
-    NSArray *ctxs = [_applicationContexts copy];
+    NSArray *ctxs = [_applicationContexts arrayCopy];
     for(NSString *ctx in ctxs)
     {
         if([ctx isEqualToString:@"any"])
