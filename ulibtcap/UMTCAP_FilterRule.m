@@ -24,8 +24,17 @@
                            debugLog:(NSMutableString *)s
 {
 
+    if(s)
+    {
+        [s appendFormat:@"\n\tverifying rule"];
+        [s appendFormat:@"\n\t\tcommand:%d",_command];
+        [s appendFormat:@"\n\t\tapplicationContexts:%@",_applicationContexts];
+        [s appendFormat:@"\n\t\tcallingAddress:%@",_callingAddress];
+        [s appendFormat:@"\n\t\tcalledAddress:%@",_calledAddress];
+        [s appendFormat:@"\n\t\tresult:%d",_result];
+    }
     /* does the command match ? */
-    if(_command != command)
+    if((_command !=TCAP_TAG_UNDEFINED) && (_command != command))
     {
         if(s)
         {
@@ -37,7 +46,7 @@
     {
         if(s)
         {
-            [s appendFormat:@"\tcalled address do not match rule. skipping"];
+            [s appendFormat:@"\n\tcalled address do not match rule. skipping"];
         }
         return UMTCAP_FilterResult_continue;
     }
@@ -54,7 +63,7 @@
     {
         if(s)
         {
-            [s appendFormat:@"\toperation code do not match rule. skipping"];
+            [s appendFormat:@"\n\toperation code do not match rule. skipping"];
         }
         return UMTCAP_FilterResult_continue;
     }
@@ -71,7 +80,7 @@
             contextMatch = YES;
             if(s)
             {
-                [s appendFormat:@"\tapplication context matches 'any'"];
+                [s appendFormat:@"\n\tapplication context matches 'any'"];
             }
             break;
         }
@@ -79,7 +88,7 @@
         {
             if(s)
             {
-                [s appendFormat:@"\tapplication context matches '%@'",ctx];
+                [s appendFormat:@"\n\tapplication context matches '%@'",ctx];
             }
             contextMatch = YES;
             break;
@@ -89,7 +98,7 @@
     {
         if(s)
         {
-            [s appendFormat:@"\tapplication context matched. returning result '%d'",_result];
+            [s appendFormat:@"\n\tapplication context matched. returning result '%d'",_result];
         }
         return _result;
     }

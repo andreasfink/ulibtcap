@@ -12,6 +12,7 @@
 
 typedef enum UMTCAP_Command
 {
+    TCAP_TAG_UNDEFINED                      = -1,
     /* ANSI commands are 1000 + tag number to avoid enum duplicates */
     TCAP_TAG_ANSI_UNIDIRECTIONAL            = 1001,
     TCAP_TAG_ANSI_QUERY_WITH_PERM           = 1002,
