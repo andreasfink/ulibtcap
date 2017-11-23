@@ -21,6 +21,7 @@
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;
 @class UMTCAP_TransactionIdPool;
+@class UMTCAP_Filter;
 
 @interface UMLayerTCAP : UMLayer<UMSCCP_UserProtocol>
 {
@@ -42,7 +43,7 @@
     UMTimer *houseKeepingTimer;
     BOOL _housekeeping_running;
     UMTCAP_TransactionIdPool *_tidPool;
-
+    UMTCAP_Filter *_inboundFilter;
     id<UMLayerTCAPApplicationContextProtocol> _appContext;
 }
 
@@ -59,6 +60,7 @@
 @property(readwrite,assign,atomic)  BOOL housekeeping_running;
 @property(readwrite,strong,atomic)  UMTCAP_TransactionIdPool *tidPool;
 @property(readwrite,strong,atomic) id<UMLayerTCAPApplicationContextProtocol> appContext;
+@property(readwrite,strong,atomic)  UMTCAP_Filter *inboundFilter;
 
 - (UMMTP3Variant) variant;
 

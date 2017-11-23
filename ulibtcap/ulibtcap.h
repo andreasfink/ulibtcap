@@ -86,3 +86,7 @@
 #import "UMTCAP_State_wait_for_reject.h"
 #import "UMTCAP_TimeoutTask.h"
 #import "UMTCAP_TransactionInvoke.h"
+
+#import "UMTCAP_Filter.h"
+#import "UMTCAP_FilterRule.h"
+#import "UMTCAP_FilterResult.h"

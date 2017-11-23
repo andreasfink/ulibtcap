@@ -1,5 +1,5 @@
 //
-//  UMTCAP_sccp_unidata.h
+//  UMTCAP_sccpNUnitdata.h
 //  ulibtcap
 //
 //  Created by Andreas Fink on 24.03.16.

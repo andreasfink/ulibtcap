@@ -34,6 +34,7 @@
 #import "UMTCAP_TransactionInvoke.h"
 #import "UMTCAP_Variant.h"
 #import "UMLayerTCAP.h"
+#import "UMTCAP_Filter.h"
 
 @implementation UMTCAP_sccpNUnitdata
 
@@ -120,7 +121,7 @@
     currentCommand = -1;
     currentOperationType = -1;
     currentComponents = [[NSMutableArray alloc]init];
-    currentOperationCode = 0;
+    currentOperationCode = UMTCAP_FILTER_OPCODE_MISSING;
 }
 
 - (void) endDecodingOfPdu
@@ -133,6 +134,37 @@
     BOOL perm = YES;
 
     [currentTransaction touch];
+
+    UMTCAP_Filter *inboundFilter = tcapLayer.inboundFilter;
+    if(inboundFilter)
+    {
+        UMSynchronizedSortedDictionary *oid = applicationContext.objectValue;
+        NSString *appContextString = oid[@"objectIdentifier"];
+        UMTCAP_FilterResult r = [inboundFilter filterPacket:currentCommand applicationContext:appContextString operationCode:currentOperationCode];
+        switch(r)
+        {
+            case UMTCAP_FilterResult_allow:
+            case UMTCAP_FilterResult_continue:
+                break;
+            case UMTCAP_FilterResult_drop:
+                return;
+            case UMTCAP_FilterResult_reject:
+                /* fixme: send abort here */
+                return;
+            case UMTCAP_FilterResult_redirect:
+            {
+                dst.tt.tt = inboundFilter.bypass_translation_type;
+                [tcapLayer.attachedLayer sccpNUnidata:data
+                                         callingLayer:tcapLayer
+                                         calling:src
+                                          called:dst
+                                qualityOfService:qos
+                                         options:options];
+            }
+                return;
+        }
+    }
+    
     switch(currentCommand)
     {
         case TCAP_TAG_ANSI_UNIDIRECTIONAL:
@@ -544,6 +576,7 @@
             case TCAP_ANSI_COMPONENT_INVOKE_NOT_LAST:
                 component.operationType = UMTCAP_Operation_Request;
                 currentOperationType = UMTCAP_Operation_Request;
+                currentOperationCode = component.operationCode;
                 break;
             case TCAP_ITU_COMPONENT_RETURN_RESULT_LAST:
             case TCAP_ITU_COMPONENT_RETURN_RESULT_NOT_LAST:
@@ -551,18 +584,21 @@
             case TCAP_ANSI_COMPONENT_RETURN_RESULT_NOT_LAST:
                 component.operationType = UMTCAP_Operation_Response;
                 currentOperationType = UMTCAP_Operation_Response;
+                currentOperationCode = component.operationCode;
                 break;
 
             case TCAP_ITU_COMPONENT_RETURN_ERROR:
             case TCAP_ANSI_COMPONENT_RETURN_ERROR:
                 component.operationType = UMTCAP_Operation_Error;
                 currentOperationType = UMTCAP_Operation_Error;
+                currentOperationCode = component.operationCode;
                 break;
 
             case TCAP_ITU_COMPONENT_REJECT:
             case TCAP_ANSI_COMPONENT_REJECT:
                 component.operationType = UMTCAP_Operation_Reject;
                 currentOperationType = UMTCAP_Operation_Reject;
+                currentOperationCode = component.operationCode;
                 break;
         }
 

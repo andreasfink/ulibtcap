@@ -43,6 +43,7 @@
 #import "UMTCAP_TimeoutTask.h"
 #import "UMTCAP_TransactionIdPool.h"
 #import "UMTCAP_BypassTask.h"
+#import "UMTCAP_Filter.h"
 
 @implementation UMLayerTCAP
 

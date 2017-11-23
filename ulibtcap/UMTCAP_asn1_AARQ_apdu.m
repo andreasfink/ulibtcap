@@ -10,6 +10,7 @@
 // the author.
 
 #import "UMTCAP_asn1_AARQ_apdu.h"
+#import "UMTCAP_sccpNUnitdata.h"
 
 @implementation UMTCAP_asn1_AARQ_apdu
 
