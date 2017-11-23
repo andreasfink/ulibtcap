@@ -89,7 +89,7 @@
                     break;
             }
             s = [NSMutableString stringWithFormat:@"checking tcap-filter '%@' for command '%@' context='%@', opcode=%d",
-                 _name,context,cmd,(int)opCode];
+                 _name,cmd,context,(int)opCode];
         }
     }
     UMTCAP_FilterResult r = UMTCAP_FilterResult_continue;
