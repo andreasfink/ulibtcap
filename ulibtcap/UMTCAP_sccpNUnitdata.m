@@ -147,7 +147,7 @@
                                               calledAddress:dst];
         switch(r)
         {
-            case UMTCAP_FilterResult_allow:
+            case UMTCAP_FilterResult_accept:
             case UMTCAP_FilterResult_continue:
                 break;
             case UMTCAP_FilterResult_drop:

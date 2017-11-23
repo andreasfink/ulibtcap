@@ -23,11 +23,13 @@
     UMSynchronizedArray *_rules;
     int                 _bypass_translation_type;
     UMLogLevel          _logLevel;
+    UMTCAP_FilterResult  _defaultResult;
 }
 
 @property(readwrite,strong,atomic)  NSString *name;
 @property(readwrite,assign,atomic)  BOOL    active;
 @property(readwrite,assign,atomic)  int     bypass_translation_type;
+@property(readwrite,assign,atomic)  UMTCAP_FilterResult  defaultResult;
 
 
 - (void)removeAllRules;

@@ -62,22 +62,7 @@
     }
     if(contextMatch)
     {
-        if(_drop)
-        {
-            return UMTCAP_FilterResult_drop;
-        }
-        if(_reject)
-        {
-            return UMTCAP_FilterResult_reject;
-        }
-        if(_allow)
-        {
-            return UMTCAP_FilterResult_allow;
-        }
-        if(_redirect)
-        {
-            return UMTCAP_FilterResult_redirect;
-        }
+        return _result;
     }
     return UMTCAP_FilterResult_continue;
 }

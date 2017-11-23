@@ -8,7 +8,7 @@
 
 typedef enum UMTCAP_FilterResult
 {
-    UMTCAP_FilterResult_allow = 0,
+    UMTCAP_FilterResult_accept = 0,
     UMTCAP_FilterResult_drop = 1,
     UMTCAP_FilterResult_reject = 2,
     UMTCAP_FilterResult_redirect = 3,

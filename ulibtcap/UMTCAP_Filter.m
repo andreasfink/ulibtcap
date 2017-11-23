@@ -108,8 +108,8 @@
             NSString *resultText;
             switch(r)
             {
-                case UMTCAP_FilterResult_allow:
-                    resultText = @"allow";
+                case UMTCAP_FilterResult_accept:
+                    resultText = @"accept";
                     break;
                 case UMTCAP_FilterResult_drop:
                     resultText = @"drop";
@@ -129,6 +129,33 @@
         if(r != UMTCAP_FilterResult_continue)
         {
             break;
+        }
+    }
+    if(r == UMTCAP_FilterResult_continue)
+    {
+        r = _defaultResult;
+        if(s)
+        {
+            NSString *resultText;
+            switch(r)
+            {
+                case UMTCAP_FilterResult_accept:
+                    resultText = @"accept";
+                    break;
+                case UMTCAP_FilterResult_drop:
+                    resultText = @"drop";
+                    break;
+                case UMTCAP_FilterResult_reject:
+                    resultText = @"reject";
+                    break;
+                case UMTCAP_FilterResult_redirect:
+                    resultText = @"redirect";
+                    break;
+                case UMTCAP_FilterResult_continue:
+                    resultText = @"continue";
+                    break;
+            }
+            [s appendFormat:@"\n\tdefault rule %@",resultText];
         }
     }
     if(s)
