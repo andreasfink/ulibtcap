@@ -11,6 +11,16 @@
 
 @implementation UMTCAP_FilterRule
 
+- (UMTCAP_FilterRule *)init
+{
+    self = [super init];
+    if(self)
+    {
+        _applicationContexts = [[UMSynchronizedArray alloc]init];
+    }
+    return self;
+}
+
 - (void)addApplicationContext:(NSString *)context
 {
     [_applicationContexts addObject:context];
@@ -28,6 +38,7 @@
     {
         [s appendFormat:@"\n\tverifying rule"];
         [s appendFormat:@"\n\t\tcommand:%d",_command];
+        [s appendFormat:@"\n\t\toperationCode:%d",_operation];
         [s appendFormat:@"\n\t\tapplicationContexts:%@",_applicationContexts];
         [s appendFormat:@"\n\t\tcallingAddress:%@",_callingAddress];
         [s appendFormat:@"\n\t\tcalledAddress:%@",_calledAddress];
@@ -59,7 +70,7 @@
         return UMTCAP_FilterResult_continue;
     }
     /* does the operation match and is given */
-    if((_operation >= 0) && (opCode >= 0) && (_operation!=opCode))
+    if((_operation > 0) && (opCode >= 0) && (_operation!=opCode))
     {
         if(s)
         {
