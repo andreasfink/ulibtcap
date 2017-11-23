@@ -7,6 +7,7 @@
 //
 
 #import <ulib/ulib.h>
+#import <ulibgt/ulibgt.h>
 #import "UMTCAP_Command.h"
 #import "UMTCAP_FilterResult.h"
 
@@ -32,5 +33,7 @@
 
 - (UMTCAP_FilterResult)filterPacket:(UMTCAP_Command)command
                  applicationContext:(NSString *)context
-                      operationCode:(int64_t)opCode;
+                      operationCode:(int64_t)opCode
+                     callingAddress:(SccpAddress *)src
+                      calledAddress:(SccpAddress *)dst;
 @end

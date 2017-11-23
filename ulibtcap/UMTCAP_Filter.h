@@ -7,6 +7,8 @@
 //
 
 #import <ulib/ulib.h>
+#import <ulibgt/ulibgt.h>
+
 #import "UMTCAP_Command.h"
 #import "UMTCAP_FilterResult.h"
 
@@ -20,6 +22,7 @@
     BOOL                _active;
     UMSynchronizedArray *_rules;
     int                 _bypass_translation_type;
+    UMLogLevel          _logLevel;
 }
 
 @property(readwrite,strong,atomic)  NSString *name;
@@ -29,6 +32,10 @@
 
 - (void)removeAllRules;
 - (void)addRule:(UMTCAP_FilterRule *)rule;
-- (UMTCAP_FilterResult)filterPacket:(UMTCAP_Command)command applicationContext:(NSString *)context operationCode:(int64_t)opCode;
+- (UMTCAP_FilterResult)filterPacket:(UMTCAP_Command)command
+                 applicationContext:(NSString *)context
+                      operationCode:(int64_t)opCode
+                     callingAddress:(SccpAddress *)src
+                      calledAddress:(SccpAddress *)dst;
 
 @end

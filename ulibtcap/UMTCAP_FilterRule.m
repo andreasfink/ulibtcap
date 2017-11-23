@@ -19,6 +19,8 @@
 - (UMTCAP_FilterResult)filterPacket:(UMTCAP_Command)command
                  applicationContext:(NSString *)context
                       operationCode:(int64_t)opCode
+                     callingAddress:(SccpAddress *)src
+                      calledAddress:(SccpAddress *)dst
 {
     /* does the command match ? */
     if(_command != command)

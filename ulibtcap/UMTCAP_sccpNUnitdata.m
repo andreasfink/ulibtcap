@@ -140,7 +140,11 @@
     {
         UMSynchronizedSortedDictionary *oid = applicationContext.objectValue;
         NSString *appContextString = oid[@"objectIdentifier"];
-        UMTCAP_FilterResult r = [inboundFilter filterPacket:currentCommand applicationContext:appContextString operationCode:currentOperationCode];
+        UMTCAP_FilterResult r = [inboundFilter filterPacket:currentCommand
+                                         applicationContext:appContextString
+                                              operationCode:currentOperationCode
+                                             callingAddress:src
+                                              calledAddress:dst];
         switch(r)
         {
             case UMTCAP_FilterResult_allow:
