@@ -22,8 +22,17 @@
                      callingAddress:(SccpAddress *)src
                       calledAddress:(SccpAddress *)dst
 {
+
     /* does the command match ? */
     if(_command != command)
+    {
+        return UMTCAP_FilterResult_continue;
+    }
+    if((_calledAddress.address.length > 0) && (![src.address isEqualTo:_calledAddress.address]))
+    {
+        return UMTCAP_FilterResult_continue;
+    }
+    if((_callingAddress.address.length > 0) && (![dst.address isEqualTo:_callingAddress.address]))
     {
         return UMTCAP_FilterResult_continue;
     }

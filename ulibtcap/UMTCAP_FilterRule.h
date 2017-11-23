@@ -13,13 +13,15 @@
 
 @interface UMTCAP_FilterRule : UMObject
 {
-    UMTCAP_Command  _command;
+    UMTCAP_Command  _command; /* -1 = any, -2 = undefined */
     UMSynchronizedArray *_applicationContexts;
     int     _operation; /* MAP operation code. -1 stands for "any", 0 stands for "undefined" (meaning there is no operation code in the packet) */
     BOOL    _drop;      /* drop the packet */
     BOOL    _reject;    /* send back UDTS */
     BOOL    _allow;     /* immediately go to parsing upper layers */
     BOOL    _redirect;  /* send packet back cout */
+    SccpAddress *_callingAddress;
+    SccpAddress *_calledAddress;
 }
 
 @property(readwrite,assign,atomic)  UMTCAP_Command  command;
@@ -28,6 +30,8 @@
 @property(readwrite,assign,atomic)  BOOL    allow;
 @property(readwrite,assign,atomic)  BOOL    redirect;
 @property(readwrite,assign,atomic)  BOOL    reject;
+@property(readwrite,strong,atomic)  SccpAddress *callingAddress;
+@property(readwrite,strong,atomic)  SccpAddress *calledAddress;
 
 - (void)addApplicationContext:(NSString *)context;
 
@@ -36,4 +40,5 @@
                       operationCode:(int64_t)opCode
                      callingAddress:(SccpAddress *)src
                       calledAddress:(SccpAddress *)dst;
+
 @end
