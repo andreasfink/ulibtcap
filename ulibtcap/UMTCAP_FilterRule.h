@@ -33,6 +33,7 @@
                  applicationContext:(NSString *)context
                       operationCode:(int64_t)opCode
                      callingAddress:(SccpAddress *)src
-                      calledAddress:(SccpAddress *)dst;
+                      calledAddress:(SccpAddress *)dst
+                           debugLog:(NSMutableString *)s;
 
 @end

@@ -102,7 +102,8 @@
             applicationContext:context
                  operationCode:opCode
                 callingAddress:src
-                 calledAddress:dst];
+                 calledAddress:dst
+                      debugLog:s];
         if(s)
         {
             NSString *resultText;
