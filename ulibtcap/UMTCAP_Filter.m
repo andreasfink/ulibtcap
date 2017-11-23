@@ -93,7 +93,7 @@
         }
     }
     UMTCAP_FilterResult r = UMTCAP_FilterResult_continue;
-    NSArray *rules = [_rules copy];
+    NSArray *rules = [_rules arrayCopy];
     int i = 0;
     for(UMTCAP_FilterRule *rule in rules)
     {
