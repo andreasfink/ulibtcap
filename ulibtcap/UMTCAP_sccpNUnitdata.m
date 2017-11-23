@@ -89,6 +89,18 @@
     NSUInteger pos = 0;
     BOOL decodeOnly = [options[@"decode-only"] boolValue];
 
+    if(tcapLayer.logLevel <= UMLOG_DEBUG)
+    {
+        [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"task sccpNUnidata:\n"
+                                 @"SccpCallingAddress:%@\n"
+                                 @"SccpCalledAddress:%@\n"
+                                 @"PDU:%@\n",
+                                 src,
+                                 dst,
+                                 [data hexString]
+                                 ]];
+    }
+
     if(options)
     {
         NSMutableDictionary *o = [options mutableCopy];
@@ -136,8 +148,15 @@
     [currentTransaction touch];
 
     UMTCAP_Filter *inboundFilter = tcapLayer.inboundFilter;
+
+
     if(inboundFilter)
     {
+        if(tcapLayer.logLevel <= UMLOG_DEBUG)
+        {
+            [tcapLayer.logFeed debugText:@"inbound-filter-trigger"];
+        }
+
         UMSynchronizedSortedDictionary *oid = applicationContext.objectValue;
         NSString *appContextString = oid[@"objectIdentifier"];
         UMTCAP_FilterResult r = [inboundFilter filterPacket:currentCommand
@@ -236,7 +255,7 @@
 */
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapBeginIndication:\n"
+                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapBeginIndication:\n"
                                          @"userDialogId:%@\n"
                                          @"SccpCallingAddress:%@\n"
                                          @"SccpCalledAddress:%@\n"
@@ -324,7 +343,7 @@
             destoryTransaction = YES;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapEndIndication:\n"
+                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapEndIndication:\n"
                                          @"userDialogId:%@\n"
                                          @"SccpCallingAddress:%@\n"
                                          @"SccpCalledAddress:%@\n"
@@ -412,7 +431,7 @@
             destoryTransaction = NO;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapContinueIndication:\n"
+                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapContinueIndication:\n"
                                          @"userDialogId:%@\n"
                                          @"SccpCallingAddress:%@\n"
                                          @"SccpCalledAddress:%@\n"
@@ -497,7 +516,7 @@
             destoryTransaction = YES;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [self.logFeed debugText:[NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
+                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
                                          @"userDialogId:%@\n"
                                          @"SccpCallingAddress:%@\n"
                                          @"SccpCalledAddress:%@\n"
