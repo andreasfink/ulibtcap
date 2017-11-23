@@ -135,17 +135,6 @@
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options;
 
-
-- (void)tcapBypassRequest:(NSString *)tcapDialogId
-             userDialogId:(NSString *)userDialogId
-                  variant:(UMTCAP_Variant)variant
-                     user:(id<UMTCAP_UserProtocol>)user
-           callingAddress:(SccpAddress *)src
-            calledAddress:(SccpAddress *)dst
-              sccpPayload:(NSData *)sccpPayload
-                  options:(NSDictionary *)options;
-
-
 /* component handling primitives */
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapInvoke:(UMASN1Object *)params

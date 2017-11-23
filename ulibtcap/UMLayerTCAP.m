@@ -42,7 +42,6 @@
 #import "UMTCAP_HousekeepingTask.h"
 #import "UMTCAP_TimeoutTask.h"
 #import "UMTCAP_TransactionIdPool.h"
-#import "UMTCAP_BypassTask.h"
 #import "UMTCAP_Filter.h"
 
 @implementation UMLayerTCAP
@@ -1044,26 +1043,5 @@ NSDate *timeoutDate;
 }
 
 
-- (void)tcapBypassRequest:(NSString *)tcapDialogId
-             userDialogId:(NSString *)userDialogId
-                  variant:(UMTCAP_Variant)variant
-                     user:(id<UMTCAP_UserProtocol>)user
-           callingAddress:(SccpAddress *)src
-            calledAddress:(SccpAddress *)dst
-              sccpPayload:(NSData *)sccpPayload
-                  options:(NSDictionary *)options
-{
-    
-    UMTCAP_BypassTask *task = [[UMTCAP_BypassTask alloc]initForTcap:self
-                                                      transactionId:tcapDialogId
-                                                       userDialogId:userDialogId
-                                                            variant:variant
-                                                               user:user
-                                                     callingAddress:src
-                                                      calledAddress:dst
-                                                        sccpPayload:sccpPayload
-                                                            options:options];
-    [self queueFromUpper:task];
-}
 
 @end
