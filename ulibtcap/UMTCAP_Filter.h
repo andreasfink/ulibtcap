@@ -30,6 +30,8 @@
 @property(readwrite,assign,atomic)  BOOL    active;
 @property(readwrite,assign,atomic)  int     bypass_translation_type;
 @property(readwrite,assign,atomic)  UMTCAP_FilterResult  defaultResult;
+@property(readwrite,assign,atomic) UMLogLevel  logLevel;
+
 
 
 - (void)removeAllRules;
