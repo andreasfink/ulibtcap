@@ -21,8 +21,9 @@
     self = [super init];
     if(self)
     {
-        freeTransactionIds = [[UMSynchronizedSortedDictionary alloc]init];
-        inUseTransactionIds = [[UMSynchronizedSortedDictionary alloc]init];
+        _lock = [[UMMutex alloc]init];
+        _freeTransactionIds = [[NSMutableDictionary alloc]init];
+        _inUseTransactionIds = [[NSMutableDictionary alloc]init];
         for(int i=0;i<count;i++)
         {
             [self returnTransactionId:[self _newId]];
@@ -39,9 +40,9 @@
     {
         u_int32_t tid = [UMUtil random:0x3FFFFFFF];
         tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
-        if(freeTransactionIds[tidString] ==NULL)
+        if(_freeTransactionIds[tidString] ==NULL)
         {
-            if(inUseTransactionIds[tidString]==NULL)
+            if(_inUseTransactionIds[tidString]==NULL)
             {
                 break; /* found an unused one */
             }
@@ -52,39 +53,37 @@
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
-    @synchronized (self)
+    [_lock lock];
+    NSString *tidString;
+    NSArray *keys = [_freeTransactionIds allKeys];
+    if(keys.count > 0)
     {
-
-        NSString *tidString;
-        if(freeTransactionIds.count > 0)
-        {
-            tidString = [freeTransactionIds objectAtIndex:0];
-            [freeTransactionIds removeObjectForKey:tidString];
-        }
-        else
-        {
-            tidString = [self _newId];
-        }
-        inUseTransactionIds[tidString]=instance;
-        return tidString;
+        tidString = keys[0];
+        [_freeTransactionIds removeObjectForKey:tidString];
     }
+    else
+    {
+        tidString = [self _newId];
+    }
+    _inUseTransactionIds[tidString]=instance;
+    [_lock unlock];
+    return tidString;
 }
 
 - (NSString *)findInstanceForTransaction:(NSString *)tid
 {
-    @synchronized (self)
-    {
-        return inUseTransactionIds[tid];
-    }
+    [_lock lock];
+    NSString *instance = _inUseTransactionIds[tid];
+    [_lock unlock];
+    return instance;
 }
 
 - (void)returnTransactionId:(NSString *)tidString
 {
-    @synchronized (self)
-    {
-        [inUseTransactionIds removeObjectForKey:tidString];
-        freeTransactionIds[tidString]=tidString;
-    }
+    [_lock lock];
+    [_inUseTransactionIds removeObjectForKey:tidString];
+    _freeTransactionIds[tidString]=tidString;
+    [_lock unlock];
 }
 
 @end

@@ -10,8 +10,9 @@
 
 @interface UMTCAP_TransactionIdPool : UMObject
 {
-    UMSynchronizedSortedDictionary *freeTransactionIds;
-    UMSynchronizedSortedDictionary *inUseTransactionIds;
+    NSMutableDictionary *_freeTransactionIds;
+    NSMutableDictionary *_inUseTransactionIds;
+    UMMutex     *_lock;
 }
 
 

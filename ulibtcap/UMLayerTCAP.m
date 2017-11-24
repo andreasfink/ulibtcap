@@ -97,6 +97,7 @@
     if(self)
     {
         [self genericInitialisation];
+        _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:100000];
     }
     return self;
 }
@@ -877,17 +878,7 @@
 
 - (NSString *)getNewTransactionId
 {
-    if(_tidPool)
-    {
-        return [_tidPool newTransactionIdForInstance:self.layerName];
-    }
-    int64_t tid;
-    @synchronized(self)
-    {
-        lastTransactionId = (lastTransactionId + 1 ) % 0x7FFF;
-        tid = lastTransactionId;
-    }
-    return [NSString stringWithFormat:@"%08lX",(long)tid];
+    return [_tidPool newTransactionIdForInstance:self.layerName];
 }
 
 - (void)returnTransactionId:(NSString *)tid
