@@ -60,27 +60,45 @@
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
-    [_lock lock];
     NSString *tidString;
-    NSArray *keys = [_freeTransactionIds allKeys];
-    if(keys.count > 0)
+    @autoreleasepool
     {
-        tidString = keys[0];
-        [_freeTransactionIds removeObjectForKey:tidString];
+        [_lock lock];
+        @autoreleasepool
+        {
+            NSArray *keys = [_freeTransactionIds allKeys];
+            if(keys.count > 0)
+            {
+                tidString = keys[0];
+                [_freeTransactionIds removeObjectForKey:tidString];
+            }
+            else
+            {
+                int found = 0;
+                while(found == 0)
+                {
+                    /* generate TIDs */
+                    u_int32_t tid = [UMUtil random:0x3FFFFFFF];
+                    tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
+                    if(_freeTransactionIds[tidString] == NULL)
+                    {
+                        _freeTransactionIds[tidString]=tidString;
+                        found=1;
+                    }
+                }
+            }
+            _inUseTransactionIds[tidString]=instance;
+        }
+        [_lock unlock];
     }
-    else
-    {
-        tidString = [self _newId];
-    }
-    _inUseTransactionIds[tidString]=instance;
-    [_lock unlock];
     return tidString;
 }
 
 - (NSString *)findInstanceForTransaction:(NSString *)tid
 {
+    NSString *instance;
     [_lock lock];
-    NSString *instance = _inUseTransactionIds[tid];
+    instance = _inUseTransactionIds[tid];
     [_lock unlock];
     return instance;
 }
