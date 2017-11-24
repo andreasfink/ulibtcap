@@ -255,24 +255,24 @@
 */
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapBeginIndication:\n"
-                                         @"userDialogId:%@\n"
-                                         @"SccpCallingAddress:%@\n"
-                                         @"SccpCalledAddress:%@\n"
-                                         @"localTransactionId:%@\n"
-                                         @"remoteTransactionId:%@\n"
-                                         @"dialoguePortion:%@\n"
-                                         @"components:%@\n"
-                                         @"options:%@\n",
-                                         userDialogId,
-                                         src,
-                                         dst,
-                                         currentTransaction.localTransactionId,
-                                         currentTransaction.remoteTransactionId,
-                                         dialoguePortion,
-                                         currentComponents,
-                                         options
-                                         ]];
+                NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapBeginIndication:\n"
+                                    @"userDialogId:%@\n"
+                                    @"SccpCallingAddress:%@\n"
+                                    @"SccpCalledAddress:%@\n"
+                                    @"localTransactionId:%@\n"
+                                    @"remoteTransactionId:%@\n"
+                                    @"dialoguePortion:%@\n"
+                                    @"components:%@\n"
+                                    @"options:%@\n",
+                                    userDialogId,
+                                    src,
+                                    dst,
+                                    currentTransaction.localTransactionId,
+                                    currentTransaction.remoteTransactionId,
+                                    dialoguePortion,
+                                    currentComponents,
+                                    options];
+                [tcapLayer.logFeed debugText:dbgTxt];
             }
             [tcapUser tcapBeginIndication:userDialogId
                         tcapTransactionId:currentTransaction.localTransactionId
@@ -343,7 +343,7 @@
             destoryTransaction = YES;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapEndIndication:\n"
+                NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapEndIndication:\n"
                                          @"userDialogId:%@\n"
                                          @"SccpCallingAddress:%@\n"
                                          @"SccpCalledAddress:%@\n"
@@ -360,7 +360,8 @@
                                          dialoguePortion,
                                          currentComponents,
                                          options
-                                         ]];
+                                    ];
+                [tcapLayer.logFeed debugText:dbgTxt];
             }
             [tcapUser tcapEndIndication:currentTransaction.userDialogId
                       tcapTransactionId:currentTransaction.localTransactionId
@@ -431,7 +432,7 @@
             destoryTransaction = NO;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapContinueIndication:\n"
+                NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapContinueIndication:\n"
                                          @"userDialogId:%@\n"
                                          @"SccpCallingAddress:%@\n"
                                          @"SccpCalledAddress:%@\n"
@@ -448,7 +449,8 @@
                                          dialoguePortion,
                                          currentComponents,
                                          options
-                                         ]];
+                                    ];
+                [tcapLayer.logFeed debugText:dbgTxt];
             }
             [tcapUser tcapContinueIndication:currentTransaction.userDialogId
                                tcapTransactionId:currentTransaction.localTransactionId
@@ -516,7 +518,7 @@
             destoryTransaction = YES;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
-                [tcapLayer.logFeed debugText:[NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
+                NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
                                          @"userDialogId:%@\n"
                                          @"SccpCallingAddress:%@\n"
                                          @"SccpCalledAddress:%@\n"
@@ -533,7 +535,8 @@
                                          dialoguePortion,
                                          currentComponents,
                                          options
-                                         ]];
+                                    ];
+                [tcapLayer.logFeed debugText:dbgTxt];
             }
             [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
                          tcapTransactionId:currentLocalTransactionId
