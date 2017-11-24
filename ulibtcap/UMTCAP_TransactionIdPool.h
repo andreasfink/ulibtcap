@@ -7,8 +7,9 @@
 //
 
 #import <ulib/ulib.h>
+#import "UMTCAP_TransactionIdPoolProtocol.h"
 
-@interface UMTCAP_TransactionIdPool : UMObject
+@interface UMTCAP_TransactionIdPool : UMObject<UMTCAP_TransactionIdPoolProtocol>
 {
     NSMutableDictionary *_freeTransactionIds;
     NSMutableDictionary *_inUseTransactionIds;

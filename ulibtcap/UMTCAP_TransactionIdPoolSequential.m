@@ -22,7 +22,6 @@
     if(self)
     {
         _nextTransactionId = 1;
-        _freeTransactionIds = NULL;
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
         _lock = [[UMMutex alloc]init];
     }

@@ -135,6 +135,7 @@
 		A6B37B8B1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h in Headers */ = {isa = PBXBuildFile; fileRef = A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6B37B8C1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */; };
 		A6B37B8D1FC883E700794057 /* UMTCAP_TransactionIdPoolSequential.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */; };
+		A6B37B901FC885D500794057 /* UMTCAP_TransactionIdPoolProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A6B37B8E1FC885D500794057 /* UMTCAP_TransactionIdPoolProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6B7FBC91B44B97F00854472 /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC81B44B97F00854472 /* sctp.framework */; };
 		A6BCE1A71CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.h in Headers */ = {isa = PBXBuildFile; fileRef = A6BCE1A51CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6BCE1A81CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCE1A61CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.m */; };
@@ -350,6 +351,7 @@
 		A6A2D7131CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_generic_asn1_componentPDU.m; sourceTree = "<group>"; };
 		A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPoolSequential.h; sourceTree = "<group>"; };
 		A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionIdPoolSequential.m; sourceTree = "<group>"; };
+		A6B37B8E1FC885D500794057 /* UMTCAP_TransactionIdPoolProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPoolProtocol.h; sourceTree = "<group>"; };
 		A6B7FBC81B44B97F00854472 /* sctp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sctp.framework; path = /Library/Frameworks/sctp.framework; sourceTree = "<absolute>"; };
 		A6BCE1A51CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_asn1_Associate_result.h; sourceTree = "<group>"; };
 		A6BCE1A61CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_asn1_Associate_result.m; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 			children = (
 				A641CE561B42010A00854472 /* Supporting Files */,
 				A641CE581B42010A00854472 /* ulibtcap.h */,
+				A6B37B8E1FC885D500794057 /* UMTCAP_TransactionIdPoolProtocol.h */,
 				A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */,
 				A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */,
 				A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */,
@@ -877,6 +880,7 @@
 				A6D03B781CA48A0800211137 /* UMTCAP_itu_continue.h in Headers */,
 				A6814BE21CAA127400211137 /* UMTCAP_itu_asn1_end.h in Headers */,
 				A69B5B691CD0BA8700711600 /* UMTCAP_State_idle.h in Headers */,
+				A6B37B901FC885D500794057 /* UMTCAP_TransactionIdPoolProtocol.h in Headers */,
 				A6D03B6C1CA489DA00211137 /* UMTCAP_ansi_abort.h in Headers */,
 				A68252651CCFD8BB00211137 /* UMTCAP_itu_asn1_asn1Type.h in Headers */,
 				A6D03B701CA489EB00211137 /* UMTCAP_itu_begin.h in Headers */,

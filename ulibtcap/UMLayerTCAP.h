@@ -16,7 +16,7 @@
 #import "UMTCAP_UserProtocol.h"
 #import "UMTCAP_operationClass.h"
 #import "UMTCAP_generic_asn1_componentPDU.h"
-
+#import "UMTCAP_TransactionIdPoolProtocol.h"
 
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;
@@ -42,7 +42,7 @@
     int64_t lastTransactionId;
     UMTimer *houseKeepingTimer;
     BOOL _housekeeping_running;
-    UMTCAP_TransactionIdPool *_tidPool;
+    id<UMTCAP_TransactionIdPoolProtocol> _tidPool;
     UMTCAP_Filter *_inboundFilter;
     id<UMLayerTCAPApplicationContextProtocol> _appContext;
 }
@@ -58,7 +58,7 @@
 @property(readwrite,strong) SccpSubSystemNumber *ssn;
 @property(readwrite,assign) BOOL transactionIsClosed;
 @property(readwrite,assign,atomic)  BOOL housekeeping_running;
-@property(readwrite,strong,atomic)  UMTCAP_TransactionIdPool *tidPool;
+@property(readwrite,strong,atomic)  id<UMTCAP_TransactionIdPoolProtocol> tidPool;
 @property(readwrite,strong,atomic) id<UMLayerTCAPApplicationContextProtocol> appContext;
 @property(readwrite,strong,atomic)  UMTCAP_Filter *inboundFilter;
 

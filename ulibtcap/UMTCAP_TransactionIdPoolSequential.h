@@ -6,11 +6,14 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_TransactionIdPool.h"
+#import <ulib/ulib.h>
+#import "UMTCAP_TransactionIdPoolProtocol.h"
 
-@interface UMTCAP_TransactionIdPoolSequential : UMTCAP_TransactionIdPool
+@interface UMTCAP_TransactionIdPoolSequential : UMObject<UMTCAP_TransactionIdPoolProtocol>
 {
     u_int32_t _nextTransactionId;
+    NSMutableDictionary *_inUseTransactionIds;
+    UMMutex *_lock;
 }
 
 @end
