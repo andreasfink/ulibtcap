@@ -24,9 +24,16 @@
         _lock = [[UMMutex alloc]init];
         _freeTransactionIds = [[NSMutableDictionary alloc]init];
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
-        for(int i=0;i<count;i++)
+        while(count > 0)
         {
-            [self returnTransactionId:[self _newId]];
+            /* generate TIDs */
+            u_int32_t tid = [UMUtil random:0x3FFFFFFF];
+            NSString *tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
+            if(_freeTransactionIds[tidString] == NULL)
+            {
+                _freeTransactionIds[tidString]=tidString;
+                count--;
+            }
         }
     }
     return self;
