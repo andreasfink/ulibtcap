@@ -132,6 +132,9 @@
 		A6A2B8D41E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6A2D7141CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A2D7121CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6A2D7151CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A2D7131CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m */; };
+		A6B37B8B1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h in Headers */ = {isa = PBXBuildFile; fileRef = A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6B37B8C1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */; };
+		A6B37B8D1FC883E700794057 /* UMTCAP_TransactionIdPoolSequential.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */; };
 		A6B7FBC91B44B97F00854472 /* sctp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B7FBC81B44B97F00854472 /* sctp.framework */; };
 		A6BCE1A71CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.h in Headers */ = {isa = PBXBuildFile; fileRef = A6BCE1A51CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6BCE1A81CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCE1A61CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.m */; };
@@ -345,6 +348,8 @@
 		A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMLayerTCAPApplicationContextProtocol.h; sourceTree = "<group>"; };
 		A6A2D7121CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_generic_asn1_componentPDU.h; sourceTree = "<group>"; };
 		A6A2D7131CC5759000211137 /* UMTCAP_generic_asn1_componentPDU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_generic_asn1_componentPDU.m; sourceTree = "<group>"; };
+		A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPoolSequential.h; sourceTree = "<group>"; };
+		A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionIdPoolSequential.m; sourceTree = "<group>"; };
 		A6B7FBC81B44B97F00854472 /* sctp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sctp.framework; path = /Library/Frameworks/sctp.framework; sourceTree = "<absolute>"; };
 		A6BCE1A51CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_asn1_Associate_result.h; sourceTree = "<group>"; };
 		A6BCE1A61CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_asn1_Associate_result.m; sourceTree = "<group>"; };
@@ -482,6 +487,8 @@
 				A641CE581B42010A00854472 /* ulibtcap.h */,
 				A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */,
 				A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */,
+				A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */,
+				A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */,
 				A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */,
 				A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */,
 				A6DDA3EA1CAD262100754B9E /* UMTCAP_UserProtocol.h */,
@@ -838,6 +845,7 @@
 				A6091FB61CB3E29B0076BD59 /* UMTCAP_ansi_begin.h in Headers */,
 				A6D03BF01CA58D5900211137 /* UMTCAP_all_tasks.h in Headers */,
 				A6D03B741CA489FA00211137 /* UMTCAP_itu_end.h in Headers */,
+				A6B37B8B1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h in Headers */,
 				A6D03B601CA489A500211137 /* UMTCAP_ansi_response.h in Headers */,
 				A69E3DCF1DAB062B00264617 /* UMTCAP_ansi_end.h in Headers */,
 				A6D03B641CA489BA00211137 /* UMTCAP_ansi_conversationWithoutPermission.h in Headers */,
@@ -1005,6 +1013,7 @@
 				A6814BE71CAA127F00211137 /* UMTCAP_itu_asn1_continue.m in Sources */,
 				A6DA2DFE1FAF259A009FF89B /* UMTCAP_asn1_contextNegotiation.m in Sources */,
 				A6D03B6D1CA489DA00211137 /* UMTCAP_ansi_abort.m in Sources */,
+				A6B37B8C1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m in Sources */,
 				A6814B831CA963E000211137 /* UMTCAP_ansi_asn1_conversationWithPerm.m in Sources */,
 				A6DA2DFA1FAF2190009FF89B /* UMTCAP_asn1_userInformationIdentification.m in Sources */,
 				A6ED5C531B4358F100854472 /* UMLayerTCAP.m in Sources */,
@@ -1077,6 +1086,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B37B8D1FC883E700794057 /* UMTCAP_TransactionIdPoolSequential.m in Sources */,
 				A641CE661B42010A00854472 /* ulibtcapTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

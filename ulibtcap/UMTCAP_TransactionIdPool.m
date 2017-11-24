@@ -39,7 +39,7 @@
     return self;
 }
 
-
+#if unused
 - (NSString *)_newId
 {
     NSString *tidString = @"00000000";
@@ -57,6 +57,7 @@
     } while(1);
     return tidString;
 }
+#endif
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
@@ -94,11 +95,11 @@
     return tidString;
 }
 
-- (NSString *)findInstanceForTransaction:(NSString *)tid
+- (NSString *)findInstanceForTransaction:(NSString *)tidString
 {
     NSString *instance;
     [_lock lock];
-    instance = _inUseTransactionIds[tid];
+    instance = _inUseTransactionIds[tidString];
     [_lock unlock];
     return instance;
 }
