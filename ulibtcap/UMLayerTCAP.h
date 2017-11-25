@@ -64,7 +64,7 @@
 
 - (UMMTP3Variant) variant;
 
-- (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(UMTCAP_TransactionIdPool *)tidPool;
+- (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(id<UMTCAP_TransactionIdPoolProtocol>)tidPool;
 
 /* this is called from lower layer to deliver data to the TCAP Layer */
 - (NSString *)status;
