@@ -20,12 +20,11 @@
 
 @interface UMTCAP_Transaction : UMObject
 {
-    UMTCAP_Variant tcapVariant;
-    UMTCAP_State *state;
-    UMTCAP_operationClass operationClass;
+    UMTCAP_Variant          tcapVariant;
+    UMTCAP_State            *state;
+    UMTCAP_operationClass   operationClass;
     
     NSString *localTransactionId; /* these are hex strings of whats exactly sent in the PDU */
-
     NSString *remoteTransactionId;
     NSString *ansiTransactionId;
     NSString *userDialogId;
@@ -38,10 +37,10 @@
 
     id<UMTCAP_UserProtocol> user;
 
-    BOOL transactionIsClosed;
-    NSTimeInterval timeoutValue;
-    NSDate *timeoutDate;
-    UMMutex *_transactionLock;
+    BOOL            transactionIsClosed;
+    NSTimeInterval  timeoutValue;
+    NSDate          *timeoutDate;
+    UMMutex         *_transactionLock;
 }
 
 @property(readwrite,assign) UMTCAP_Variant tcapVariant;

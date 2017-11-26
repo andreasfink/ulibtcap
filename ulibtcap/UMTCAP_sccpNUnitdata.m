@@ -183,8 +183,8 @@
                                           called:dst
                                 qualityOfService:qos
                                          options:options];
-            }
                 return;
+            }
         }
     }
     
@@ -502,6 +502,7 @@
         {
             UMLayerTCAP *otherLayer = tcapLayer;
             currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+            /* FIXME: why should we look somewhere else than with findTransactionByLocalTransactionId ? */
             if(currentTransaction==NULL)
             {
                 NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
@@ -511,6 +512,7 @@
                     currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
                 }
             }
+            /* END FIXME */
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -560,7 +562,6 @@
     }
 }
 
-
 - (void)errorDecodingPdu
 {
 }
@@ -569,6 +570,7 @@
 {
     currentLocalTransactionId = xotid;
 }
+
 - (void)handleRemoteTransactionId:(NSString *)xotid
 {
     currentRemoteTransactionId = xotid;

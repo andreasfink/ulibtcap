@@ -407,7 +407,7 @@
     UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
     if(transaction == NULL)
     {
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapEndRequest with unknown transaction ID" userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapEndRequest with unknown transaction ID" userInfo:NULL]);
     }
 
     [transaction touch];
@@ -886,7 +886,6 @@
     if(_tidPool)
     {
         [_tidPool returnTransactionId:tid];
-
     }
 }
 
