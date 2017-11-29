@@ -88,6 +88,7 @@
 {
     NSUInteger pos = 0;
     BOOL decodeOnly = [options[@"decode-only"] boolValue];
+    _mtp3pdu = options[@"mtp3-pdu"];
 
     if(tcapLayer.logLevel <= UMLOG_DEBUG)
     {
@@ -564,6 +565,7 @@
 
 - (void)errorDecodingPdu
 {
+    [sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3pdu];
 }
 
 - (void)handleLocalTransactionId:(NSString *)xotid

@@ -109,8 +109,10 @@
      qualityOfService:(int)qos
               options:(NSDictionary *)options;
 {
+    NSData *rawMtp3 = options[@"mtp3-pdu"];
     if(data.length < 3)
     {
+        [sccpLayer.mtp3.problematicPacketDumper logRawPacket:rawMtp3];
         return;
     }
 
