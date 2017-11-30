@@ -78,7 +78,14 @@
         data = xdata;
         src = xsrc;
         dst = xdst;
-        options = xoptions;
+        if(xoptions)
+        {
+            options = [xoptions mutableCopy];
+        }
+        else
+        {
+            options = [[NSMutableDictionary alloc]init];
+        }
         qos = xqos;
     }
     return self;
@@ -89,6 +96,9 @@
     NSUInteger pos = 0;
     BOOL decodeOnly = [options[@"decode-only"] boolValue];
     _mtp3pdu = options[@"mtp3-pdu"];
+
+    NSDate *ts = [NSDate date];
+    options[@"tcap-timestamp"] = ts;
 
     if(tcapLayer.logLevel <= UMLOG_DEBUG)
     {
@@ -102,16 +112,7 @@
                                  ]];
     }
 
-    if(options)
-    {
-        NSMutableDictionary *o = [options mutableCopy];
-        o[@"tcap-pdu"] = [data hexString];
-        options = o;
-    }
-    else
-    {
-        options = @{@"tcap-pdu":[data hexString]};
-    }
+    options[@"tcap-pdu"] = [data hexString];
     @try
     {
         [self startDecodingOfPdu];

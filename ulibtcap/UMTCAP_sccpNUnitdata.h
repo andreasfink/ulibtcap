@@ -41,7 +41,7 @@
     NSData      *data;
     SccpAddress *src;
     SccpAddress *dst;
-    NSDictionary *options;
+    NSMutableDictionary *options;
     BOOL newTransaction;
     int qos;
     BOOL permission;
