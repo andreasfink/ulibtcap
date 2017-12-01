@@ -184,6 +184,7 @@
                                           called:dst
                                 qualityOfService:qos
                                          options:options];
+                currentTransaction.transactionIsClosed = YES;
                 return;
             }
         }
@@ -486,7 +487,7 @@
             {
                 tcapUser = currentTransaction.user;
             }
-            destoryTransaction = YES;
+                destoryTransaction = YES;
                 [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
                              tcapTransactionId:currentTransaction.localTransactionId
                        tcapRemoteTransactionId:currentTransaction.remoteTransactionId

@@ -75,6 +75,16 @@
 
 - (void)timeOut
 {
+    [user tcapPAbortIndication:userDialogId
+             tcapTransactionId:localTransactionId
+       tcapRemoteTransactionId:remoteTransactionId
+                       variant:tcapVariant
+                callingAddress:NULL
+                 calledAddress:NULL
+               dialoguePortion:NULL
+                  callingLayer:NULL
+                          asn1:NULL
+                       options:NULL];
     transactionIsClosed = YES;
 }
 

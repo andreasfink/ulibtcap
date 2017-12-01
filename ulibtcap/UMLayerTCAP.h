@@ -33,7 +33,6 @@
     UMTCAP_Variant tcapVariant;
     
     UMSynchronizedDictionary *transactionsByLocalTransactionId;
-//    UMSynchronizedDictionary *transactionsByUserDialogId;
     NSTimeInterval transactionTimeout;
     NSTimeInterval invokeTimeout;
     SccpSubSystemNumber *ssn;
@@ -45,6 +44,7 @@
     id<UMTCAP_TransactionIdPoolProtocol> _tidPool;
     UMTCAP_Filter *_inboundFilter;
     id<UMLayerTCAPApplicationContextProtocol> _appContext;
+    UMMutex *_housekeeping_lock;
 }
 
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapDefaultUser;

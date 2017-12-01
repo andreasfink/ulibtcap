@@ -67,8 +67,8 @@
     tcapUserByOperation = [[UMSynchronizedDictionary alloc]init];
     transactionTimeout = 90.0; /* default timeout */
     invokeTimeout = 80.0; /* default timeout */
+    _housekeeping_lock = [[UMMutex alloc]init];
 }
-
 
 - (UMLayerTCAP *)init
 {
@@ -933,15 +933,13 @@
     return t;
 }
 
-
-
-
 - (void)removeTransaction:(UMTCAP_Transaction *)t
 {
-    if(t.localTransactionId)
+    NSString *tid =t.localTransactionId;
+    if(tid.length > 0)
     {
-        [transactionsByLocalTransactionId removeObjectForKey:t.localTransactionId];
-        [self returnTransactionId:t.localTransactionId];
+        [transactionsByLocalTransactionId removeObjectForKey:tid];
+        [self returnTransactionId:tid];
     }
 }
 
@@ -1001,36 +999,35 @@ NSDate *timeoutDate;
     return [NSString stringWithFormat:@"IS:%lu",(unsigned long)[transactionsByLocalTransactionId count]];
 }
 
-
 - (void)housekeeping
 {
-    if(self.housekeeping_running)
+    if([_housekeeping_lock tryLock] == 0)
     {
-        return;
-    }
-    self.housekeeping_running = YES;
-
-    NSArray *keys = [transactionsByLocalTransactionId allKeys];
-    for(NSString *key in keys)
-    {
-        UMTCAP_Transaction *t = transactionsByLocalTransactionId[key];
-        if(t.transactionIsClosed)
+        self.housekeeping_running = YES;
+        NSArray *keys = [transactionsByLocalTransactionId allKeys];
+        for(NSString *key in keys)
         {
-            [self removeTransaction:t];
-        }
-        if([t isTimedOut]==YES)
-        {
-            UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
-            [self queueFromLower:task];
+            UMTCAP_Transaction *t = transactionsByLocalTransactionId[key];
+            if(t.transactionIsClosed)
+            {
+                [self removeTransaction:t];
+            }
+            if([t isTimedOut]==YES)
+            {
+                UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
+                [self queueFromLower:task];
+            }
+            self.housekeeping_running = NO;
+            [_housekeeping_lock unlock];
         }
     }
-    self.housekeeping_running = NO;
 }
 
 - (void)housekeepingTask
 {
     UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
     //[self queueFromLower:task];
+    ulib_set_thread_name(@"tcap-housekeeping");
     [task main];
 }
 
