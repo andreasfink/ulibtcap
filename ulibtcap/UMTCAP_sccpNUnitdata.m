@@ -95,8 +95,7 @@
 {
     NSUInteger pos = 0;
     BOOL decodeOnly = [options[@"decode-only"] boolValue];
-    options[@"mtp3-pdu"] =data;
-    _mtp3pdu = data;
+    _mtp3_pdu =options[@"mtp3-pdu"];
     NSDate *ts = [NSDate date];
     options[@"tcap-timestamp"] = ts;
 
@@ -566,7 +565,7 @@
 
 - (void)errorDecodingPdu
 {
-    [sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3pdu];
+    [sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3_pdu];
 }
 
 - (void)handleLocalTransactionId:(NSString *)xotid

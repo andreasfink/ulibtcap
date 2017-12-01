@@ -39,6 +39,7 @@
     UMLayerTCAP *tcapLayer;
     UMLayerSCCP *sccpLayer;
     NSData      *data;
+    NSData      *_mtp3_pdu;
     SccpAddress *src;
     SccpAddress *dst;
     NSMutableDictionary *options;
