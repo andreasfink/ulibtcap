@@ -62,6 +62,8 @@
 @property(readwrite,strong,atomic) id<UMLayerTCAPApplicationContextProtocol> appContext;
 @property(readwrite,strong,atomic)  UMTCAP_Filter *inboundFilter;
 
+-(NSUInteger)pendingTransactionCount;
+
 - (UMMTP3Variant) variant;
 
 - (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(id<UMTCAP_TransactionIdPoolProtocol>)tidPool;

@@ -1031,6 +1031,9 @@ NSDate *timeoutDate;
     [task main];
 }
 
-
+-(NSUInteger)pendingTransactionCount
+{
+    return transactionsByLocalTransactionId.count;
+}
 
 @end
