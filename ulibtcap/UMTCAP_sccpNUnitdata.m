@@ -95,8 +95,8 @@
 {
     NSUInteger pos = 0;
     BOOL decodeOnly = [options[@"decode-only"] boolValue];
-    _mtp3pdu = options[@"mtp3-pdu"];
-
+    options[@"mtp3-pdu"] =data;
+    _mtp3pdu = data;
     NSDate *ts = [NSDate date];
     options[@"tcap-timestamp"] = ts;
 

@@ -76,7 +76,6 @@
 
     NSString                *currentLocalTransactionId;
     NSString                *currentRemoteTransactionId;
-    NSData                  *_mtp3pdu;
 }
 
 @property(readwrite,strong) UMLayerSCCP *sccpLayer;
