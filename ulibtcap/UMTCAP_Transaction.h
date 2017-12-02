@@ -29,18 +29,16 @@
     NSString *ansiTransactionId;
     NSString *userDialogId;
 
-
-    NSDate *started;
+    NSDate *_started;
 
     BOOL    incoming;
     BOOL    withPermission;
-
     id<UMTCAP_UserProtocol> user;
 
     BOOL            transactionIsClosed;
     NSTimeInterval  timeoutValue;
-    NSDate          *timeoutDate;
     UMMutex         *_transactionLock;
+    NSDate          *_lastActivity;
 }
 
 @property(readwrite,assign) UMTCAP_Variant tcapVariant;

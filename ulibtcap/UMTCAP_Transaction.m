@@ -22,8 +22,6 @@
 @synthesize remoteTransactionId;
 @synthesize ansiTransactionId;
 
-@synthesize started;
-
 @synthesize incoming;
 @synthesize withPermission;
 
@@ -39,7 +37,8 @@
     self = [super init];
     if(self)
     {
-        started = [NSDate date];
+        _started = [NSDate date];
+        _lastActivity = _started;
         _transactionLock = [[UMMutex alloc] init];
         [self touch];
     }
@@ -49,11 +48,7 @@
 - (void)touch
 {
     [_transactionLock lock];
-    if(timeoutValue==0)
-    {
-        timeoutValue=90;
-    }
-    timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutValue];
+    _lastActivity = [NSDate date];
     [_transactionLock unlock];
 }
 
@@ -61,13 +56,11 @@
 {
     BOOL r = NO;
     [_transactionLock lock];
-    if(timeoutDate != NULL)
+
+    NSTimeInterval duration = [[NSDate date]timeIntervalSinceDate:_lastActivity];
+    if(duration > timeoutValue)
     {
-        NSDate *now = [NSDate date];
-        if([now compare:timeoutDate] == NSOrderedDescending)
-        {
-            r = YES;
-        }
+        r = YES;
     }
     [_transactionLock unlock];
     return r;

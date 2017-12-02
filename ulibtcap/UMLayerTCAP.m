@@ -943,9 +943,6 @@
     }
 }
 
-NSTimeInterval timeoutValue;
-NSDate *timeoutDate;
-
 - (id)decodePdu:(NSData *)data /* should return a type which can be converted to json */
 {
     UMTCAP_sccpNUnitdata *task;
@@ -1017,9 +1014,9 @@ NSDate *timeoutDate;
                 UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
                 [self queueFromLower:task];
             }
-            self.housekeeping_running = NO;
-            [_housekeeping_lock unlock];
         }
+        self.housekeeping_running = NO;
+        [_housekeeping_lock unlock];
     }
 }
 
