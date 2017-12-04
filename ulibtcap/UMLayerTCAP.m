@@ -68,6 +68,7 @@
     transactionTimeout = 90.0; /* default timeout */
     invokeTimeout = 80.0; /* default timeout */
     _housekeeping_lock = [[UMMutex alloc]init];
+    _houseKeepingTimerRun = [[UMAtomicDate alloc]init];
 }
 
 - (UMLayerTCAP *)init
@@ -1016,6 +1017,7 @@
             }
         }
         self.housekeeping_running = NO;
+        [_houseKeepingTimerRun touch];
         [_housekeeping_lock unlock];
     }
 }

@@ -45,6 +45,7 @@
     UMTCAP_Filter *_inboundFilter;
     id<UMLayerTCAPApplicationContextProtocol> _appContext;
     UMMutex *_housekeeping_lock;
+    UMAtomicDate *_houseKeepingTimerRun;
 }
 
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapDefaultUser;
@@ -61,6 +62,7 @@
 @property(readwrite,strong,atomic)  id<UMTCAP_TransactionIdPoolProtocol> tidPool;
 @property(readwrite,strong,atomic) id<UMLayerTCAPApplicationContextProtocol> appContext;
 @property(readwrite,strong,atomic)  UMTCAP_Filter *inboundFilter;
+@property(readwrite,strong) UMAtomicDate *houseKeepingTimerRun;
 
 -(NSUInteger)pendingTransactionCount;
 
