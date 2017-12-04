@@ -845,7 +845,7 @@
     houseKeepingTimer = [[UMTimer alloc]initWithTarget:self
                                               selector:@selector(housekeepingTask)
                                                 object:NULL
-                                              duration:2600000
+                                               seconds:2.6
                                                   name:@"tcap-housekeeping"
                                                repeats:YES];
     [houseKeepingTimer start];
