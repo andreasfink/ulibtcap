@@ -1035,4 +1035,21 @@
     return transactionsByLocalTransactionId.count;
 }
 
+- (void)dump:(NSFileHandle *)filehandler
+{
+    [super dump:filehandler];
+    
+    NSArray *allTransactionIds = [transactionsByLocalTransactionId allKeys];
+    for(NSString *tid in allTransactionIds)
+    {
+        NSMutableString *s = [[NSMutableString alloc]init];
+        [s appendString:@"    ----------------------------------------------------------------------------\n"];
+        [s appendFormat:@"    Transaction: %@\n",tid];
+        [s appendString:@"    ----------------------------------------------------------------------------\n"];
+        [filehandler writeData: [s dataUsingEncoding:NSUTF8StringEncoding]];
+        UMTCAP_Transaction *t = transactionsByLocalTransactionId[tid];
+        [t dump:filehandler];
+    }
+}
+
 @end

@@ -81,4 +81,17 @@
     transactionIsClosed = YES;
 }
 
+- (void)dump:(NSFileHandle *)filehandler
+{
+    NSMutableString *s = [[NSMutableString alloc]init];
+    [s appendFormat:@"    localTransactionId: %@\n",localTransactionId];
+    [s appendFormat:@"    remoteTransactionId: %@\n",remoteTransactionId];
+    [s appendFormat:@"    userDialogId: %@\n",userDialogId];
+    [s appendFormat:@"    started: %@\n",[_started description]];
+    [s appendFormat:@"    lastActivity: %@\n",[_lastActivity description]];
+    [s appendFormat:@"    incoming: %@\n", (incoming ? @"YES" : @"NO")];
+    [s appendFormat:@"    closed: %@\n",(transactionIsClosed ? @"YES" : @"NO")];
+    [s appendFormat:@"    timeout: %8.2lfs\n",timeoutValue];
+    [filehandler writeData: [s dataUsingEncoding:NSUTF8StringEncoding]];
+}
 @end

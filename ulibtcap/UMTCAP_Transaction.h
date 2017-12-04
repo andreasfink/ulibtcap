@@ -66,5 +66,5 @@
 - (void)touch;
 - (BOOL)isTimedOut;
 - (void)timeOut;
-
+- (void)dump:(NSFileHandle *)fh;
 @end
