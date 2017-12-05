@@ -56,7 +56,10 @@
 {
     BOOL r = NO;
     [_transactionLock lock];
-
+    if(_lastActivity==NULL)
+    {
+        _lastActivity = [NSDate date];
+    }
     NSTimeInterval duration = [[NSDate date]timeIntervalSinceDate:_lastActivity];
     if(duration > timeoutValue)
     {
