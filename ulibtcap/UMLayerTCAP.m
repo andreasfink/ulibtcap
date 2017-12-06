@@ -1010,7 +1010,7 @@
             {
                 [self removeTransaction:t];
             }
-            if([t isTimedOut]==YES)
+            else if([t isTimedOut]==YES)
             {
                 UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
                 [self queueFromLower:task];
