@@ -21,7 +21,6 @@
 @class UMLayerTCAP;
 @class UMLayerSCCP;
 @class UMTCAP_Transaction;
-@class UMTCAP_TransactionInvoke;
 @class UMTCAP_itu_asn1_begin;
 @class UMTCAP_ansi_asn1_invoke;
 @class UMTCAP_ansi_asn1_transactionPDU;

@@ -37,9 +37,8 @@
     self = [super init];
     if(self)
     {
+        _lastActivity = [[UMAtomicDate alloc]init];
         _started = [NSDate date];
-        _lastActivity = _started;
-        _transactionLock = [[UMMutex alloc] init];
         [self touch];
     }
     return self;
@@ -47,25 +46,17 @@
 
 - (void)touch
 {
-    [_transactionLock lock];
-    _lastActivity = [NSDate date];
-    [_transactionLock unlock];
+    [_lastActivity touch];
 }
 
 - (BOOL)isTimedOut
 {
     BOOL r = NO;
-    [_transactionLock lock];
-    if(_lastActivity==NULL)
-    {
-        _lastActivity = [NSDate date];
-    }
-    NSTimeInterval duration = [[NSDate date]timeIntervalSinceDate:_lastActivity];
+    NSTimeInterval duration = [[NSDate date]timeIntervalSinceDate:_lastActivity.date];
     if(duration > timeoutValue)
     {
         r = YES;
     }
-    [_transactionLock unlock];
     return r;
 }
 

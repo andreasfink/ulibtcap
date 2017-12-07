@@ -906,7 +906,6 @@
     return t;
 }
 
-
 - (UMTCAP_Transaction *)getNewIncomingTransactionForRemoteTransactionId:(NSString *)remoteTransactionId
 {    
     UMTCAP_Transaction *t = [[UMTCAP_Transaction alloc]init];
@@ -994,6 +993,7 @@
 {
     if([_housekeeping_lock tryLock] == 0)
     {
+        NSMutableArray *tasksToQueue = [[NSMutableArray alloc]init];
         self.housekeeping_running = YES;
         NSArray *keys = [transactionsByLocalTransactionId allKeys];
         for(NSString *key in keys)
@@ -1006,12 +1006,16 @@
             else if([t isTimedOut]==YES)
             {
                 UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
-                [self queueFromLower:task];
+                [tasksToQueue addObject:task];
             }
         }
         self.housekeeping_running = NO;
         [_houseKeepingTimerRun touch];
         [_housekeeping_lock unlock];
+        for(UMTCAP_TimeoutTask *task in tasksToQueue)
+        {
+            [self queueFromLower:task];
+        }
     }
 }
 
