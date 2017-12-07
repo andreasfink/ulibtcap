@@ -13,7 +13,6 @@
 #import "UMLayerTCAP.h"
 #import "UMTCAP_Operation.h"
 #import "UMTCAP_Transaction.h"
-#import "UMTCAP_TransactionInvoke.h"
 #import "UMTCAP_asn1.h"
 #import "UMTCAP_ansi_asn1_queryWithPerm.h"
 #import "UMTCAP_ansi_asn1_queryWithoutPerm.h"
@@ -24,14 +23,12 @@
 #import "UMTCAP_ansi_asn1_uniTransactionPDU.h"
 #import "UMTCAP_ansi_asn1_transactionID.h"
 #import "UMTCAP_Transaction.h"
-#import "UMTCAP_TransactionInvoke.h"
 #import "UMTCAP_asn1.h"
 #import "UMTCAP_itu_asn1_begin.h"
 #import "UMTCAP_itu_asn1_invoke.h"
 #import "UMTCAP_itu_asn1_returnResult.h"
 #import "UMTCAP_itu_asn1_reject.h"
 #import "UMTCAP_itu_asn1_returnError.h"
-#import "UMTCAP_TransactionInvoke.h"
 #import "UMTCAP_Variant.h"
 #import "UMLayerTCAP.h"
 #import "UMTCAP_Filter.h"
@@ -678,19 +675,7 @@
     currentTransaction = t;
     
 }
-/*
-- (void)handleItuInvoke:(UMTCAP_itu_asn1_invoke *)inv
-{
-    UMTCAP_TransactionInvoke *tInv = [[UMTCAP_TransactionInvoke alloc]init];
-    tInv.tcapVariant = TCAP_VARIANT_ITU;
-    tInv.transaction = currentTransaction;
-    tInv.invokeId = inv.invokeId;
-    tInv.started = [NSDate date];
-    tInv.timeOutTime = [NSDate dateWithTimeIntervalSinceNow:tcapLayer.invokeTimeout];
-    tInv.pdu =inv;
-    [self handleInvoke:tInv];
-}
-*/
+
 - (void)handleItuReturnError:(UMTCAP_itu_asn1_returnError *)i
 {
     currentOperationCode = i.operationCode;
