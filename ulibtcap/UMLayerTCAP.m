@@ -259,14 +259,7 @@
         variant = tcapVariant;
     }
 
-    UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
-    if(transaction == NULL)
-    {
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapBeginRequest with unknown transaction ID. did you forgot to create it first?" userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
-    }
-    [transaction touch];
     UMTCAP_begin *begin;
-    
     
     if(logLevel <= UMLOG_DEBUG)
     {

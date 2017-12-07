@@ -21,6 +21,7 @@
 
 - (void)main
 {
+
     if(tcap.logLevel <= UMLOG_DEBUG)
     {
         [tcap.logFeed debugText:[NSString stringWithFormat:@"UMTCAP_itu_begin for transaction %@",transactionId]];
