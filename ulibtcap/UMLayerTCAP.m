@@ -330,7 +330,8 @@
     UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
     if(transaction == NULL)
     {
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapContinueRequest with unknown transaction ID" userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        NSString *s = [NSString stringWithFormat:@"tcapContinueRequest with unknown transaction ID '%@'",tcapTransactionId];
+        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
     }
     [transaction touch];
     UMTCAP_continue *continueRequest = NULL;
@@ -403,7 +404,8 @@
     UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
     if(transaction == NULL)
     {
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:@"tcapEndRequest with unknown transaction ID" userInfo:NULL]);
+        NSString *s = [NSString stringWithFormat:@"tcapEndRequest with unknown transaction ID '%@'",tcapTransactionId];
+        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
     }
 
     [transaction touch];

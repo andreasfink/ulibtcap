@@ -38,7 +38,7 @@
     if(self)
     {
         _lastActivity = [[UMAtomicDate alloc]init];
-        _started = [NSDate date];
+        _started = [NSDate new];
         [self touch];
     }
     return self;

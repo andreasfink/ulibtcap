@@ -93,7 +93,7 @@
     NSUInteger pos = 0;
     BOOL decodeOnly = [options[@"decode-only"] boolValue];
     _mtp3_pdu =options[@"mtp3-pdu"];
-    NSDate *ts = [NSDate date];
+    NSDate *ts = [NSDate new];
     options[@"tcap-timestamp"] = ts;
 
     if(tcapLayer.logLevel <= UMLOG_DEBUG)
