@@ -27,7 +27,7 @@
     UMLayerTCAP             *tcap;
     
     NSString *transactionId;
-    NSString *userDialogId;
+    UMTCAP_UserDialogIdentifier *userDialogId;
     UMTCAP_Variant variant;
     id<UMLayerUserProtocol> user;
     UMTCAP_asn1_objectIdentifier *applicationContext;
@@ -43,7 +43,7 @@
 
 - (UMTCAP_end *)initForTcap:(UMLayerTCAP *)xtcap
               transactionId:(NSString *)xtransactionId
-               userDialogId:(NSString *)xuserDialogId
+               userDialogId:(UMTCAP_UserDialogIdentifier *)xuserDialogId
                     variant:(UMTCAP_Variant)xvariant
                        user:(id<UMLayerUserProtocol>)xuser
              callingAddress:(SccpAddress *)xsrc

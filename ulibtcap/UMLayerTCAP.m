@@ -207,7 +207,7 @@
 /* Dialog Handling primmitives */
 
 - (void)tcapUnidirectionalRequest:(NSString *)tcapTransactionId
-                     userDialogId:(NSString *)userDialogId
+                     userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                           variant:(UMTCAP_Variant)variant
                              user:(id<UMTCAP_UserProtocol>)user
                    callingAddress:(SccpAddress *)src
@@ -231,7 +231,7 @@
                                  @"components:%@\n"
                                  @"options:%@\n",
                                  ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId,
+                                 userDialogId.description,
                                  tcapTransactionId,
                                  src,
                                  dst,
@@ -245,7 +245,7 @@
 
 
 - (void)tcapBeginRequest:(NSString *)tcapTransactionId
-            userDialogId:(NSString *)userDialogId
+            userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                  variant:(UMTCAP_Variant)variant
                     user:(id<UMTCAP_UserProtocol>)user
           callingAddress:(SccpAddress *)src
@@ -272,7 +272,7 @@
                                  @"components:%@\n"
                                  @"options:%@\n",
                                  ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId,
+                                 userDialogId.description,
                                  tcapTransactionId,
                                  src,
                                  dst,
@@ -314,7 +314,7 @@
 
 
 - (void)tcapContinueRequest:(NSString *)tcapTransactionId
-               userDialogId:(NSString *)userDialogId
+               userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                     variant:(UMTCAP_Variant)variant
                        user:(id<UMTCAP_UserProtocol>)user
              callingAddress:(SccpAddress *)src
@@ -347,7 +347,7 @@
                                  @"components:%@\n"
                                  @"options:%@\n",
                                  ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId,
+                                 userDialogId.description,
                                  tcapTransactionId,
                                  src,
                                  dst,
@@ -388,7 +388,7 @@
 }
 
 - (void)tcapEndRequest:(NSString *)tcapTransactionId
-          userDialogId:(NSString *)userDialogId
+          userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                variant:(UMTCAP_Variant)variant
                   user:(id<UMTCAP_UserProtocol>)user
         callingAddress:(SccpAddress *)src
@@ -422,7 +422,7 @@
                                  @"components:%@\n"
                                  @"options:%@\n",
                                  ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId,
+                                 userDialogId.description,
                                  src,
                                  dst,
                                  tcapTransactionId,
@@ -463,7 +463,7 @@
     [self queueFromUpper:endRequest];
 }
 
-- (void)tcapUAbortRequest:(NSString *)userDialogId
+- (void)tcapUAbortRequest:(UMTCAP_UserDialogIdentifier *)userDialogId
                   variant:(UMTCAP_Variant)variant
                      user:(id<UMTCAP_UserProtocol>)user
            callingAddress:(SccpAddress *)src
@@ -487,7 +487,7 @@
                                  @"components:%@\n"
                                  @"options:%@\n",
                                  ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId,
+                                 userDialogId.description,
                                  src,
                                  dst,
                                  xdialoguePortion,

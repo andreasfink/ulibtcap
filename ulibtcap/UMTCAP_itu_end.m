@@ -20,7 +20,7 @@
 
 - (UMTCAP_itu_end *)initForTcap:(UMLayerTCAP *)xtcap
                   transactionId:(NSString *)xtransactionId
-                   userDialogId:(NSString *)xuserDialogId
+                   userDialogId:(UMTCAP_UserDialogIdentifier *)xuserDialogId
                         variant:(UMTCAP_Variant)xvariant
                            user:(id<UMLayerUserProtocol>)xuser
                  callingAddress:(SccpAddress *)xsrc
