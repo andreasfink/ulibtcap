@@ -17,6 +17,7 @@
 #import "UMTCAP_operationClass.h"
 #import "UMTCAP_generic_asn1_componentPDU.h"
 #import "UMTCAP_TransactionIdPoolProtocol.h"
+#import "UMTCAP_UserDialogIdentifier.h"
 
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;
@@ -87,7 +88,7 @@
 /* Dialog Handling primmitives */
 
 - (void)tcapUnidirectionalRequest:(NSString *)tcapTransactionId
-                     userDialogId:(NSString *)userDialogId
+                     userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                           variant:(UMTCAP_Variant)variant
                              user:(id<UMTCAP_UserProtocol>)user
                    callingAddress:(SccpAddress *)src
@@ -98,7 +99,7 @@
 
 
 - (void)tcapBeginRequest:(NSString *)tcapDialogId
-            userDialogId:(NSString *)userDialogId
+            userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                  variant:(UMTCAP_Variant)variant
                     user:(id<UMTCAP_UserProtocol>)user
           callingAddress:(SccpAddress *)src
@@ -108,7 +109,7 @@
                  options:(NSDictionary *)options;
 
 - (void)tcapContinueRequest:(NSString *)tcapDialogId
-               userDialogId:(NSString *)userDialogId
+               userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                     variant:(UMTCAP_Variant)variant
                        user:(id<UMTCAP_UserProtocol>)user
              callingAddress:(SccpAddress *)src
@@ -119,7 +120,7 @@
 
 
 - (void)tcapEndRequest:(NSString *)tcapDialogId
-          userDialogId:(NSString *)userDialogId
+          userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                variant:(UMTCAP_Variant)variant
                   user:(id<UMTCAP_UserProtocol>)user
         callingAddress:(SccpAddress *)src
@@ -213,8 +214,8 @@
 - (void)returnTransactionId:(NSString *)tid;
 
 - (UMTCAP_Transaction *)findTransactionByLocalTransactionId:(NSString *)tid;
-- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(NSString *)userDialogId;
-- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(NSString *)userDialogId user:(id <UMTCAP_UserProtocol>)usr;
+- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId;
+- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId user:(id <UMTCAP_UserProtocol>)usr;
 - (UMTCAP_Transaction *)getNewIncomingTransactionForRemoteTransactionId:(NSString *)remoteTransactionId;
 - (void)removeTransaction:(UMTCAP_Transaction *)t;
 - (void)housekeeping;

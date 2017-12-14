@@ -218,7 +218,7 @@
                 tcapUser = currentTransaction.user;
             }
 
-            NSString *userDialogId = [tcapUser getNewUserDialogId];
+            UMTCAP_UserDialogIdentifier *userDialogId = [tcapUser getNewUserDialogId];
             currentTransaction.userDialogId = userDialogId;
             destoryTransaction = NO;
                 [tcapUser tcapBeginIndication:userDialogId
@@ -243,7 +243,7 @@
                 tcapUser = currentTransaction.user;
             }
 
-            NSString *userDialogId = [tcapUser getNewUserDialogId];
+            UMTCAP_UserDialogIdentifier *userDialogId = [tcapUser getNewUserDialogId];
             currentTransaction.userDialogId = userDialogId;
             destoryTransaction = NO;
 

@@ -19,6 +19,7 @@
 #import "UMTCAP_asn1_external.h"
 #import "UMTCAP_asn1_userInformation.h"
 #import "UMTCAP_asn1_dialoguePortion.h"
+#import "UMTCAP_UserDialogIdentifier.h"
 
 @class UMLayerTCAP;
 @class UMTCAP_generic_asn1_componentPDU;
@@ -31,9 +32,9 @@
 
 @protocol UMTCAP_UserProtocol <NSObject,UMLayerUserProtocol>
 
-- (NSString *)getNewUserDialogId;
+- (UMTCAP_UserDialogIdentifier *)getNewUserDialogId;
 
-- (void)tcapBeginIndication:(NSString *)userDialogId
+- (void)tcapBeginIndication:(UMTCAP_UserDialogIdentifier *)userDialogId
           tcapTransactionId:(NSString *)localTransactionId
     tcapRemoteTransactionId:(NSString *)remoteTransactionId
                     variant:(UMTCAP_Variant)var
@@ -44,7 +45,7 @@
                  components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                     options:(NSDictionary *)options;
 
-- (void)tcapContinueIndication:(NSString *)userDialogId
+- (void)tcapContinueIndication:(UMTCAP_UserDialogIdentifier *)userDialogId
              tcapTransactionId:(NSString *)localTransactionId
        tcapRemoteTransactionId:(NSString *)remoteTransactionId
                        variant:(UMTCAP_Variant)var
@@ -55,7 +56,7 @@
                     components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                        options:(NSDictionary *)options;
 
-- (void)tcapEndIndication:(NSString *)userDialogId
+- (void)tcapEndIndication:(UMTCAP_UserDialogIdentifier *)userDialogId
         tcapTransactionId:(NSString *)localTransactionId
   tcapRemoteTransactionId:(NSString *)remoteTransactionId
                   variant:(UMTCAP_Variant)var
@@ -67,7 +68,7 @@
                   options:(NSDictionary *)options;
 
 
-- (void)tcapUnidirectionalIndication:(NSString *)userDialogId
+- (void)tcapUnidirectionalIndication:(UMTCAP_UserDialogIdentifier *)userDialogId
                    tcapTransactionId:(NSString *)localTransactionId
              tcapRemoteTransactionId:(NSString *)remoteTransactionId
                              variant:(UMTCAP_Variant)variant
@@ -79,7 +80,7 @@
                              options:(NSDictionary *)options;
 
 
-- (void)tcapNoticeIndication:(NSString *)userDialogId
+- (void)tcapNoticeIndication:(UMTCAP_UserDialogIdentifier *)userDialogId
            tcapTransactionId:(NSString *)localTransactionId
      tcapRemoteTransactionId:(NSString *)remoteTransactionId
                      variant:(UMTCAP_Variant)variant
@@ -93,7 +94,7 @@
 
 
 
-- (void)tcapPAbortIndication:(NSString *)userDialogId
+- (void)tcapPAbortIndication:(UMTCAP_UserDialogIdentifier *)userDialogId
            tcapTransactionId:(NSString *)localTransactionId
      tcapRemoteTransactionId:(NSString *)remoteTransactionId
                      variant:(UMTCAP_Variant)variant
@@ -105,7 +106,7 @@
                      options:(NSDictionary *)options;
 
 
-- (void)tcapUAbortIndication:(NSString *)userDialogId
+- (void)tcapUAbortIndication:(UMTCAP_UserDialogIdentifier *)userDialogId
            tcapTransactionId:(NSString *)localTransactionId
      tcapRemoteTransactionId:(NSString *)remoteTransactionId
                      variant:(UMTCAP_Variant)variant

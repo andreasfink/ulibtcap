@@ -27,7 +27,7 @@
     NSString *localTransactionId; /* these are hex strings of whats exactly sent in the PDU */
     NSString *remoteTransactionId;
     NSString *ansiTransactionId;
-    NSString *userDialogId;
+    UMTCAP_UserDialogIdentifier *userDialogId;
 
     NSDate *_started;
 
@@ -43,7 +43,7 @@
 @property(readwrite,assign) UMTCAP_Variant tcapVariant;
 
 @property(readwrite,strong) NSString *tcapDialogId;
-@property(readwrite,strong) NSString *userDialogId;
+@property(readwrite,strong) UMTCAP_UserDialogIdentifier *userDialogId;
 
 @property(readwrite,strong) NSString *localTransactionId;
 @property(readwrite,strong) NSString *remoteTransactionId;

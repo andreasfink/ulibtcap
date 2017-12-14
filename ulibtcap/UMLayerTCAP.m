@@ -888,12 +888,12 @@
 }
 
 
-- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(NSString *)userDialogId
+- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
 {
     return [self getNewOutgoingTransactionForUserDialogId:userDialogId user:NULL];
 
 }
-- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(NSString *)userDialogId user:(id <UMTCAP_UserProtocol>)usr
+- (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId user:(id <UMTCAP_UserProtocol>)usr
 {
     UMTCAP_Transaction *t = [[UMTCAP_Transaction alloc]init];
     t.localTransactionId = [self getNewTransactionId];
