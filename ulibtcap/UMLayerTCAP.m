@@ -628,6 +628,20 @@
                            opCodeFamily:(int64_t)opf
                          opCodeNational:(BOOL)nat
 {
+
+    if(self.logLevel <= UMLOG_DEBUG)
+    {
+        [self.logFeed debugText:[NSString stringWithFormat:@"tcapResultLastRequest:\n"
+                                 @"params:%@\n"
+                                 @"invokeId:%lld\n"
+                                 @"linkedId:%lld\n"
+                                 @"opcode:%lld\n",
+                                 [params.objectValue jsonString],
+                                 (long long)invId,
+                                 (long long)lnkId,
+                                 (long long)op]];
+    }
+
     if(variant == TCAP_VARIANT_DEFAULT)
     {
         variant = tcapVariant;
@@ -648,7 +662,7 @@
     }
     
     [self setGenericComponents:rrl
-                        params: params
+                        params:params
                        variant:variant
                       invokeId:invId
                       linkedId:lnkId
