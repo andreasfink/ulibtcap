@@ -90,7 +90,7 @@
     }
     if(tcap.logLevel <= UMLOG_DEBUG)
     {
-        [tcap.logFeed debugText:[NSString stringWithFormat:@" done with transaction %@",transactionId]];
+        [tcap.logFeed debugText:[NSString stringWithFormat:@" done with sending tcapBegin for transaction %@",transactionId]];
     }
 }
 
