@@ -62,7 +62,7 @@
         }
         default:
         {
-            NSLog(@"I don't know how to process this tcap component %d packet\n%@\n",asn1_tag.tagNumber,[self.objectValue jsonString]);
+            NSLog(@"I don't know how to process this tcap component %d packet\n%@\n",(int)asn1_tag.tagNumber,[self.objectValue jsonString]);
             @throw([NSException exceptionWithName:@"unknown choice in ComponentSequence" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
         }
     }
