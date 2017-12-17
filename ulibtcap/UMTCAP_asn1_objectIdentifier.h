@@ -18,6 +18,6 @@
 }
 
 - (UMTCAP_asn1_objectIdentifier *)initWithString:(NSString *)context;
-- (NSString *)stringVaue;
+- (NSString *)stringValue;
 
 @end

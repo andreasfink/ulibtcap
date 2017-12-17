@@ -34,8 +34,7 @@
     UMTCAP_Variant tcapVariant;
     
     UMSynchronizedDictionary *transactionsByLocalTransactionId;
-    NSTimeInterval transactionTimeout;
-    NSTimeInterval invokeTimeout;
+    NSTimeInterval _transactionTimeoutInSeconds;
     SccpSubSystemNumber *ssn;
     SccpAddress *attachNumber;
     int64_t lastDialogId;
@@ -53,8 +52,7 @@
 @property(readwrite,strong) UMSynchronizedDictionary *tcapUserByOperation;
 
 @property(readwrite,assign) UMTCAP_Variant tcapVariant;
-@property(readwrite,assign) NSTimeInterval transactionTimeout;
-@property(readwrite,assign) NSTimeInterval invokeTimeout;
+@property(readwrite,assign) NSTimeInterval transactionTimeoutInSeconds;
 @property(readwrite,strong) NSString        *attachTo;
 @property(readwrite,strong) UMLayerSCCP     *attachedLayer;
 @property(readwrite,strong) SccpSubSystemNumber *ssn;

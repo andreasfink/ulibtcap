@@ -47,8 +47,6 @@
 @implementation UMLayerTCAP
 
 @synthesize tcapVariant;
-@synthesize transactionTimeout;
-@synthesize invokeTimeout;
 @synthesize tcapDefaultUser;
 @synthesize tcapUserByOperation;
 
@@ -65,8 +63,7 @@
 {
     transactionsByLocalTransactionId = [[UMSynchronizedDictionary alloc]init];
     tcapUserByOperation = [[UMSynchronizedDictionary alloc]init];
-    transactionTimeout = 90.0; /* default timeout */
-    invokeTimeout = 80.0; /* default timeout */
+    _transactionTimeoutInSeconds = 60.0; /* default timeout */
     _housekeeping_lock = [[UMMutex alloc]init];
     _houseKeepingTimerRun = [[UMAtomicDate alloc]init];
 }
@@ -809,6 +806,14 @@
     {
         tcapVariant = TCAP_VARIANT_ITU;
     }
+    if (cfg[@"timeout"])
+    {
+        _transactionTimeoutInSeconds = [cfg[@"timeout"] doubleValue];
+        if((_transactionTimeoutInSeconds < 5.0) || (_transactionTimeoutInSeconds > 90))
+        {
+            _transactionTimeoutInSeconds = 60;
+        }
+    }
 }
 
 - (NSDictionary *)config
@@ -915,7 +920,7 @@
     t.userDialogId = userDialogId;
     t.user = usr;
     t.incoming=NO;
-    t.timeoutValue = transactionTimeout;
+    t.timeoutInSeconds = self.transactionTimeoutInSeconds;
     [t touch];
 
     transactionsByLocalTransactionId[t.localTransactionId] = t;
@@ -929,7 +934,7 @@
     t.remoteTransactionId = remoteTransactionId;
     t.userDialogId = NULL;
     t.incoming=YES;
-    t.timeoutValue = transactionTimeout;
+    t.timeoutInSeconds = self.transactionTimeoutInSeconds;
     [t touch];
     transactionsByLocalTransactionId[t.localTransactionId] = t;
     return t;

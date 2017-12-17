@@ -29,8 +29,7 @@
 @synthesize user;
 @synthesize state;
 @synthesize transactionIsClosed;
-@synthesize timeoutValue;
-@synthesize timeoutDate;
+@synthesize timeoutInSeconds;
 
 - (UMTCAP_Transaction *)init
 {
@@ -52,8 +51,8 @@
 - (BOOL)isTimedOut
 {
     BOOL r = NO;
-    NSTimeInterval duration = [[NSDate date]timeIntervalSinceDate:_lastActivity.date];
-    if(duration > timeoutValue)
+    NSTimeInterval duration = [_lastActivity timeIntervalSinceNow];
+    if(duration > self.timeoutInSeconds)
     {
         r = YES;
     }
@@ -85,7 +84,7 @@
     [s appendFormat:@"    lastActivity: %@\n",[_lastActivity description]];
     [s appendFormat:@"    incoming: %@\n", (incoming ? @"YES" : @"NO")];
     [s appendFormat:@"    closed: %@\n",(transactionIsClosed ? @"YES" : @"NO")];
-    [s appendFormat:@"    timeout: %8.2lfs\n",timeoutValue];
+    [s appendFormat:@"    timeout: %8.2lfs\n",self.timeoutInSeconds];
     [filehandler writeData: [s dataUsingEncoding:NSUTF8StringEncoding]];
 }
 @end
