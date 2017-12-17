@@ -29,7 +29,26 @@
 @synthesize user;
 @synthesize state;
 @synthesize transactionIsClosed;
-@synthesize timeoutInSeconds;
+
+- (NSTimeInterval)timeoutInSeconds
+{
+    return _timeoutInSeconds;
+}
+
+- (void)setTimeoutInSeconds:(NSTimeInterval)to
+{
+    if(to <= 5.0)
+    {
+        NSLog(@"TCAP Transactiong Timeout is below 5s. Setting it to 5s");
+        to = 5.0;
+    }
+    else if(to >=120.0)
+    {
+        NSLog(@"TCAP Transaction Timeout is above 120s. Setting it to 60s");
+        to = 60.0;
+    }
+    _timeoutInSeconds = to;
+}
 
 - (UMTCAP_Transaction *)init
 {
@@ -51,7 +70,6 @@
 - (BOOL)isTimedOut
 {
     BOOL r = NO;
-
     NSTimeInterval duration = [_lastActivity timeIntervalSinceNow];
     if(duration > self.timeoutInSeconds)
     {
@@ -62,7 +80,7 @@
 
 - (void)timeOut
 {
-    NSLog(@"tcap-timeout:%@ (dialog=%@ last activity=%@, timeoutInSeconds: %8.2lfs)\n",localTransactionId,userDialogId,_lastActivity.description,_timeoutInSeconds);
+    NSLog(@"tcap-timeout:%@ (dialog=%@ last activity=%@,timeoutInSeconds: %8.2lfs)\n",localTransactionId,userDialogId,_lastActivity.description,(double)self.timeoutInSeconds);
 
     [user tcapPAbortIndication:userDialogId
              tcapTransactionId:localTransactionId
