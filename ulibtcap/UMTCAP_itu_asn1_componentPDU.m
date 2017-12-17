@@ -62,6 +62,7 @@
         }
         default:
         {
+            NSLog(@"Uh, whats this? %@",[self.objectValue jsonString]);
             @throw([NSException exceptionWithName:@"unknown choice in ComponentSequence" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
         }
     }
