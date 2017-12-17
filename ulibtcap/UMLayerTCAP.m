@@ -809,10 +809,21 @@
     if (cfg[@"timeout"])
     {
         _transactionTimeoutInSeconds = [cfg[@"timeout"] doubleValue];
-        if((_transactionTimeoutInSeconds < 5.0) || (_transactionTimeoutInSeconds > 90))
-        {
-            _transactionTimeoutInSeconds = 60;
-        }
+    }
+    else
+    {
+        _transactionTimeoutInSeconds = 60.0;
+    }
+
+    if(_transactionTimeoutInSeconds <= 5.0)
+    {
+        NSLog(@"TCAP Transactiong Timeout is below 5s. Setting it to 5s");
+        _transactionTimeoutInSeconds = 5.0;
+    }
+    else if(_transactionTimeoutInSeconds >=120.0)
+    {
+        NSLog(@"TCAP Transaction Timeout is above 120s. Setting it to 60s");
+        _transactionTimeoutInSeconds = 60.0;
     }
 }
 
