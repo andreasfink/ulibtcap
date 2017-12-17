@@ -33,4 +33,9 @@
     return cpy;
 }
 
+- (id)proxyForJson
+{
+    return _dialogId;
+}
+
 @end

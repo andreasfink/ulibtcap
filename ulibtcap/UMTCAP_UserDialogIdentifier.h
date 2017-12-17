@@ -16,5 +16,6 @@
 @property (readwrite,strong) NSString *dialogId;
 
 - (UMTCAP_UserDialogIdentifier *)initWithString:(NSString *)str;
+- (id)proxyForJson;
 
 @end
