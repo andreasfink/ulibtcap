@@ -51,6 +51,7 @@
 - (BOOL)isTimedOut
 {
     BOOL r = NO;
+
     NSTimeInterval duration = [_lastActivity timeIntervalSinceNow];
     if(duration > self.timeoutInSeconds)
     {
