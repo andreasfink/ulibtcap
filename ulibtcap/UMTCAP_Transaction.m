@@ -62,6 +62,8 @@
 
 - (void)timeOut
 {
+    NSLog(@"tcap-timeout:%@ (dialog=%@ last activity=%@, timeoutInSeconds: %8.2lfs)\n",localTransactionId,userDialogId,_lastActivity.description,_timeoutInSeconds);
+
     [user tcapPAbortIndication:userDialogId
              tcapTransactionId:localTransactionId
        tcapRemoteTransactionId:remoteTransactionId
