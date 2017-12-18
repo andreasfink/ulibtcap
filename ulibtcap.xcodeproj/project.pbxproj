@@ -111,7 +111,7 @@
 		A688B7351CCA2199005D3906 /* UMTCAP_ansi_continue.m in Sources */ = {isa = PBXBuildFile; fileRef = A688B7331CCA2199005D3906 /* UMTCAP_ansi_continue.m */; };
 		A688B7381CCA2211005D3906 /* UMTCAP_end.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B7361CCA2211005D3906 /* UMTCAP_end.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A688B7391CCA2211005D3906 /* UMTCAP_end.m in Sources */ = {isa = PBXBuildFile; fileRef = A688B7371CCA2211005D3906 /* UMTCAP_end.m */; };
-		A688B7401CCA2286005D3906 /* UMTCAP_abort.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B73E1CCA2286005D3906 /* UMTCAP_abort.h */; };
+		A688B7401CCA2286005D3906 /* UMTCAP_abort.h in Headers */ = {isa = PBXBuildFile; fileRef = A688B73E1CCA2286005D3906 /* UMTCAP_abort.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A688B7411CCA2286005D3906 /* UMTCAP_abort.m in Sources */ = {isa = PBXBuildFile; fileRef = A688B73F1CCA2286005D3906 /* UMTCAP_abort.m */; };
 		A690D8BB1FC6D4030039A1DD /* UMTCAP_FilterResult.h in Headers */ = {isa = PBXBuildFile; fileRef = A690D8B91FC6D4030039A1DD /* UMTCAP_FilterResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6955FD41CC8132F00211137 /* UMTCAP_Operation.h in Headers */ = {isa = PBXBuildFile; fileRef = A6955FD21CC8132F00211137 /* UMTCAP_Operation.h */; settings = {ATTRIBUTES = (Public, ); }; };

@@ -96,7 +96,7 @@
                           options:(NSDictionary *)options;
 
 
-- (void)tcapBeginRequest:(NSString *)tcapDialogId
+- (void)tcapBeginRequest:(NSString *)tcapTransactionId
             userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                  variant:(UMTCAP_Variant)variant
                     user:(id<UMTCAP_UserProtocol>)user
@@ -106,7 +106,7 @@
               components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                  options:(NSDictionary *)options;
 
-- (void)tcapContinueRequest:(NSString *)tcapDialogId
+- (void)tcapContinueRequest:(NSString *)tcapTransactionId
                userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                     variant:(UMTCAP_Variant)variant
                        user:(id<UMTCAP_UserProtocol>)user
@@ -117,7 +117,7 @@
                     options:(NSDictionary *)options;
 
 
-- (void)tcapEndRequest:(NSString *)tcapDialogId
+- (void)tcapEndRequest:(NSString *)tcapTransactionId
           userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                variant:(UMTCAP_Variant)variant
                   user:(id<UMTCAP_UserProtocol>)user
@@ -128,15 +128,23 @@
                options:(NSDictionary *)options;
 
 
-- (void)tcapUAbortRequest:(NSString *)tcapDialogId
+- (void)tcapUAbortRequest:(NSString *)tcapTransactionId
+             userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                   variant:(UMTCAP_Variant)variant
                      user:(id<UMTCAP_UserProtocol>)user
            callingAddress:(SccpAddress *)src
             calledAddress:(SccpAddress *)dst
           dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
-             callingLayer:(UMLayer *)tcapLayer
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options;
+
+/* this one is only called internally */
+- (void)sendPAbort:(NSString *)remoteTransactionId
+             cause:(int64_t)cause
+    callingAddress:(SccpAddress *)src
+     calledAddress:(SccpAddress *)dst
+           options:(NSDictionary *)options;
+
 
 /* component handling primitives */
 

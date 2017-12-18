@@ -14,11 +14,6 @@
 @implementation UMTCAP_itu_asn1_pAbortCause
 
 
-#define UMTCAP_pAbortCause_unrecognizedMessageType              0
-#define UMTCAP_pAbortCause_unrecognizedTransactionID            1
-#define UMTCAP_pAbortCause_badlyFormattedTransactionPortion     2
-#define UMTCAP_pAbortCause_incorrectTransactionPortion          3
-#define UMTCAP_pAbortCause_resourceLimitation                   4
 
 
 - (UMTCAP_itu_asn1_pAbortCause *)processAfterDecodeWithContext:(id)context

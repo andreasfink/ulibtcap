@@ -32,6 +32,7 @@
 #import "UMTCAP_Variant.h"
 #import "UMLayerTCAP.h"
 #import "UMTCAP_Filter.h"
+#import "UMTCAP_itu_asn1_pAbortCause.h"
 
 @implementation UMTCAP_sccpNUnitdata
 
@@ -122,6 +123,14 @@
         if(decodeOnly)
         {
             decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
+        }
+        if(currentRemoteTransactionId != NULL)
+        {
+            [tcapLayer sendPAbort:currentRemoteTransactionId
+                       cause:UMTCAP_pAbortCause_badlyFormattedTransactionPortion
+              callingAddress:dst
+               calledAddress:src
+                     options:@{}];
         }
     }
 }
@@ -326,6 +335,7 @@
             tcapVariant = TCAP_VARIANT_ITU;
             UMLayerTCAP *otherLayer = tcapLayer;
             currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+
             if(currentTransaction==NULL)
             {
                 NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
@@ -335,6 +345,17 @@
                     currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
                 }
             }
+
+            if(currentTransaction==NULL)
+            {
+                [tcapLayer sendPAbort:currentRemoteTransactionId
+                                cause:UMTCAP_pAbortCause_unrecognizedTransactionID
+                       callingAddress:dst
+                        calledAddress:src
+                              options:@{}];
+                break;
+            }
+
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
@@ -413,6 +434,7 @@
         {
             UMLayerTCAP *otherLayer = tcapLayer;
             currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+
             if(currentTransaction==NULL)
             {
                 NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
@@ -422,6 +444,17 @@
                     currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
                 }
             }
+
+            if(currentTransaction==NULL)
+            {
+                [tcapLayer sendPAbort:currentRemoteTransactionId
+                                cause:UMTCAP_pAbortCause_unrecognizedTransactionID
+                       callingAddress:dst
+                        calledAddress:src
+                              options:@{}];
+                break;
+            }
+
 
             if(currentTransaction.user)
             {
