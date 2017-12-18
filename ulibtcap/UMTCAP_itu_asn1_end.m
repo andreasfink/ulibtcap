@@ -11,6 +11,8 @@
 
 #import "UMTCAP_itu_asn1_end.h"
 #import "UMTCAP_sccpNUnitdata.h"
+#import "UMTCAP_sccpNNotice.h"
+
 @implementation UMTCAP_itu_asn1_end
 
 @synthesize dtid;
@@ -20,31 +22,39 @@
 - (UMTCAP_itu_asn1_end *)processAfterDecodeWithContext:(id)context
 {
     UMTCAP_sccpNUnitdata *task = NULL;
+    UMTCAP_sccpNNotice *notice = NULL;
     if ([context isKindOfClass:[UMTCAP_sccpNUnitdata class ]])
     {
         task = (UMTCAP_sccpNUnitdata *)context;
     }
-    
-    UMASN1Object *o0 = [self getObjectAtPosition:0];
-    UMASN1Object *o1 = [self getObjectAtPosition:1];
-    UMASN1Object *o2 = [self getObjectAtPosition:2];
-    
-    if(o0==NULL)
+    else if ([context isKindOfClass:[UMTCAP_sccpNNotice class ]])
+    {
+        notice = (UMTCAP_sccpNNotice *)context;
+    }
+
+
+    NSInteger p=0;
+
+    UMASN1Object *o = [self getObjectAtPosition:p++];
+
+    if((o==NULL) || (o.asn1_tag.tagClass != UMASN1Class_Application) || (o.asn1_tag.tagNumber!=9))
     {
         @throw([NSException exceptionWithName:@"destination transactin id is missing in tcap_end" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o0 context:context];
-    if(o2)
+    dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o context:context];
+    o = [self getObjectAtPosition:p++];
+    if((o.asn1_tag.tagClass == UMASN1Class_Application) && ( o.asn1_tag.tagNumber==11))
     {
-        dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o1 context:context];
-        componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o2 context:context];
+        dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o context:context];
+        o = [self getObjectAtPosition:p++];
     }
-    else
+    if((o.asn1_tag.tagClass == UMASN1Class_Application) && ( o.asn1_tag.tagNumber==12))
     {
-        componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o1 context:context];
+        componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o context:context];
+        o = [self getObjectAtPosition:p++];
     }
-    
     [task handleComponents:componentPortion];
+    [notice setCurrentRemoteTransactionId:dtid.transactionId]; /* if its a reject, its the remote transaction ID we used to send the TC END out */
     return self;
 }
 

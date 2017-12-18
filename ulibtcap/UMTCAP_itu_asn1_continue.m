@@ -21,6 +21,7 @@
 @synthesize dialoguePortion;
 @synthesize componentPortion;
 
+
 - (UMTCAP_itu_asn1_continue *)processAfterDecodeWithContext:(id)context
 {    
     UMTCAP_sccpNUnitdata *task = NULL;
@@ -37,7 +38,7 @@
     int p=0;
     
     UMASN1Object *o = [self getObjectAtPosition:p++];
-    if(o==NULL)
+    if((o==NULL) || (o.asn1_tag.tagClass != UMASN1Class_Application) || (o.asn1_tag.tagNumber!=8))
     {
         @throw([NSException exceptionWithName:@"origination tranation id is missing in tcap_continue" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
@@ -45,7 +46,7 @@
     
     o = [self getObjectAtPosition:p++];
 
-    if(o==NULL)
+    if((o==NULL) || (o.asn1_tag.tagClass != UMASN1Class_Application) || (o.asn1_tag.tagNumber!=9))
     {
         @throw([NSException exceptionWithName:@"destination tranation id is missing in tcap_continue" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
