@@ -95,6 +95,7 @@
 {
     NSUInteger pos = 0;
     BOOL decodeOnly = [options[@"decode-only"] boolValue];
+    _mtp3_pdu =options[@"mtp3-pdu"];
 
     if(options)
     {
@@ -179,7 +180,7 @@
 
 - (void)errorDecodingPdu
 {
-    
+    [sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3_pdu withComment:@"Can not decode UMTCAP_sccpNNotice"];
 }
 
 @end

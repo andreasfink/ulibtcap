@@ -563,7 +563,7 @@
 
 - (void)errorDecodingPdu
 {
-    [sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3_pdu];
+    [sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3_pdu withComment:@"Can not decode UMTCAP_sccpNUnidata"];
 }
 
 - (void)handleLocalTransactionId:(NSString *)xotid
