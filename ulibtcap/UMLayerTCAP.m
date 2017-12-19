@@ -408,7 +408,9 @@
     if(transaction == NULL)
     {
         NSString *s = [NSString stringWithFormat:@"tcapEndRequest with unknown transaction ID '%@'",tcapTransactionId];
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        NSLog(@"%@",s);
+        return;
+//        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
     }
 
     [transaction touch];
