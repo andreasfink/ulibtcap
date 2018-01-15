@@ -9,11 +9,23 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-typedef enum UMTCAP_Operation
+#import <ulib/ulib.h>
+
+
+typedef enum UMTCAP_InternalOperation
 {
-    UMTCAP_Operation_Response = 0,
-    UMTCAP_Operation_Request = 1,
-    UMTCAP_Operation_Error = 3,
-    UMTCAP_Operation_Reject = 4,
-    UMTCAP_Operation_Unidirectional = 5,
-} UMTCAP_Operation;
+    UMTCAP_InternalOperation_Response = 0,
+    UMTCAP_InternalOperation_Request = 1,
+    UMTCAP_InternalOperation_Error = 3,
+    UMTCAP_InternalOperation_Reject = 4,
+    UMTCAP_InternalOperation_Unidirectional = 5,
+} UMTCAP_InternalOperation;
+
+
+@interface UMTCAP_Operation : UMObject
+{
+    int _operationId;
+}
+@property (readwrite,assign,atomic) int operationId;
+
+@end

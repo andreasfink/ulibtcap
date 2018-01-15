@@ -24,7 +24,7 @@
     BOOL isLast;
 
     NSString *operationName;
-    UMTCAP_Operation operationType;
+    UMTCAP_InternalOperation operationType;
     id operationUser;
     int64_t err;
     BOOL _errPrivate;
@@ -35,7 +35,7 @@
 @property(readwrite,assign) BOOL isLast;
 
 @property(readwrite,strong) NSString *operationName;
-@property(readwrite,assign) UMTCAP_Operation operationType;
+@property(readwrite,assign) UMTCAP_InternalOperation operationType;
 
 @property(readwrite,strong) id operationUser;
 

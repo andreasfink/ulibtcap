@@ -114,7 +114,11 @@
     {
         [self startDecodingOfPdu];
         asn1 = [[UMTCAP_asn1 alloc] initWithBerData:data atPosition:&pos context:self];
-        [self endDecodingOfPdu];
+        BOOL furtherProcessing = [self endDecodingOfPdu];
+        if(furtherProcessing)
+        {
+            [self handlePdu];
+        }
     }
     @catch(NSException *ex)
     {
@@ -143,19 +147,11 @@
     currentOperationCode = UMTCAP_FILTER_OPCODE_MISSING;
 }
 
-- (void) endDecodingOfPdu
+- (BOOL) endDecodingOfPdu /* returns yes if processing should be done , no if PDU is redirected or fitlered away */
 {
-    //BOOL decodeOnly = [options[@"decode-only"] boolValue];
-    BOOL destoryTransaction = YES;
-    id<UMTCAP_UserProtocol> tcapUser = [tcapLayer tcapDefaultUser];
-
-    tcapVariant = TCAP_VARIANT_ITU;
-    BOOL perm = YES;
-
     [currentTransaction touch];
 
     UMTCAP_Filter *inboundFilter = tcapLayer.inboundFilter;
-
 
     if(inboundFilter)
     {
@@ -177,10 +173,10 @@
             case UMTCAP_FilterResult_continue:
                 break;
             case UMTCAP_FilterResult_drop:
-                return;
+                return NO;
             case UMTCAP_FilterResult_reject:
                 /* fixme: send abort here */
-                return;
+                return NO;
             case UMTCAP_FilterResult_redirect:
             {
                 dst.tt.tt = inboundFilter.bypass_translation_type;
@@ -191,11 +187,21 @@
                                 qualityOfService:qos
                                          options:options];
                 currentTransaction.transactionIsClosed = YES;
-                return;
+                return NO;
             }
         }
     }
-    
+    return YES;
+}
+
+- (void) handlePdu
+{
+    BOOL destroyTransaction = YES;
+    id<UMTCAP_UserProtocol> tcapUser = [tcapLayer tcapDefaultUser];
+
+    tcapVariant = TCAP_VARIANT_ITU;
+    BOOL perm = YES;
+
     switch(currentCommand)
     {
         case TCAP_TAG_ANSI_UNIDIRECTIONAL:
@@ -222,14 +228,11 @@
         {
             tcapVariant = TCAP_VARIANT_ANSI;
             currentTransaction = [tcapLayer getNewIncomingTransactionForRemoteTransactionId:ansiTransactionId];
-            if(currentTransaction.user)
-            {
-                tcapUser = currentTransaction.user;
-            }
+            currentTransaction.user = tcapUser;
 
             UMTCAP_UserDialogIdentifier *userDialogId = [tcapUser getNewUserDialogId];
             currentTransaction.userDialogId = userDialogId;
-            destoryTransaction = NO;
+            destroyTransaction = NO;
                 [tcapUser tcapBeginIndication:userDialogId
                             tcapTransactionId:currentTransaction.localTransactionId
                       tcapRemoteTransactionId:currentTransaction.remoteTransactionId
@@ -247,14 +250,9 @@
         {
             tcapVariant = TCAP_VARIANT_ITU;
             currentTransaction = [tcapLayer getNewIncomingTransactionForRemoteTransactionId:currentRemoteTransactionId];
-            if(currentTransaction.user)
-            {
-                tcapUser = currentTransaction.user;
-            }
-
             UMTCAP_UserDialogIdentifier *userDialogId = [tcapUser getNewUserDialogId];
             currentTransaction.userDialogId = userDialogId;
-            destoryTransaction = NO;
+            destroyTransaction  = NO;
 
 /*
             UMTCAP_itu_asn1_begin *o = [[UMTCAP_itu_asn1_begin alloc]initWithASN1Object:asn1 context:self];
@@ -316,7 +314,7 @@
                 tcapUser = currentTransaction.user;
             }
 
-            destoryTransaction = YES;
+            destroyTransaction = YES;
             [tcapUser tcapEndIndication:currentTransaction.userDialogId
                       tcapTransactionId:currentTransaction.localTransactionId
                 tcapRemoteTransactionId:currentTransaction.remoteTransactionId
@@ -353,14 +351,14 @@
                        callingAddress:dst
                         calledAddress:src
                               options:@{}];
+                currentTransaction.transactionIsClosed = YES;
                 break;
             }
-
+            destroyTransaction = YES;
             if(currentTransaction.user)
             {
                 tcapUser = currentTransaction.user;
             }
-            destoryTransaction = YES;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
                 NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapEndIndication:\n"
@@ -417,7 +415,7 @@
             {
                 tcapUser = currentTransaction.user;
             }
-            destoryTransaction = NO;
+            destroyTransaction = NO;
                 [tcapUser tcapContinueIndication:currentTransaction.userDialogId
                                tcapTransactionId:currentTransaction.localTransactionId
                          tcapRemoteTransactionId:currentTransaction.remoteTransactionId
@@ -461,7 +459,7 @@
                 tcapUser = currentTransaction.user;
             }
             currentTransaction.remoteTransactionId = otid;
-            destoryTransaction = NO;
+            destroyTransaction = NO;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
                 NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapContinueIndication:\n"
@@ -517,7 +515,7 @@
             {
                 tcapUser = currentTransaction.user;
             }
-                destoryTransaction = YES;
+                destroyTransaction = YES;
                 [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
                              tcapTransactionId:currentTransaction.localTransactionId
                        tcapRemoteTransactionId:currentTransaction.remoteTransactionId
@@ -549,7 +547,7 @@
             {
                 tcapUser = currentTransaction.user;
             }
-            destoryTransaction = YES;
+            destroyTransaction = YES;
             if(tcapLayer.logLevel <= UMLOG_DEBUG)
             {
                 NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
@@ -588,11 +586,13 @@
             break;
             
     }
-    if(destoryTransaction)
+    if(destroyTransaction)
     {
+        currentTransaction.transactionIsClosed = YES;
         [tcapLayer removeTransaction:currentTransaction];
     }
 }
+
 
 - (void)errorDecodingPdu
 {
@@ -635,30 +635,30 @@
             case TCAP_ITU_COMPONENT_INVOKE:
             case TCAP_ANSI_COMPONENT_INVOKE_LAST:
             case TCAP_ANSI_COMPONENT_INVOKE_NOT_LAST:
-                component.operationType = UMTCAP_Operation_Request;
-                currentOperationType = UMTCAP_Operation_Request;
+                component.operationType = UMTCAP_InternalOperation_Request;
+                currentOperationType = UMTCAP_InternalOperation_Request;
                 currentOperationCode = component.operationCode;
                 break;
             case TCAP_ITU_COMPONENT_RETURN_RESULT_LAST:
             case TCAP_ITU_COMPONENT_RETURN_RESULT_NOT_LAST:
             case TCAP_ANSI_COMPONENT_RETURN_RESULT_LAST:
             case TCAP_ANSI_COMPONENT_RETURN_RESULT_NOT_LAST:
-                component.operationType = UMTCAP_Operation_Response;
-                currentOperationType = UMTCAP_Operation_Response;
+                component.operationType = UMTCAP_InternalOperation_Response;
+                currentOperationType = UMTCAP_InternalOperation_Response;
                 currentOperationCode = component.operationCode;
                 break;
 
             case TCAP_ITU_COMPONENT_RETURN_ERROR:
             case TCAP_ANSI_COMPONENT_RETURN_ERROR:
-                component.operationType = UMTCAP_Operation_Error;
-                currentOperationType = UMTCAP_Operation_Error;
+                component.operationType = UMTCAP_InternalOperation_Error;
+                currentOperationType = UMTCAP_InternalOperation_Error;
                 currentOperationCode = component.operationCode;
                 break;
 
             case TCAP_ITU_COMPONENT_REJECT:
             case TCAP_ANSI_COMPONENT_REJECT:
-                component.operationType = UMTCAP_Operation_Reject;
-                currentOperationType = UMTCAP_Operation_Reject;
+                component.operationType = UMTCAP_InternalOperation_Reject;
+                currentOperationType = UMTCAP_InternalOperation_Reject;
                 currentOperationCode = component.operationCode;
                 break;
         }
@@ -722,7 +722,7 @@
         NSString *xoperationName;
         i.params = [currentTransaction.user decodeASN1:i.params
                                          operationCode:i.operationCode
-                                         operationType:UMTCAP_Operation_Error
+                                         operationType:UMTCAP_InternalOperation_Error
                                          operationName:&xoperationName
                             context:self];
         if(xoperationName)
@@ -749,7 +749,7 @@
         NSString *xoperationName;
         i.params = [user decodeASN1:i.params
                       operationCode:i.operationCode
-                      operationType:UMTCAP_Operation_Response
+                      operationType:UMTCAP_InternalOperation_Response
                       operationName:&xoperationName
                             context:self];
         if(xoperationName)
@@ -771,7 +771,7 @@
         NSString *xoperationName;
         i.params = [currentTransaction.user decodeASN1:i.params
                                          operationCode:i.operationCode
-                                         operationType:UMTCAP_Operation_Reject
+                                         operationType:UMTCAP_InternalOperation_Reject
                                          operationName:&xoperationName
                             context:self];
         if(xoperationName)
@@ -786,12 +786,12 @@
     return currentOperationCode;
 }
 
-- (UMTCAP_Operation)operationType
+- (UMTCAP_InternalOperation)operationType
 {
     return currentOperationType;
 }
 
-- (void)setOperationType:(UMTCAP_Operation)op
+- (void)setOperationType:(UMTCAP_InternalOperation)op
 {
     currentOperationType = op;
 }

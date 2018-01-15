@@ -58,7 +58,7 @@
     
   //  id<UMTCAP_UserProtocol> tcapUser;
     UMTCAP_Command          currentCommand;         /* begin, continue,end abort, query with perm etc */
-    UMTCAP_Operation        currentOperationType;  /* request/response/error/reject/unidirectional */
+    UMTCAP_InternalOperation        currentOperationType;  /* request/response/error/reject/unidirectional */
     NSMutableArray          *currentComponents;
     int64_t                 currentOperationCode;
     NSMutableDictionary     *currentOptions;
@@ -122,10 +122,15 @@
 - (void)handleAnsiTransactionId:(NSString *)dtid;
 
 - (int64_t)operationCode;
-- (UMTCAP_Operation)operationType;
-- (void)setOperationType:(UMTCAP_Operation)op;
+- (UMTCAP_InternalOperation)operationType;
+- (void)setOperationType:(UMTCAP_InternalOperation)op;
 
 - (NSString *) errorCodeToErrorString:(int)err;
+
+- (void) startDecodingOfPdu;
+- (BOOL) endDecodingOfPdu; /* returns yes if processing should be done , no if PDU is redirected or fitlered away */
+- (void) handlePdu;
+
 
 @end
 

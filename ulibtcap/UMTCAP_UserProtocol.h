@@ -120,10 +120,30 @@
 
 - (UMASN1Object *)decodeASN1:(UMASN1Object *)params
                operationCode:(int64_t)opcode
-               operationType:(UMTCAP_Operation)operation
+               operationType:(UMTCAP_InternalOperation)operation
                operationName:(NSString **)xoperationName
                      context:(id)context;
 
 - (NSString *)decodeError:(int)err;
 
+
+/* new API */
+
+- (void)tcUniIndication;
+- (void)tcBeginIndication;
+- (void)tcContinueIndication;
+- (void)tcEndIndication;
+- (void)tcUAbortIndication;
+- (void)tcNoticeIndication;
+
+- (void)tcInvokeIndication;
+- (void)tcResultLastIndication;
+- (void)tcResultNotLastIndication;
+- (void)tcUErrorIndication;
+- (void)tcURejectIndication;
+- (void)tcCancelIndication;
+- (void)tcRRejectIndication;
+- (void)tcPAbortIndication;
+
 @end
+

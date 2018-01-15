@@ -10,10 +10,10 @@
 // the author.
 
 #import "UMTCAP_Transaction.h"
+#import "UMTCAP_TransactionStateIdle.h"
+#import "UMTCAP_ComponentStateIdle.h"
 
 @implementation UMTCAP_Transaction
-
-@synthesize tcapVariant;
 
 @synthesize tcapDialogId;
 @synthesize userDialogId;
@@ -27,7 +27,7 @@
 
 @synthesize operationClass;
 @synthesize user;
-@synthesize state;
+//@synthesize state;
 @synthesize transactionIsClosed;
 
 - (NSTimeInterval)timeoutInSeconds
@@ -57,6 +57,8 @@
     {
         _lastActivity = [[UMAtomicDate alloc]init];
         _started = [NSDate new];
+        _transactionState = [[UMTCAP_TransactionStateIdle alloc]init];
+        _componentStates = [[UMSynchronizedDictionary alloc]init];
         [self touch];
     }
     return self;
@@ -85,7 +87,7 @@
     [user tcapPAbortIndication:userDialogId
              tcapTransactionId:localTransactionId
        tcapRemoteTransactionId:remoteTransactionId
-                       variant:tcapVariant
+                       variant:self.tcapVariant
                 callingAddress:NULL
                  calledAddress:NULL
                dialoguePortion:NULL
@@ -108,4 +110,31 @@
     [s appendFormat:@"    timeout: %8.2lfs\n",self.timeoutInSeconds];
     [filehandler writeData: [s dataUsingEncoding:NSUTF8StringEncoding]];
 }
+
+
+- (void)tcUniRequest
+{
+
+}
+
+- (void)tcBeginRequest
+{
+
+}
+
+
+- (void)tcContinueRequest
+{
+
+}
+
+- (void)tcEndRequest
+{
+
+}
+
+- (void)tcUAbortRequest
+{
+}
+
 @end

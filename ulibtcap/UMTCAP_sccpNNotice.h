@@ -52,7 +52,7 @@
     /* temporary variables used while parsing */
     UMTCAP_Transaction      *currentTransaction;
     UMTCAP_Command          currentCommand;
-    UMTCAP_Operation        currentOperationType;
+    UMTCAP_InternalOperation        currentOperationType;
     NSMutableArray          *currentComponents;
     int64_t                 currentOperationCode;
     NSMutableDictionary     *currentOptions;
@@ -84,7 +84,7 @@
 /* temporary variables used while parsing */
 @property(readwrite,strong)    UMTCAP_Transaction      *currentTransaction;
 @property(readwrite,assign)    UMTCAP_Command          currentCommand;
-@property(readwrite,assign)    UMTCAP_Operation        currentOperationType;
+@property(readwrite,assign)    UMTCAP_InternalOperation        currentOperationType;
 @property(readwrite,strong)    NSMutableArray          *currentComponents;
 @property(readwrite,assign)    int64_t                 currentOperationCode;
 @property(readwrite,strong)    NSMutableDictionary     *currentOptions;

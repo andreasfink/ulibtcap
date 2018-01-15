@@ -25,7 +25,6 @@
     return self;
 }
 
-
 -(UMTCAP_UserDialogIdentifier *)copyWithZone:(NSZone *)zone
 {
     UMTCAP_UserDialogIdentifier *cpy = [[UMTCAP_UserDialogIdentifier allocWithZone:zone]init];

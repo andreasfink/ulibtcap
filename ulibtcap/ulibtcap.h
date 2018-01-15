@@ -83,9 +83,9 @@
 #import "UMTCAP_itu_asn1_invokeID.h"
 #import "UMTCAP_itu_asn1_otid.h"
 #import "UMTCAP_itu_asn1_pAbortCause.h"
-#import "UMTCAP_State_idle.h"
-#import "UMTCAP_State_operation_sent.h"
-#import "UMTCAP_State_wait_for_reject.h"
+//#import "UMTCAP_State_idle.h"
+//#import "UMTCAP_State_operation_sent.h"
+//#import "UMTCAP_State_wait_for_reject.h"
 #import "UMTCAP_TimeoutTask.h"
 
 #import "UMTCAP_Filter.h"

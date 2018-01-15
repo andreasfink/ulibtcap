@@ -14,14 +14,16 @@
 #import "UMTCAP_operationClass.h"
 #import "UMTCAP_UserProtocol.h"
 
-#import "UMTCAP_State.h"
+#import "UMTCAP_TransactionState.h"
+#import "UMTCAP_ComponentState.h"
 
 /* see Q.774 Figure 1 page 10 */
 
 @interface UMTCAP_Transaction : UMObject
 {
-    UMTCAP_Variant          tcapVariant;
-    UMTCAP_State            *state;
+    UMTCAP_Variant          _tcapVariant;
+    UMTCAP_TransactionState            *_transactionState;
+    UMSynchronizedDictionary *_componentStates; /* dictionary of UMTCAP_ComponentState object. The key is an InvokeID's description value (string of integer) */
     UMTCAP_operationClass   operationClass;
     
     NSString *localTransactionId; /* these are hex strings of whats exactly sent in the PDU */
@@ -40,7 +42,8 @@
     UMAtomicDate    *_lastActivity;
 }
 
-@property(readwrite,assign) UMTCAP_Variant tcapVariant;
+@property(readwrite,assign) UMTCAP_Variant          tcapVariant;
+@property(readwrite,strong) UMTCAP_TransactionState            *transactionState;
 
 @property(readwrite,strong) NSString *tcapDialogId;
 @property(readwrite,strong) UMTCAP_UserDialogIdentifier *userDialogId;
@@ -56,12 +59,14 @@
 
 @property(readwrite,assign) UMTCAP_operationClass operationClass;
 @property(readwrite,strong) id<UMTCAP_UserProtocol> user;
-@property(readwrite,strong) UMTCAP_State *state;
+//@property(readwrite,strong) UMTCAP_TransactionState *state;
 
 @property(readwrite,assign) BOOL transactionIsClosed;
 @property(readwrite,assign,atomic) NSTimeInterval timeoutInSeconds;
 
 @property(readwrite,strong) NSDate *timeoutDate;
+
+
 
 - (void)touch;
 - (BOOL)isTimedOut;
