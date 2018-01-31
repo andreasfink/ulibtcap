@@ -34,7 +34,7 @@
     }
     if(objectIdentifier)
     {
-        objectIdentifier.asn1_tag.tagNumber = 6;
+        objectIdentifier.asn1_tag.tagNumber = UMASN1Primitive_object_identifier;
         objectIdentifier.asn1_tag.tagClass = UMASN1Class_Universal;
         [asn1_list addObject:objectIdentifier];
     }
