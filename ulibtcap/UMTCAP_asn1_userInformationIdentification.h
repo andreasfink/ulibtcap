@@ -31,7 +31,6 @@
     UMTCAP_asn1_contextNegotiation  *_contextNegotiation;
     UMASN1ObjectDescriptor          *_dataValueDescriptor;
     UMASN1OctetString               *_dataValue;
-
 }
 @property(readwrite,strong)     UMASN1ObjectIdentifier          *syntax;
 @property(readwrite,strong)     UMASN1Integer                   *presentationContextId;
