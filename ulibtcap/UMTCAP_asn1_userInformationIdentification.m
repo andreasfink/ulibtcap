@@ -37,6 +37,7 @@
     [asn1_tag setTagIsConstructed];
     asn1_list = [[NSMutableArray alloc]init];
 
+    UMASN1Object *o = NULL;
     if(_syntax)
     {
         _syntax.asn1_tag.tagNumber = UMASN1Primitive_object_identifier;
@@ -67,16 +68,26 @@
         _dataValue.asn1_tag.tagClass = UMASN1Class_Universal;
         [asn1_list addObject:_dataValue];
     }
-    self.asn1_tag.tagNumber = UMASN1Primitive_external;
-    self.asn1_tag.tagClass = UMASN1Class_Universal;
+    [asn1_list addObject:o];
+    
+    self.asn1_tag.tagNumber = o.asn1_tag.tagNumber;
+    self.asn1_tag.tagClass = o.asn1_tag.tagClass;
+    if(o.asn1_tag.isConstructed)
+    {
+        asn1_list = [o.asn1_list mutableCopy];
+    }
+    else
+    {
+        asn1_data = [o.asn1_data copy];
+    }
 }
 
 - (UMTCAP_asn1_userInformationIdentification *) processAfterDecodeWithContext:(id)context
 {
     NSInteger pos=0;
-    UMASN1Object *o = [self getObjectAtPosition:pos++];
+    UMASN1Object *o = self;
 
-    if(o && o.asn1_tag.tagNumber == UMASN1Primitive_object_identifier && o.asn1_tag.tagClass == UMASN1Class_Universal)
+    if(o.asn1_tag.tagNumber == UMASN1Primitive_object_identifier && o.asn1_tag.tagClass == UMASN1Class_Universal)
     {
         _syntax = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o context:context];
         //o = [self getObjectAtPosition:pos++];

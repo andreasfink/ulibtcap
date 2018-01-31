@@ -25,7 +25,7 @@
     }
     return self;
 }
-- (void)addIdentification:(UMTCAP_asn1_userInformationIdentification *)identification
+- (void)addIdentification:(UMTCAP_asn1_external *)identification
 {
     [identifications addObject:identification];
 }
@@ -53,7 +53,8 @@
     UMASN1Object *o = [self getObjectAtPosition:pos++];
     identifications = [[UMSynchronizedArray alloc]init];
 
-    while(o && o.asn1_tag.tagNumber == UMASN1Primitive_external && o.asn1_tag.tagClass == UMASN1Class_Universal)
+
+    while(o)
     {
         UMTCAP_asn1_external *e = [[UMTCAP_asn1_external alloc]initWithASN1Object:o context:context];
         //UMTCAP_asn1_userInformationIdentification *ui = [[UMTCAP_asn1_userInformationIdentification alloc]initWithASN1Object:o context:context];
