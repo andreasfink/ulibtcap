@@ -51,7 +51,7 @@
     if((o.asn1_tag.tagClass == UMASN1Class_Application) && ( o.asn1_tag.tagNumber==12))
     {
         componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o context:context];
-        o = [self getObjectAtPosition:p++];
+        //o = [self getObjectAtPosition:p++];
     }
     [task handleComponents:componentPortion];
     [notice setCurrentRemoteTransactionId:dtid.transactionId]; /* if its a reject, its the remote transaction ID we used to send the TC END out */

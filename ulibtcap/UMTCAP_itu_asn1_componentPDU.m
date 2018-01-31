@@ -39,6 +39,7 @@
         case TCAP_ITU_COMPONENT_RETURN_RESULT_LAST: /* returnResultLast */
         {
             r = [[UMTCAP_itu_asn1_returnResult alloc]initWithASN1Object:self context:context];
+            r.isLast=YES;
             break;
         }
         case TCAP_ITU_COMPONENT_RETURN_ERROR: /* returnError */

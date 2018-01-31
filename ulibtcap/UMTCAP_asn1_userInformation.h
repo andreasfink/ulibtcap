@@ -36,9 +36,9 @@
 
 @interface UMTCAP_asn1_userInformation : UMASN1Sequence
 {
-    UMSynchronizedArray *identifications;
+    UMSynchronizedArray *identifications; /* array of UMTCAP_asn1_external objects */
 }
 
-- (void) addIdentification:(UMTCAP_asn1_userInformationIdentification *)identification;
+- (void) addIdentification:(UMTCAP_asn1_external *)identification;
 
 @end

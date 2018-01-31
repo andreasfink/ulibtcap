@@ -65,7 +65,15 @@
 
 - (NSString *)objectName
 {
-    return @"returnResult";
+    if(isLast)
+    {
+        return @"returnResultLast";
+
+    }
+    else
+    {
+        return @"returnResultNotLast";
+    }
 }
 
 
