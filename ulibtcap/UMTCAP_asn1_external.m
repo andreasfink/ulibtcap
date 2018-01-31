@@ -27,9 +27,10 @@
 
     if(externalObject)
     {
-        externalObject.asn1_tag.tagNumber = 0;
-        externalObject.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-        [asn1_list addObject:externalObject];
+        asn1Type = [[UMASN1ObjectConstructed alloc]init];
+        asn1Type.asn1_tag.tagNumber = 0;
+        asn1Type.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+        [asn1Type.asn1_list addObject:externalObject];
     }
     if(objectIdentifier)
     {
