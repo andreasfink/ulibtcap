@@ -53,7 +53,7 @@
         }
         return UMTCAP_FilterResult_continue;
     }
-    if((_calledAddress.address.length > 0) && (![src.address isEqualTo:_calledAddress.address]))
+    if((_calledAddress.address.length > 0) && (![dst.address isEqualTo:_calledAddress.address]))
     {
         if(s)
         {
@@ -61,7 +61,7 @@
         }
         return UMTCAP_FilterResult_continue;
     }
-    if((_callingAddress.address.length > 0) && (![dst.address isEqualTo:_callingAddress.address]))
+    if((_callingAddress.address.length > 0) && (![src.address isEqualTo:_callingAddress.address]))
     {
         if(s)
         {
