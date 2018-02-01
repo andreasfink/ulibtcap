@@ -26,6 +26,7 @@ typedef enum UMTCAP_InternalOperation
 {
     int _operationId;
 }
+
 @property (readwrite,assign,atomic) int operationId;
 
 @end

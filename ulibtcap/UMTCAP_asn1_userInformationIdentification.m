@@ -84,7 +84,6 @@
 
 - (UMTCAP_asn1_userInformationIdentification *) processAfterDecodeWithContext:(id)context
 {
-    NSInteger pos=0;
     UMASN1Object *o = self;
 
     if(o.asn1_tag.tagNumber == UMASN1Primitive_object_identifier && o.asn1_tag.tagClass == UMASN1Class_Universal)
