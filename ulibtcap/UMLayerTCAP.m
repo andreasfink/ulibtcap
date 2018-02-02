@@ -474,6 +474,7 @@
                      user:(id<UMTCAP_UserProtocol>)user
            callingAddress:(SccpAddress *)src
             calledAddress:(SccpAddress *)dst
+                    cause:(int64_t)cause
           dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options
@@ -522,7 +523,7 @@
                                                        user:user
                                              callingAddress:src
                                               calledAddress:dst
-                                                      cause:0
+                                                      cause:cause
                                               dialogPortion:xdialoguePortion
                                                     options:options];
 
@@ -537,7 +538,7 @@
                                                         user:user
                                               callingAddress:src
                                                calledAddress:dst
-                                                       cause:0
+                                                       cause:cause
                                                dialogPortion:xdialoguePortion
                                                      options:options];
 

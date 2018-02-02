@@ -17,6 +17,10 @@
 #define UMTCAP_pAbortCause_incorrectTransactionPortion          3
 #define UMTCAP_pAbortCause_resourceLimitation                   4
 
+
+#define UMTCAP_pAbortCause_abnormalDialogue                     5
+#define UMTCAP_pAbortCause_noCommonDialoguePortion              6
+
 @interface UMTCAP_itu_asn1_pAbortCause : UMASN1Integer
 
 @end
