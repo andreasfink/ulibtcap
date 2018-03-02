@@ -86,4 +86,14 @@
     return dict;
 }
 
+- (NSInteger)getIdentificationCount
+{
+    return identifications.count;
+}
+
+- (UMTCAP_asn1_external *)getIdentificationNumber:(NSInteger)i
+{
+    return identifications[i];
+}
+
 @end

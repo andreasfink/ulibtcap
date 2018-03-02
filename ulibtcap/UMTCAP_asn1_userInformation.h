@@ -40,5 +40,6 @@
 }
 
 - (void) addIdentification:(UMTCAP_asn1_external *)identification;
-
+- (NSInteger)getIdentificationCount;
+- (UMTCAP_asn1_external *)getIdentificationNumber:(NSInteger)i;
 @end
