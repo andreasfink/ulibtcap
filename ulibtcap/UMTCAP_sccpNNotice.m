@@ -136,6 +136,14 @@
 {
     id<UMTCAP_UserProtocol> tcapUser = [tcapLayer tcapDefaultUser];
     
+    /* as this is not an incoming packet but a packet we just sent and produced an error
+     we have to swap local and remote transaction Id */
+
+    NSString *remote = currentLocalTransactionId;
+    NSString *local = currentRemoteTransactionId;
+    currentLocalTransactionId = remote;
+    currentRemoteTransactionId = local;
+    
     currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
     if(currentTransaction.user)
     {
