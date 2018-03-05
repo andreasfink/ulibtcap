@@ -21,7 +21,7 @@
     self = [super init];
     if(self)
     {
-        _lock = [[UMMutex alloc]init];
+        _lock = [[UMMutex alloc]initWithName:@"transaction-id-pool-lock"];
         _freeTransactionIds = [[NSMutableDictionary alloc]init];
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
         while(count > 0)

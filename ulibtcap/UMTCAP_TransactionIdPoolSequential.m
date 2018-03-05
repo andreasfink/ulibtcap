@@ -23,7 +23,7 @@
     {
         _nextTransactionId = 1;
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
-        _lock = [[UMMutex alloc]init];
+        _lock = [[UMMutex alloc]initWithName:@"transaction-id-pool-sequential"];
     }
     return self;
 }

@@ -70,7 +70,7 @@
     transactionsByLocalTransactionId = [[UMSynchronizedDictionary alloc]init];
     tcapUserByOperation = [[UMSynchronizedDictionary alloc]init];
     _transactionTimeoutInSeconds = 60.0; /* default timeout */
-    _housekeeping_lock = [[UMMutex alloc]init];
+    _housekeeping_lock = [[UMMutex alloc]initWithName:@"tcap-housekeeping-lock"];
     _houseKeepingTimerRun = [[UMAtomicDate alloc]init];
 }
 
