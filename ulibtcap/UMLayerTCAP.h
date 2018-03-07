@@ -232,6 +232,6 @@
 
 - (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */
 + (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */
-
+- (NSDictionary *)apiStatus;
 
 @end
