@@ -24,6 +24,11 @@
         _lock = [[UMMutex alloc]initWithName:@"transaction-id-pool-lock"];
         _freeTransactionIds = [[NSMutableDictionary alloc]init];
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
+
+        _quarantineTransactionIds1 = [[NSMutableArray alloc]init];
+        _quarantineTransactionIds2 = [[NSMutableArray alloc]init];
+        _quarantineTransactionIds3 = [[NSMutableArray alloc]init];
+
         while(count > 0)
         {
             /* generate TIDs */
@@ -35,29 +40,32 @@
                 count--;
             }
         }
+        _quarantineRotateTimer = [[UMTimer alloc]initWithTarget:self
+                                                   selector:@selector(quarantineRotate)
+                                                     object:NULL
+                                                    seconds:60 /* every 60 sec */
+                                                       name:@"quarantine-rotate"
+                                                    repeats:YES];
+        [_quarantineRotateTimer start];
     }
     return self;
 }
 
-#if unused
-- (NSString *)_newId
+
+/* this gets called every minute. so old transaction ID's are being moved into the next group */
+/* that way after 3 rotations they end up in the free pool again */
+- (void)quarantineRotate
 {
-    NSString *tidString = @"00000000";
-    do
+    [_lock lock];
+    for(NSString *tidString in _quarantineTransactionIds3)
     {
-        u_int32_t tid = [UMUtil random:0x3FFFFFFF];
-        tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
-        if(_freeTransactionIds[tidString] ==NULL)
-        {
-            if(_inUseTransactionIds[tidString]==NULL)
-            {
-                break; /* found an unused one */
-            }
-        }
-    } while(1);
-    return tidString;
+        _freeTransactionIds[tidString]=tidString;
+    }
+    _quarantineTransactionIds3 = _quarantineTransactionIds2;
+    _quarantineTransactionIds2 = _quarantineTransactionIds1;
+    _quarantineTransactionIds1 = [[NSMutableArray alloc]init];
+    [_lock unlock];
 }
-#endif
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
@@ -70,7 +78,7 @@
             NSArray *keys = [_freeTransactionIds allKeys];
             if(keys.count > 0)
             {
-                NSUInteger k = [UMUtil random:keys.count];
+                uint32_t k = [UMUtil random:(uint32_t)keys.count];
                 tidString = keys[k];
                 [_freeTransactionIds removeObjectForKey:tidString];
             }
@@ -109,7 +117,7 @@
 {
     [_lock lock];
     [_inUseTransactionIds removeObjectForKey:tidString];
-    _freeTransactionIds[tidString]=tidString;
+    [_quarantineTransactionIds1 addObject:tidString];
     [_lock unlock];
 }
 

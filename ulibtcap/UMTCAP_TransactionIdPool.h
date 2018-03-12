@@ -11,9 +11,15 @@
 
 @interface UMTCAP_TransactionIdPool : UMObject<UMTCAP_TransactionIdPoolProtocol>
 {
+    NSMutableArray *_quarantineTransactionIds1;
+    NSMutableArray *_quarantineTransactionIds2;
+    NSMutableArray *_quarantineTransactionIds3;
+
     NSMutableDictionary *_freeTransactionIds;
     NSMutableDictionary *_inUseTransactionIds;
     UMMutex     *_lock;
+    UMTimer *_quarantineRotateTimer;
+
 }
 
 
@@ -22,5 +28,6 @@
 - (NSString *)newTransactionIdForInstance:(NSString *)instance;
 - (void)returnTransactionId:(NSString *)tidString;
 - (NSString *)findInstanceForTransaction:(NSString *)tid;
+- (void)quarantineRotate;
 
 @end
