@@ -70,7 +70,8 @@
             NSArray *keys = [_freeTransactionIds allKeys];
             if(keys.count > 0)
             {
-                tidString = keys[0];
+                NSUInteger k = [UMUtil random:keys.count];
+                tidString = keys[k];
                 [_freeTransactionIds removeObjectForKey:tidString];
             }
             else
