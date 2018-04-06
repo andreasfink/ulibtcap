@@ -127,23 +127,5 @@
 - (NSString *)decodeError:(int)err;
 
 
-/* new API */
-
-- (void)tcUniIndication;
-- (void)tcBeginIndication;
-- (void)tcContinueIndication;
-- (void)tcEndIndication;
-- (void)tcUAbortIndication;
-- (void)tcNoticeIndication;
-
-- (void)tcInvokeIndication;
-- (void)tcResultLastIndication;
-- (void)tcResultNotLastIndication;
-- (void)tcUErrorIndication;
-- (void)tcURejectIndication;
-- (void)tcCancelIndication;
-- (void)tcRRejectIndication;
-- (void)tcPAbortIndication;
-
 @end
 
