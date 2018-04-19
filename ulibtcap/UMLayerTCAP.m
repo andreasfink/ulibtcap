@@ -919,9 +919,13 @@
     {
         attachNumber =  [[SccpAddress alloc]initWithHumanReadableString:@"any" variant:self.variant];
     }
-    if (cfg[@"attach-ssn"])
+    if (cfg[@"attach-ssn"]) /* backwards compatibility */
     {
         ssn =  [[SccpSubSystemNumber alloc]initWithName:[cfg[@"attach-ssn"] stringValue]];
+    }
+    if (cfg[@"subsystem"])
+    {
+        ssn =  [[SccpSubSystemNumber alloc]initWithName:[cfg[@"subsystem"] stringValue]];
     }
     if (cfg[@"variant"])
     {
