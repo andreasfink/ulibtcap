@@ -46,9 +46,11 @@
         dialogResponse.asn1_tag.tagClass = UMASN1Class_Application;
         external.externalObject = dialogResponse;
     }
+    /* dialogRLRQ = tag2 */
+    /* dialogRLRE = tag3 */
     else if(dialogAbort)
     {
-        dialogAbort.asn1_tag.tagNumber = 2;
+        dialogAbort.asn1_tag.tagNumber = 4;
         dialogAbort.asn1_tag.tagClass = UMASN1Class_Application;
         external.externalObject = dialogAbort;
     }
@@ -102,7 +104,10 @@
         {
             dialogResponse = [[UMTCAP_asn1_AARE_apdu alloc]initWithASN1Object:o context:context];
         }
-        else if((o) && (o.asn1_tag.tagClass == UMASN1Class_Application) && (o.asn1_tag.tagNumber == 2))
+        /* dialogRLRQ = tag2 */
+        /* dialogRLRE = tag3 */
+
+        else if((o) && (o.asn1_tag.tagClass == UMASN1Class_Application) && (o.asn1_tag.tagNumber == 4))
         {
             dialogAbort = [[UMTCAP_asn1_ABRT_apdu alloc]initWithASN1Object:o context:context];
         }
