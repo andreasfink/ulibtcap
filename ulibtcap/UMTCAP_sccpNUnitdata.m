@@ -515,6 +515,11 @@
                                         ];
                     [tcapLayer.logFeed debugText:dbgTxt];
                 }
+                if(tcapLayer.logLevel <= UMLOG_DEBUG)
+                {
+                    NSString *s = [NSString stringWithFormat:@"calling tcapUAbortIndication with dialogPortion: %@ (%@)",dialoguePortion,[dialoguePortion className]];
+                    [tcapLayer.logFeed debugText:s];
+                }
                 [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
                              tcapTransactionId:currentLocalTransactionId
                        tcapRemoteTransactionId:currentRemoteTransactionId
