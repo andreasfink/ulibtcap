@@ -35,7 +35,8 @@
 
 @interface UMTCAP_sccpNUnitdata : UMLayerTask
 {
-    UMLayerTCAP *tcapLayer;
+    UMLayerTCAP *tcapLayer;     /* the layer who originally received the message */
+    UMLayerTCAP *handlingLayer; /* the layer who finally handles it */
     UMLayerSCCP *sccpLayer;
     NSData      *data;
     NSData      *_mtp3_pdu;
@@ -76,6 +77,9 @@
 
     NSString                *currentLocalTransactionId;
     NSString                *currentRemoteTransactionId;
+
+
+    id<UMTCAP_UserProtocol> tcapUser;
 }
 
 @property(readwrite,strong) UMLayerSCCP *sccpLayer;

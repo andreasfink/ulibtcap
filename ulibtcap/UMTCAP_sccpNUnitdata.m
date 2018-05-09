@@ -197,8 +197,7 @@
 - (void) handlePdu
 {
     BOOL destroyTransaction = YES;
-    id<UMTCAP_UserProtocol> tcapUser = [tcapLayer tcapDefaultUser];
-
+    tcapUser = [tcapLayer tcapDefaultUser];
     tcapVariant = TCAP_VARIANT_ITU;
     BOOL perm = YES;
 
@@ -227,9 +226,6 @@
         case TCAP_TAG_ANSI_QUERY_WITH_PERM:
         {
             tcapVariant = TCAP_VARIANT_ANSI;
-            currentTransaction = [tcapLayer getNewIncomingTransactionForRemoteTransactionId:ansiTransactionId];
-            currentTransaction.user = tcapUser;
-
             UMTCAP_UserDialogIdentifier *userDialogId = [tcapUser getNewUserDialogId];
             currentTransaction.userDialogId = userDialogId;
             destroyTransaction = NO;
@@ -298,124 +294,109 @@
         {
             tcapVariant = TCAP_VARIANT_ANSI;
 
-            UMLayerTCAP *otherLayer = tcapLayer;
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
-            if(currentTransaction==NULL)
+            [self findTransactionAndUser];
+            if(tcapUser==NULL)
             {
-                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
-                if(instance)
-                {
-                    otherLayer = [tcapLayer.appContext getTCAP:instance];
-                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
-                }
+                [handlingLayer sendPAbort:currentRemoteTransactionId
+                                    cause:UMTCAP_pAbortCause_unrecognizedTransactionID
+                           callingAddress:dst
+                            calledAddress:src
+                                  options:@{}];
+                currentTransaction.transactionIsClosed = YES;
+                break;
             }
-            if(currentTransaction.user)
+            else
             {
-                tcapUser = currentTransaction.user;
+                destroyTransaction = YES;
+                [tcapUser tcapEndIndication:currentTransaction.userDialogId
+                          tcapTransactionId:currentTransaction.localTransactionId
+                    tcapRemoteTransactionId:currentTransaction.remoteTransactionId
+                                    variant:tcapVariant
+                             callingAddress:src
+                              calledAddress:dst
+                            dialoguePortion:dialoguePortion
+                               callingLayer:handlingLayer
+                                 components:currentComponents
+                                    options:options];
+                /* remove transaction data */
             }
-
-            destroyTransaction = YES;
-            [tcapUser tcapEndIndication:currentTransaction.userDialogId
-                      tcapTransactionId:currentTransaction.localTransactionId
-                tcapRemoteTransactionId:currentTransaction.remoteTransactionId
-                                variant:tcapVariant
-                         callingAddress:src
-                          calledAddress:dst
-                        dialoguePortion:dialoguePortion
-                           callingLayer:otherLayer
-                             components:currentComponents
-                                options:options];
-            /* remove transaction data */
         }
             break;
         case TCAP_TAG_ITU_END:
         {
             tcapVariant = TCAP_VARIANT_ITU;
-            UMLayerTCAP *otherLayer = tcapLayer;
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
 
-            if(currentTransaction==NULL)
+            [self findTransactionAndUser];
+            if(tcapUser==NULL)
             {
-                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
-                if(instance)
-                {
-                    otherLayer = [tcapLayer.appContext getTCAP:instance];
-                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
-                }
-            }
-
-            if(currentTransaction==NULL)
-            {
-                [tcapLayer sendPAbort:currentRemoteTransactionId
-                                cause:UMTCAP_pAbortCause_unrecognizedTransactionID
-                       callingAddress:dst
-                        calledAddress:src
-                              options:@{}];
+                [handlingLayer sendPAbort:currentRemoteTransactionId
+                                    cause:UMTCAP_pAbortCause_unrecognizedTransactionID
+                           callingAddress:dst
+                            calledAddress:src
+                                  options:@{}];
                 currentTransaction.transactionIsClosed = YES;
                 break;
             }
-            destroyTransaction = YES;
-            if(currentTransaction.user)
+            else
             {
-                tcapUser = currentTransaction.user;
+                destroyTransaction = YES;
+                if(tcapLayer.logLevel <= UMLOG_DEBUG)
+                {
+                    NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapEndIndication:\n"
+                                        @"userDialogId:%@\n"
+                                        @"SccpCallingAddress:%@\n"
+                                        @"SccpCalledAddress:%@\n"
+                                        @"localTransactionId:%@\n"
+                                        @"remoteTransactionId:%@\n"
+                                        @"dialoguePortion:%@\n"
+                                        @"components:%@\n"
+                                        @"options:%@\n",
+                                        currentTransaction.userDialogId,
+                                        src,
+                                        dst,
+                                        currentTransaction.localTransactionId,
+                                        currentTransaction.remoteTransactionId,
+                                        dialoguePortion,
+                                        currentComponents,
+                                        options
+                                        ];
+                    [tcapLayer.logFeed debugText:dbgTxt];
+                }
+                [tcapUser tcapEndIndication:currentTransaction.userDialogId
+                          tcapTransactionId:currentTransaction.localTransactionId
+                    tcapRemoteTransactionId:currentTransaction.remoteTransactionId
+                                    variant:tcapVariant
+                             callingAddress:src
+                              calledAddress:dst
+                            dialoguePortion:dialoguePortion
+                               callingLayer:handlingLayer
+                                 components:currentComponents
+                                    options:options];
+                /* remove transaction data */
             }
-            if(tcapLayer.logLevel <= UMLOG_DEBUG)
-            {
-                NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapEndIndication:\n"
-                                         @"userDialogId:%@\n"
-                                         @"SccpCallingAddress:%@\n"
-                                         @"SccpCalledAddress:%@\n"
-                                         @"localTransactionId:%@\n"
-                                         @"remoteTransactionId:%@\n"
-                                         @"dialoguePortion:%@\n"
-                                         @"components:%@\n"
-                                         @"options:%@\n",
-                                         currentTransaction.userDialogId,
-                                         src,
-                                         dst,
-                                         currentTransaction.localTransactionId,
-                                         currentTransaction.remoteTransactionId,
-                                         dialoguePortion,
-                                         currentComponents,
-                                         options
-                                    ];
-                [tcapLayer.logFeed debugText:dbgTxt];
-            }
-            [tcapUser tcapEndIndication:currentTransaction.userDialogId
-                      tcapTransactionId:currentTransaction.localTransactionId
-                tcapRemoteTransactionId:currentTransaction.remoteTransactionId
-                                variant:tcapVariant
-                         callingAddress:src
-                          calledAddress:dst
-                        dialoguePortion:dialoguePortion
-                           callingLayer:otherLayer
-                             components:currentComponents
-                                options:options];
-            /* remove transaction data */
         }
             break;
         case TCAP_TAG_ANSI_CONVERSATION_WITH_PERM:
             perm = NO;
 #pragma unused(perm) /* silence warning for now */
         case TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM:
-            tcapVariant = TCAP_VARIANT_ANSI;
         {
-            UMLayerTCAP *otherLayer = tcapLayer;
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
-            if(currentTransaction==NULL)
+            tcapVariant = TCAP_VARIANT_ANSI;
+            [self findTransactionAndUser];
+
+            if(tcapUser==NULL)
             {
-                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
-                if(instance)
-                {
-                    otherLayer = [tcapLayer.appContext getTCAP:instance];
-                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
-                }
+                [handlingLayer sendPAbort:currentRemoteTransactionId
+                                    cause:UMTCAP_pAbortCause_unrecognizedTransactionID
+                           callingAddress:dst
+                            calledAddress:src
+                                  options:@{}];
+                currentTransaction.transactionIsClosed = YES;
+                break;
             }
-            if(currentTransaction.user)
+            else
             {
-                tcapUser = currentTransaction.user;
-            }
-            destroyTransaction = NO;
+                destroyTransaction = NO;
                 [tcapUser tcapContinueIndication:currentTransaction.userDialogId
                                tcapTransactionId:currentTransaction.localTransactionId
                          tcapRemoteTransactionId:currentTransaction.remoteTransactionId
@@ -423,98 +404,73 @@
                                   callingAddress:src
                                    calledAddress:dst
                                  dialoguePortion:dialoguePortion
-                                    callingLayer:otherLayer
+                                    callingLayer:handlingLayer
                                       components:currentComponents
                                          options:options];
+            }
         }
             break;
         case TCAP_TAG_ITU_CONTINUE:
         {
-            UMLayerTCAP *otherLayer = tcapLayer;
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
 
-            if(currentTransaction==NULL)
+            [self findTransactionAndUser];
+            if(tcapUser==NULL)
             {
-                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
-                if(instance)
-                {
-                    otherLayer = [tcapLayer.appContext getTCAP:instance];
-                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
-                }
-            }
-
-            if(currentTransaction==NULL)
-            {
-                [tcapLayer sendPAbort:currentRemoteTransactionId
-                                cause:UMTCAP_pAbortCause_unrecognizedTransactionID
-                       callingAddress:dst
-                        calledAddress:src
-                              options:@{}];
+                [handlingLayer sendPAbort:currentRemoteTransactionId
+                                    cause:UMTCAP_pAbortCause_unrecognizedTransactionID
+                           callingAddress:dst
+                            calledAddress:src
+                                  options:@{}];
+                currentTransaction.transactionIsClosed = YES;
                 break;
             }
-
-
-            if(currentTransaction.user)
+            else
             {
-                tcapUser = currentTransaction.user;
-            }
-            currentTransaction.remoteTransactionId = otid;
-            destroyTransaction = NO;
-            if(tcapLayer.logLevel <= UMLOG_DEBUG)
-            {
-                NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapContinueIndication:\n"
-                                         @"userDialogId:%@\n"
-                                         @"SccpCallingAddress:%@\n"
-                                         @"SccpCalledAddress:%@\n"
-                                         @"localTransactionId:%@\n"
-                                         @"remoteTransactionId:%@\n"
-                                         @"dialoguePortion:%@\n"
-                                         @"components:%@\n"
-                                         @"options:%@\n",
-                                         currentTransaction.userDialogId,
-                                         src,
-                                         dst,
-                                         currentTransaction.localTransactionId,
-                                         currentTransaction.remoteTransactionId,
-                                         dialoguePortion,
-                                         currentComponents,
-                                         options
-                                    ];
-                [tcapLayer.logFeed debugText:dbgTxt];
-            }
-            [tcapUser tcapContinueIndication:currentTransaction.userDialogId
+                currentTransaction.remoteTransactionId = otid;
+                destroyTransaction = NO;
+                if(tcapLayer.logLevel <= UMLOG_DEBUG)
+                {
+                    NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapContinueIndication:\n"
+                                        @"userDialogId:%@\n"
+                                        @"SccpCallingAddress:%@\n"
+                                        @"SccpCalledAddress:%@\n"
+                                        @"localTransactionId:%@\n"
+                                        @"remoteTransactionId:%@\n"
+                                        @"dialoguePortion:%@\n"
+                                        @"components:%@\n"
+                                        @"options:%@\n",
+                                        currentTransaction.userDialogId,
+                                        src,
+                                        dst,
+                                        currentTransaction.localTransactionId,
+                                        currentTransaction.remoteTransactionId,
+                                        dialoguePortion,
+                                        currentComponents,
+                                        options
+                                        ];
+                    [tcapLayer.logFeed debugText:dbgTxt];
+                }
+                [tcapUser tcapContinueIndication:currentTransaction.userDialogId
                                tcapTransactionId:currentTransaction.localTransactionId
                          tcapRemoteTransactionId:currentTransaction.remoteTransactionId
                                          variant:tcapVariant
                                   callingAddress:src
                                    calledAddress:dst
                                  dialoguePortion:dialoguePortion
-                                    callingLayer:otherLayer
+                                    callingLayer:handlingLayer
                                       components:currentComponents
                                          options:options];
+            }
         }
             break;
             
             
         case TCAP_TAG_ANSI_ABORT:
-            tcapVariant = TCAP_VARIANT_ANSI;
         {
-            UMLayerTCAP *otherLayer = tcapLayer;
-
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentRemoteTransactionId];
-            if(currentTransaction==NULL)
+            tcapVariant = TCAP_VARIANT_ANSI;
+            [self findTransactionAndUser];
+            if(tcapUser)
             {
-                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
-                if(instance)
-                {
-                    otherLayer = [tcapLayer.appContext getTCAP:instance];
-                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
-                }
-            }
-            if(currentTransaction.user)
-            {
-                tcapUser = currentTransaction.user;
-            }
                 destroyTransaction = YES;
                 [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
                              tcapTransactionId:currentTransaction.localTransactionId
@@ -523,64 +479,54 @@
                                 callingAddress:src
                                  calledAddress:dst
                                dialoguePortion:dialoguePortion
-                                  callingLayer:otherLayer
+                                  callingLayer:handlingLayer
                                           asn1:(UMASN1Object *)asn1
                                        options:options];
+            }
         }
             break;
         case TCAP_TAG_ITU_ABORT:
         {
-            UMLayerTCAP *otherLayer = tcapLayer;
-            currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
-            /* FIXME: why should we look somewhere else than with findTransactionByLocalTransactionId ? */
-            if(currentTransaction==NULL)
+            tcapVariant = TCAP_VARIANT_ANSI;
+            [self findTransactionAndUser];
+            if(tcapUser)
             {
-                NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
-                if(instance)
+
+                destroyTransaction = YES;
+                if(tcapLayer.logLevel <= UMLOG_DEBUG)
                 {
-                    otherLayer = [tcapLayer.appContext getTCAP:instance];
-                    currentTransaction = [otherLayer findTransactionByLocalTransactionId:dtid];
+                    NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
+                                        @"userDialogId:%@\n"
+                                        @"SccpCallingAddress:%@\n"
+                                        @"SccpCalledAddress:%@\n"
+                                        @"localTransactionId:%@\n"
+                                        @"remoteTransactionId:%@\n"
+                                        @"dialoguePortion:%@\n"
+                                        @"components:%@\n"
+                                        @"options:%@\n",
+                                        currentTransaction.userDialogId,
+                                        src,
+                                        dst,
+                                        currentTransaction.localTransactionId,
+                                        currentTransaction.remoteTransactionId,
+                                        dialoguePortion,
+                                        currentComponents,
+                                        options
+                                        ];
+                    [tcapLayer.logFeed debugText:dbgTxt];
                 }
-            }
-            /* END FIXME */
-            if(currentTransaction.user)
-            {
-                tcapUser = currentTransaction.user;
-            }
-            destroyTransaction = YES;
-            if(tcapLayer.logLevel <= UMLOG_DEBUG)
-            {
-                NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapUAbortIndication:\n"
-                                         @"userDialogId:%@\n"
-                                         @"SccpCallingAddress:%@\n"
-                                         @"SccpCalledAddress:%@\n"
-                                         @"localTransactionId:%@\n"
-                                         @"remoteTransactionId:%@\n"
-                                         @"dialoguePortion:%@\n"
-                                         @"components:%@\n"
-                                         @"options:%@\n",
-                                         currentTransaction.userDialogId,
-                                         src,
-                                         dst,
-                                         currentTransaction.localTransactionId,
-                                         currentTransaction.remoteTransactionId,
-                                         dialoguePortion,
-                                         currentComponents,
-                                         options
-                                    ];
-                [tcapLayer.logFeed debugText:dbgTxt];
-            }
-            [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
-                         tcapTransactionId:currentLocalTransactionId
-                   tcapRemoteTransactionId:currentRemoteTransactionId
-                                   variant:tcapVariant
-                            callingAddress:src
-                             calledAddress:dst
-                           dialoguePortion:dialoguePortion
-                              callingLayer:otherLayer
-                                      asn1:(UMASN1Object *)asn1
-                                   options:options
+                [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
+                             tcapTransactionId:currentLocalTransactionId
+                       tcapRemoteTransactionId:currentRemoteTransactionId
+                                       variant:tcapVariant
+                                callingAddress:src
+                                 calledAddress:dst
+                               dialoguePortion:dialoguePortion
+                                  callingLayer:handlingLayer
+                                          asn1:(UMASN1Object *)asn1
+                                       options:options
              ];
+            }
         }
         default:
             break;
@@ -812,6 +758,22 @@
         return [currentTransaction.user decodeError:err ];
     }
     return NULL;
+}
+
+- (void)findTransactionAndUser
+{
+    UMLayerTCAP *handlingLayer = tcapLayer;
+    currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
+    if(currentTransaction==NULL)
+    {
+        NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
+        if(instance)
+        {
+            handlingLayer = [tcapLayer.appContext getTCAP:instance];
+            currentTransaction = [handlingLayer findTransactionByLocalTransactionId:dtid];
+            tcapUser = currentTransaction.user;
+        }
+    }
 }
 
 @end
