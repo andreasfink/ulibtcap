@@ -17,6 +17,8 @@
 		A61571EB1CD4670700211137 /* UMTCAP_sccpNNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = A61571E91CD4670700211137 /* UMTCAP_sccpNNotice.m */; };
 		A61BC5351DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.h in Headers */ = {isa = PBXBuildFile; fileRef = A61BC5331DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A61BC5361DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.m in Sources */ = {isa = PBXBuildFile; fileRef = A61BC5341DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.m */; };
+		A621712020A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.h in Headers */ = {isa = PBXBuildFile; fileRef = A621711E20A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A621712120A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A621711F20A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.m */; };
 		A63EEB131FEC27DD0051A2A3 /* UMTCAP_ComponentState.h in Headers */ = {isa = PBXBuildFile; fileRef = A63EEB111FEC27DD0051A2A3 /* UMTCAP_ComponentState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A63EEB141FEC27DD0051A2A3 /* UMTCAP_ComponentState.m in Sources */ = {isa = PBXBuildFile; fileRef = A63EEB121FEC27DD0051A2A3 /* UMTCAP_ComponentState.m */; };
 		A63EEB171FEC27F10051A2A3 /* UMTCAP_ComponentStateIdle.h in Headers */ = {isa = PBXBuildFile; fileRef = A63EEB151FEC27F10051A2A3 /* UMTCAP_ComponentStateIdle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -252,6 +254,8 @@
 		A61571E91CD4670700211137 /* UMTCAP_sccpNNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_sccpNNotice.m; sourceTree = "<group>"; };
 		A61BC5331DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_asn1_dialoguePortion.h; sourceTree = "<group>"; };
 		A61BC5341DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_asn1_dialoguePortion.m; sourceTree = "<group>"; };
+		A621711E20A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_asn1_AbortSource.h; sourceTree = "<group>"; };
+		A621711F20A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_asn1_AbortSource.m; sourceTree = "<group>"; };
 		A62C8B071FFBD1980065D61E /* q-773-tcap-formats-and-encoding.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "q-773-tcap-formats-and-encoding.pdf"; sourceTree = "<group>"; };
 		A62C8B081FFBD1980065D61E /* q-775-tcap-usage.guidelines.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "q-775-tcap-usage.guidelines.pdf"; sourceTree = "<group>"; };
 		A62C8B091FFBD1980065D61E /* q-771-tcap-functional-description.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "q-771-tcap-functional-description.pdf"; sourceTree = "<group>"; };
@@ -794,6 +798,8 @@
 				A6BCE1A61CD8AFF100415D67 /* UMTCAP_asn1_Associate_result.m */,
 				A6BCE1A91CD8B00800415D67 /* UMTCAP_asn1_Associate_source_diagnostic.h */,
 				A6BCE1AA1CD8B00800415D67 /* UMTCAP_asn1_Associate_source_diagnostic.m */,
+				A621711E20A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.h */,
+				A621711F20A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.m */,
 				A68252771CCFDA0000211137 /* UMTCAP_asn1_ABRT_apdu.h */,
 				A68252781CCFDA0000211137 /* UMTCAP_asn1_ABRT_apdu.m */,
 				A61BC5331DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.h */,
@@ -873,6 +879,7 @@
 				A63EEB171FEC27F10051A2A3 /* UMTCAP_ComponentStateIdle.h in Headers */,
 				A6DA61761FC6CC7F00D0E708 /* UMTCAP_Filter.h in Headers */,
 				A68C23031FE959AE00A02B91 /* UMTCAP_ProviderProtocol.h in Headers */,
+				A621712020A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.h in Headers */,
 				A6C4460E1CAA7668005A860B /* UMTCAP_itu_asn1_returnError.h in Headers */,
 				A6D03B7C1CA48A1A00211137 /* UMTCAP_itu_abort.h in Headers */,
 				A6814BF61CAA144C00211137 /* UMTCAP_itu_asn1_otid.h in Headers */,
@@ -1138,6 +1145,7 @@
 				A6814B731CA9634C00211137 /* UMTCAP_ansi_asn1_unidirectional.m in Sources */,
 				A6814B8F1CA964C700211137 /* UMTCAP_ansi_asn1_abort.m in Sources */,
 				A6D03B551CA4896900211137 /* UMTCAP_ansi_unidirectional.m in Sources */,
+				A621712120A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.m in Sources */,
 				A6091FC71CB53FA40076BD59 /* UMTCAP_ansi_asn1_componentIDs.m in Sources */,
 				A6DE4E9D1CC19B5A00211137 /* UMTCAP_itu_asn1_pAbortCause.m in Sources */,
 				A6BCE1AC1CD8B00800415D67 /* UMTCAP_asn1_Associate_source_diagnostic.m in Sources */,

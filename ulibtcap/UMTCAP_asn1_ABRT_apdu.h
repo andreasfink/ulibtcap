@@ -11,27 +11,26 @@
 
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
+#import "UMTCAP_asn1_AbortSource.h"
+#import "UMTCAP_asn1_userInformation.h"
 
 /*
- -- RLRQ PDU is currently not used.
- -- It is included for completeness only.
- RLRQ-apdu ::= [APPLICATION 2] IMPLICIT SEQUENCE {
- reason            [0] IMPLICIT Release-request-reason OPTIONAL,
- user-information  [30] IMPLICIT SEQUENCE OF [UNIVERSAL 8] IMPLICIT SEQUENCE {
-	identification CHOICE {
- syntax OBJECT IDENTIFIER,
- presentation-context-id INTEGER,
- context-negotiation SEQUENCE {
- presentation-context-id INTEGER,
- transfer-syntax OBJECT IDENTIFIER
+ ABRT-apdu ::= [APPLICATION 4] IMPLICIT SEQUENCE {
+ abort-source      [0] IMPLICIT ABRT-source,
+ user-information  [30] IMPLICIT SEQUENCE OF EXTERNAL OPTIONAL
  }
-	},
-	data-value-descriptor ObjectDescriptor OPTIONAL,
-	data-value OCTET STRING
- } OPTIONAL
+
+ ABRT-source ::= INTEGER {dialogue-service-user(0), dialogue-service-provider(1)
  }
 
  */
-@interface UMTCAP_asn1_ABRT_apdu : UMASN1ObjectConstructed
+@interface UMTCAP_asn1_ABRT_apdu : UMASN1Sequence
+{
+    UMTCAP_asn1_AbortSource     *_abortSource;
+    UMTCAP_asn1_userInformation *_userInformation;
+}
+
+@property(readwrite,strong,atomic)  UMTCAP_asn1_AbortSource     *abortSource;
+@property(readwrite,strong,atomic)  UMTCAP_asn1_userInformation *userInformation;
 
 @end

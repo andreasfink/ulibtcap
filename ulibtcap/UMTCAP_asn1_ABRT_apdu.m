@@ -13,4 +13,65 @@
 
 @implementation UMTCAP_asn1_ABRT_apdu
 
+- (void) processBeforeEncode
+{
+    [super processBeforeEncode];
+    asn1_tag.isConstructed=YES;
+    asn1_tag.tagNumber = 4;
+    asn1_tag.tagClass = UMASN1Class_Application;
+    
+    asn1_list = [[NSMutableArray alloc]init];
+
+    if(_abortSource)
+    {
+        _abortSource.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+        _abortSource.asn1_tag.tagNumber = 0;
+        [asn1_list addObject:_abortSource];
+    }
+    if(_userInformation)
+    {
+        _userInformation.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+        _userInformation.asn1_tag.tagNumber = 0;
+        [asn1_list addObject:_userInformation];
+    }
+}
+
+
+- (UMTCAP_asn1_ABRT_apdu *) processAfterDecodeWithContext:(id)context
+{
+    int p=0;
+    UMASN1Object *o = [self getObjectAtPosition:p++];
+    if((o) && (o.asn1_tag.tagNumber == 0) && (o.asn1_tag.tagClass == UMASN1Class_ContextSpecific))
+    {
+        _abortSource = [[UMTCAP_asn1_AbortSource alloc]initWithASN1Object:o context:context];
+        o = [self getObjectAtPosition:p++];
+    }
+    if((o) && (o.asn1_tag.tagNumber == 30) && (o.asn1_tag.tagClass == UMASN1Class_ContextSpecific))
+    {
+        _userInformation = [[UMTCAP_asn1_userInformation alloc]initWithASN1Object:o context:context];
+//        o = [self getObjectAtPosition:p++];
+    }
+    return self;
+}
+
+- (NSString *) objectName
+{
+    return @"ABRT-apdu";
+}
+- (id) objectValue
+{
+    UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
+    if(_abortSource)
+    {
+        dict[@"abort-source"] = _abortSource.objectValue;
+        dict[@"abort-source-description"] = _abortSource.objectValueDescription;
+    }
+    if(_userInformation)
+    {
+        dict[@"user-information"] = _userInformation.objectValue;
+    }
+    return dict;
+}
+
+
 @end
