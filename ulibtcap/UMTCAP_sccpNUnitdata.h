@@ -92,7 +92,6 @@
 @property(readwrite,assign) int qos;
 @property(readwrite,assign) UMTCAP_Variant tcapVariant;
 @property(readwrite,assign) SccpVariant sccpVariant;
-//@property(readwrite,strong) id<UMTCAP_UserProtocol> tcapUser;
 @property(readwrite,strong) UMTCAP_asn1 *asn1;
 @property(readwrite,assign) BOOL ansi_permission;
 
