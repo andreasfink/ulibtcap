@@ -72,7 +72,7 @@
     UMTCAP_asn1_objectIdentifier *applicationContext;
     UMTCAP_asn1_userInformation *userInfo;
     UMASN1BitString *dialogProtocolVersion;
-    UMTCAP_asn1_dialoguePortion *dialoguePortion;
+    UMTCAP_asn1_dialoguePortion *_dialoguePortion;
     NSString                *ansiTransactionId;
 
     NSString                *currentLocalTransactionId;
@@ -103,6 +103,7 @@
 @property(readwrite,strong) NSString *ansiTransactionId;
 @property(readwrite,strong) NSString *decodeError;
 
+@property(readwrite,strong) UMTCAP_asn1_dialoguePortion *dialoguePortion;
 
 @property(readwrite,assign) UMTCAP_Command  currentCommand;
 

@@ -10,6 +10,7 @@
 // the author.
 
 #import "UMTCAP_itu_asn1_dialoguePortion.h"
+#import <ulibtcap/ulibtcap.h>
 
 @implementation UMTCAP_itu_asn1_dialoguePortion
 
@@ -89,7 +90,22 @@
 
 
 - (UMTCAP_itu_asn1_dialoguePortion *)processAfterDecodeWithContext:(id)context
-{    
+{
+    UMTCAP_sccpNUnitdata *task = NULL;
+    UMTCAP_sccpNNotice *notice = NULL;
+    if ([context isKindOfClass:[UMTCAP_sccpNUnitdata class ]])
+    {
+        task = (UMTCAP_sccpNUnitdata *)context;
+        task.dialoguePortion = self;
+    }
+    else if ([context isKindOfClass:[UMTCAP_sccpNNotice class ]])
+    {
+        notice = (UMTCAP_sccpNNotice *)context;
+        notice.dialoguePortion = self;
+
+    }
+
+
     UMASN1Object *o = [self getObjectAtPosition:0];
     if(o)
     {

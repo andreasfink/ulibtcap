@@ -66,6 +66,9 @@
     NSString                *currentLocalTransactionId;
     NSString                *currentRemoteTransactionId;
     NSString *decodeError;
+
+    UMTCAP_asn1_dialoguePortion *_dialoguePortion;
+
 }
 
 
@@ -97,6 +100,7 @@
 @property(readwrite,strong)    NSString                *ansiTransactionId;
 @property(readwrite,strong)    NSString                *currentLocalTransactionId;
 @property(readwrite,strong)    NSString                *currentRemoteTransactionId;
+@property(readwrite,strong)    UMTCAP_asn1_dialoguePortion *dialoguePortion;
 
 
 - (UMTCAP_sccpNNotice *)initForTcap:(UMLayerTCAP *)tcap

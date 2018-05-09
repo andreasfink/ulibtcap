@@ -213,7 +213,7 @@
                                            variant:tcapVariant
                                     callingAddress:src
                                      calledAddress:dst
-                                   dialoguePortion:dialoguePortion
+                                   dialoguePortion:_dialoguePortion
                                       callingLayer:tcapLayer
                                         components:currentComponents
                                            options:options];
@@ -235,7 +235,7 @@
                                       variant:tcapVariant
                                callingAddress:src
                                 calledAddress:dst
-                              dialoguePortion:dialoguePortion
+                              dialoguePortion:_dialoguePortion
                                  callingLayer:tcapLayer
                                    components:currentComponents
                                       options:options];
@@ -271,7 +271,7 @@
                                     dst,
                                     currentTransaction.localTransactionId,
                                     currentTransaction.remoteTransactionId,
-                                    dialoguePortion,
+                                    _dialoguePortion,
                                     currentComponents,
                                     options];
                 [tcapLayer.logFeed debugText:dbgTxt];
@@ -282,7 +282,7 @@
                                   variant:tcapVariant
                            callingAddress:src
                             calledAddress:dst
-                          dialoguePortion:dialoguePortion
+                          dialoguePortion:_dialoguePortion
                              callingLayer:tcapLayer
                                components:currentComponents
                                   options:options];
@@ -314,7 +314,7 @@
                                     variant:tcapVariant
                              callingAddress:src
                               calledAddress:dst
-                            dialoguePortion:dialoguePortion
+                            dialoguePortion:_dialoguePortion
                                callingLayer:handlingLayer
                                  components:currentComponents
                                     options:options];
@@ -356,7 +356,7 @@
                                         dst,
                                         currentTransaction.localTransactionId,
                                         currentTransaction.remoteTransactionId,
-                                        dialoguePortion,
+                                        _dialoguePortion,
                                         currentComponents,
                                         options
                                         ];
@@ -368,7 +368,7 @@
                                     variant:tcapVariant
                              callingAddress:src
                               calledAddress:dst
-                            dialoguePortion:dialoguePortion
+                            dialoguePortion:_dialoguePortion
                                callingLayer:handlingLayer
                                  components:currentComponents
                                     options:options];
@@ -403,7 +403,7 @@
                                          variant:tcapVariant
                                   callingAddress:src
                                    calledAddress:dst
-                                 dialoguePortion:dialoguePortion
+                                 dialoguePortion:_dialoguePortion
                                     callingLayer:handlingLayer
                                       components:currentComponents
                                          options:options];
@@ -444,7 +444,7 @@
                                         dst,
                                         currentTransaction.localTransactionId,
                                         currentTransaction.remoteTransactionId,
-                                        dialoguePortion,
+                                        _dialoguePortion,
                                         currentComponents,
                                         options
                                         ];
@@ -456,7 +456,7 @@
                                          variant:tcapVariant
                                   callingAddress:src
                                    calledAddress:dst
-                                 dialoguePortion:dialoguePortion
+                                 dialoguePortion:_dialoguePortion
                                     callingLayer:handlingLayer
                                       components:currentComponents
                                          options:options];
@@ -478,7 +478,7 @@
                                        variant:tcapVariant
                                 callingAddress:src
                                  calledAddress:dst
-                               dialoguePortion:dialoguePortion
+                               dialoguePortion:_dialoguePortion
                                   callingLayer:handlingLayer
                                           asn1:(UMASN1Object *)asn1
                                        options:options];
@@ -509,7 +509,7 @@
                                         dst,
                                         currentTransaction.localTransactionId,
                                         currentTransaction.remoteTransactionId,
-                                        dialoguePortion,
+                                        _dialoguePortion,
                                         currentComponents,
                                         options
                                         ];
@@ -517,7 +517,7 @@
                 }
                 if(tcapLayer.logLevel <= UMLOG_DEBUG)
                 {
-                    NSString *s = [NSString stringWithFormat:@"calling tcapUAbortIndication with dialogPortion: %@ (%@)",dialoguePortion,[dialoguePortion className]];
+                    NSString *s = [NSString stringWithFormat:@"calling tcapUAbortIndication with dialogPortion: %@ (%@)",_dialoguePortion,[_dialoguePortion className]];
                     [tcapLayer.logFeed debugText:s];
                 }
                 [tcapUser tcapUAbortIndication:currentTransaction.userDialogId
@@ -526,7 +526,7 @@
                                        variant:tcapVariant
                                 callingAddress:src
                                  calledAddress:dst
-                               dialoguePortion:dialoguePortion
+                               dialoguePortion:_dialoguePortion
                                   callingLayer:handlingLayer
                                           asn1:(UMASN1Object *)asn1
                                        options:options
@@ -630,7 +630,7 @@
 
 - (void)handleItuDialogue:(UMTCAP_itu_asn1_dialoguePortion *)dp
 {
-    dialoguePortion = dp;
+    _dialoguePortion = dp;
     if(dp.dialogRequest)
     {
         dialogProtocolVersion = dp.dialogRequest.protocolVersion;

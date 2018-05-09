@@ -92,4 +92,3 @@
 #import "UMTCAP_FilterRule.h"
 #import "UMTCAP_FilterResult.h"
 #import "UMTCAP_UserDialogIdentifier.h"
-
