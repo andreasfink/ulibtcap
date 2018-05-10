@@ -47,9 +47,9 @@
     }
     else
     {
-        @throw([NSException exceptionWithName:@"PARAMETER_MISSING"
+       /* @throw([NSException exceptionWithName:@"PARAMETER_MISSING"
                                        reason:@"UMGSMMAP_Associate_source_diagnostic choice missing"
-                                     userInfo:@{    @"backtrace": UMBacktrace(NULL,0)}]);
+                                     userInfo:@{    @"backtrace": UMBacktrace(NULL,0)}]); */
     }
 }
 
