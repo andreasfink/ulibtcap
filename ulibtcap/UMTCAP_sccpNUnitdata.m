@@ -767,14 +767,13 @@
 
 - (void)findTransactionAndUser
 {
-    UMLayerTCAP *handlingLayer = tcapLayer;
     currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
     if(currentTransaction==NULL)
     {
         NSString *instance = [tcapLayer.tidPool findInstanceForTransaction:dtid];
         if(instance)
         {
-            handlingLayer = [tcapLayer.appContext getTCAP:instance];
+            UMLayerTCAP *handlingLayer = [tcapLayer.appContext getTCAP:instance];
             currentTransaction = [handlingLayer findTransactionByLocalTransactionId:dtid];
             tcapUser = currentTransaction.user;
         }
