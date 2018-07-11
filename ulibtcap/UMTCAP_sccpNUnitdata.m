@@ -757,7 +757,6 @@
     {
         currentTransaction.user = [tcapLayer getUserForOperation:currentOperationCode];
     }
-
     if(currentTransaction.user)
     {
         return [currentTransaction.user decodeError:err ];
