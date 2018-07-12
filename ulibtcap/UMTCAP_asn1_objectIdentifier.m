@@ -198,6 +198,11 @@
     return [self stringValue];
 }
 
+- (NSString *)hexStringValue
+{
+    return [asn1_data hexString];
+}
+
 - (NSString *)stringValue
 {
     NSMutableString *val = [[asn1_data hexString] mutableCopy];
