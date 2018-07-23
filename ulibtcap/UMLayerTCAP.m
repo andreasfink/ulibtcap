@@ -520,7 +520,10 @@
         NSString *s = [NSString stringWithFormat:@"tcapUAbortRequest with unknown transaction ID '%@'",tcapTransactionId];
         @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
     }
-
+    if(transaction.remoteTransactionId==NULL)
+    {
+        return;
+    }
     [transaction touch];
     UMTCAP_abort *abortRequest;
 
