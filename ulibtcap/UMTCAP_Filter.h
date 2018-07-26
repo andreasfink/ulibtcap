@@ -40,4 +40,6 @@
                      callingAddress:(SccpAddress *)src
                       calledAddress:(SccpAddress *)dst;
 
+- (void)setConfig:(NSDictionary *)config;
+
 @end

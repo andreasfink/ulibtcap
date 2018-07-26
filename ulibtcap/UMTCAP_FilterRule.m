@@ -26,6 +26,93 @@
     [_applicationContexts addObject:context];
 }
 
+#define CONFIG_ERROR(s)     [NSException exceptionWithName:[NSString stringWithFormat:@"CONFIG_ERROR FILE %s line:%ld",__FILE__,(long)__LINE__] reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0) }]
+
+- (void)setConfig:(NSDictionary *)dict
+{
+    NSString *command = dict[@"command"];
+    NSString *operation = dict[@"operation"];
+    NSString *contexts = dict[@"application-contexts"];
+    NSString *result = dict[@"result"];
+
+    NSString *callingAddress = dict[@"calling-address"];
+    NSString *calledAddress = dict[@"called-address"];
+
+    if([command isEqualToString:@"begin"])
+    {
+        _command = TCAP_TAG_ITU_BEGIN;
+    }
+    else if([command isEqualToString:@"continue"])
+    {
+        _command = TCAP_TAG_ITU_CONTINUE;
+    }
+    else if([command isEqualToString:@"end"])
+    {
+        _command = TCAP_TAG_ITU_END;
+    }
+    else if([command isEqualToString:@"abort"])
+    {
+        _command = TCAP_TAG_ITU_ABORT;
+    }
+    else if([command isEqualToString:@"unidirectional"])
+    {
+        _command = TCAP_TAG_ITU_UNIDIRECTIONAL;
+    }
+    else if([command isEqualToString:@"any"])
+    {
+        _command = TCAP_TAG_UNDEFINED;
+    }
+
+    if(([operation isEqualToString:@"any"]) || (operation==NULL))
+    {
+        _operation = -1;
+    }
+    if([operation isEqualToString:@"undefined"])
+    {
+        _operation = -2;
+    }
+    else
+    {
+        _operation = [operation intValue];
+    }
+    NSArray *contextsArray = [contexts componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
+    for(NSString *context in contextsArray)
+    {
+        [self addApplicationContext:context];
+    }
+
+    if([result isEqualToString:@"accept"])
+    {
+        _result = UMTCAP_FilterResult_accept;
+    }
+    else if([result isEqualToString:@"drop"])
+    {
+        _result = UMTCAP_FilterResult_drop;
+    }
+    else if([result isEqualToString:@"reject"])
+    {
+        _result = UMTCAP_FilterResult_reject;
+    }
+    else if([result isEqualToString:@"redirect"])
+    {
+        _result = UMTCAP_FilterResult_redirect;
+    }
+    else
+    {
+        NSString *s = [NSString stringWithFormat:@"unknown result '%@'. Should be accept,drop,reject or redirect",result];
+        @throw(CONFIG_ERROR(s));
+    }
+
+    if(callingAddress.length > 0)
+    {
+        _callingAddress = [[SccpAddress alloc]initWithHumanReadableString:callingAddress variant:UMMTP3Variant_Undefined];
+    }
+    if(calledAddress.length > 0)
+    {
+        _calledAddress = [[SccpAddress alloc]initWithHumanReadableString:calledAddress variant:UMMTP3Variant_Undefined];
+    }
+}
+
 - (UMTCAP_FilterResult)filterPacket:(UMTCAP_Command)command
                  applicationContext:(NSString *)context
                       operationCode:(int64_t)opCode

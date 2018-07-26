@@ -35,5 +35,7 @@
                      callingAddress:(SccpAddress *)src
                       calledAddress:(SccpAddress *)dst
                            debugLog:(NSMutableString *)s;
+- (void)setConfig:(NSDictionary *)dict;
+
 
 @end

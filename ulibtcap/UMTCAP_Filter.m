@@ -33,6 +33,55 @@
     [_rules addObject:rule];
 }
 
+#define CONFIG_ERROR(s)     [NSException exceptionWithName:[NSString stringWithFormat:@"CONFIG_ERROR FILE %s line:%ld",__FILE__,(long)__LINE__] reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0) }]
+
+- (void)setConfig:(NSDictionary *)dict
+{
+    if(dict[@"name"])
+    {
+        _name = [dict[@"name"] stringValue];
+        _active = [dict configEnabledWithYesDefault];
+        NSString *ll = dict[@"log-level"];
+        if(ll)
+        {
+            _logLevel = [ll intValue];
+        }
+        NSString *tt = dict[@"bypass-translation-type"];
+        if(tt)
+        {
+            int ttInt = [tt intValue];
+            if((ttInt <0) || (ttInt>255))
+            {
+                NSString *s = [NSString stringWithFormat:@"bypass-translation-type has invalid value '%@'",tt];
+                @throw(CONFIG_ERROR(s));
+            }
+            _bypass_translation_type = ttInt;
+        }
+
+        NSString *defaultResult = dict[@"default-result"];
+        if([defaultResult isEqualToString:@"accept"])
+        {
+            _defaultResult = UMTCAP_FilterResult_accept;
+        }
+        else if([defaultResult isEqualToString:@"drop"])
+        {
+            _defaultResult = UMTCAP_FilterResult_drop;
+        }
+        else if([defaultResult isEqualToString:@"reject"])
+        {
+            _defaultResult = UMTCAP_FilterResult_reject;
+        }
+        else if([defaultResult isEqualToString:@"redirect"])
+        {
+            _defaultResult = UMTCAP_FilterResult_redirect;
+        }
+        else
+        {
+            NSString *s = [NSString stringWithFormat:@"unknown default-result '%@'. Should be accept,drop,reject or redirect",defaultResult];
+            @throw(CONFIG_ERROR(s));
+        }
+    }
+}
 
 - (UMTCAP_FilterResult)filterPacket:(UMTCAP_Command)command
                  applicationContext:(NSString *)context
