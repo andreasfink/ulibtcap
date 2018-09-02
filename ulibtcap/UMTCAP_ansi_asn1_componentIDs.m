@@ -56,9 +56,9 @@
     {
         comp[len++] = (correlationId)& 0xFF;
     }
-    asn1_data = [NSData dataWithBytes:comp length:len];
-    asn1_tag.tagNumber = 15;
-    asn1_tag.tagClass = UMASN1Class_Private;
+    _asn1_data = [NSData dataWithBytes:comp length:len];
+    _asn1_tag.tagNumber = 15;
+    _asn1_tag.tagClass = UMASN1Class_Private;
 }
 
 - (NSString *)objectName

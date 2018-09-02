@@ -53,21 +53,21 @@
 {
     [super processBeforeEncode];
 
-    asn1_tag.tagNumber = 1;
-    asn1_tag.tagClass  = UMASN1Class_ContextSpecific;
+    _asn1_tag.tagNumber = 1;
+    _asn1_tag.tagClass  = UMASN1Class_ContextSpecific;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     
-    [asn1_list addObject:itu_invokeId];
+    [_asn1_list addObject:itu_invokeId];
     if(itu_linkedId)
     {
         itu_linkedId.asn1_tag.tagNumber = 0;
-        [asn1_list addObject:itu_linkedId];
+        [_asn1_list addObject:itu_linkedId];
     }
-    [asn1_list addObject:itu_operationCode];
+    [_asn1_list addObject:itu_operationCode];
     if(params)
     {
-        [asn1_list addObject:params];
+        [_asn1_list addObject:params];
     }
 }
 

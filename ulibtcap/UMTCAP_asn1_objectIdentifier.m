@@ -21,14 +21,14 @@
     {
         if(context == NULL)
         {
-            asn1_data = [NSData data];
+            self.asn1_data = [NSData data];
         }
         else
         {
-            asn1_data = [context unhexedData];
+            self.asn1_data = [context unhexedData];
         }
-        asn1_tag.tagNumber = 6;
-        asn1_tag.tagClass = UMASN1Class_Universal;
+        _asn1_tag.tagNumber = 6;
+        _asn1_tag.tagClass = UMASN1Class_Universal;
     }
     return self;
 }
@@ -41,11 +41,11 @@
 - (id)objectValue
 {
     UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
-    dict[@"rawData"] = [asn1_data hexString];
+    dict[@"rawData"] = [_asn1_data hexString];
     
-    if(asn1_data.length == 7)
+    if(_asn1_data.length == 7)
     {
-        const uint8_t *bytes = asn1_data.bytes;
+        const uint8_t *bytes = _asn1_data.bytes;
         if((bytes[0] == 4) &&
            (bytes[1] == 0) &&
            (bytes[2] == 0) &&
@@ -200,15 +200,15 @@
 
 - (NSString *)hexStringValue
 {
-    return [asn1_data hexString];
+    return [_asn1_data hexString];
 }
 
 - (NSString *)stringValue
 {
-    NSMutableString *val = [[asn1_data hexString] mutableCopy];
-    if(asn1_data.length == 7)
+    NSMutableString *val = [[_asn1_data hexString] mutableCopy];
+    if(_asn1_data.length == 7)
     {
-        const uint8_t *bytes = asn1_data.bytes;
+        const uint8_t *bytes = _asn1_data.bytes;
         if((bytes[0] == 4) &&
            (bytes[1] == 0) &&
            (bytes[2] == 0) &&

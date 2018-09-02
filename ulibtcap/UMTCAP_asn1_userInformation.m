@@ -33,18 +33,18 @@
 - (void) processBeforeEncode
 {
     [super processBeforeEncode];
-    [asn1_tag setTagIsConstructed];
-    asn1_list = [[NSMutableArray alloc]init];
+    [_asn1_tag setTagIsConstructed];
+    _asn1_list = [[NSMutableArray alloc]init];
     NSUInteger n = [identifications count];
     if(n > 0)
     {
         for(NSUInteger i=0;i<n;i++)
         {
-            [asn1_list addObject:identifications[i]];
+            [_asn1_list addObject:identifications[i]];
         }
     }
-    asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-    asn1_tag.tagNumber = 30;
+    _asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+    _asn1_tag.tagNumber = 30;
 }
 
 - (UMTCAP_asn1_userInformation *) processAfterDecodeWithContext:(id)context

@@ -26,10 +26,10 @@
 {
     [super processBeforeEncode];
 
-    asn1_tag.tagClass =UMASN1Class_Private;
-    asn1_tag.tagNumber = 7;
-    [asn1_tag setTagIsPrimitive];
-    asn1_data = [tid unhexedData];
+    _asn1_tag.tagClass =UMASN1Class_Private;
+    _asn1_tag.tagNumber = 7;
+    [_asn1_tag setTagIsPrimitive];
+    _asn1_data = [tid unhexedData];
 }
 
 - (NSString *)objectName

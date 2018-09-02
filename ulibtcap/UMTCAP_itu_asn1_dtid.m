@@ -21,7 +21,7 @@
 
 - (UMTCAP_itu_asn1_dtid *)processAfterDecodeWithContext:(id)context
 {
-    transactionId = [asn1_data hexString];
+    transactionId = [_asn1_data hexString];
     
     UMTCAP_sccpNUnitdata *task = NULL;
     UMTCAP_sccpNNotice *notice = NULL;
@@ -37,7 +37,7 @@
     task.dtid = transactionId;
     notice.dtid = transactionId;
 
-    if((asn1_tag.tagNumber != 9) || (asn1_tag.tagClass != UMASN1Class_Application))
+    if((_asn1_tag.tagNumber != 9) || (_asn1_tag.tagClass != UMASN1Class_Application))
     {
         @throw([NSException exceptionWithName:@"expecting [APPLICATION 8] IMPLICIT OCTET STRING (SIZE (1..4) ) but got something else " reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
         
@@ -48,9 +48,9 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = 9;
-    asn1_tag.tagClass = UMASN1Class_Application;
-    asn1_data = [transactionId unhexedData];
+    _asn1_tag.tagNumber = 9;
+    _asn1_tag.tagClass = UMASN1Class_Application;
+    self.asn1_data = [transactionId unhexedData];
 }
 
 - (NSString *)objectName

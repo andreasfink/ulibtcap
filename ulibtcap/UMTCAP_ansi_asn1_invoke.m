@@ -22,23 +22,23 @@
     [super processBeforeEncode];
     if(isLast)
     {
-        asn1_tag.tagNumber = 9;
+        _asn1_tag.tagNumber = 9;
     }
     else
     {
-        asn1_tag.tagNumber = 13;
+        _asn1_tag.tagNumber = 13;
     }
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     
     if(ansi_componentIDs)
     {
         ansi_componentIDs.asn1_tag.tagNumber = 15;
-        [asn1_list addObject:ansi_componentIDs];
+        [_asn1_list addObject:ansi_componentIDs];
     }
     if(ansi_operationCode)
     {
         ansi_operationCode.asn1_tag.tagNumber = 17;
-        [asn1_list addObject:ansi_operationCode];
+        [_asn1_list addObject:ansi_operationCode];
     }
     else
     {
@@ -53,7 +53,7 @@
     }
     if(params)
     {
-        [asn1_list addObject:params];
+        [_asn1_list addObject:params];
     }
 }
 

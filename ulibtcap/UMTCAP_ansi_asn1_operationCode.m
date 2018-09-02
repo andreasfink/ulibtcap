@@ -35,17 +35,17 @@
 {
     if(isNational)
     {
-        asn1_tag.tagNumber=16;
+        _asn1_tag.tagNumber=16;
     }
     else
     {
-        asn1_tag.tagNumber=17;
+        _asn1_tag.tagNumber=17;
     }
-    asn1_tag.tagClass = UMASN1Class_Private;
+    _asn1_tag.tagClass = UMASN1Class_Private;
     unsigned char bytes[2];
     bytes[0] = family & 0xFF;
     bytes[1] = operationCode & 0xFF;
-    asn1_data = [NSData dataWithBytes:&bytes  length:2];
+    self.asn1_data = [NSData dataWithBytes:&bytes  length:2];
 }
 
 

@@ -47,23 +47,23 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-   	[asn1_tag setTagIsConstructed];
-    asn1_tag.tagNumber = 7;
-    asn1_tag.tagClass = UMASN1Class_Application;
+   	[_asn1_tag setTagIsConstructed];
+    _asn1_tag.tagNumber = 7;
+    _asn1_tag.tagClass = UMASN1Class_Application;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     if(dtid==NULL)
     {
         @throw([NSException exceptionWithName:@"destination tranation id is missing in tcap_abort" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    [asn1_list addObject:dtid];
+    [_asn1_list addObject:dtid];
     if(pAbortCause)
     {
-        [asn1_list addObject:pAbortCause];
+        [_asn1_list addObject:pAbortCause];
     }
     else if(uAbortCause)
     {
-        [asn1_list addObject:uAbortCause];
+        [_asn1_list addObject:uAbortCause];
     }
 }
 

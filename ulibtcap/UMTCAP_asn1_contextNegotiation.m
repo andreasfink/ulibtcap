@@ -24,8 +24,8 @@
 - (void) processBeforeEncode
 {
     [super processBeforeEncode];
-    [asn1_tag setTagIsConstructed];
-    asn1_list = [[NSMutableArray alloc]init];
+    [_asn1_tag setTagIsConstructed];
+    _asn1_list = [[NSMutableArray alloc]init];
 
     if((!_presentationContextId) || (!_transferSyntax ))
     {
@@ -33,8 +33,8 @@
         @throw([NSException exceptionWithName:@"MISSING_PARAM" reason:@"Pamater presentationContextId and transferSyntax os object type contextNegotioation must be set"
                                      userInfo:NULL]);
     }
-    [asn1_list addObject:_presentationContextId];
-    [asn1_list addObject:_transferSyntax];
+    [_asn1_list addObject:_presentationContextId];
+    [_asn1_list addObject:_transferSyntax];
 }
 
 - (UMTCAP_asn1_contextNegotiation *) processAfterDecodeWithContext:(id)context

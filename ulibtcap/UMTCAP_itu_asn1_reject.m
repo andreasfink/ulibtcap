@@ -61,28 +61,28 @@
 {
     [super processBeforeEncode];
     
-    asn1_tag.tagNumber = 4;
-    asn1_tag.tagClass  = UMASN1Class_Universal;
+    _asn1_tag.tagNumber = 4;
+    _asn1_tag.tagClass  = UMASN1Class_Universal;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     
     if(notDerivable)
     {
         UMASN1Object *o = [[UMASN1Object alloc]init];
-        asn1_tag.tagNumber = 0;
-        asn1_tag.tagClass= UMASN1Class_Application;
-        [asn1_tag setTagIsPrimitive];
-        [asn1_list addObject:o];
+        _asn1_tag.tagNumber = 0;
+        _asn1_tag.tagClass= UMASN1Class_Application;
+        [_asn1_tag setTagIsPrimitive];
+        [_asn1_list addObject:o];
     }
     else
     {
-        [asn1_list addObject:itu_invokeId];
+        [_asn1_list addObject:itu_invokeId];
     }
     if(problem==NULL)
     {
         @throw([NSException exceptionWithName:@"missing problem section in reject" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    [asn1_list addObject:problem];
+    [_asn1_list addObject:problem];
 }
 
 - (NSString *)objectName

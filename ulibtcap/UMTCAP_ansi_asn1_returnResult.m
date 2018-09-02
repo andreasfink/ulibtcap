@@ -20,23 +20,23 @@
     [super processBeforeEncode];
     if(isLast)
     {
-        asn1_tag.tagNumber = 10;
+        _asn1_tag.tagNumber = 10;
     }
     else
     {
-        asn1_tag.tagNumber = 14;
+        _asn1_tag.tagNumber = 14;
     }
 
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     
     if(ansi_componentIDs)
     {
         ansi_componentIDs.asn1_tag.tagNumber = 15;
-        [asn1_list addObject:ansi_componentIDs];
+        [_asn1_list addObject:ansi_componentIDs];
     }
     if(params)
     {
-        [asn1_list addObject:params];
+        [_asn1_list addObject:params];
     }
 }
 - (NSString *)objectName

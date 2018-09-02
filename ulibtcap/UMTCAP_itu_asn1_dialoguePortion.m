@@ -24,9 +24,9 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = 11;
-    asn1_tag.tagClass = UMASN1Class_Application;
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_tag.tagNumber = 11;
+    _asn1_tag.tagClass = UMASN1Class_Application;
+    _asn1_list = [[NSMutableArray alloc]init];
     
     external = [[UMTCAP_asn1_external alloc]init];
     external.asn1_tag.tagNumber = 8;
@@ -55,7 +55,7 @@
         dialogAbort.asn1_tag.tagClass = UMASN1Class_Application;
         external.externalObject = dialogAbort;
     }
-    [asn1_list addObject:external];
+    [_asn1_list addObject:external];
 }
 
 - (NSString *)objectName

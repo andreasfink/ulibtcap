@@ -46,21 +46,21 @@
 #pragma unused(notice)
 
 
-    if(asn1_tag.tagClass ==UMASN1Class_Private)
+    if(_asn1_tag.tagClass ==UMASN1Class_Private)
     {
         task.tcapVariant = TCAP_VARIANT_ANSI;
         task.ansi_permission = YES;
 
-        UMTCAP_Command tNumber = (int)asn1_tag.tagNumber + 1000; /* the internal definition is off by 1000 for ANSI tags to not have number conflicts */
+        UMTCAP_Command tNumber = (int)_asn1_tag.tagNumber + 1000; /* the internal definition is off by 1000 for ANSI tags to not have number conflicts */
         /* all the ANSI STUFF */
-        if((tNumber == TCAP_TAG_ANSI_UNIDIRECTIONAL) && (asn1_tag.isConstructed))
+        if((tNumber == TCAP_TAG_ANSI_UNIDIRECTIONAL) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             UMTCAP_ansi_asn1_unidirectional *r =  [[UMTCAP_ansi_asn1_unidirectional alloc]initWithASN1Object:self context:context];
             [task handleAnsiTransactionId:NULL];
             return r;
         }
-        else if(    (tNumber == TCAP_TAG_ANSI_QUERY_WITH_PERM) && (asn1_tag.isConstructed))
+        else if(    (tNumber == TCAP_TAG_ANSI_QUERY_WITH_PERM) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             task.ansi_permission = YES;
@@ -68,7 +68,7 @@
             [task handleAnsiTransactionId:r.identifier.tid];
             return r;
         }
-        else if(    (tNumber == TCAP_TAG_ANSI_QUERY_WITHOUT_PERM) && (asn1_tag.isConstructed))
+        else if(    (tNumber == TCAP_TAG_ANSI_QUERY_WITHOUT_PERM) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             task.ansi_permission = NO;
@@ -76,14 +76,14 @@
             [task handleAnsiTransactionId:r.identifier.tid];
             return r;
         }
-        else if(    (tNumber == TCAP_TAG_ANSI_RESPONSE) && (asn1_tag.isConstructed))
+        else if(    (tNumber == TCAP_TAG_ANSI_RESPONSE) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             UMTCAP_ansi_asn1_response *r = [[UMTCAP_ansi_asn1_response alloc]initWithASN1Object:self context:context];
             [task handleAnsiTransactionId:r.identifier.tid];
             return r;
         }
-        else if(    (tNumber == TCAP_TAG_ANSI_CONVERSATION_WITH_PERM) && (asn1_tag.isConstructed))
+        else if(    (tNumber == TCAP_TAG_ANSI_CONVERSATION_WITH_PERM) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             task.ansi_permission = YES;
@@ -92,7 +92,7 @@
             return r;
 
         }
-        else if(    (tNumber == TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM) && (asn1_tag.isConstructed))
+        else if(    (tNumber == TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             task.ansi_permission = NO;
@@ -101,7 +101,7 @@
             return r;
 
         }
-        else if(    (tNumber == TCAP_TAG_ANSI_ABORT) && (asn1_tag.isConstructed))
+        else if(    (tNumber == TCAP_TAG_ANSI_ABORT) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             UMTCAP_ansi_asn1_abort *r= [[UMTCAP_ansi_asn1_abort alloc]initWithASN1Object:self context:context];
@@ -110,19 +110,19 @@
 
         }
     }
-    else if(asn1_tag.tagClass == UMASN1Class_Application)
+    else if(_asn1_tag.tagClass == UMASN1Class_Application)
     {
         task.tcapVariant = TCAP_VARIANT_ITU;
 
-        UMTCAP_Command tNumber = (int)asn1_tag.tagNumber + 0; /* the internal definition maps ITU command to tag number */
+        UMTCAP_Command tNumber = (int)_asn1_tag.tagNumber + 0; /* the internal definition maps ITU command to tag number */
         /* all the ITU STUFF */
-        if((tNumber == TCAP_TAG_ITU_UNIDIRECTIONAL) && (asn1_tag.isConstructed))
+        if((tNumber == TCAP_TAG_ITU_UNIDIRECTIONAL) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             UMTCAP_itu_asn1_unidirectional *r = [[UMTCAP_itu_asn1_unidirectional alloc]initWithASN1Object:self context:context];
             return r;
         }
-        else if((tNumber == TCAP_TAG_ITU_BEGIN) && (asn1_tag.isConstructed))
+        else if((tNumber == TCAP_TAG_ITU_BEGIN) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
 
@@ -132,7 +132,7 @@
             [task handleItuDialogue:r.dialoguePortion];
             return r;
         }
-        else if((tNumber == TCAP_TAG_ITU_END) && (asn1_tag.isConstructed))
+        else if((tNumber == TCAP_TAG_ITU_END) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             UMTCAP_itu_asn1_end *r = [[UMTCAP_itu_asn1_end alloc]initWithASN1Object:self context:context];
@@ -140,7 +140,7 @@
             [task handleRemoteTransactionId:NULL];
             return r;
         }
-        else if((tNumber == TCAP_TAG_ITU_CONTINUE) && (asn1_tag.isConstructed))
+        else if((tNumber == TCAP_TAG_ITU_CONTINUE) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             UMTCAP_itu_asn1_continue *r = [[UMTCAP_itu_asn1_continue alloc]initWithASN1Object:self context:context];
@@ -149,7 +149,7 @@
             return r;
 
         }
-        else if((tNumber == TCAP_TAG_ITU_ABORT) && (asn1_tag.isConstructed))
+        else if((tNumber == TCAP_TAG_ITU_ABORT) && (_asn1_tag.isConstructed))
         {
             task.currentCommand = tNumber;
             UMTCAP_itu_asn1_abort *r = [[UMTCAP_itu_asn1_abort alloc]initWithASN1Object:self context:context];
@@ -163,7 +163,7 @@
 
 - (NSString *)objectName
 {
-    if(asn1_tag.tagClass ==UMASN1Class_Private)
+    if(_asn1_tag.tagClass ==UMASN1Class_Private)
     {
         return @"ansi_tcap";
     }

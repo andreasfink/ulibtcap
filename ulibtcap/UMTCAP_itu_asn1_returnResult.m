@@ -41,25 +41,25 @@
     
     if(isLast)
     {
-        asn1_tag.tagNumber = 2;
+        _asn1_tag.tagNumber = 2;
     }
     else
     {
-        asn1_tag.tagNumber = 7;
+        _asn1_tag.tagNumber = 7;
     }
-    asn1_tag.tagClass  = UMASN1Class_ContextSpecific;
+    _asn1_tag.tagClass  = UMASN1Class_ContextSpecific;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     
     //itu_invokeId.asn1_tag.tagNumber = UMASN1Primitive_integer;
-    [asn1_list addObject:itu_invokeId];
+    [_asn1_list addObject:itu_invokeId];
 
     if(params)
     {
         UMASN1Sequence *seq = [[UMASN1Sequence alloc]init];
         [seq appendValue:itu_operationCode];
         [seq appendValue:params];
-        [asn1_list addObject:seq];
+        [_asn1_list addObject:seq];
     }
 }
 

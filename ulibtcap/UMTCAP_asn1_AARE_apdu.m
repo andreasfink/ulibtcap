@@ -24,15 +24,15 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = 1;
-    asn1_tag.tagClass = UMASN1Class_Application;
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_tag.tagNumber = 1;
+    _asn1_tag.tagClass = UMASN1Class_Application;
+    _asn1_list = [[NSMutableArray alloc]init];
     
     if(protocolVersion)
     {
         protocolVersion.asn1_tag.tagNumber = 0;
         protocolVersion.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-        [asn1_list addObject:protocolVersion];
+        [_asn1_list addObject:protocolVersion];
     }
     UMASN1ObjectConstructed *application_context_name = [[UMASN1ObjectConstructed alloc]init];
     application_context_name.asn1_tag.tagNumber = 1;
@@ -44,7 +44,7 @@
     }
     if(application_context_name)
     {
-        [asn1_list addObject:application_context_name];
+        [_asn1_list addObject:application_context_name];
     }
 
     if(result)
@@ -53,7 +53,7 @@
         [r.asn1_list addObject:result];
         r.asn1_tag.tagNumber = 2;
         r.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-        [asn1_list addObject:r];
+        [_asn1_list addObject:r];
     }
     if(result_source_diagnostic)
     {
@@ -61,7 +61,7 @@
         [r.asn1_list addObject:result_source_diagnostic];
         r.asn1_tag.tagNumber = 3;
         r.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-        [asn1_list addObject:r];
+        [_asn1_list addObject:r];
     }
     if(user_information)
     {
@@ -69,7 +69,7 @@
         [r.asn1_list addObject:user_information];
         r.asn1_tag.tagNumber = 30;
         r.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-        [asn1_list addObject:r];
+        [_asn1_list addObject:r];
     }
 }
 

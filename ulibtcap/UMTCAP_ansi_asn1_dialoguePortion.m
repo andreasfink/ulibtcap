@@ -66,35 +66,35 @@
 {
     [super processBeforeEncode];
 
-    asn1_tag.tagClass =UMASN1Class_Private;
-    asn1_tag.tagNumber = 25;
-    [asn1_tag setTagIsConstructed];
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_tag.tagClass =UMASN1Class_Private;
+    _asn1_tag.tagNumber = 25;
+    [_asn1_tag setTagIsConstructed];
+    _asn1_list = [[NSMutableArray alloc]init];
     if(version)
     {
-        [asn1_list addObject:version];
+        [_asn1_list addObject:version];
     }
     if((integerApplicationId!=NULL) && (objectApplicationId==NULL))
     {
-        [asn1_list addObject:integerApplicationId];
+        [_asn1_list addObject:integerApplicationId];
     }
     else if((!integerApplicationId) && (objectApplicationId))
     {
-        [asn1_list addObject:objectApplicationId];
+        [_asn1_list addObject:objectApplicationId];
     }
     if((integerSecurityId!=NULL) && (objectSecurityId==NULL))
     {
         objectSecurityId.asn1_tag.tagNumber = 0;
-        [asn1_list addObject:integerSecurityId];
+        [_asn1_list addObject:integerSecurityId];
     }
     else if((integerSecurityId==NULL) && (objectSecurityId!=NULL))
     {
         objectSecurityId.asn1_tag.tagNumber = 1;
-        [asn1_list addObject:objectSecurityId];
+        [_asn1_list addObject:objectSecurityId];
     }
     if(confidentiality)
     {
-        [asn1_list addObject:confidentiality];
+        [_asn1_list addObject:confidentiality];
     }
 }
 

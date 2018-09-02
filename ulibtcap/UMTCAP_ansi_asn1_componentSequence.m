@@ -17,13 +17,13 @@
 
 - (void)addComponent:(UMTCAP_ansi_asn1_componentPDU *)component
 {
-    [asn1_list addObject:component];
+    [_asn1_list addObject:component];
 }
 
 - (void)processBeforeEncode
 {
-    asn1_tag.tagNumber = 8;
-    asn1_tag.tagClass = UMASN1Class_Private;
+    _asn1_tag.tagNumber = 8;
+    _asn1_tag.tagClass = UMASN1Class_Private;
 }
 
 

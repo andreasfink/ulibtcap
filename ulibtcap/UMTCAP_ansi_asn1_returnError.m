@@ -61,14 +61,14 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = 11;
+    _asn1_tag.tagNumber = 11;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     
     if(ansi_componentIDs)
     {
         ansi_componentIDs.asn1_tag.tagNumber = 15;
-        [asn1_list addObject:ansi_componentIDs];
+        [_asn1_list addObject:ansi_componentIDs];
     }
     else
     {
@@ -82,7 +82,7 @@
     }
     if(errorCode)
     {
-        [asn1_list addObject:errorCode];
+        [_asn1_list addObject:errorCode];
     }
     else
     {
@@ -96,7 +96,7 @@
     }
     if(params)
     {
-        [asn1_list addObject:params];
+        [_asn1_list addObject:params];
     }
 }
 

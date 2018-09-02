@@ -34,17 +34,17 @@
 {
     [super processBeforeEncode];
 
-    [asn1_tag setTagIsConstructed];
-    asn1_list = [[NSMutableArray alloc]init];
+    [_asn1_tag setTagIsConstructed];
+    _asn1_list = [[NSMutableArray alloc]init];
     if(ci)
     {
         ci.asn1_tag.tagNumber = 0;
-        [asn1_list addObject:ci];
+        [_asn1_list addObject:ci];
     }
     else if(co)
     {
         co.asn1_tag.tagNumber = 1;
-        [asn1_list addObject:co];
+        [_asn1_list addObject:co];
     }
 }
 

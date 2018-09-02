@@ -21,8 +21,8 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagClass = UMASN1Class_Private;
-    asn1_tag.tagNumber = 5;
+    _asn1_tag.tagClass = UMASN1Class_Private;
+    _asn1_tag.tagNumber = 5;
 }
 
 - (NSString *)objectName

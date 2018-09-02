@@ -31,19 +31,19 @@
 - (void) processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.isConstructed=YES;
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_tag.isConstructed=YES;
+    _asn1_list = [[NSMutableArray alloc]init];
     if(dialogue_service_user)
     {
         self.asn1_tag.tagNumber = 1;
         self.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-        [asn1_list addObject:dialogue_service_user];
+        [_asn1_list addObject:dialogue_service_user];
     }
     else if(dialogue_service_provider)
     {
         self.asn1_tag.tagNumber = 2;
         self.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
-        [asn1_list addObject:dialogue_service_provider];
+        [_asn1_list addObject:dialogue_service_provider];
     }
     else
     {

@@ -25,8 +25,8 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = 10;
-    asn1_tag.tagClass = UMASN1Class_Application;
+    _asn1_tag.tagNumber = 10;
+    _asn1_tag.tagClass = UMASN1Class_Application;
 }
 
 

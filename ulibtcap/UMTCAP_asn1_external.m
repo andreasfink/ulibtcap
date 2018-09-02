@@ -20,9 +20,9 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = UMASN1Primitive_external;
-    asn1_tag.tagClass = UMASN1Class_Universal;
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_tag.tagNumber = UMASN1Primitive_external;
+    _asn1_tag.tagClass = UMASN1Class_Universal;
+    _asn1_list = [[NSMutableArray alloc]init];
     
 
     if(externalObject)
@@ -36,11 +36,11 @@
     {
         objectIdentifier.asn1_tag.tagNumber = UMASN1Primitive_object_identifier;
         objectIdentifier.asn1_tag.tagClass = UMASN1Class_Universal;
-        [asn1_list addObject:objectIdentifier];
+        [_asn1_list addObject:objectIdentifier];
     }
     if(asn1Type)
     {
-       [asn1_list addObject:asn1Type];
+       [_asn1_list addObject:asn1Type];
     }
 }
 

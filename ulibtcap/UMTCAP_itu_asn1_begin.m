@@ -63,23 +63,23 @@
     
     [super processBeforeEncode];
     
-   	[asn1_tag setTagIsConstructed];
-    asn1_tag.tagNumber = TCAP_TAG_ITU_BEGIN;
-    asn1_tag.tagClass = UMASN1Class_Application;
+   	[_asn1_tag setTagIsConstructed];
+    _asn1_tag.tagNumber = TCAP_TAG_ITU_BEGIN;
+    _asn1_tag.tagClass = UMASN1Class_Application;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     if(otid==NULL)
     {
         @throw([NSException exceptionWithName:@"originating transaction id is missing in tcap_begin" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    [asn1_list addObject:otid];
+    [_asn1_list addObject:otid];
     if(dialoguePortion)
     {
-        [asn1_list addObject:dialoguePortion];
+        [_asn1_list addObject:dialoguePortion];
     }
     if(componentPortion)
     {
-        [asn1_list addObject:componentPortion];
+        [_asn1_list addObject:componentPortion];
     }
 }
 

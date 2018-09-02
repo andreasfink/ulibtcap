@@ -57,14 +57,14 @@
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = 12;
+    _asn1_tag.tagNumber = 12;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
     
     if(ansi_componentIDs)
     {
         ansi_componentIDs.asn1_tag.tagNumber = 15;
-        [asn1_list addObject:ansi_componentIDs];
+        [_asn1_list addObject:ansi_componentIDs];
     }
     else
     {
@@ -80,7 +80,7 @@
     if(rejectProblem)
     {
         rejectProblem.asn1_tag.tagNumber = 21;
-        [asn1_list addObject:rejectProblem];
+        [_asn1_list addObject:rejectProblem];
     }
     else
     {
@@ -96,12 +96,12 @@
     if(paramSequence)
     {
         paramSequence.asn1_tag.tagNumber = 16;
-        [asn1_list addObject:paramSequence];
+        [_asn1_list addObject:paramSequence];
     }
     else if(paramSet)
     {
         paramSet.asn1_tag.tagNumber = 16;
-        [asn1_list addObject:paramSet];
+        [_asn1_list addObject:paramSet];
     }
     else
     {

@@ -16,23 +16,23 @@
 - (void) processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.isConstructed=YES;
-    asn1_tag.tagNumber = 4;
-    asn1_tag.tagClass = UMASN1Class_Application;
+    _asn1_tag.isConstructed=YES;
+    _asn1_tag.tagNumber = 4;
+    _asn1_tag.tagClass = UMASN1Class_Application;
     
-    asn1_list = [[NSMutableArray alloc]init];
+    _asn1_list = [[NSMutableArray alloc]init];
 
     if(_abortSource)
     {
         _abortSource.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
         _abortSource.asn1_tag.tagNumber = 0;
-        [asn1_list addObject:_abortSource];
+        [_asn1_list addObject:_abortSource];
     }
     if(_userInformation)
     {
         _userInformation.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
         _userInformation.asn1_tag.tagNumber = 0;
-        [asn1_list addObject:_userInformation];
+        [_asn1_list addObject:_userInformation];
     }
 }
 

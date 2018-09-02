@@ -41,7 +41,7 @@
 {
     UMTCAP_ansi_asn1_componentPDU *r =NULL;
     variant = TCAP_VARIANT_ANSI;
-    switch(asn1_tag.tagNumber)
+    switch(_asn1_tag.tagNumber)
     {
         case TCAP_ANSI_COMPONENT_INVOKE_LAST:  /* invokeLast */
         {
@@ -169,7 +169,7 @@
 - (void) processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagClass = UMASN1Class_Private;
+    _asn1_tag.tagClass = UMASN1Class_Private;
 }
 
 - (int64_t)operationCode

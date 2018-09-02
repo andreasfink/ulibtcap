@@ -69,16 +69,16 @@
 {
     [super processBeforeEncode];
 
-   	[asn1_tag setTagIsConstructed];
-    asn1_list = [[NSMutableArray alloc]init];
-    [asn1_list addObject:identifier];
+   	[_asn1_tag setTagIsConstructed];
+    _asn1_list = [[NSMutableArray alloc]init];
+    [_asn1_list addObject:identifier];
     if(dialogPortion)
     {
-        [asn1_list addObject:dialogPortion];
+        [_asn1_list addObject:dialogPortion];
     }
     if(componentPortion)
     {
-        [asn1_list addObject:componentPortion];
+        [_asn1_list addObject:componentPortion];
     }
 }
 

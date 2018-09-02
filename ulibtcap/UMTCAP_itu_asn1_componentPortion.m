@@ -19,25 +19,25 @@
 - (UMTCAP_itu_asn1_componentPortion *)processAfterDecodeWithContext:(id)context
 {
     NSMutableArray *list = [[NSMutableArray alloc]init];
-    for(UMASN1Object *o in asn1_list)
+    for(UMASN1Object *o in _asn1_list)
     {
         UMTCAP_itu_asn1_componentPDU *c = [[UMTCAP_itu_asn1_componentPDU alloc]initWithASN1Object:o context:context];
         [list addObject:c];
     }
-    asn1_list = list;
+    _asn1_list = list;
     return self;
 }
 
 - (void)addComponent:(UMTCAP_itu_asn1_componentPDU *)component
 {
-    [asn1_list addObject:component];
+    [_asn1_list addObject:component];
 }
 
 - (void)processBeforeEncode
 {
     [super processBeforeEncode];
-    asn1_tag.tagNumber = 12;
-    asn1_tag.tagClass = UMASN1Class_Application;
+    _asn1_tag.tagNumber = 12;
+    _asn1_tag.tagClass = UMASN1Class_Application;
 }
 
 - (NSString *)objectName
