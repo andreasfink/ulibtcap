@@ -637,6 +637,7 @@ infodir
 docdir
 oldincludedir
 includedir
+runstatedir
 localstatedir
 sharedstatedir
 sysconfdir
@@ -710,6 +711,7 @@ datadir='${datarootdir}'
 sysconfdir='${prefix}/etc'
 sharedstatedir='${prefix}/com'
 localstatedir='${prefix}/var'
+runstatedir='${localstatedir}/run'
 includedir='${prefix}/include'
 oldincludedir='/usr/include'
 docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
@@ -962,6 +964,15 @@ do
   | -silent | --silent | --silen | --sile | --sil)
     silent=yes ;;
 
+  -runstatedir | --runstatedir | --runstatedi | --runstated \
+  | --runstate | --runstat | --runsta | --runst | --runs \
+  | --run | --ru | --r)
+    ac_prev=runstatedir ;;
+  -runstatedir=* | --runstatedir=* | --runstatedi=* | --runstated=* \
+  | --runstate=* | --runstat=* | --runsta=* | --runst=* | --runs=* \
+  | --run=* | --ru=* | --r=*)
+    runstatedir=$ac_optarg ;;
+
   -sbindir | --sbindir | --sbindi | --sbind | --sbin | --sbi | --sb)
     ac_prev=sbindir ;;
   -sbindir=* | --sbindir=* | --sbindi=* | --sbind=* | --sbin=* \
@@ -1099,7 +1110,7 @@ fi
 for ac_var in	exec_prefix prefix bindir sbindir libexecdir datarootdir \
 		datadir sysconfdir sharedstatedir localstatedir includedir \
 		oldincludedir docdir infodir htmldir dvidir pdfdir psdir \
-		libdir localedir mandir
+		libdir localedir mandir runstatedir
 do
   eval ac_val=\$$ac_var
   # Remove trailing slashes.
@@ -1252,6 +1263,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -2000,9 +2012,9 @@ case "$host" in
 	DEBIAN_VERSION=`cat /etc/debian_version | cut -f1 -d.`
 	if [ "$DEBIAN_VERSION" == "8" ]
 	then
-        CFLAGS="$CFLAGS -D_BSD_SOURCE"
-    else
-        CFLAGS="$CFLAGS -D_DEFAULT_SOURCE"
+            CFLAGS="$CFLAGS -D_BSD_SOURCE"
+        else
+             CFLAGS="$CFLAGS -D_DEFAULT_SOURCE"
 	fi
 	CFLAGS="${CFLAGS} -Wno-trigraphs  -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties"
 	CFLAGS="${CFLAGS} -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label"
@@ -2013,12 +2025,12 @@ case "$host" in
 	CFLAGS="${CFLAGS} -fobjc-arc"
 	if [ -x /usr/local/bin/gnustep-config ]
 	then
-		CFLAGS="$CFLAGS `/usr/local/bin/gnustep-config --objc-flags | sed 's/-fobjc-exceptions/ /g'`"
+	    CFLAGS="$CFLAGS `/usr/local/bin/gnustep-config --objc-flags | sed 's/-fobjc-exceptions/ /g'`"
 	    LDFLAGS="$LDFLAGS `/usr/local/bin/gnustep-config --base-libs --objc-libs`"
-    else
-		CFLAGS="$CFLAGS `/usr/bin/gnustep-config --objc-flags | sed 's/-fobjc-exceptions/ /g'`"
-	    LDFLAGS="$LDFLAGS `/usr/bin/gnustep-config--base-libs --objc-libs`"
-    fi
+        else
+	    CFLAGS="$CFLAGS `/usr/bin/gnustep-config --objc-flags | sed 's/-fobjc-exceptions/ /g'`"
+	    LDFLAGS="$LDFLAGS `/usr/bin/gnustep-config --base-libs --objc-libs`"
+        fi
 	CFLAGS="$CFLAGS `pkg-config  --cflags $DEPENDENT_PKGCONFIGS`"
 	LDFLAGS="$LDFLAGS `pkg-config --libs $DEPENDENT_PKGCONFIGS`"
     SHARED_LIBRARY_EXTENSION=so
@@ -3103,7 +3115,7 @@ if test "${enable_debug+set}" = set; then :
 else
 
 	echo Using Release target
-	CFLAGS="$CFLAGS -Os -D${CONFIG_DEFINE}=Release"
+	CFLAGS="$CFLAGS -O2 -D${CONFIG_DEFINE}=Release"
 	CONFIGURATION="-configuration Release"
 
 fi
