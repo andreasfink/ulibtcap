@@ -106,6 +106,8 @@
                              calling:callingAddress
                               called:calledAddress
                     qualityOfService:0
+                               class:SCCP_CLASS_BASIC
+                            handling:UMSCCP_HANDLING_RETURN_ON_ERROR
                              options:options];
     t.transactionIsClosed = YES;
 }

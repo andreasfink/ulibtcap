@@ -182,10 +182,12 @@
                 dst.tt.tt = inboundFilter.bypass_translation_type;
                 [tcapLayer.attachedLayer sccpNUnidata:data
                                          callingLayer:tcapLayer
-                                         calling:src
-                                          called:dst
-                                qualityOfService:qos
-                                         options:options];
+                                              calling:src
+                                               called:dst
+                                     qualityOfService:qos
+                                                class:SCCP_CLASS_BASIC
+                                             handling:UMSCCP_HANDLING_RETURN_ON_ERROR
+                                              options:options];
                 currentTransaction.transactionIsClosed = YES;
                 return NO;
             }
