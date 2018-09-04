@@ -63,11 +63,13 @@
             [_tcap.logFeed debugText:s];
         }
         [_tcap.attachedLayer sccpNUnidata:pdu
-                            callingLayer:_tcap
-                                 calling:_callingAddress
-                                  called:_calledAddress
-                        qualityOfService:0
-                                 options:_options];
+                             callingLayer:_tcap
+                                  calling:_callingAddress
+                                   called:_calledAddress
+                         qualityOfService:0
+                                    class:SCCP_CLASS_BASIC
+                                 handling:UMSCCP_HANDLING_RETURN_ON_ERROR
+                                  options:_options];
     }
     if(_tcap.logLevel <= UMLOG_DEBUG)
     {
