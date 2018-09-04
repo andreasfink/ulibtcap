@@ -80,8 +80,9 @@
               calling:(SccpAddress *)src
                called:(SccpAddress *)dst
      qualityOfService:(int)qos
+                class:(SCCP_ServiceClass)pclass
+             handling:(int)handling
               options:(NSDictionary *)options;
-
 
 /* this is called from uppper layer */
 
