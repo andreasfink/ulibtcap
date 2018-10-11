@@ -13,7 +13,7 @@
 
 - (UMTCAP_asn1_AbortSource *)initWithString:(NSString *)s
 {
-    s = [s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    s = [s stringByTrimmingCharactersInSet:[UMObject whitespaceAndNewlineCharacterSet]];
     if([s isEqualToString:@"dialogue-service-user"])
     {
         return [super initWithValue:0];
