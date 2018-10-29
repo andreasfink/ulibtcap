@@ -48,7 +48,7 @@ install: ${LIB} ${SLIB}
 	ldconfig
 
 clean:
-rm -f $(LIB) $(OFILES) ${SLIB}
+	rm -f $(LIB) $(OFILES) ${SLIB}
 
 
 .SUFFIXES: .m.o .o .m .c
