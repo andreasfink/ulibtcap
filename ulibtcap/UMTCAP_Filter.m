@@ -90,7 +90,7 @@
                       calledAddress:(SccpAddress *)dst
 {
     NSMutableString *s;
-    if(logFeed)
+    if(self.logFeed)
     {
         if(_logLevel <=UMLOG_DEBUG)
         {
@@ -210,7 +210,7 @@
     }
     if(s)
     {
-        [logFeed debugText:s];
+        [self.logFeed debugText:s];
     }
     return r;
 }
