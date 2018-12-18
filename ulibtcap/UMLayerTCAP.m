@@ -146,7 +146,7 @@
     }
     task.sccpVariant = sccpLayer.sccpVariant;
 
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"sccpNUnidata:\n"
                                  @"SccpCallingAddress:%@\n"
@@ -193,7 +193,7 @@
     }
     task.sccpVariant = sccpLayer.sccpVariant;
     
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"sccpNNotice:\n"
                                  @"SccpCallingAddress:%@\n"
@@ -235,7 +235,7 @@
     {
         tcapVariant = variant;
     }
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUnidirectionalRequest:\n"
                                  @"userDialogId:%@\n"
@@ -276,7 +276,7 @@
 
     UMTCAP_begin *begin;
     
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapBeginReq:\n"
                                  @"userDialogId:%@\n"
@@ -351,7 +351,7 @@
     [transaction touch];
     UMTCAP_continue *continueRequest = NULL;
     
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapContinueReq:\n"
                                  @"userDialogId:%@\n"
@@ -428,7 +428,7 @@
     [transaction touch];
     UMTCAP_end *endRequest;
     
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapEndReq:\n"
                                  @"userDialogId:%@\n"
@@ -495,7 +495,7 @@
     {
         variant = tcapVariant;
     }
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUAbortReq:\n"
                                  @"transactionId:%@\n"
@@ -573,7 +573,7 @@
     {
         variant = tcapVariant;
     }
-    if(logLevel <= UMLOG_DEBUG)
+    if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapPAbortReq:\n"
                                  @"transactionId:%@\n"
