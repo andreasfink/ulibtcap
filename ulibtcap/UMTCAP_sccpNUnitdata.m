@@ -379,8 +379,10 @@
         }
             break;
         case TCAP_TAG_ANSI_CONVERSATION_WITH_PERM:
+        {
             perm = NO;
 #pragma unused(perm) /* silence warning for now */
+        }
         case TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM:
         {
             tcapVariant = TCAP_VARIANT_ANSI;
