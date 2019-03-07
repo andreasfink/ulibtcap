@@ -1014,7 +1014,8 @@
                                                 object:NULL
                                                seconds:2.6
                                                   name:@"tcap-housekeeping"
-                                               repeats:YES];
+                                               repeats:YES
+                                       runInForeground:YES];
     [houseKeepingTimer start];
 }
 
@@ -1196,9 +1197,9 @@
 - (void)housekeepingTask
 {
     UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
-    //[self queueFromLower:task];
-    ulib_set_thread_name(@"tcap-housekeeping");
-    [task main];
+    [self queueFromAdmin:task];
+//    ulib_set_thread_name(@"tcap-housekeeping");
+//    [task main];
 }
 
 -(NSUInteger)pendingTransactionCount

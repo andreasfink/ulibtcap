@@ -43,11 +43,12 @@
         if(count>0) /* if we are not a dumb sequential transaction ID pool */
         {
             _quarantineRotateTimer = [[UMTimer alloc]initWithTarget:self
-                                                       selector:@selector(quarantineRotate)
-                                                         object:NULL
-                                                        seconds:60 /* every 60 sec */
-                                                           name:@"quarantine-rotate"
-                                                        repeats:YES];
+                                                           selector:@selector(quarantineRotate)
+                                                             object:NULL
+                                                            seconds:60 /* every 60 sec */
+                                                               name:@"quarantine-rotate"
+                                                            repeats:YES
+                                                    runInForeground:YES];
             [_quarantineRotateTimer start];
         }
     }
