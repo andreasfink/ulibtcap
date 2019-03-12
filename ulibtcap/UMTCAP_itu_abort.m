@@ -68,7 +68,7 @@
                                    called:_calledAddress
                          qualityOfService:0
                                     class:SCCP_CLASS_BASIC
-                                 handling:UMSCCP_HANDLING_RETURN_ON_ERROR
+                                 handling:SCCP_HANDLING_RETURN_ON_ERROR
                                   options:_options];
     }
     if(_tcap.logLevel <= UMLOG_DEBUG)

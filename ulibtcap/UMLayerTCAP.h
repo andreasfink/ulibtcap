@@ -81,7 +81,7 @@
                called:(SccpAddress *)dst
      qualityOfService:(int)qos
                 class:(SCCP_ServiceClass)pclass
-             handling:(int)handling
+             handling:(SCCP_Handling)handling
               options:(NSDictionary *)options;
 
 /* this is called from uppper layer */

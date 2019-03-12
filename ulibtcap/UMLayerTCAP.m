@@ -122,7 +122,7 @@
                called:(SccpAddress *)dst
      qualityOfService:(int)qos
                 class:(SCCP_ServiceClass)pclass
-             handling:(int)handling
+             handling:(SCCP_Handling)handling
               options:(NSDictionary *)options
 {
     NSData *rawMtp3 = options[@"mtp3-pdu"];
@@ -1264,7 +1264,7 @@
                                    called:dst
                          qualityOfService:0
                                    class:SCCP_CLASS_BASIC
-                                handling:UMSCCP_HANDLING_RETURN_ON_ERROR
+                                handling:CCP_HANDLING_RETURN_ON_ERROR
                                   options:options];
     }
 }
