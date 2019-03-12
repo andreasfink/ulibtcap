@@ -1264,7 +1264,7 @@
                                    called:dst
                          qualityOfService:0
                                    class:SCCP_CLASS_BASIC
-                                handling:CCP_HANDLING_RETURN_ON_ERROR
+                                handling:SCCP_HANDLING_RETURN_ON_ERROR
                                   options:options];
     }
 }
