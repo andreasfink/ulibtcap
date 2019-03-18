@@ -35,49 +35,48 @@
 
 @interface UMTCAP_sccpNUnitdata : UMLayerTask
 {
-    UMLayerTCAP *tcapLayer;     /* the layer who originally received the message */
-    UMLayerTCAP *handlingLayer; /* the layer who finally handles it */
-    UMLayerSCCP *sccpLayer;
-    NSData      *data;
+    UMLayerTCAP *_tcapLayer;     /* the layer who originally received the message */
+    UMLayerTCAP *_handlingLayer; /* the layer who finally handles it */
+    UMLayerSCCP *_sccpLayer;
+    NSData      *_data;
     NSData      *_mtp3_pdu;
-    SccpAddress *src;
-    SccpAddress *dst;
-    NSMutableDictionary *options;
-    BOOL newTransaction;
-    int qos;
-    BOOL permission;
-    SccpVariant sccpVariant;
-    UMTCAP_Variant tcapVariant;
-    NSString *decodeError;
+    SccpAddress *_src;
+    SccpAddress *_dst;
+    NSMutableDictionary *_options;
+    BOOL _newTransaction;
+    int _qos;
+    BOOL _permission;
+    SccpVariant _sccpVariant;
+    UMTCAP_Variant _tcapVariant;
+    NSString *_decodeError;
 //    UMTCAP_ansi_asn1_invoke         *ansiInvoke;
 //    UMTCAP_ansi_asn1_transactionPDU *ansiTransaction;
 //    UMTCAP_ansi_asn1_transactionID  *ansiIdentifier;
     
     
     /* temporary variables used while parsing */
-    UMTCAP_Transaction      *currentTransaction;
+    UMTCAP_Transaction      *_currentTransaction;
     
   //  id<UMTCAP_UserProtocol> tcapUser;
-    UMTCAP_Command          currentCommand;         /* begin, continue,end abort, query with perm etc */
-    UMTCAP_InternalOperation        currentOperationType;  /* request/response/error/reject/unidirectional */
-    NSMutableArray          *currentComponents;
-    int64_t                 currentOperationCode;
-    NSMutableDictionary     *currentOptions;
-    UMTCAP_asn1             *asn1;
-    BOOL                    unidirectional;
-    BOOL                    ansi_permission;
+    UMTCAP_Command          _currentCommand;         /* begin, continue,end abort, query with perm etc */
+    UMTCAP_InternalOperation        _currentOperationType;  /* request/response/error/reject/unidirectional */
+    NSMutableArray          *_currentComponents;
+    int64_t                 _currentOperationCode;
+    NSMutableDictionary     *_currentOptions;
+    UMTCAP_asn1             *_asn1;
+    BOOL                    _unidirectional;
+    BOOL                    _ansi_permission;
     
-    NSString                *otid;
-    NSString                *dtid;
-    UMTCAP_asn1_objectIdentifier *applicationContext;
-    UMTCAP_asn1_userInformation *userInfo;
-    UMASN1BitString *dialogProtocolVersion;
+    NSString                *_otid;
+    NSString                *_dtid;
+    UMTCAP_asn1_objectIdentifier *_applicationContext;
+    UMTCAP_asn1_userInformation *_userInfo;
+    UMASN1BitString *_dialogProtocolVersion;
     UMTCAP_asn1_dialoguePortion *_dialoguePortion;
-    NSString                *ansiTransactionId;
+    NSString                *_ansiTransactionId;
 
-    NSString                *currentLocalTransactionId;
-    NSString                *currentRemoteTransactionId;
-
+    NSString                *_currentLocalTransactionId;
+    NSString                *_currentRemoteTransactionId;
 
     id<UMTCAP_UserProtocol> tcapUser;
 }
