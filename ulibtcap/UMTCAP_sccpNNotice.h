@@ -35,37 +35,37 @@
 
 @interface UMTCAP_sccpNNotice : UMLayerTask
 {
-    UMLayerTCAP *tcapLayer;
-    UMLayerSCCP *sccpLayer;
-    NSData      *data;
+    UMLayerTCAP *t_capLayer;
+    UMLayerSCCP *_sccpLayer;
+    NSData      *_data;
     NSData      *_mtp3_pdu;
     
-    SccpAddress *src;
-    SccpAddress *dst;
-    NSDictionary *options;
-    BOOL newTransaction;
-    int reason;
-    BOOL permission;
-    SccpVariant sccpVariant;
-    UMTCAP_Variant tcapVariant;
+    SccpAddress *_src;
+    SccpAddress *_dst;
+    NSDictionary *_options;
+    BOOL _newTransaction;
+    int _reason;
+    BOOL _permission;
+    SccpVariant _sccpVariant;
+    UMTCAP_Variant _tcapVariant;
 
     /* temporary variables used while parsing */
-    UMTCAP_Transaction      *currentTransaction;
-    UMTCAP_Command          currentCommand;
-    UMTCAP_InternalOperation        currentOperationType;
-    NSMutableArray          *currentComponents;
-    int64_t                 currentOperationCode;
-    NSMutableDictionary     *currentOptions;
-    UMTCAP_asn1             *asn1;
-    BOOL                    unidirectional;
-    BOOL                    ansi_permission;
-    NSString                *otid;
-    NSString                *dtid;
-    UMTCAP_asn1_objectIdentifier *applicationContext;
-    NSString                *ansiTransactionId;
-    NSString                *currentLocalTransactionId;
-    NSString                *currentRemoteTransactionId;
-    NSString *decodeError;
+    UMTCAP_Transaction      *_currentTransaction;
+    UMTCAP_Command          _currentCommand;
+    UMTCAP_InternalOperation        _currentOperationType;
+    NSMutableArray          *_currentComponents;
+    int64_t                 _currentOperationCode;
+    NSMutableDictionary     *_currentOptions;
+    UMTCAP_asn1             *_asn1;
+    BOOL                    _unidirectional;
+    BOOL                    _ansi_permission;
+    NSString                *_otid;
+    NSString                *_dtid;
+    UMTCAP_asn1_objectIdentifier *a_pplicationContext;
+    NSString                *a_nsiTransactionId;
+    NSString                *_currentLocalTransactionId;
+    NSString                *_currentRemoteTransactionId;
+    NSString *_decodeError;
 
     UMTCAP_asn1_dialoguePortion *_dialoguePortion;
 
