@@ -33,38 +33,6 @@
 #import "UMLayerTCAP.h"
 
 @implementation UMTCAP_sccpNNotice
-@synthesize tcapLayer;
-@synthesize sccpLayer;
-@synthesize data;
-@synthesize src;
-@synthesize dst;
-@synthesize options;
-@synthesize newTransaction;
-@synthesize reason;
-@synthesize permission;
-@synthesize sccpVariant;
-@synthesize tcapVariant;
-@synthesize asn1;
-@synthesize currentCommand;
-@synthesize ansi_permission;
-@synthesize ansiTransactionId;
-@synthesize otid;
-@synthesize dtid;
-@synthesize applicationContext;
-
-
-
-/* temporary variables used while parsing */
-@synthesize currentTransaction;
-@synthesize currentOperationType;
-@synthesize currentComponents;
-@synthesize currentOperationCode;
-@synthesize currentOptions;
-@synthesize unidirectional;
-@synthesize currentLocalTransactionId;
-@synthesize currentRemoteTransactionId;
-
-
 
 - (UMTCAP_sccpNNotice *)initForTcap:(UMLayerTCAP *)tcap
                                sccp:(UMLayerSCCP *)sccp
@@ -80,13 +48,13 @@
        requiresSynchronisation:NO];
     if(self)
     {
-        sccpLayer = sccp;
-        tcapLayer = tcap;
-        data = xdata;
-        src = xsrc;
-        dst = xdst;
-        options = xoptions;
-        reason = xreason;
+        _sccpLayer = sccp;
+        _tcapLayer = tcap;
+        _data = xdata;
+        _src = xsrc;
+        _dst = xdst;
+        _options = xoptions;
+        _reason = xreason;
     }
     return self;
 }
@@ -94,23 +62,23 @@
 - (void)main
 {
     NSUInteger pos = 0;
-    BOOL decodeOnly = [options[@"decode-only"] boolValue];
-    _mtp3_pdu =options[@"mtp3-pdu"];
+    BOOL decodeOnly = [_options[@"decode-only"] boolValue];
+    _mtp3_pdu =_options[@"mtp3-pdu"];
 
-    if(options)
+    if(_options)
     {
-        NSMutableDictionary *o = [options mutableCopy];
-        o[@"tcap-pdu"] = [data hexString];
-        options = o;
+        NSMutableDictionary *o = [_options mutableCopy];
+        o[@"tcap-pdu"] = [_data hexString];
+        _options = o;
     }
     else
     {
-        options = @{@"tcap-pdu":[data hexString]};
+        _options = @{@"tcap-pdu":[_data hexString]};
     }
     @try
     {
         [self startDecodingOfPdu];
-        asn1 = [[UMTCAP_asn1 alloc] initWithBerData:data atPosition:&pos context:self];
+        _asn1 = [[UMTCAP_asn1 alloc] initWithBerData:_data atPosition:&pos context:self];
         [self endDecodingOfPdu];
     }
     @catch(NSException *ex)
@@ -119,38 +87,38 @@
         [self errorDecodingPdu];
         if(decodeOnly)
         {
-            decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
+            _decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
         }
     }
 }
 
 - (void) startDecodingOfPdu
 {
-    currentCommand = -1;
-    currentOperationType = -1;
-    currentComponents = [[NSMutableArray alloc]init];
-    currentOperationCode = 0;
+    _currentCommand = -1;
+    _currentOperationType = -1;
+    _currentComponents = [[NSMutableArray alloc]init];
+    _currentOperationCode = 0;
 }
 
 - (void) endDecodingOfPdu
 {
-    id<UMTCAP_UserProtocol> tcapUser = [tcapLayer tcapDefaultUser];
+    id<UMTCAP_UserProtocol> tcapUser = [_tcapLayer tcapDefaultUser];
     
     /* as this is not an incoming packet but a packet we just sent and produced an error
      we have to swap local and remote transaction Id */
 
-    NSString *remote = currentLocalTransactionId;
-    NSString *local = currentRemoteTransactionId;
-    currentLocalTransactionId = remote;
-    currentRemoteTransactionId = local;
+    NSString *remote = _currentLocalTransactionId;
+    NSString *local = _currentRemoteTransactionId;
+    _currentLocalTransactionId = remote;
+    _currentRemoteTransactionId = local;
     
-    currentTransaction = [tcapLayer findTransactionByLocalTransactionId:currentLocalTransactionId];
-    if(currentTransaction.user)
+    _currentTransaction = [_tcapLayer findTransactionByLocalTransactionId:_currentLocalTransactionId];
+    if(_currentTransaction.user)
     {
-        tcapUser = currentTransaction.user;
+        tcapUser = _currentTransaction.user;
     }
 
-    switch(currentCommand)
+    switch(_currentCommand)
     {
         case TCAP_TAG_ANSI_UNIDIRECTIONAL:
         case TCAP_TAG_ANSI_QUERY_WITHOUT_PERM:
@@ -159,36 +127,36 @@
         case TCAP_TAG_ANSI_CONVERSATION_WITH_PERM:
         case TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM:
         case TCAP_TAG_ANSI_ABORT:
-            tcapVariant = TCAP_VARIANT_ANSI;
+            _tcapVariant = TCAP_VARIANT_ANSI;
             break;
         case TCAP_TAG_ITU_BEGIN:
         case TCAP_TAG_ITU_END:
         case TCAP_TAG_ITU_CONTINUE:
         case TCAP_TAG_ITU_ABORT:
-            tcapVariant = TCAP_VARIANT_ITU;
+            _tcapVariant = TCAP_VARIANT_ITU;
             break;
         default:
             // NSLog(@"Ignoring unexpected pdu type in sccpNNotice. Can not decode %@->%@ %@",src.stringValueE164,dst.stringValueE164,data);
             break;
     }
-    [tcapUser tcapNoticeIndication:currentTransaction.userDialogId
-                 tcapTransactionId:currentLocalTransactionId
-           tcapRemoteTransactionId:currentRemoteTransactionId
-                           variant:tcapVariant
-                    callingAddress:src
-                     calledAddress:dst
+    [tcapUser tcapNoticeIndication:_currentTransaction.userDialogId
+                 tcapTransactionId:_currentLocalTransactionId
+           tcapRemoteTransactionId:_currentRemoteTransactionId
+                           variant:_tcapVariant
+                    callingAddress:_src
+                     calledAddress:_dst
                    dialoguePortion:NULL
-                      callingLayer:tcapLayer
-                        components:currentComponents
-                            reason:reason
-                           options:options];
-    [tcapLayer removeTransaction:currentTransaction];
+                      callingLayer:_tcapLayer
+                        components:_currentComponents
+                            reason:_reason
+                           options:_options];
+    [_tcapLayer removeTransaction:_currentTransaction];
 }
 
 
 - (void)errorDecodingPdu
 {
-    [sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3_pdu withComment:@"Can not decode UMTCAP_sccpNNotice"];
+    [_sccpLayer.mtp3.problematicPacketDumper logRawPacket:_mtp3_pdu withComment:@"Can not decode UMTCAP_sccpNNotice"];
 }
 
 @end
