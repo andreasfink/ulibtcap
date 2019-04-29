@@ -106,6 +106,8 @@
 
 @property(readwrite,assign) UMTCAP_Command  currentCommand;
 
+@property(readwrite,strong) NSString                *currentLocalTransactionId;
+@property(readwrite,strong) NSString                *currentRemoteTransactionId;
 
 - (UMTCAP_sccpNUnitdata *)initForTcap:(UMLayerTCAP *)tcap
                                  sccp:(UMLayerSCCP *)sccp
