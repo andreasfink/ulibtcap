@@ -13,6 +13,10 @@
 #import "UMTCAP_ansi_asn1_transactionPDU.h"
 #import "UMLayerTCAP.h"
 #import "UMTCAP_ansi_asn1_dialoguePortion.h"
+#import "UMTCAP_ansi_asn1_queryWithoutPerm.h"
+#import "UMTCAP_ansi_asn1_queryWithPerm.h"
+#import "UMTCAP_Transaction.h"
+
 @implementation UMTCAP_ansi_begin
 
 

@@ -94,6 +94,7 @@
     {
         [self startDecodingOfPdu];
         _asn1 = [[UMTCAP_asn1 alloc] initWithBerData:_data atPosition:&pos context:self];
+
         BOOL furtherProcessing = [self endDecodingOfPdu];
         if(furtherProcessing)
         {

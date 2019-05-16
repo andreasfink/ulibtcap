@@ -15,6 +15,7 @@
 #import "UMTCAP_itu_asn1_begin.h"
 #import "UMTCAP_itu_asn1_otid.h"
 #import "UMTCAP_itu_asn1_componentPortion.h"
+#import "UMTCAP_Transaction.h"
 
 @implementation UMTCAP_itu_begin
 

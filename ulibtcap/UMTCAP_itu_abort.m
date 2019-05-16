@@ -16,6 +16,10 @@
 #import "UMTCAP_itu_asn1_abort.h"
 #import "UMTCAP_itu_asn1_dialoguePortion.h"
 #import "UMTCAP_itu_asn1_otid.h"
+#import "UMTCAP_itu_asn1_dtid.h"
+#import "UMTCAP_Transaction.h"
+#import "UMTCAP_Filter.h"
+#import "UMTCAP_itu_asn1_pAbortCause.h"
 
 @implementation UMTCAP_itu_abort
 

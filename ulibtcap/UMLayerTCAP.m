@@ -22,18 +22,21 @@
 
 #import "UMTCAP_continue.h"
 #import "UMTCAP_ansi_continue.h"
+#import "UMTCAP_itu_asn1_continue.h"
 #import "UMTCAP_itu_continue.h"
 
 #import "UMTCAP_end.h"
 #import "UMTCAP_ansi_response.h"
 #import "UMTCAP_itu_end.h"
+#import "UMTCAP_itu_asn1_end.h"
 #import "UMTCAP_ansi_end.h"
 
 
 #import "UMTCAP_abort.h"
 #import "UMTCAP_itu_abort.h"
+#import "UMTCAP_itu_asn1_abort.h"
 #import "UMTCAP_ansi_abort.h"
-
+#import "UMTCAP_itu_asn1_pAbortCause.h"
 
 #import "UMTCAP_Transaction.h"
 #import <ulibgt/ulibgt.h>
@@ -42,6 +45,7 @@
 #import "UMTCAP_begin.h"
 #import "UMTCAP_ansi_begin.h"
 #import "UMTCAP_itu_begin.h"
+#import "UMTCAP_itu_asn1_begin.h"
 #import "UMTCAP_sccpNUnitdata.h"
 #import "UMTCAP_sccpNNotice.h"
 #import "UMLayerTCAPApplicationContextProtocol.h"

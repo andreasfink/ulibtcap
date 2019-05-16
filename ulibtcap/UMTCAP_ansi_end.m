@@ -16,6 +16,9 @@
 #import "UMTCAP_ansi_asn1_transactionPDU.h"
 #import "UMLayerTCAP.h"
 #import "UMTCAP_ansi_asn1_dialoguePortion.h"
+#import "UMTCAP_ansi_asn1_conversationWithoutPerm.h"
+#import "UMTCAP_ansi_asn1_conversationWithPerm.h"
+#import "UMTCAP_Transaction.h"
 
 @implementation UMTCAP_ansi_end
 

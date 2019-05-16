@@ -10,7 +10,8 @@
 // the author.
 
 #import "UMTCAP_itu_asn1_dialoguePortion.h"
-#import <ulibtcap/ulibtcap.h>
+#import "UMTCAP_sccpNUnitdata.h"
+#import "UMTCAP_sccpNNotice.h"
 
 @implementation UMTCAP_itu_asn1_dialoguePortion
 

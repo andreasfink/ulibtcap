@@ -11,13 +11,13 @@
 
 #import <ulibgt/ulibgt.h>
 #import <ulibsccp/ulibsccp.h>
-#import <ulibtcap/ulibtcap.h>
 #import "UMTCAP_Variant.h"
 #import "UMTCAP_UserProtocol.h"
 #import "UMTCAP_operationClass.h"
 #import "UMTCAP_generic_asn1_componentPDU.h"
 #import "UMTCAP_TransactionIdPoolProtocol.h"
 #import "UMTCAP_UserDialogIdentifier.h"
+#import "UMLayerTCAPApplicationContextProtocol.h"
 
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;
