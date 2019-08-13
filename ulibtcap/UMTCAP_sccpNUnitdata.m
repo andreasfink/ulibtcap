@@ -357,8 +357,8 @@
                                     options:_options];
                 /* remove transaction data */
             }
-        }
             break;
+        }
         case TCAP_TAG_ANSI_CONVERSATION_WITH_PERM:
         {
             perm = NO;
