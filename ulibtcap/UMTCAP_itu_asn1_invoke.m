@@ -22,23 +22,44 @@
     UMASN1Object *o2 = [self getObjectAtPosition:2];
     UMASN1Object *o3 = [self getObjectAtPosition:3];
 
-    itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o0 context:context];
+    _itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o0 context:context];
     if(o1 && o2 && o3)
     {
-        itu_linkedId = [[UMASN1Integer alloc]initWithASN1Object:o1 context:context];
-        itu_operationCode = [[UMASN1Integer alloc]initWithASN1Object:o2 context:context];
+        _itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o1 context:context];
+        if(o2.asn1_tag.tagNumber == UMASN1Primitive_integer)
+        {
+            _itu_localOperationCode = [[UMASN1Integer alloc]initWithASN1Object:o2 context:context];
+        }
+        else if(o2.asn1_tag.tagNumber == UMASN1Primitive_object_identifier)
+        {
+            _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o2 context:context];
+        }
         params = o3;
     }
     else if(o1 && o2 && (o3==NULL))
     {
-        itu_linkedId = NULL;
-        itu_operationCode = [[UMASN1Integer alloc]initWithASN1Object:o1 context:context];
+        _itu_linkedId = NULL;
+        if(o1.asn1_tag.tagNumber == UMASN1Primitive_integer)
+        {
+            _itu_localOperationCode = [[UMASN1Integer alloc]initWithASN1Object:o1 context:context];
+        }
+        else if(o1.asn1_tag.tagNumber == UMASN1Primitive_object_identifier)
+        {
+            _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o1 context:context];
+        }
         params = o2;
     }
     else if(o1 && (o2==NULL) && (o3==NULL))
     {
-        itu_linkedId = NULL;
-        itu_operationCode = [[UMASN1Integer alloc]initWithASN1Object:o1 context:context];
+        _itu_linkedId = NULL;
+        if(o1.asn1_tag.tagNumber == UMASN1Primitive_integer)
+        {
+            _itu_localOperationCode = [[UMASN1Integer alloc]initWithASN1Object:o1 context:context];
+        }
+        else if(o1.asn1_tag.tagNumber == UMASN1Primitive_object_identifier)
+        {
+            _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o1 context:context];
+        }
         params = NULL;
     }
     else
@@ -58,13 +79,20 @@
     
     _asn1_list = [[NSMutableArray alloc]init];
     
-    [_asn1_list addObject:itu_invokeId];
-    if(itu_linkedId)
+    [_asn1_list addObject:_itu_invokeId];
+    if(_itu_linkedId)
     {
-        itu_linkedId.asn1_tag.tagNumber = 0;
-        [_asn1_list addObject:itu_linkedId];
+        _itu_linkedId.asn1_tag.tagNumber = 0;
+        [_asn1_list addObject:_itu_linkedId];
     }
-    [_asn1_list addObject:itu_operationCode];
+    if(_itu_localOperationCode)
+    {
+        [_asn1_list addObject:_itu_localOperationCode];
+    }
+    else if(_itu_globalOperationCode)
+    {
+        [_asn1_list addObject:_itu_globalOperationCode];
+    }
     if(params)
     {
         [_asn1_list addObject:params];
@@ -75,17 +103,21 @@
 {
     UMSynchronizedSortedDictionary *dict =[[UMSynchronizedSortedDictionary alloc]init];
     
-    if(itu_invokeId)
+    if(_itu_invokeId)
     {
-        dict[@"invokeId"] = itu_invokeId.objectValue;
+        dict[@"invokeId"] = _itu_invokeId.objectValue;
     }
-    if(itu_linkedId)
+    if(_itu_linkedId)
     {
-        dict[@"linkedId"] = itu_linkedId.objectValue;
+        dict[@"linkedId"] = _itu_linkedId.objectValue;
     }
-    if(itu_operationCode)
+    if(_itu_localOperationCode)
     {
-        dict[@"operationCode"] = itu_operationCode.objectValue;
+        dict[@"operationCode"] = _itu_localOperationCode.objectValue;
+    }
+    if(_itu_globalOperationCode)
+    {
+        dict[@"globalOperationCode"] = _itu_globalOperationCode.objectValue;
     }
 
     if(params)

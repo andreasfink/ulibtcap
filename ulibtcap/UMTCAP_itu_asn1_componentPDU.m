@@ -18,9 +18,6 @@
 
 @implementation UMTCAP_itu_asn1_componentPDU
 
-@synthesize itu_invokeId;
-@synthesize itu_linkedId;
-@synthesize itu_operationCode;
 
 
 - (UMTCAP_itu_asn1_componentPDU *)processAfterDecodeWithContext:(id)context
@@ -81,56 +78,56 @@
 
 - (void) setInvokeId:(int64_t)i
 {
-    if(itu_invokeId==NULL)
+    if(_itu_invokeId==NULL)
     {
-        itu_invokeId= [[UMASN1Integer alloc]init];
+        _itu_invokeId= [[UMASN1Integer alloc]init];
     }
-    itu_invokeId.value = i;
+    _itu_invokeId.value = i;
 }
 
 - (int64_t)invokeId
 {
-    if(itu_invokeId==NULL)
+    if(_itu_invokeId==NULL)
     {
-        itu_invokeId= [[UMASN1Integer alloc]init];
+        _itu_invokeId= [[UMASN1Integer alloc]init];
     }
-    return itu_invokeId.value;
+    return _itu_invokeId.value;
 }
 
 - (void)setLinkedId:(int64_t)i
 {
     if(i==TCAP_UNDEFINED_LINKED_ID)
     {
-        itu_linkedId = NULL;
+        _itu_linkedId = NULL;
     }
     else
     {
-        if(itu_linkedId==NULL)
+        if(_itu_linkedId==NULL)
         {
-            itu_linkedId= [[UMASN1Integer alloc]init];
+            _itu_linkedId= [[UMASN1Integer alloc]init];
         }
-        itu_linkedId.value = i;
+        _itu_linkedId.value = i;
     }
 }
 
 - (int64_t)linkedId
 {
-    if(itu_linkedId==NULL)
+    if(_itu_linkedId==NULL)
     {
         return TCAP_UNDEFINED_LINKED_ID;
     }
-    return itu_linkedId.value;
+    return _itu_linkedId.value;
 }
 
 - (void) clearLinkedId
 {
-    itu_linkedId = NULL;
+    _itu_linkedId = NULL;
 }
 - (BOOL) hasLinkedId
 {
-    if(itu_linkedId)
+    if(_itu_linkedId)
     {
-        if(itu_linkedId.value != TCAP_UNDEFINED_LINKED_ID)
+        if(_itu_linkedId.value != TCAP_UNDEFINED_LINKED_ID)
         {
             return YES;
         }
@@ -140,30 +137,55 @@
 
 - (int64_t)operationCode
 {
-    if(itu_operationCode==NULL)
+    if(_itu_localOperationCode==NULL)
     {
-        itu_operationCode= [[UMASN1Integer alloc]init];
+        _itu_localOperationCode= [[UMASN1Integer alloc]init];
     }
-    return itu_operationCode.value;
+    return _itu_localOperationCode.value;
 }
 
 - (void) setOperationCode:(int64_t)i
 {
-    if(itu_operationCode==NULL)
+    if(_itu_localOperationCode==NULL)
     {
-        itu_operationCode= [[UMASN1Integer alloc]init];
+        _itu_localOperationCode= [[UMASN1Integer alloc]init];
     }
-    itu_operationCode.value = i;
+    _itu_localOperationCode.value = i;
+}
+
+- (NSData *)globalOperationCode
+{
+    if(_itu_globalOperationCode==NULL)
+    {
+        _itu_globalOperationCode= [[UMASN1ObjectIdentifier alloc]init];
+    }
+    return _itu_globalOperationCode.value;
+}
+
+- (void) setGlobalOperationCode:(NSData *)d
+{
+    _itu_globalOperationCode= [[UMASN1ObjectIdentifier alloc]initWithValue:d];
 }
 
 - (int64_t)operationCodeFamily
 {
-    return 0;
+    if(_useGlobalOperationCode)
+    {
+        return UMTCAP_itu_operationCodeFamily_Global;
+    }
+    return UMTCAP_itu_operationCodeFamily_Local;
 }
 
 - (void) setOperationCodeFamily:(int64_t)i
 {
-    
+    if(i==UMTCAP_itu_operationCodeFamily_Global)
+    {
+        _useGlobalOperationCode = YES;
+    }
+    else
+    {
+        _useGlobalOperationCode = NO;
+    }
 }
 
 
@@ -188,23 +210,26 @@
 {
     UMSynchronizedSortedDictionary *dict =[[UMSynchronizedSortedDictionary alloc]init];
     
-    if(itu_invokeId)
+    if(_itu_invokeId)
     {
-        dict[@"invokeId"] = itu_invokeId.objectValue;
+        dict[@"invokeId"] = _itu_invokeId.objectValue;
     }
-    if(itu_linkedId)
+    if(_itu_linkedId)
     {
-        dict[@"linkedId"] = itu_linkedId.objectValue;
+        dict[@"linkedId"] = _itu_linkedId.objectValue;
     }
-    if(itu_operationCode)
+    if(_itu_localOperationCode)
     {
-        dict[@"operationCode"] = itu_operationCode.objectValue;
+        dict[@"operationCode"] = _itu_localOperationCode.objectValue;
+    }
+    if(_itu_globalOperationCode)
+    {
+        dict[@"globalOperationCode"] = _itu_globalOperationCode.objectValue;
     }
     if(params)
     {
         dict[@"params"] = params.objectValue;
     }
-    
     return dict;
 }
 

@@ -25,7 +25,7 @@
     {
         @throw([NSException exceptionWithName:@"missing invokeId section in UMTCAP_itu_asn1_returnError" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o context:context];
+    _itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o context:context];
 
     o = [self getObjectAtPosition:p++];
     if(!o)
@@ -60,12 +60,12 @@
     
     _asn1_list = [[NSMutableArray alloc]init];
     
-    itu_invokeId.asn1_tag.tagNumber = 2;
-    if(itu_invokeId==NULL)
+    _itu_invokeId.asn1_tag.tagNumber = 2;
+    if(_itu_invokeId==NULL)
     {
         @throw([NSException exceptionWithName:@"missing invokeId section in UMTCAP_itu_asn1_returnError" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    [_asn1_list addObject:itu_invokeId];
+    [_asn1_list addObject:_itu_invokeId];
 
     UMASN1Integer *e = [[UMASN1Integer alloc]initWithValue:self.errorCode];
     [_asn1_list addObject:e];
@@ -85,7 +85,7 @@
 {
     UMSynchronizedSortedDictionary *dict = [[UMSynchronizedSortedDictionary alloc]init];
     
-    dict[@"invokeId"] = itu_invokeId.objectValue;
+    dict[@"invokeId"] = _itu_invokeId.objectValue;
     dict[@"errorCode"] = @(self.errorCode);
     if(errorDescription)
     {

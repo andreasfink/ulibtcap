@@ -12,22 +12,30 @@
 #import <ulibasn1/ulibasn1.h>
 #import "UMTCAP_generic_asn1_componentPDU.h"
 
+#define UMTCAP_itu_operationCodeFamily_Local    0
+#define UMTCAP_itu_operationCodeFamily_Global   1
+
 @class UMTCAP_itu_asn1_invoke;
 @class UMTCAP_itu_asn1_returnResult;
 @class UMTCAP_itu_asn1_returnError;
 @class UMTCAP_itu_asn1_reject;
 
+
 @interface UMTCAP_itu_asn1_componentPDU : UMTCAP_generic_asn1_componentPDU
 {
     /* common used fields of all component variants */
-    UMASN1Integer *itu_invokeId;
-    UMASN1Integer *itu_linkedId;
-    UMASN1Integer *itu_operationCode;
+    UMASN1Integer *_itu_invokeId;
+    UMASN1Integer *_itu_linkedId;
+    UMASN1Integer *_itu_localOperationCode;
+    UMASN1ObjectIdentifier *_itu_globalOperationCode;
+    BOOL    _useGlobalOperationCode;
 }
 
 @property(readwrite,strong) UMASN1Integer *itu_invokeId;
 @property(readwrite,strong) UMASN1Integer *itu_linkedId;
-@property(readwrite,strong) UMASN1Integer *itu_operationCode;
+@property(readwrite,strong) UMASN1Integer *itu_localOperationCode;
+@property(readwrite,strong) UMASN1ObjectIdentifier *itu_globalOperationCode;
+
 
 
 @end

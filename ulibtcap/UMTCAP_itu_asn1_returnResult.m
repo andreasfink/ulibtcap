@@ -16,7 +16,7 @@
 - (UMTCAP_itu_asn1_returnResult *)processAfterDecodeWithContext:(id)context
 {
     UMASN1Object *o0 = [self getObjectAtPosition:0];
-    itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o0 context:context];
+    _itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o0 context:context];
 
     UMASN1Object *o1 = [self getObjectAtPosition:1];
     if(o1)
@@ -25,9 +25,14 @@
         if(result)
         {
             UMASN1Object *op = [result getObjectAtPosition:0];
-            itu_operationCode = [[UMASN1Integer alloc]initWithASN1Object:op context:context];
-            //self.operationCode = itu_operationCode;
-
+            if(op.asn1_tag.tagNumber==UMASN1Primitive_object_identifier)
+            {
+                _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:op context:context];
+            }
+            else if(op.asn1_tag.tagNumber==UMASN1Primitive_integer)
+            {
+                _itu_localOperationCode = [[UMASN1Integer alloc]initWithASN1Object:op context:context];
+            }
             params = [result getObjectAtPosition:1];
         }
     }
@@ -52,12 +57,19 @@
     _asn1_list = [[NSMutableArray alloc]init];
     
     //itu_invokeId.asn1_tag.tagNumber = UMASN1Primitive_integer;
-    [_asn1_list addObject:itu_invokeId];
+    [_asn1_list addObject:_itu_invokeId];
 
     if(params)
     {
         UMASN1Sequence *seq = [[UMASN1Sequence alloc]init];
-        [seq appendValue:itu_operationCode];
+        if(_itu_localOperationCode)
+        {
+            [seq appendValue:_itu_localOperationCode];
+        }
+        else if(_itu_globalOperationCode)
+        {
+            [seq appendValue:_itu_globalOperationCode];
+        }
         [seq appendValue:params];
         [_asn1_list addObject:seq];
     }

@@ -47,7 +47,7 @@
     }
     else
     {
-        itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o0 context:context];
+        _itu_invokeId = [[UMASN1Integer alloc]initWithASN1Object:o0 context:context];
     }
     if(!o1)
     {
@@ -76,7 +76,7 @@
     }
     else
     {
-        [_asn1_list addObject:itu_invokeId];
+        [_asn1_list addObject:_itu_invokeId];
     }
     if(problem==NULL)
     {
