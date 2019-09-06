@@ -85,13 +85,21 @@
         _itu_linkedId.asn1_tag.tagNumber = 0;
         [_asn1_list addObject:_itu_linkedId];
     }
-    if(_itu_localOperationCode)
+    if(_useGlobalOperationCode==YES)
     {
-        [_asn1_list addObject:_itu_localOperationCode];
-    }
-    else if(_itu_globalOperationCode)
-    {
+        if(_itu_globalOperationCode==NULL)
+        {
+            uint8_t b = (uint8_t)[_itu_localOperationCode value];
+            _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithValue:[NSData dataWithBytes:&b length:1]];
+        }
         [_asn1_list addObject:_itu_globalOperationCode];
+    }
+    else
+    {
+        if(_itu_localOperationCode)
+        {
+            [_asn1_list addObject:_itu_localOperationCode];
+        }
     }
     if(params)
     {
