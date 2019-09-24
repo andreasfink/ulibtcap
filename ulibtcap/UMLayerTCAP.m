@@ -670,7 +670,7 @@
 
 
 /* component handling primitives */
-- (UMASN1Object *)tcapInvokeNotLast:(UMASN1Object *)params
+- (UMTCAP_generic_asn1_componentPDU *)tcapInvokeNotLast:(UMASN1Object *)params
                             variant:(UMTCAP_Variant)variant
                            invokeId:(int64_t)invId
                            linkedId:(int64_t)lnkId
@@ -695,7 +695,7 @@
                        last:NO];
 }
 
-- (UMASN1Object *)tcapInvokeLast:(UMASN1Object *)params
+- (UMTCAP_generic_asn1_componentPDU *)tcapInvokeLast:(UMASN1Object *)params
                          variant:(UMTCAP_Variant)variant
                            invokeId:(int64_t)invId
                            linkedId:(int64_t)lnkId
@@ -721,7 +721,7 @@
 }
 
 
-- (UMASN1Object *)tcapInvoke:(UMASN1Object *)params
+- (UMTCAP_generic_asn1_componentPDU *)tcapInvoke:(UMASN1Object *)params
                      variant:(UMTCAP_Variant)variant
                     invokeId:(int64_t)invId
                     linkedId:(int64_t)lnkId
@@ -763,7 +763,7 @@
     return inv;
 }
 
-- (UMASN1Object *)tcapResultLastRequest:(UMASN1Object *)params
+- (UMTCAP_generic_asn1_componentPDU *)tcapResultLastRequest:(UMASN1Object *)params
                                 variant:(UMTCAP_Variant)variant
                                invokeId:(int64_t)invId
                                linkedId:(int64_t)lnkId
@@ -819,7 +819,7 @@
 }
 
 
-- (UMASN1Object *)tcapResultNotLastRequest:(UMASN1Object *)params
+- (UMTCAP_generic_asn1_componentPDU *)tcapResultNotLastRequest:(UMASN1Object *)params
                                    variant:(UMTCAP_Variant)variant
                                   invokeId:(int64_t)invId
                                   linkedId:(int64_t)lnkId
@@ -860,7 +860,7 @@
     return rrl;
 }
 
-- (UMASN1Object *)tcapUErrorRequest:(UMASN1Object *)params
+- (UMTCAP_generic_asn1_componentPDU *)tcapUErrorRequest:(UMASN1Object *)params
                             variant:(UMTCAP_Variant)variant
                            invokeId:(int64_t)invId
                           errorCode:(int64_t)errCode
