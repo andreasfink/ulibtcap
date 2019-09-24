@@ -339,7 +339,8 @@
              callingAddress:(SccpAddress *)src
               calledAddress:(SccpAddress *)dst
             dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
-                 components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
+                 components_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *>*)components_ansi
+                    components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *>*)components_itu
                     options:(NSDictionary *)options
 {
     if(variant == TCAP_VARIANT_DEFAULT)
@@ -363,7 +364,8 @@
                                  @"SccpCallingAddress:%@\n"
                                  @"SccpCalledAddress:%@\n"
                                  @"dialoguePortion:%@\n"
-                                 @"components:%@\n"
+                                 @"components_ansi:%@\n"
+                                 @"components_itu:%@\n"
                                  @"options:%@\n",
                                  ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
                                  userDialogId.description,
@@ -371,7 +373,8 @@
                                  src,
                                  dst,
                                  xdialoguePortion,
-                                 components,
+                                 components_ansi,
+                                 components_itu,
                                  options
                                  ]];
     }
@@ -385,9 +388,10 @@
                                                    callingAddress:src
                                                     calledAddress:dst
                                                   dialoguePortion:xdialoguePortion
-                                                       components:components
+                                                  components_ansi:NULL
+                                                   components_itu:components_itu
                                                           options:options];
-        
+
     }
     else if(variant ==TCAP_VARIANT_ANSI)
     {
@@ -399,7 +403,8 @@
                                                     callingAddress:src
                                                      calledAddress:dst
                                                    dialoguePortion:xdialoguePortion
-                                                        components:components
+                                                   components_ansi:components_ansi
+                                                    components_itu:NULL
                                                            options:options];
         
     }

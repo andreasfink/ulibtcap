@@ -18,7 +18,8 @@
 #import "UMTCAP_TransactionIdPoolProtocol.h"
 #import "UMTCAP_UserDialogIdentifier.h"
 #import "UMLayerTCAPApplicationContextProtocol.h"
-
+#import "UMTCAP_ansi_asn1_componentPDU.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;
 @class UMTCAP_TransactionIdPool;
@@ -117,7 +118,8 @@
              callingAddress:(SccpAddress *)src
               calledAddress:(SccpAddress *)dst
             dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
-                 components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
+            components_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *>*)components_ansi
+             components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *>*)components_itu
                     options:(NSDictionary *)options;
 
 

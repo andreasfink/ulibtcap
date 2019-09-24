@@ -22,12 +22,12 @@
     UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
     UMTCAP_itu_asn1_continue *q = [[UMTCAP_itu_asn1_continue alloc]init];
     
-    if(components.count>0)
+    if(components_itu.count>0)
     {
         UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
-        for(id item in components)
+        for(UMTCAP_itu_asn1_componentPDU *item in components_itu)
         {
-            [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
+            [componentsPortion addComponent:item];
         }
         q.componentPortion = componentsPortion;
     }

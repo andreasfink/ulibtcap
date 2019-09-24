@@ -415,6 +415,7 @@
                 destroyTransaction = NO;
                 if(_tcapLayer.logLevel <= UMLOG_DEBUG)
                 {
+                    @try{
                     NSString *dbgTxt = [NSString stringWithFormat:@"itu tcapContinueIndication:\n"
                                         @"userDialogId:%@\n"
                                         @"SccpCallingAddress:%@\n"
@@ -433,7 +434,13 @@
                                         _currentComponents,
                                         _options
                                         ];
-                    [_tcapLayer.logFeed debugText:dbgTxt];
+                        NSLog(@"DEBUG: %@",dbgTxt);
+                        [_tcapLayer.logFeed debugText:dbgTxt];
+                    }
+                    @catch(NSException *e)
+                    {
+                        NSLog(@"Exception: %@",e);
+                    }
                 }
                 [tcapUser tcapContinueIndication:_currentTransaction.userDialogId
                                tcapTransactionId:_currentTransaction.localTransactionId
@@ -559,6 +566,7 @@
     }
 }
 
+
 - (void)handleComponent:(UMTCAP_generic_asn1_componentPDU *)component
 {
     _currentOperationCode = component.operationCode;
@@ -599,7 +607,7 @@
                 break;
         }
 
-        NSString *xoperationName = NULL;;
+        NSString *xoperationName = NULL;
         component.params = [user decodeASN1:component.params
                               operationCode:component.operationCode
                               operationType:component.operationType

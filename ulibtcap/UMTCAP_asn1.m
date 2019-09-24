@@ -145,7 +145,7 @@
             task.currentCommand = tNumber;
             UMTCAP_itu_asn1_continue *r = [[UMTCAP_itu_asn1_continue alloc]initWithASN1Object:self context:context];
             [task handleLocalTransactionId:r.dtid.transactionId];
-            [task handleRemoteTransactionId:r.dtid.transactionId];
+            [task handleRemoteTransactionId:r.otid.transactionId];
             return r;
 
         }

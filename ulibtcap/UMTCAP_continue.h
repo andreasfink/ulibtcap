@@ -16,9 +16,10 @@
 #import "UMTCAP_Variant.h"
 #import "UMTCAP_UserProtocol.h"
 #import "UMTCAP_asn1_objectIdentifier.h"
+#import "UMTCAP_ansi_asn1_componentPDU.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 
 @class UMLayerTCAP;
-@class UMTCAP_generic_asn1_componentPDU;
 @class UMTCAP_asn1_dialoguePortion;
 
 @interface UMTCAP_continue : UMLayerTask
@@ -31,11 +32,12 @@
     UMTCAP_asn1_dialoguePortion *dialoguePortion;
     SccpAddress *callingAddress;
     SccpAddress *calledAddress;
-    TCAP_NSARRAY_OF_COMPONENT_PDU *components;
+    NSArray<UMTCAP_ansi_asn1_componentPDU *> *components_ansi;
+    NSArray<UMTCAP_itu_asn1_componentPDU *> *components_itu;
     NSDictionary *options;
 }
 
-
+/*
 - (UMTCAP_continue *)initForTcap:(UMLayerTCAP *)xtcap
                    transactionId:(NSString *)transactionId
                     userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
@@ -45,6 +47,18 @@
                    calledAddress:(SccpAddress *)xdst
                  dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
                       components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
+                         options:(NSDictionary *)xoptions;
+ */
+- (UMTCAP_continue *)initForTcap:(UMLayerTCAP *)xtcap
+                   transactionId:(NSString *)xtransactionId
+                    userDialogId:(UMTCAP_UserDialogIdentifier *)xuserDialogId
+                         variant:(UMTCAP_Variant)xvariant
+                            user:(id<UMLayerUserProtocol>)xuser
+                  callingAddress:(SccpAddress *)xsrc
+                   calledAddress:(SccpAddress *)xdst
+                 dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
+                 components_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *> *)xcomponents_ansi
+                  components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *> *)xcomponents_itu
                          options:(NSDictionary *)xoptions;
 
 @end

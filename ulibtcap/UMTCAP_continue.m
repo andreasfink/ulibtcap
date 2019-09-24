@@ -23,7 +23,8 @@
                   callingAddress:(SccpAddress *)xsrc
                    calledAddress:(SccpAddress *)xdst
                  dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
-                      components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)xcomponents
+                 components_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *> *)xcomponents_ansi
+                  components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *> *)xcomponents_itu
                          options:(NSDictionary *)xoptions
 {
     NSAssert(xtcap != NULL,@"tcap is null");
@@ -43,7 +44,8 @@
         dialoguePortion = xdialoguePortion;
         callingAddress=xsrc;
         calledAddress=xdst;
-        components=xcomponents;
+        components_ansi = xcomponents_ansi;
+        components_itu = xcomponents_itu;
         options=xoptions;
     }
     return self;

@@ -23,7 +23,15 @@
 
 #define NOT_IMPLEMENTED_EXCEPTION     [NSException exceptionWithName:[NSString stringWithFormat:@"NOT IMPLEMENTED FILE %s line:%ld",__FILE__,(long)__LINE__] reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0) }]
 
-
+- (UMTCAP_generic_asn1_componentPDU *)init
+{
+    self = [super init];
+    if(self)
+    {
+        //NSLog(@"debug");
+    }
+    return self;
+}
 - (int64_t)invokeId
 {
     @throw(NOT_IMPLEMENTED_EXCEPTION);
