@@ -649,6 +649,7 @@
                  useLinkedId:(BOOL)useLinkedId
                  opCodeValue:(int64_t)op
                 opCodeFamily:(int64_t)opf
+                opCodeGlobal:(UMASN1ObjectIdentifier *)oi
               opCodeNational:(BOOL)nat
                       isLast:(BOOL)last
 {
@@ -663,6 +664,7 @@
     }
     pdu.operationCode = op;
     pdu.operationCodeFamily = opf;
+    pdu.operationCodeGlobal = oi;
     pdu.operationNational = nat;
     pdu.params = params;
     pdu.isLast = last;
@@ -677,6 +679,7 @@
                         useLinkedId:(BOOL)useLinkedId
                         opCodeValue:(int64_t)op
                        opCodeFamily:(int64_t)opf
+                       opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                      opCodeNational:(BOOL)nat
 {
     if(variant==TCAP_VARIANT_DEFAULT)
@@ -691,6 +694,7 @@
                 useLinkedId:useLinkedId
                 opCodeValue:op
                opCodeFamily:opf
+               opCodeGlobal:oi
              opCodeNational:nat
                        last:NO];
 }
@@ -702,6 +706,7 @@
                         useLinkedId:(BOOL)useLinkedId
                      opCodeValue:(int64_t)op
                     opCodeFamily:(int64_t)opf
+                    opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                   opCodeNational:(BOOL)nat
 {
     if(variant==TCAP_VARIANT_DEFAULT)
@@ -716,6 +721,7 @@
                 useLinkedId:useLinkedId
                 opCodeValue:op
                opCodeFamily:opf
+               opCodeGlobal:oi
              opCodeNational:nat
                        last:YES];
 }
@@ -728,6 +734,7 @@
                  useLinkedId:(BOOL)useLinkedId
                  opCodeValue:(int64_t)op
                 opCodeFamily:(int64_t)opf
+                opCodeGlobal:(UMASN1ObjectIdentifier *)oi
               opCodeNational:(BOOL)nat
                         last:(BOOL)last
 {
@@ -758,6 +765,7 @@
                    useLinkedId:useLinkedId
                    opCodeValue:op
                   opCodeFamily:opf
+                  opCodeGlobal:oi
                 opCodeNational:nat
                         isLast:last];
     return inv;
@@ -770,6 +778,7 @@
                             useLinkedId:(BOOL)useLinkedId
                             opCodeValue:(int64_t)op
                            opCodeFamily:(int64_t)opf
+                           opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                          opCodeNational:(BOOL)nat
 {
 
@@ -813,6 +822,7 @@
                    useLinkedId:useLinkedId
                    opCodeValue:op
                   opCodeFamily:opf
+                  opCodeGlobal:oi
                 opCodeNational:nat
                         isLast:YES];
     return rrl;
@@ -826,6 +836,7 @@
                                useLinkedId:(BOOL)useLinkedId
                                opCodeValue:(int64_t)op
                               opCodeFamily:(int64_t)opf
+                              opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                             opCodeNational:(BOOL)nat;
 {
     if(variant == TCAP_VARIANT_DEFAULT)
@@ -855,6 +866,7 @@
                    useLinkedId:useLinkedId
                    opCodeValue:op
                   opCodeFamily:opf
+                 opCodeGlobal:oi
                 opCodeNational:nat
                         isLast:NO];
     return rrl;
@@ -893,6 +905,7 @@
                    useLinkedId:NO /* not used */
                    opCodeValue:0 /* not used */
                   opCodeFamily:0 /* not used */
+                  opCodeGlobal:NULL
                 opCodeNational:NO /* not used */
                         isLast:NO]; /* not used */
     err.errorCode = errCode;
@@ -905,6 +918,7 @@
                             invokeId:(int64_t)invId
                          opCodeValue:(int64_t)op
                         opCodeFamily:(int64_t)fam
+                        opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                       opCodeNational:(BOOL)nat;
 
 {

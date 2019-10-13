@@ -162,6 +162,7 @@
                                      useLinkedId:(BOOL)useLinkedId
                                      opCodeValue:(int64_t)op
                                     opCodeFamily:(int64_t)fam
+                                    opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                   opCodeNational:(BOOL)nat
                                             last:(BOOL)last;
 
@@ -172,6 +173,7 @@
                                          useLinkedId:(BOOL)useLinkedId
                                          opCodeValue:(int64_t)op
                                         opCodeFamily:(int64_t)fam
+                                        opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                       opCodeNational:(BOOL)nat;
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapInvokeNotLast:(UMASN1Object *)params
@@ -181,6 +183,7 @@
                                             useLinkedId:(BOOL)useLinkedId
                                             opCodeValue:(int64_t)op
                                            opCodeFamily:(int64_t)fam
+                                           opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                          opCodeNational:(BOOL)nat;
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapResultLastRequest:(UMASN1Object *)params
@@ -190,6 +193,7 @@
                                                 useLinkedId:(BOOL)useLinkedId
                                                 opCodeValue:(int64_t)op
                                                opCodeFamily:(int64_t)fam
+                                               opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                              opCodeNational:(BOOL)nat;
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapResultNotLastRequest:(UMASN1Object *)params
@@ -199,6 +203,7 @@
                                                    useLinkedId:(BOOL)useLinkedId
                                                    opCodeValue:(int64_t)op
                                                   opCodeFamily:(int64_t)fam
+                                                  opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                                 opCodeNational:(BOOL)nat;
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapUErrorRequest:(UMASN1Object *)params
@@ -212,6 +217,7 @@
                                                 invokeId:(int64_t)invId
                                              opCodeValue:(int64_t)op
                                             opCodeFamily:(int64_t)fam
+                                            opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                           opCodeNational:(BOOL)nat;
 
 /* internal methods to keep track of transactions */

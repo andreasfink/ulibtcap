@@ -28,7 +28,13 @@
     id operationUser;
     int64_t err;
     BOOL _errPrivate;
+    UMASN1ObjectIdentifier *_operationCodeGlobal;
 }
+
+
+- (UMASN1ObjectIdentifier *)operationCodeGlobal;
+- (void)setOperationCodeGlobal:(UMASN1ObjectIdentifier *)op;
+
 
 @property(readwrite,assign) UMTCAP_Variant variant;
 @property(readwrite,strong) UMASN1Object *params;

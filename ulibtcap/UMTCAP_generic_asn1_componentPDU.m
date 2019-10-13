@@ -92,6 +92,16 @@
     @throw(NOT_IMPLEMENTED_EXCEPTION);
 }
 
+- (UMASN1ObjectIdentifier *)operationCodeGlobal
+{
+    @throw(NOT_IMPLEMENTED_EXCEPTION);
+}
+
+- (void)setOperationCodeGlobal:(UMASN1ObjectIdentifier *)op
+{
+        @throw(NOT_IMPLEMENTED_EXCEPTION);
+}
+
 
 - (BOOL)errorCodePrivate
 {

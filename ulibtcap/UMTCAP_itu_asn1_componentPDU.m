@@ -188,6 +188,16 @@
     }
 }
 
+- (UMASN1ObjectIdentifier *)operationCodeGlobal
+{
+    return _operationCodeGlobal;
+}
+
+- (void)setOperationCodeGlobal:(UMASN1ObjectIdentifier *)op
+{
+    _operationCodeGlobal = op;
+    _useGlobalOperationCode = YES;
+}
 
 - (BOOL)operationNational
 {
