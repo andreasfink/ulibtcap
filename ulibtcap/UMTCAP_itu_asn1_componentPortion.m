@@ -45,4 +45,9 @@
     return @"componentPortion";
 }
 
+- (NSArray *)arrayOfComponents
+{
+    return [_asn1_list copy];
+}
+
 @end

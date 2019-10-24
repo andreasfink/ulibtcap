@@ -18,6 +18,7 @@
 }
 
 - (void)addComponent:(UMTCAP_itu_asn1_componentPDU *)component;
+- (NSArray *)arrayOfComponents;
 
 
 

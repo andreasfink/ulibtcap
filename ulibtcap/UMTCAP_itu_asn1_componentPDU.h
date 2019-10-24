@@ -35,7 +35,7 @@
 @property(readwrite,strong) UMASN1Integer *itu_linkedId;
 @property(readwrite,strong) UMASN1Integer *itu_localOperationCode;
 @property(readwrite,strong) UMASN1ObjectIdentifier *itu_globalOperationCode;
-
+@property(readwrite,assign) BOOL useGlobalOperationCode;
 
 
 @end

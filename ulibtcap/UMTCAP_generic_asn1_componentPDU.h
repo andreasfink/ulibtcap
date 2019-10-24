@@ -25,9 +25,9 @@
 
     NSString *operationName;
     UMTCAP_InternalOperation operationType;
-    id operationUser;
-    int64_t err;
-    BOOL _errPrivate;
+    id                      operationUser;
+    int64_t                 err;
+    BOOL                    _errPrivate;
     UMASN1ObjectIdentifier *_operationCodeGlobal;
 }
 
