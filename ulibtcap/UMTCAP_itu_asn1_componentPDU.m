@@ -196,7 +196,14 @@
 - (void)setOperationCodeGlobal:(UMASN1ObjectIdentifier *)op
 {
     _operationCodeGlobal = op;
-    _useGlobalOperationCode = YES;
+    if(op!=NULL)
+    {
+        _useGlobalOperationCode = YES;
+    }
+    else
+    {
+        _useGlobalOperationCode = NO;
+    }
 }
 
 - (BOOL)operationNational
