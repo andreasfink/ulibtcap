@@ -15,9 +15,6 @@
 
 @implementation UMTCAP_itu_asn1_end
 
-@synthesize dtid;
-@synthesize dialoguePortion;
-@synthesize componentPortion;
 
 - (UMTCAP_itu_asn1_end *)processAfterDecodeWithContext:(id)context
 {
@@ -41,20 +38,20 @@
     {
         @throw([NSException exceptionWithName:@"destination transactin id is missing in tcap_end" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o context:context];
+    _dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o context:context];
     o = [self getObjectAtPosition:p++];
     if((o.asn1_tag.tagClass == UMASN1Class_Application) && ( o.asn1_tag.tagNumber==11))
     {
-        dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o context:context];
+        _dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o context:context];
         o = [self getObjectAtPosition:p++];
     }
     if((o.asn1_tag.tagClass == UMASN1Class_Application) && ( o.asn1_tag.tagNumber==12))
     {
-        componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o context:context];
+        _componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o context:context];
         //o = [self getObjectAtPosition:p++];
     }
-    [task handleComponents:componentPortion];
-    [notice setCurrentRemoteTransactionId:dtid.transactionId]; /* if its a reject, its the remote transaction ID we used to send the TC END out */
+    [task handleComponents:_componentPortion];
+    [notice setCurrentRemoteTransactionId:_dtid.transactionId]; /* if its a reject, its the remote transaction ID we used to send the TC END out */
     return self;
 }
 
@@ -68,19 +65,19 @@
     _asn1_tag.tagClass = UMASN1Class_Application;
 
     _asn1_list = [[NSMutableArray alloc]init];
-    if(dtid==NULL)
+    if(_dtid==NULL)
     {
         @throw([NSException exceptionWithName:@"destination transactin id is missing in tcap_end" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
 
-    [_asn1_list addObject:dtid];
-    if(dialoguePortion)
+    [_asn1_list addObject:_dtid];
+    if(_dialoguePortion)
     {
-        [_asn1_list addObject:dialoguePortion];
+        [_asn1_list addObject:_dialoguePortion];
     }
-    if(componentPortion)
+    if(_componentPortion)
     {
-        [_asn1_list addObject:componentPortion];
+        [_asn1_list addObject:_componentPortion];
     }
 }
 
@@ -88,17 +85,17 @@
 {
     UMSynchronizedSortedDictionary *dict =[[UMSynchronizedSortedDictionary alloc]init];
     
-    if(dtid)
+    if(_dtid)
     {
-        dict[@"dtid"] = dtid.objectValue;
+        dict[@"dtid"] = _dtid.objectValue;
     }
-    if(dialoguePortion)
+    if(_dialoguePortion)
     {
-        dict[@"dialoguePortion"] = dialoguePortion.objectValue;
+        dict[@"dialoguePortion"] = _dialoguePortion.objectValue;
     }
-    if(componentPortion)
+    if(_componentPortion)
     {
-        dict[@"componentPortion"] = componentPortion.objectValue;
+        dict[@"componentPortion"] = _componentPortion.objectValue;
     }
     return dict;
 }

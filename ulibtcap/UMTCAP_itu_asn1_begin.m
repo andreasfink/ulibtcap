@@ -17,10 +17,6 @@
 @implementation UMTCAP_itu_asn1_begin
 
 
-@synthesize otid;
-@synthesize dialoguePortion;
-@synthesize componentPortion;
-
 - (UMTCAP_itu_asn1_begin *)processAfterDecodeWithContext:(id)context
 {    
     UMTCAP_sccpNUnitdata *task = NULL;
@@ -41,20 +37,20 @@
     {
         @throw([NSException exceptionWithName:@"identifier section is missing in tcap_begin" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    otid =  [[UMTCAP_itu_asn1_otid alloc]initWithASN1Object:o context:context];
+    _otid =  [[UMTCAP_itu_asn1_otid alloc]initWithASN1Object:o context:context];
 
     o = [self getObjectAtPosition:p++];
     if((o) && (o.asn1_tag.tagNumber ==11) && (o.asn1_tag.tagClass == UMASN1Class_Application))
     {
-        dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o context:context];
+        _dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o context:context];
         o = [self getObjectAtPosition:p++];
     }
     if(o)
     {
-        componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o context:context];
+        _componentPortion = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o context:context];
     }
-    [task handleComponents:componentPortion];
-    [notice setCurrentLocalTransactionId:otid.transactionId];
+    [task handleComponents:_componentPortion];
+    [notice setCurrentLocalTransactionId:_otid.transactionId];
     return self;
 }
 
@@ -68,18 +64,18 @@
     _asn1_tag.tagClass = UMASN1Class_Application;
     
     _asn1_list = [[NSMutableArray alloc]init];
-    if(otid==NULL)
+    if(_otid==NULL)
     {
         @throw([NSException exceptionWithName:@"originating transaction id is missing in tcap_begin" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    [_asn1_list addObject:otid];
-    if(dialoguePortion)
+    [_asn1_list addObject:_otid];
+    if(_dialoguePortion)
     {
-        [_asn1_list addObject:dialoguePortion];
+        [_asn1_list addObject:_dialoguePortion];
     }
-    if(componentPortion)
+    if(_componentPortion)
     {
-        [_asn1_list addObject:componentPortion];
+        [_asn1_list addObject:_componentPortion];
     }
 }
 
@@ -93,17 +89,17 @@
 {
     UMSynchronizedSortedDictionary *dict =[[UMSynchronizedSortedDictionary alloc]init];
     
-    if(otid)
+    if(_otid)
     {
-        dict[@"otid"] = otid.objectValue;
+        dict[@"otid"] = _otid.objectValue;
     }
-    if(dialoguePortion)
+    if(_dialoguePortion)
     {
-        dict[@"dialoguePortion"] = dialoguePortion.objectValue;
+        dict[@"dialoguePortion"] = _dialoguePortion.objectValue;
     }
-    if(componentPortion)
+    if(_componentPortion)
     {
-        dict[@"componentPortion"] = componentPortion.objectValue;
+        dict[@"componentPortion"] = _componentPortion.objectValue;
     }
     return dict;
 }

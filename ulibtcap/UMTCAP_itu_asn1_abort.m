@@ -17,9 +17,6 @@
 
 @implementation UMTCAP_itu_asn1_abort
 
-@synthesize dtid;
-@synthesize pAbortCause;
-@synthesize uAbortCause;
 
 - (UMTCAP_itu_asn1_abort *)processAfterDecodeWithContext:(id)context
 {
@@ -29,16 +26,16 @@
     {
         @throw([NSException exceptionWithName:@"destination tranation id is missing in tcap_abort" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o0 context:context];
+    _dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o0 context:context];
     if(o1)
     {
         if((o1.asn1_tag.tagNumber == 10 ) && (o1.asn1_tag.tagClass == UMASN1Class_Application))
         {
-            pAbortCause =  [[UMTCAP_itu_asn1_pAbortCause alloc]initWithASN1Object:o1 context:context];
+            _pAbortCause =  [[UMTCAP_itu_asn1_pAbortCause alloc]initWithASN1Object:o1 context:context];
         }
         else if((o1.asn1_tag.tagNumber == 11 ) && (o1.asn1_tag.tagClass == UMASN1Class_Application))
         {
-            uAbortCause =  [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o1 context:context];
+            _uAbortCause =  [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o1 context:context];
         }
     }
     return self;
@@ -52,18 +49,18 @@
     _asn1_tag.tagClass = UMASN1Class_Application;
     
     _asn1_list = [[NSMutableArray alloc]init];
-    if(dtid==NULL)
+    if(_dtid==NULL)
     {
         @throw([NSException exceptionWithName:@"destination tranation id is missing in tcap_abort" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    [_asn1_list addObject:dtid];
-    if(pAbortCause)
+    [_asn1_list addObject:_dtid];
+    if(_pAbortCause)
     {
-        [_asn1_list addObject:pAbortCause];
+        [_asn1_list addObject:_pAbortCause];
     }
-    else if(uAbortCause)
+    else if(_uAbortCause)
     {
-        [_asn1_list addObject:uAbortCause];
+        [_asn1_list addObject:_uAbortCause];
     }
 }
 
@@ -71,17 +68,17 @@
 {
     UMSynchronizedSortedDictionary *dict =[[UMSynchronizedSortedDictionary alloc]init];
     
-    if(dtid)
+    if(_dtid)
     {
-        dict[@"dtid"] = dtid.objectValue;
+        dict[@"dtid"] = _dtid.objectValue;
     }
-    if(pAbortCause)
+    if(_pAbortCause)
     {
-        dict[@"pAbortCause"] = pAbortCause.objectValue;
+        dict[@"pAbortCause"] = _pAbortCause.objectValue;
     }
-    if(uAbortCause)
+    if(_uAbortCause)
     {
-        dict[@"uAbortCause"] = uAbortCause.objectValue;
+        dict[@"uAbortCause"] = _uAbortCause.objectValue;
     }
     return dict;
 }

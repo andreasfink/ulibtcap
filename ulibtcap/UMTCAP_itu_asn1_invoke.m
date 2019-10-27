@@ -85,7 +85,7 @@
         _itu_linkedId.asn1_tag.tagNumber = 0;
         [_asn1_list addObject:_itu_linkedId];
     }
-    if(_useGlobalOperationCode==YES)
+    if(_useGlobalOperationCode==1)
     {
         if(_itu_globalOperationCode==NULL)
         {
@@ -94,6 +94,27 @@
         }
         [_asn1_list addObject:_itu_globalOperationCode];
     }
+    else if(_useGlobalOperationCode==2)
+    {
+        if(_itu_globalOperationCode==NULL)
+        {
+            uint8_t b = (uint8_t)[_itu_localOperationCode value];
+            _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithValue:[NSData dataWithBytes:&b length:1]];
+        }
+        [_asn1_list addObject:_itu_globalOperationCode];
+        [_asn1_list addObject:_itu_localOperationCode];
+    }
+    else if(_useGlobalOperationCode==3)
+    {
+        [_asn1_list addObject:_itu_localOperationCode];
+        if(_itu_globalOperationCode==NULL)
+        {
+            uint8_t b = (uint8_t)[_itu_localOperationCode value];
+            _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithValue:[NSData dataWithBytes:&b length:1]];
+        }
+        [_asn1_list addObject:_itu_globalOperationCode];
+    }
+
     else
     {
         if(_itu_localOperationCode)

@@ -18,9 +18,9 @@
 
 @interface UMTCAP_itu_asn1_begin : UMTCAP_asn1
 {
-    UMTCAP_itu_asn1_otid            *otid;
-    UMTCAP_itu_asn1_dialoguePortion *dialoguePortion;
-    UMTCAP_itu_asn1_componentPortion *componentPortion;
+    UMTCAP_itu_asn1_otid                *_otid;
+    UMTCAP_itu_asn1_dialoguePortion     *_dialoguePortion;
+    UMTCAP_itu_asn1_componentPortion    *_componentPortion;
 }
 
 @property(readwrite,strong) UMTCAP_itu_asn1_otid            *otid;

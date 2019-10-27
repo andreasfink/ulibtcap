@@ -17,9 +17,9 @@
 
 @interface UMTCAP_itu_asn1_abort : UMTCAP_asn1
 {
-    UMTCAP_itu_asn1_dtid            *dtid;
-    UMTCAP_itu_asn1_pAbortCause     *pAbortCause;
-    UMTCAP_itu_asn1_dialoguePortion *uAbortCause;
+    UMTCAP_itu_asn1_dtid            *_dtid;
+    UMTCAP_itu_asn1_pAbortCause     *_pAbortCause;
+    UMTCAP_itu_asn1_dialoguePortion *_uAbortCause;
 }
 
 @property(readwrite,strong) UMTCAP_itu_asn1_dtid            *dtid;

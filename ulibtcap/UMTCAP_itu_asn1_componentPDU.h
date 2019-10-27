@@ -14,6 +14,8 @@
 
 #define UMTCAP_itu_operationCodeFamily_Local    0
 #define UMTCAP_itu_operationCodeFamily_Global   1
+#define UMTCAP_itu_operationCodeFamily_GlobalAndLocal   2
+#define UMTCAP_itu_operationCodeFamily_LocalAndGlobal   3
 
 @class UMTCAP_itu_asn1_invoke;
 @class UMTCAP_itu_asn1_returnResult;
@@ -28,14 +30,14 @@
     UMASN1Integer *_itu_linkedId;
     UMASN1Integer *_itu_localOperationCode;
     UMASN1ObjectIdentifier *_itu_globalOperationCode;
-    BOOL    _useGlobalOperationCode;
+    int    _useGlobalOperationCode;
 }
 
 @property(readwrite,strong) UMASN1Integer *itu_invokeId;
 @property(readwrite,strong) UMASN1Integer *itu_linkedId;
 @property(readwrite,strong) UMASN1Integer *itu_localOperationCode;
 @property(readwrite,strong) UMASN1ObjectIdentifier *itu_globalOperationCode;
-@property(readwrite,assign) BOOL useGlobalOperationCode;
+@property(readwrite,assign) int useGlobalOperationCode;
 
 
 @end

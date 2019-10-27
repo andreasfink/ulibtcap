@@ -169,7 +169,15 @@
 
 - (int64_t)operationCodeFamily
 {
-    if(_useGlobalOperationCode)
+    if(_useGlobalOperationCode==3)
+    {
+        return UMTCAP_itu_operationCodeFamily_LocalAndGlobal;
+    }
+    if(_useGlobalOperationCode==2)
+    {
+        return UMTCAP_itu_operationCodeFamily_GlobalAndLocal;
+    }
+    if(_useGlobalOperationCode==1)
     {
         return UMTCAP_itu_operationCodeFamily_Global;
     }
@@ -178,13 +186,21 @@
 
 - (void) setOperationCodeFamily:(int64_t)i
 {
-    if(i==UMTCAP_itu_operationCodeFamily_Global)
+    if(i==UMTCAP_itu_operationCodeFamily_LocalAndGlobal)
     {
-        _useGlobalOperationCode = YES;
+        _useGlobalOperationCode = 3;
+    }
+    else if(i==UMTCAP_itu_operationCodeFamily_GlobalAndLocal)
+    {
+        _useGlobalOperationCode = 2;
+    }
+    else if(i==UMTCAP_itu_operationCodeFamily_Global)
+    {
+        _useGlobalOperationCode = 1;
     }
     else
     {
-        _useGlobalOperationCode = NO;
+        _useGlobalOperationCode = 0;
     }
 }
 
@@ -195,14 +211,17 @@
 
 - (void)setOperationCodeGlobal:(UMASN1ObjectIdentifier *)op
 {
-    _operationCodeGlobal = op;
+    _itu_globalOperationCode = op;
     if(op!=NULL)
     {
-        _useGlobalOperationCode = YES;
+        if(_useGlobalOperationCode==0)
+        {
+            _useGlobalOperationCode = 1;
+        }
     }
     else
     {
-        _useGlobalOperationCode = NO;
+        _useGlobalOperationCode = 0;
     }
 }
 
