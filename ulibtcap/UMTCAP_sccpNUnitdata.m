@@ -98,7 +98,10 @@
         BOOL furtherProcessing = [self endDecodingOfPdu];
         if(furtherProcessing)
         {
-            [self handlePdu];
+            if(decodeOnly==NO)
+            {
+                [self handlePdu];
+            }
         }
     }
     @catch(NSException *ex)
