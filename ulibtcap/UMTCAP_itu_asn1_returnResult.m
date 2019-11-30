@@ -13,6 +13,15 @@
 #import "UMTCAP_sccpNUnitdata.h"
 @implementation UMTCAP_itu_asn1_returnResult
 
+- (UMTCAP_InternalOperation) operationType
+{
+   return UMTCAP_InternalOperation_Response;
+}
+
+- (void)setOperationType
+{
+}
+
 - (UMTCAP_itu_asn1_returnResult *)processAfterDecodeWithContext:(id)context
 {
     UMASN1Object *o0 = [self getObjectAtPosition:0];

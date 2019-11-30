@@ -32,6 +32,15 @@
 
 @implementation UMTCAP_itu_asn1_reject
 
+- (UMTCAP_InternalOperation) operationType
+{
+   return UMTCAP_InternalOperation_Reject;
+}
+
+- (void)setOperationType
+{
+}
+
 - (UMTCAP_itu_asn1_reject *)processAfterDecodeWithContext:(id)context
 {
     UMASN1Object *o0 = [self getObjectAtPosition:0];

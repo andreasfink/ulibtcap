@@ -17,7 +17,6 @@
 @synthesize componentPortion;
 
 
-
 - (UMTCAP_itu_asn1_unidirectional *)processAfterDecodeWithContext:(id)context
 {
     UMASN1Object *o0 = [self getObjectAtPosition:0];

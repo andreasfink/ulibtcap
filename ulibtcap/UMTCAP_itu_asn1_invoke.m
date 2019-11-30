@@ -14,6 +14,14 @@
 
 @implementation UMTCAP_itu_asn1_invoke
 
+- (UMTCAP_InternalOperation) operationType
+{
+   return UMTCAP_InternalOperation_Request;
+}
+
+- (void)setOperationType
+{
+}
 
 - (UMTCAP_itu_asn1_invoke *)processAfterDecodeWithContext:(id)context
 {

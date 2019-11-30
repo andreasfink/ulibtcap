@@ -17,6 +17,15 @@
 
 @synthesize errorDescription;
 
+- (UMTCAP_InternalOperation) operationType
+{
+   return UMTCAP_InternalOperation_Error;
+}
+
+- (void)setOperationType
+{
+}
+
 - (UMTCAP_itu_asn1_returnError *)processAfterDecodeWithContext:(id)context
 {    
     int p = 0;

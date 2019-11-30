@@ -14,8 +14,6 @@
 @implementation UMTCAP_itu_asn1_pAbortCause
 
 
-
-
 - (UMTCAP_itu_asn1_pAbortCause *)processAfterDecodeWithContext:(id)context
 {
     /* we are an implicit integer, so nothing to be done here really */
