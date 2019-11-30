@@ -1160,26 +1160,9 @@
 
 + (id)decodePdu:(NSData *)pdu /* should return a type which can be converted to json */
 {
-    UMTCAP_sccpNUnitdata *task;
-    task = [[UMTCAP_sccpNUnitdata alloc]initForTcap:NULL
-                                               sccp:NULL
-                                           userData:pdu
-                                            calling:NULL
-                                             called:NULL
-                                   qualityOfService:0
-                                            options:@{ @"decode-only" : @YES }];
-    [task main];
-    UMASN1Object *asn1 = task.asn1;
-    if(asn1)
-    {
-        return asn1.objectValue;
-    }
-    else
-    {
-        UMSynchronizedSortedDictionary *e = [[UMSynchronizedSortedDictionary alloc]init];
-        e[@"decode-error"] = task.decodeError;
-        return e;
-    }
+    NSUInteger pos = 0;
+    UMASN1Object *asn1 = [[UMTCAP_asn1 alloc] initWithBerData:pdu atPosition:&pos context:NULL];
+    return asn1;
 }
 
 - (NSString *)status
