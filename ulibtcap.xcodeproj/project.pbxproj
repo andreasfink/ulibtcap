@@ -384,6 +384,7 @@
 		A68C231E1FEA6D9600A02B91 /* UMTCAP_TransactionStateInitReceived.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionStateInitReceived.m; sourceTree = "<group>"; };
 		A68C23211FEA6DA300A02B91 /* UMTCAP_TransactionStateActive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionStateActive.h; sourceTree = "<group>"; };
 		A68C23221FEA6DA300A02B91 /* UMTCAP_TransactionStateActive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionStateActive.m; sourceTree = "<group>"; };
+		A68D214C2411543E004C629A /* ulibsccp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibsccp.framework; path = "/Library/Application Support/FinkTelecomServices/frameworks/ulibsccp.framework"; sourceTree = "<absolute>"; };
 		A690D8B91FC6D4030039A1DD /* UMTCAP_FilterResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_FilterResult.h; sourceTree = "<group>"; };
 		A6955FD21CC8132F00211137 /* UMTCAP_Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_Operation.h; sourceTree = "<group>"; };
 		A69DB80E1E390D2000E0C84E /* UMTCAP_HousekeepingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_HousekeepingTask.h; sourceTree = "<group>"; };
@@ -846,6 +847,7 @@
 		A6ED5C581B43593900854472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A68D214C2411543E004C629A /* ulibsccp.framework */,
 				A67989E122BB69B70019806C /* ulib.framework */,
 				A67989DE22BB699A0019806C /* ulibgt.framework */,
 				A67989E022BB69AC0019806C /* ulibasn1.framework */,
