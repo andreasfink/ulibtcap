@@ -41,6 +41,7 @@
         else if(o2.asn1_tag.tagNumber == UMASN1Primitive_object_identifier)
         {
             _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o2 context:context];
+            _itu_localOperationCode = [[UMASN1Integer alloc]initWithASN1Object:o2 context:context]; /* if wrongly encode compatibility */
         }
         params = o3;
     }
@@ -54,6 +55,7 @@
         else if(o1.asn1_tag.tagNumber == UMASN1Primitive_object_identifier)
         {
             _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o1 context:context];
+            _itu_localOperationCode = [[UMASN1Integer alloc]initWithASN1Object:o2 context:context]; /* if wrongly encode compatibility */
         }
         params = o2;
     }
@@ -67,6 +69,7 @@
         else if(o1.asn1_tag.tagNumber == UMASN1Primitive_object_identifier)
         {
             _itu_globalOperationCode = [[UMASN1ObjectIdentifier alloc]initWithASN1Object:o1 context:context];
+            _itu_localOperationCode = [[UMASN1Integer alloc]initWithASN1Object:o2 context:context]; /* if wrongly encode compatibility */
         }
         params = NULL;
     }
