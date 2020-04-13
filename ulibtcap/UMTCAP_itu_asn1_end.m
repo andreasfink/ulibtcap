@@ -65,12 +65,13 @@
     _asn1_tag.tagClass = UMASN1Class_Application;
 
     _asn1_list = [[NSMutableArray alloc]init];
-    if(_dtid==NULL)
+    
+    
+    if(_dtid!=NULL)
     {
-        @throw([NSException exceptionWithName:@"destination transactin id is missing in tcap_end" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
+        [_asn1_list addObject:_dtid];
     }
 
-    [_asn1_list addObject:_dtid];
     if(_dialoguePortion)
     {
         [_asn1_list addObject:_dialoguePortion];

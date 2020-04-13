@@ -21,25 +21,28 @@
 
 @interface UMTCAP_Transaction : UMObject
 {
-    UMTCAP_Variant          _tcapVariant;
-    UMTCAP_TransactionState            *_transactionState;
-    UMSynchronizedDictionary *_componentStates; /* dictionary of UMTCAP_ComponentState object. The key is an InvokeID's description value (string of integer) */
-    UMTCAP_operationClass   operationClass;
+    UMTCAP_Variant              _tcapVariant;
+    UMTCAP_TransactionState     *_transactionState;
+    UMSynchronizedDictionary    *_componentStates; /* dictionary of UMTCAP_ComponentState object. The key is an InvokeID's description value (string of integer) */
+    UMTCAP_operationClass       operationClass;
     
-    NSString *localTransactionId; /* these are hex strings of whats exactly sent in the PDU */
-    NSString *remoteTransactionId;
-    NSString *ansiTransactionId;
+    NSString                    *localTransactionId; /* these are hex strings of whats exactly sent in the PDU */
+    NSString                    *remoteTransactionId;
+    NSString                    *ansiTransactionId;
     UMTCAP_UserDialogIdentifier *userDialogId;
 
-    NSDate *_started;
+    NSDate                      *_started;
 
-    BOOL    incoming;
-    BOOL    withPermission;
-    id<UMTCAP_UserProtocol> user;
+    BOOL                        incoming;
+    BOOL                        withPermission;
+    id<UMTCAP_UserProtocol>     user;
 
-    BOOL            transactionIsClosed;
-    NSTimeInterval  _timeoutInSeconds;
-    UMAtomicDate    *_lastActivity;
+    BOOL                        transactionIsClosed;
+    NSTimeInterval              _timeoutInSeconds;
+    UMAtomicDate                *_lastActivity;
+    
+    BOOL _startWithContinue;
+    BOOL _noDestinationTransationIdInContinue;
 }
 
 @property(readwrite,assign) UMTCAP_Variant          tcapVariant;
@@ -66,10 +69,14 @@
 
 @property(readwrite,strong) NSDate *timeoutDate;
 
+@property(readwrite,assign) BOOL startWithContinue;
+@property(readwrite,assign) BOOL noDestinationTransationIdInContinue;
 
 
 - (void)touch;
 - (BOOL)isTimedOut;
 - (void)timeOut;
 - (void)dump:(NSFileHandle *)fh;
+- (void)setOptions:(NSDictionary *)options;
+
 @end

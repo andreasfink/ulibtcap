@@ -137,4 +137,26 @@
 {
 }
 
+
+- (void)setOptions:(NSDictionary *)options
+{
+    NSArray <NSString *> *tcap_options = options["tcap-options"];
+    if(tcap_options.count > 0)
+    {
+        for(NSString *option in tcap_options)
+        {
+            if([option isEqualToString:@"start-with-continue"])
+            {
+                _startWithContinue = YES;
+            }
+            else if([option isEqualToString:@"no-dtid-in-continue"])
+            {
+                _noDestinationTransationIdInContinue = YES;
+                remoteTransactionId = NULL;
+            }
+        }
+    }
+}
+
+
 @end

@@ -72,16 +72,14 @@
     _asn1_tag.tagClass = UMASN1Class_Application;
 
     _asn1_list = [[NSMutableArray alloc]init];
-    if(_otid==NULL)
+    if(_otid!=NULL)
     {
-        @throw([NSException exceptionWithName:@"origination tranation id is missing in tcap_continue" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
+        [_asn1_list addObject:_otid];
     }
-    [_asn1_list addObject:_otid];
-    if(_dtid==NULL)
+    if(_dtid!=NULL)
     {
-        @throw([NSException exceptionWithName:@"destination tranation id is missing in tcap_continue" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
+        [_asn1_list addObject:_dtid];
     }
-    [_asn1_list addObject:_dtid];
     if(_dialoguePortion)
     {
         [_asn1_list addObject:_dialoguePortion];

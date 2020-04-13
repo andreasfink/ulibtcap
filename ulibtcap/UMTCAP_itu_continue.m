@@ -32,13 +32,18 @@
         q.componentPortion = componentsPortion;
     }
     
-    UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
-    UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
-    otid.transactionId = transactionId;
-    dtid.transactionId = t.remoteTransactionId;
-    
-    q.otid = otid;
-    q.dtid = dtid;
+    if(transactionId)
+    {
+        UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
+        otid.transactionId = transactionId;
+        q.otid = otid;
+    }
+    if(remoteTransactionId)
+    {
+        UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+        dtid.transactionId = t.remoteTransactionId;
+        q.dtid = dtid;
+    }
     q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
     
     NSData *pdu = [q berEncoded];

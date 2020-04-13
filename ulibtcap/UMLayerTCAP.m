@@ -339,14 +339,15 @@
              callingAddress:(SccpAddress *)src
               calledAddress:(SccpAddress *)dst
             dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
-                 components_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *>*)components_ansi
-                    components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *>*)components_itu
+             omponents_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *>*)components_ansi
+             components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *>*)components_itu
                     options:(NSDictionary *)options
 {
     if(variant == TCAP_VARIANT_DEFAULT)
     {
         variant = tcapVariant;
     }
+    
     UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
     if(transaction == NULL)
     {
@@ -354,8 +355,9 @@
         @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
     }
     [transaction touch];
+    [transaction setOptions:options];
     UMTCAP_continue *continueRequest = NULL;
-    
+
     if(self.logLevel <= UMLOG_DEBUG)
     {
         [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapContinueReq:\n"

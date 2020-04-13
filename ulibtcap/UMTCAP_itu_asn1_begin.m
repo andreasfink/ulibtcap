@@ -38,7 +38,6 @@
         @throw([NSException exceptionWithName:@"identifier section is missing in tcap_begin" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
     _otid =  [[UMTCAP_itu_asn1_otid alloc]initWithASN1Object:o context:context];
-
     o = [self getObjectAtPosition:p++];
     if((o) && (o.asn1_tag.tagNumber ==11) && (o.asn1_tag.tagClass == UMASN1Class_Application))
     {
@@ -64,11 +63,10 @@
     _asn1_tag.tagClass = UMASN1Class_Application;
     
     _asn1_list = [[NSMutableArray alloc]init];
-    if(_otid==NULL)
+    if(_otid!=NULL)
     {
-        @throw([NSException exceptionWithName:@"originating transaction id is missing in tcap_begin" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
+        [_asn1_list addObject:_otid];
     }
-    [_asn1_list addObject:_otid];
     if(_dialoguePortion)
     {
         [_asn1_list addObject:_dialoguePortion];
