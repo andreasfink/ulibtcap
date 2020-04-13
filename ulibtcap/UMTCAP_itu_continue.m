@@ -38,7 +38,7 @@
         otid.transactionId = transactionId;
         q.otid = otid;
     }
-    if(remoteTransactionId)
+    if(t.remoteTransactionId)
     {
         UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
         dtid.transactionId = t.remoteTransactionId;

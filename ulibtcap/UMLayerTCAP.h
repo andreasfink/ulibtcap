@@ -111,6 +111,8 @@
               components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                  options:(NSDictionary *)options;
 
+
+
 - (void)tcapContinueRequest:(NSString *)tcapTransactionId
                userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
                     variant:(UMTCAP_Variant)variant
@@ -121,6 +123,7 @@
             components_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *>*)components_ansi
              components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *>*)components_itu
                     options:(NSDictionary *)options;
+
 
 
 - (void)tcapEndRequest:(NSString *)tcapTransactionId

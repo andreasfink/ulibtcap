@@ -339,7 +339,7 @@
              callingAddress:(SccpAddress *)src
               calledAddress:(SccpAddress *)dst
             dialoguePortion:(UMTCAP_asn1_dialoguePortion *)xdialoguePortion
-             omponents_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *>*)components_ansi
+            components_ansi:(NSArray<UMTCAP_ansi_asn1_componentPDU *>*)components_ansi
              components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *>*)components_itu
                     options:(NSDictionary *)options
 {
