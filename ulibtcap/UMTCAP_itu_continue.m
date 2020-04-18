@@ -38,9 +38,17 @@
         otid.transactionId = transactionId;
         q.otid = otid;
     }
-    if(t.remoteTransactionId)
+    if((t.remoteTransactionId) && !(t.noDestinationTransationIdInContinue))
     {
-        UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+        UMTCAP_itu_asn1_dtid *dtid;
+        if(t.doubleOriginationTransationIdInContinue)
+        {
+            dtid =(UMTCAP_itu_asn1_dtid *)[[UMTCAP_itu_asn1_otid alloc]init];
+        }
+        else
+        {
+            dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+        }
         dtid.transactionId = t.remoteTransactionId;
         q.dtid = dtid;
     }

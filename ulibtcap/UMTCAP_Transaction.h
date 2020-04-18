@@ -43,6 +43,7 @@
     
     BOOL _startWithContinue;
     BOOL _noDestinationTransationIdInContinue;
+    BOOL _doubleOriginationTransationIdInContinue;
 }
 
 @property(readwrite,assign) UMTCAP_Variant          tcapVariant;
@@ -71,6 +72,7 @@
 
 @property(readwrite,assign) BOOL startWithContinue;
 @property(readwrite,assign) BOOL noDestinationTransationIdInContinue;
+@property(readwrite,assign) BOOL doubleOriginationTransationIdInContinue;
 
 
 - (void)touch;

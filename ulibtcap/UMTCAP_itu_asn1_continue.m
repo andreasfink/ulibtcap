@@ -44,9 +44,9 @@
     {
         @throw([NSException exceptionWithName:@"destination tranation id is missing in tcap_continue" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
+
     _dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o context:context];
-    
-    
+   
     o = [self getObjectAtPosition:p++];
     if((o) && (o.asn1_tag.tagNumber ==11) && (o.asn1_tag.tagClass == UMASN1Class_Application))
     {

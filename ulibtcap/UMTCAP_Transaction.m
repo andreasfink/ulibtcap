@@ -154,9 +154,17 @@
                 _noDestinationTransationIdInContinue = YES;
                 remoteTransactionId = NULL;
             }
+            else if([option isEqualToString:@"dtid-is-otid-in-continue"])
+            {
+                remoteTransactionId = localTransactionId;
+            }
+            else if([option isEqualToString:@"double-otid-in-continue"])
+            {
+                _doubleOriginationTransationIdInContinue = YES;
+                remoteTransactionId = localTransactionId;
+            }
         }
     }
 }
-
 
 @end
