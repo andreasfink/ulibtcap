@@ -24,6 +24,8 @@
         _nextTransactionId = 1;
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
         _lock = [[UMMutex alloc]initWithName:@"transaction-id-pool-sequential"];
+        _first = @(1);
+        _last = @(0x3FFFFFFF);
     }
     return self;
 }
@@ -36,6 +38,21 @@
     _currentTransactionId = _nextTransactionId;
     _nextTransactionId++;
     _nextTransactionId = _nextTransactionId % 0x3FFFFFFF;
+    if(_last)
+    {
+        if(_nextTransactionId > _last.unsignedIntValue)
+        {
+            _nextTransactionId = _first.unsignedIntValue;
+        }
+    }
+    if(_first)
+    {
+        if(_nextTransactionId < _first.unsignedIntValue)
+        {
+            _nextTransactionId = _first.unsignedIntValue;
+        }
+    }
+
     NSString *tidString = [NSString stringWithFormat:@"%08lX",(long)_currentTransactionId];
     _inUseTransactionIds[tidString] = instance;
     [_lock unlock];

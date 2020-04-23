@@ -52,6 +52,7 @@
 #import "UMTCAP_HousekeepingTask.h"
 #import "UMTCAP_TimeoutTask.h"
 #import "UMTCAP_TransactionIdPool.h"
+#import "UMTCAP_TransactionIdPoolSequential.h"
 #import "UMTCAP_Filter.h"
 
 @implementation UMLayerTCAP
@@ -992,6 +993,32 @@
         NSLog(@"TCAP Transaction Timeout is above 120s. Setting it to 60s");
         _transactionTimeoutInSeconds = 60.0;
     }
+    if (cfg[@"transaction-id-range"])
+    {
+        NSString *s = cfg[@"transaction-id-range"];
+        NSArray *a = [s componentsSeparatedByString:@"-"];
+        if(a.count !=2)
+        {
+            NSLog(@"transaction-id-range ignored. should be   <from> - <to>");
+        }
+        else
+        {
+            NSString *a0 = a[0];
+            NSString *a1 = a[1];
+            a0 = [a0 trim];
+            a1 = [a1 trim];
+            NSNumber *start = [[NSNumber alloc]initWithInteger:[a0 integerValue]];
+            NSNumber *end   = [[NSNumber alloc]initWithInteger:[a1 integerValue]];
+            if(start && end)
+            {
+                UMTCAP_TransactionIdPoolSequential *pool = [[UMTCAP_TransactionIdPoolSequential alloc]init];
+                pool.first = start;
+                pool.last = end;
+                _tidPool = pool;
+            }
+        }
+    }
+
 }
 
 - (NSDictionary *)config
