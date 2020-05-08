@@ -20,6 +20,7 @@
 
 @property(readwrite,strong,atomic)  NSNumber *first;
 @property(readwrite,strong,atomic)  NSNumber *last;
+@property(readwrite,assign,atomic)  u_int32_t nextTransactionId;
 
 @end
 
