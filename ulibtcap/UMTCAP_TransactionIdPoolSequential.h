@@ -22,6 +22,10 @@
 @property(readwrite,strong,atomic)  NSNumber *last;
 @property(readwrite,assign,atomic)  u_int32_t nextTransactionId;
 
+
+- (UMTCAP_TransactionIdPoolSequential *)initWithStart:(NSNumber *)start end:(NSNumber *)end;
+
+
 @end
 
 

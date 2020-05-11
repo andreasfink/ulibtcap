@@ -16,14 +16,30 @@
     return [self initWithPrefabricatedIds:0];
 }
 
+
+
+- (UMTCAP_TransactionIdPoolSequential *)initWithStart:(NSNumber *)start end:(NSNumber *)end;
+{
+    self = [super init];
+    if(self)
+    {
+        _lock = [[UMMutex alloc]initWithName:@"transaction-id-pool-sequential"];
+        _inUseTransactionIds = [[NSMutableDictionary alloc]init];
+        _nextTransactionId = start.intValue;
+        _first = start;
+        _last = end;
+    }
+    return self;
+}
+
 - (UMTCAP_TransactionIdPoolSequential *)initWithPrefabricatedIds:(int)count
 {
     self = [super init];
     if(self)
     {
+        _lock = [[UMMutex alloc]initWithName:@"transaction-id-pool-sequential"];
         _nextTransactionId = 1;
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
-        _lock = [[UMMutex alloc]initWithName:@"transaction-id-pool-sequential"];
         _first = @(1);
         _last = @(0x3FFFFFFF);
     }
@@ -32,6 +48,8 @@
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
+    UMAssert(_lock!=NULL,@"no locking in place");
+
     uint32_t _currentTransactionId;
 
     [_lock lock];

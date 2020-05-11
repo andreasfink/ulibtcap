@@ -73,6 +73,7 @@
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
+    UMAssert(_lock!=NULL,@"no locking in place");
     NSString *tidString;
     @autoreleasepool
     {
