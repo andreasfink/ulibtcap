@@ -72,7 +72,7 @@
 
 - (void)genericInitialisation
 {
-    transactionsByLocalTransactionId = [[UMSynchronizedDictionary alloc]init];
+    _transactionsByLocalTransactionId = [[UMSynchronizedDictionary alloc]init];
     tcapUserByOperation = [[UMSynchronizedDictionary alloc]init];
     _transactionTimeoutInSeconds = 60.0; /* default timeout */
     _housekeeping_lock = [[UMMutex alloc]initWithName:@"tcap-housekeeping-lock"];
@@ -1129,7 +1129,7 @@
     t.timeoutInSeconds = self.transactionTimeoutInSeconds;
     [t touch];
 
-    transactionsByLocalTransactionId[t.localTransactionId] = t;
+    _transactionsByLocalTransactionId[t.localTransactionId] = t;
     return t;
 }
 
@@ -1142,14 +1142,14 @@
     t.incoming=YES;
     t.timeoutInSeconds = self.transactionTimeoutInSeconds;
     [t touch];
-    transactionsByLocalTransactionId[t.localTransactionId] = t;
+    _transactionsByLocalTransactionId[t.localTransactionId] = t;
     return t;
 }
 
 - (UMTCAP_Transaction *)findTransactionByLocalTransactionId:(NSString *)s
 {
 
-    UMTCAP_Transaction *t = transactionsByLocalTransactionId[s];
+    UMTCAP_Transaction *t = _transactionsByLocalTransactionId[s];
     return t;
 }
 
@@ -1158,7 +1158,7 @@
     NSString *tid =t.localTransactionId;
     if(tid.length > 0)
     {
-        [transactionsByLocalTransactionId removeObjectForKey:tid];
+        [_transactionsByLocalTransactionId removeObjectForKey:tid];
         [self returnTransactionId:tid];
     }
 }
@@ -1196,7 +1196,7 @@
 
 - (NSString *)status
 {
-    return [NSString stringWithFormat:@"IS:%lu",(unsigned long)[transactionsByLocalTransactionId count]];
+    return [NSString stringWithFormat:@"IS:%lu",(unsigned long)[_transactionsByLocalTransactionId count]];
 }
 
 - (void)housekeeping
@@ -1205,10 +1205,10 @@
     {
         NSMutableArray *tasksToQueue = [[NSMutableArray alloc]init];
         self.housekeeping_running = YES;
-        NSArray *keys = [transactionsByLocalTransactionId allKeys];
+        NSArray *keys = [_transactionsByLocalTransactionId allKeys];
         for(NSString *key in keys)
         {
-            UMTCAP_Transaction *t = transactionsByLocalTransactionId[key];
+            UMTCAP_Transaction *t = _transactionsByLocalTransactionId[key];
             if(t.transactionIsClosed)
             {
                 [self removeTransaction:t];
@@ -1239,14 +1239,14 @@
 
 -(NSUInteger)pendingTransactionCount
 {
-    return transactionsByLocalTransactionId.count;
+    return _transactionsByLocalTransactionId.count;
 }
 
 - (void)dump:(NSFileHandle *)filehandler
 {
     [super dump:filehandler];
     
-    NSArray *allTransactionIds = [transactionsByLocalTransactionId allKeys];
+    NSArray *allTransactionIds = [_transactionsByLocalTransactionId allKeys];
     for(NSString *tid in allTransactionIds)
     {
         NSMutableString *s = [[NSMutableString alloc]init];
@@ -1254,7 +1254,7 @@
         [s appendFormat:@"    Transaction: %@\n",tid];
         [s appendString:@"    ----------------------------------------------------------------------------\n"];
         [filehandler writeData: [s dataUsingEncoding:NSUTF8StringEncoding]];
-        UMTCAP_Transaction *t = transactionsByLocalTransactionId[tid];
+        UMTCAP_Transaction *t = _transactionsByLocalTransactionId[tid];
         [t dump:filehandler];
     }
 }
@@ -1307,6 +1307,38 @@
 - (NSDictionary *)apiStatus
 {
     NSDictionary *d = [[NSDictionary alloc]init];
+    switch(tcapVariant)
+    {
+        case TCAP_VARIANT_DEFAULT:
+            d[@"variant"] =  @"default";
+            break;
+        case TCAP_VARIANT_UNSPECIFIED:
+            d[@"variant"] =  @"unspecified";
+            break;
+        case TCAP_VARIANT_ITU:
+            d[@"variant"] =  @"itu";
+            break;
+        case TCAP_VARIANT_ANSI
+            d[@"variant"] =  @"ansi";
+            break;
+    }
+    d[@"tcapUserByOperation-count"] =  @(tcapUserByOperation.count);
+    d[@"transactionsByLocalTransactionId-count"] =  @(_transactionsByLocalTransactionId.count);
+    d[@"transactionsByLocalTransactionId-count"] =  @(_transactionsByLocalTransactionId.count);
+    d[@"transactionTimeoutInSeconds"] =  @(_transactionTimeoutInSeconds);
+    if(ssn)
+    {
+        d[@"ssn"] =  @(ssn.ssn);
+    }
+    if(attachNumber)
+    {
+        d[@"attachNumber"] =  [attachNumber dictionaryValue];
+    }
+    d[@"lastDialogId"]      =  @(lastDialogId);
+    d[@"lastTransactionId"] =  @(lastTransactionId);
+    d[@"houseKeeping-timer-run"] =  [_houseKeepingTimerRun.date stringValue];
+    d[@"housekeeping-currently-running"] =  _housekeeping_running ? @"YES" : @"NO";
+    d[@"tid-pool"] =  [_tidPool objectValue];
     return d;
 }
 

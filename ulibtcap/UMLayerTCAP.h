@@ -34,7 +34,7 @@
     UMLayerSCCP     *attachedLayer;
     UMTCAP_Variant tcapVariant;
     
-    UMSynchronizedDictionary *transactionsByLocalTransactionId;
+    UMSynchronizedDictionary *_transactionsByLocalTransactionId;
     NSTimeInterval _transactionTimeoutInSeconds;
     SccpSubSystemNumber *ssn;
     SccpAddress *attachNumber;
