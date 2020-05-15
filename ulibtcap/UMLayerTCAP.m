@@ -1306,7 +1306,7 @@
 
 - (NSDictionary *)apiStatus
 {
-    NSDictionary *d = [[NSDictionary alloc]init];
+    NSMutableDictionary *d = [[NSMutableDictionary alloc]init];
     switch(tcapVariant)
     {
         case TCAP_VARIANT_DEFAULT:
@@ -1318,7 +1318,7 @@
         case TCAP_VARIANT_ITU:
             d[@"variant"] =  @"itu";
             break;
-        case TCAP_VARIANT_ANSI
+        case TCAP_VARIANT_ANSI:
             d[@"variant"] =  @"ansi";
             break;
     }
