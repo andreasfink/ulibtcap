@@ -93,5 +93,13 @@
     [_lock unlock];
 }
 
+- (UMSynchronizedSortedDictionary *)objectValue
+{
+    UMSynchronizedSortedDictionary *d = [[UMSynchronizedSortedDictionary alloc]init];
+    d[@"pool-type"]= @"sequential";
+    return d;
+}
+
+
 @end
 

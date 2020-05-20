@@ -28,7 +28,6 @@
 @synthesize operationClass;
 @synthesize user;
 //@synthesize state;
-@synthesize transactionIsClosed;
 
 - (NSTimeInterval)timeoutInSeconds
 {
@@ -94,7 +93,7 @@
                   callingLayer:NULL
                           asn1:NULL
                        options:NULL];
-    transactionIsClosed = YES;
+    _transactionIsClosed = YES;
 }
 
 - (void)dump:(NSFileHandle *)filehandler
@@ -106,7 +105,7 @@
     [s appendFormat:@"    started: %@\n",[_started description]];
     [s appendFormat:@"    lastActivity: %@\n",[_lastActivity description]];
     [s appendFormat:@"    incoming: %@\n", (incoming ? @"YES" : @"NO")];
-    [s appendFormat:@"    closed: %@\n",(transactionIsClosed ? @"YES" : @"NO")];
+    [s appendFormat:@"    closed: %@\n",(_transactionIsClosed ? @"YES" : @"NO")];
     [s appendFormat:@"    timeout: %8.2lfs\n",self.timeoutInSeconds];
     [filehandler writeData: [s dataUsingEncoding:NSUTF8StringEncoding]];
 }

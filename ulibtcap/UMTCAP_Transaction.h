@@ -37,7 +37,7 @@
     BOOL                        withPermission;
     id<UMTCAP_UserProtocol>     user;
 
-    BOOL                        transactionIsClosed;
+    BOOL                        _transactionIsClosed;
     NSTimeInterval              _timeoutInSeconds;
     UMAtomicDate                *_lastActivity;
     
