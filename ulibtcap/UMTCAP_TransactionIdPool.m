@@ -13,10 +13,10 @@
 
 - (UMTCAP_TransactionIdPool *)init
 {
-    return [self initWithPrefabricatedIds:32768];
+    return [self initWithPrefabricatedIds:3276800];
 }
 
-- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(int)count
+- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(long)count
 {
     self = [super init];
     if(self)
@@ -29,7 +29,7 @@
         _quarantineTransactionIds2 = [[NSMutableArray alloc]init];
         _quarantineTransactionIds3 = [[NSMutableArray alloc]init];
 
-        while(count > 0)
+        for(long i=0;i<count;i++)
         {
             /* generate TIDs */
             u_int32_t tid = [UMUtil random:0x3FFFFFFF];
@@ -37,7 +37,6 @@
             if(_freeTransactionIds[tidString] == NULL)
             {
                 _freeTransactionIds[tidString]=tidString;
-                count--;
             }
         }
         if(count>0) /* if we are not a dumb sequential transaction ID pool */

@@ -17,14 +17,14 @@
 
     NSMutableDictionary *_freeTransactionIds;
     NSMutableDictionary *_inUseTransactionIds;
-    UMMutex     *_lock;
-    UMTimer *_quarantineRotateTimer;
+    UMMutex             *_lock;
+    UMTimer             *_quarantineRotateTimer;
 
 }
 
 
 - (UMTCAP_TransactionIdPool *)init;
-- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(int)count;
+- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(long)count;
 - (NSString *)newTransactionIdForInstance:(NSString *)instance;
 - (void)returnTransactionId:(NSString *)tidString;
 - (NSString *)findInstanceForTransaction:(NSString *)tid;

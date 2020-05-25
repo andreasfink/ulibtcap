@@ -47,6 +47,7 @@
     id<UMLayerTCAPApplicationContextProtocol> _appContext;
     UMMutex *_housekeeping_lock;
     UMAtomicDate *_houseKeepingTimerRun;
+    BOOL _isStarted;
 }
 
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapDefaultUser;

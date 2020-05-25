@@ -85,6 +85,7 @@
     if(self)
     {
         [self genericInitialisation];
+        [self startUp];
     }
     return self;
 }
@@ -1051,24 +1052,28 @@
 
 - (void)startUp
 {
-    if(ssn)
+    if(_isStarted==NO)
     {
-        [attachNumber setSsnFromInt:ssn.ssn];
-        [attachedLayer setUser:self forSubsystem:ssn number:attachNumber];
+        if(ssn)
+        {
+            [attachNumber setSsnFromInt:ssn.ssn];
+            [attachedLayer setUser:self forSubsystem:ssn number:attachNumber];
+        }
+        else
+        {
+            [attachedLayer setDefaultUser:self];
+        }
+        /* lets call housekeeping once per 2.6 seconds */
+        houseKeepingTimer = [[UMTimer alloc]initWithTarget:self
+                                                  selector:@selector(housekeepingTask)
+                                                    object:NULL
+                                                   seconds:2.6
+                                                      name:@"tcap-housekeeping"
+                                                   repeats:YES
+                                           runInForeground:YES];
+        [houseKeepingTimer start];
+        _isStarted=YES;
     }
-    else
-    {
-        [attachedLayer setDefaultUser:self];
-    }
-    /* lets call housekeeping once per 2.6 seconds */
-    houseKeepingTimer = [[UMTimer alloc]initWithTarget:self
-                                              selector:@selector(housekeepingTask)
-                                                object:NULL
-                                               seconds:2.6
-                                                  name:@"tcap-housekeeping"
-                                               repeats:YES
-                                       runInForeground:YES];
-    [houseKeepingTimer start];
 }
 
 - (void)sccpNDataIndication:(NSData *)data
