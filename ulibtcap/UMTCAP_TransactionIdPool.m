@@ -124,13 +124,15 @@
         {
             /* we pick a random transaction id out of the free ones */
             uint32_t k = [UMUtil random:(uint32_t)keys.count];
-            e = keys[k];
+            NSString *key = keys[k];
+            e = _freeTransactionIds[key];
             tidString = e.transactionId;
             [_freeTransactionIds removeObjectForKey:tidString];
         }
         else
         {
             int found = 0;
+            int cnt=0;
             while(found == 0)
             {
                 /* generate a random TIDs */
@@ -143,6 +145,13 @@
                     e.lastFreed = [NSDate date];
                     found=1;
                 }
+                cnt++;
+                if(cnt % 100)
+                {
+                    [_lock unlock];
+                    sleep(1);
+                    [_lock lock];
+                }
             }
         }
         e.lastUse = [NSDate date];
@@ -150,6 +159,7 @@
         _inUseTransactionIds[tidString]=e;
     }
     [_lock unlock];
+    UMAssert(tidString.length > 0,@"no transaction id to return");
     return tidString;
 }
 
