@@ -22,7 +22,7 @@
 @interface UMTCAP_Transaction : UMObject
 {
     UMTCAP_Variant              _tcapVariant;
-    UMTCAP_TransactionState     *_transactionState;
+    //UMTCAP_TransactionState     *_transactionState;
     UMSynchronizedDictionary    *_componentStates; /* dictionary of UMTCAP_ComponentState object. The key is an InvokeID's description value (string of integer) */
     UMTCAP_operationClass       operationClass;
     

@@ -984,15 +984,15 @@
         _transactionTimeoutInSeconds = 60.0;
     }
 
-    if(_transactionTimeoutInSeconds <= 5.0)
+    if(_transactionTimeoutInSeconds < 5.0)
     {
         NSLog(@"TCAP Transactiong Timeout is below 5s. Setting it to 5s");
         _transactionTimeoutInSeconds = 5.0;
     }
-    else if(_transactionTimeoutInSeconds >=120.0)
+    else if(_transactionTimeoutInSeconds >90)
     {
         NSLog(@"TCAP Transaction Timeout is above 120s. Setting it to 60s");
-        _transactionTimeoutInSeconds = 60.0;
+        _transactionTimeoutInSeconds = 90.0;
     }
     if (cfg[@"transaction-id-range"])
     {
@@ -1000,7 +1000,7 @@
         NSArray *a = [s componentsSeparatedByString:@"-"];
         if(a.count !=2)
         {
-            NSLog(@"transaction-id-range ignored. should be   <from> - <to>");
+            NSLog(@"tcap: config option 'transaction-id-range' ignored. should be <from> - <to>");
         }
         else
         {
@@ -1019,7 +1019,6 @@
             }
         }
     }
-
 }
 
 - (NSDictionary *)config

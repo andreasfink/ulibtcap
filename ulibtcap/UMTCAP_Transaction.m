@@ -36,15 +36,15 @@
 
 - (void)setTimeoutInSeconds:(NSTimeInterval)to
 {
-    if(to <= 5.0)
+    if(to < 5.0)
     {
         NSLog(@"TCAP Transactiong Timeout is below 5s. Setting it to 5s");
         to = 5.0;
     }
-    else if(to >=120.0)
+    else if(to >90.0)
     {
-        NSLog(@"TCAP Transaction Timeout is above 120s. Setting it to 60s");
-        to = 60.0;
+        NSLog(@"TCAP Transaction Timeout is above 90. Setting it to 90s");
+        to = 90.0;
     }
     _timeoutInSeconds = to;
 }
@@ -56,7 +56,7 @@
     {
         _lastActivity = [[UMAtomicDate alloc]init];
         _started = [NSDate new];
-        _transactionState = [[UMTCAP_TransactionStateIdle alloc]init];
+        //_transactionState = [[UMTCAP_TransactionStateIdle alloc]init];
         _componentStates = [[UMSynchronizedDictionary alloc]init];
         [self touch];
     }
