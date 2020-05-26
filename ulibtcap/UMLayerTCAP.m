@@ -117,7 +117,7 @@
     if(self)
     {
         [self genericInitialisation];
-        _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:100000];
+        _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:100000 start:0 end:0x3FFFFFFF];
     }
     return self;
 }
