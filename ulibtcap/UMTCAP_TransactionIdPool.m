@@ -113,44 +113,44 @@
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
     UMAssert(_lock!=NULL,@"no locking in place");
+    
+    [_lock lock];
     NSString *tidString;
     @autoreleasepool
     {
-        [_lock lock];
-        @autoreleasepool
-        {
-            UMTCAP_TransactionIdPoolEntry *e;
+        UMTCAP_TransactionIdPoolEntry *e;
 
-            NSArray *keys = [_freeTransactionIds allKeys];
-            if(keys.count > 0)
+        NSArray *keys = [_freeTransactionIds allKeys];
+        if(keys.count > 0)
+        {
+            /* we pick a random transaction id out of the free ones */
+            uint32_t k = [UMUtil random:(uint32_t)keys.count];
+            e = keys[k];
+            tidString = e.transactionId;
+            [_freeTransactionIds removeObjectForKey:tidString];
+        }
+        else
+        {
+            int found = 0;
+            while(found == 0)
             {
-                uint32_t k = [UMUtil random:(uint32_t)keys.count];
-                e = keys[k];
-                [_freeTransactionIds removeObjectForKey:tidString];
-            }
-            else
-            {
-                int found = 0;
-                while(found == 0)
+                /* generate a random TIDs */
+                u_int32_t tid = [UMUtil random:0x3FFFFFFF];
+                tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
+                if(_freeTransactionIds[tidString] == NULL)
                 {
-                    /* generate TIDs */
-                    u_int32_t tid = [UMUtil random:0x3FFFFFFF];
-                    tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
-                    if(_freeTransactionIds[tidString] == NULL)
-                    {
-                        e = [[UMTCAP_TransactionIdPoolEntry alloc]init];
-                        e.transactionId = tidString;
-                        e.lastFreed = [NSDate date];
-                        found=1;
-                    }
+                    e = [[UMTCAP_TransactionIdPoolEntry alloc]init];
+                    e.transactionId = tidString;
+                    e.lastFreed = [NSDate date];
+                    found=1;
                 }
             }
-            e.lastUse = [NSDate date];
-            e.instance = instance;
-            _inUseTransactionIds[tidString]=e;
         }
-        [_lock unlock];
+        e.lastUse = [NSDate date];
+        e.instance = instance;
+        _inUseTransactionIds[tidString]=e;
     }
+    [_lock unlock];
     return tidString;
 }
 
