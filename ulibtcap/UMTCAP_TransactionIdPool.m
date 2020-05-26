@@ -38,7 +38,7 @@
         
         int sequential = 0;
         uint32_t max = end - start;
-        if(max>count)
+        if(count>max)
         {
             count = max;
             sequential=1;
