@@ -7,15 +7,11 @@
 //
 
 #import <ulib/ulib.h>
-#import "UMTCAP_TransactionIdPoolProtocol.h"
+#import "UMTCAP_TransactionIdPool.h"
 
-@interface UMTCAP_TransactionIdPoolSequential : UMObject<UMTCAP_TransactionIdPoolProtocol>
+@interface UMTCAP_TransactionIdPoolSequential : UMTCAP_TransactionIdPool
 {
-    NSNumber *_first;
-    NSNumber *_last;
-    u_int32_t _nextTransactionId;
-    NSMutableDictionary *_inUseTransactionIds;
-    UMMutex *_lock;
+
 }
 
 @property(readwrite,strong,atomic)  NSNumber *first;

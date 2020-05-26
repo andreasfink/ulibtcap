@@ -8,15 +8,16 @@
 
 #import <ulib/ulib.h>
 #import "UMTCAP_TransactionIdPoolProtocol.h"
+#import "UMTCAP_TransactionIdPoolEntry.h"
 
 @interface UMTCAP_TransactionIdPool : UMObject<UMTCAP_TransactionIdPoolProtocol>
 {
-    NSMutableArray *_quarantineTransactionIds1;
-    NSMutableArray *_quarantineTransactionIds2;
-    NSMutableArray *_quarantineTransactionIds3;
+    NSMutableArray<UMTCAP_TransactionIdPoolEntry *> *_quarantineTransactionIds1;
+    NSMutableArray<UMTCAP_TransactionIdPoolEntry *> *_quarantineTransactionIds2;
+    NSMutableArray<UMTCAP_TransactionIdPoolEntry *> *_quarantineTransactionIds3;
 
-    NSMutableDictionary *_freeTransactionIds;
-    NSMutableDictionary *_inUseTransactionIds;
+    NSMutableDictionary<NSString *,UMTCAP_TransactionIdPoolEntry *> *_freeTransactionIds; /* key is transaction ID in hex, content is UMTCAP_TransactionIdPoolEntry object */
+    NSMutableDictionary<NSString *,UMTCAP_TransactionIdPoolEntry *> *_inUseTransactionIds; /* key is transaction ID in hex,  content is instance name */
     UMMutex             *_lock;
     UMTimer             *_quarantineRotateTimer;
 
@@ -24,7 +25,8 @@
 
 
 - (UMTCAP_TransactionIdPool *)init;
-- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(long)count;
+- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(uint32_t)count;
+- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(uint32_t)count start:(uint32_t)start end:(uint32_t)end;
 - (NSString *)newTransactionIdForInstance:(NSString *)instance;
 - (void)returnTransactionId:(NSString *)tidString;
 - (NSString *)findInstanceForTransaction:(NSString *)tid;

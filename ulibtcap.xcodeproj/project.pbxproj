@@ -36,6 +36,8 @@
 		A641CE661B42010A00854472 /* ulibtcapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CE651B42010A00854472 /* ulibtcapTests.m */; };
 		A645E4C21CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h in Headers */ = {isa = PBXBuildFile; fileRef = A645E4C01CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A645E4C31CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = A645E4C11CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m */; };
+		A648DF52247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = A648DF50247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A648DF53247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A648DF51247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.m */; };
 		A658BC5C1CAB6A0F00211137 /* UMTCAP_Transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = A658BC5A1CAB6A0F00211137 /* UMTCAP_Transaction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A658BC5D1CAB6A0F00211137 /* UMTCAP_Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = A658BC5B1CAB6A0F00211137 /* UMTCAP_Transaction.m */; };
 		A658BC641CAB6E5000211137 /* UMTCAP_Variant.h in Headers */ = {isa = PBXBuildFile; fileRef = A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -277,6 +279,8 @@
 		A641CE651B42010A00854472 /* ulibtcapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ulibtcapTests.m; sourceTree = "<group>"; };
 		A645E4C01CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_componentPDU.h; sourceTree = "<group>"; };
 		A645E4C11CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1_componentPDU.m; sourceTree = "<group>"; };
+		A648DF50247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPoolEntry.h; sourceTree = "<group>"; };
+		A648DF51247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionIdPoolEntry.m; sourceTree = "<group>"; };
 		A658BC5A1CAB6A0F00211137 /* UMTCAP_Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_Transaction.h; sourceTree = "<group>"; };
 		A658BC5B1CAB6A0F00211137 /* UMTCAP_Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_Transaction.m; sourceTree = "<group>"; };
 		A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_Variant.h; sourceTree = "<group>"; };
@@ -569,6 +573,8 @@
 				A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */,
 				A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */,
 				A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */,
+				A648DF50247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h */,
+				A648DF51247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.m */,
 				A658BC621CAB6E5000211137 /* UMTCAP_Variant.h */,
 				A6A2B8D21E389C6200E8F0AB /* UMLayerTCAPApplicationContextProtocol.h */,
 				A68C23051FEA6A0800A02B91 /* UMTCAP_QualityOfService.h */,
@@ -970,6 +976,7 @@
 				A6CB6B241FEC80270087B28F /* UMTCAP_InvokeId.h in Headers */,
 				A68252651CCFD8BB00211137 /* UMTCAP_itu_asn1_asn1Type.h in Headers */,
 				A6D03B701CA489EB00211137 /* UMTCAP_itu_begin.h in Headers */,
+				A648DF52247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h in Headers */,
 				A6D03B541CA4896900211137 /* UMTCAP_ansi_unidirectional.h in Headers */,
 				A658BC5C1CAB6A0F00211137 /* UMTCAP_Transaction.h in Headers */,
 				A61571EA1CD4670700211137 /* UMTCAP_sccpNNotice.h in Headers */,
@@ -1141,6 +1148,7 @@
 				A621712120A31AF2008A7E70 /* UMTCAP_asn1_AbortSource.m in Sources */,
 				A6091FC71CB53FA40076BD59 /* UMTCAP_ansi_asn1_componentIDs.m in Sources */,
 				A6DE4E9D1CC19B5A00211137 /* UMTCAP_itu_asn1_pAbortCause.m in Sources */,
+				A648DF53247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.m in Sources */,
 				A6BCE1AC1CD8B00800415D67 /* UMTCAP_asn1_Associate_source_diagnostic.m in Sources */,
 				A6091FBB1CB407060076BD59 /* UMTCAP_ansi_asn1_confidentiality.m in Sources */,
 				A6D03B5D1CA4898D00211137 /* UMTCAP_ansi_queryWithoutPermission.m in Sources */,

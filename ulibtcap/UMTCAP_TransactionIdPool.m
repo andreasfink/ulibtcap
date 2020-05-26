@@ -7,6 +7,7 @@
 //
 
 #import "UMTCAP_TransactionIdPool.h"
+#import "UMTCAP_TransactionIdPoolEntry.h"
 #include <stdlib.h>
 
 @implementation UMTCAP_TransactionIdPool
@@ -16,7 +17,12 @@
     return [self initWithPrefabricatedIds:3276800];
 }
 
-- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(long)count
+- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(uint32_t)count
+{
+    return [self initWithPrefabricatedIds:count start:0 end:0x3FFFFFF0];
+}
+
+- (UMTCAP_TransactionIdPool *)initWithPrefabricatedIds:(uint32_t)count start:(uint32_t)start end:(uint32_t)end
 {
     self = [super init];
     if(self)
@@ -29,27 +35,60 @@
         _quarantineTransactionIds2 = [[NSMutableArray alloc]init];
         _quarantineTransactionIds3 = [[NSMutableArray alloc]init];
 
-        for(long i=0;i<count;i++)
+        
+        int sequential = 0;
+        uint32_t max = end - start;
+        if(max>count)
         {
-            /* generate TIDs */
-            u_int32_t tid = [UMUtil random:0x3FFFFFFF];
-            NSString *tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
-            if(_freeTransactionIds[tidString] == NULL)
+            count = max;
+            sequential=1;
+        }
+        if((count * 3) > max)
+        {
+            sequential = 1;
+        }
+        if(sequential)
+        {
+            uint32_t xstart = [UMUtil random:max];
+            
+            for(uint32_t i=0;i<count;i++)
             {
-                _freeTransactionIds[tidString]=tidString;
+                u_int32_t tid = start + ((i + xstart) % max);
+                NSString *tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
+                UMTCAP_TransactionIdPoolEntry *e = [[UMTCAP_TransactionIdPoolEntry alloc]init];
+                e.transactionId = tidString;
+                e.lastFreed = [NSDate date];
+                _freeTransactionIds[tidString]=e;
             }
         }
-        if(count>0) /* if we are not a dumb sequential transaction ID pool */
+        else
         {
-            _quarantineRotateTimer = [[UMTimer alloc]initWithTarget:self
-                                                           selector:@selector(quarantineRotate)
-                                                             object:NULL
-                                                            seconds:60 /* every 60 sec */
-                                                               name:@"quarantine-rotate"
-                                                            repeats:YES
-                                                    runInForeground:YES];
-            [_quarantineRotateTimer start];
+            for(long i=0;i<count;i++)
+            {
+                /* generate TIDs */
+                while(1)
+                {
+                    u_int32_t tid = start + [UMUtil random:max];
+                    NSString *tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
+                    if(_freeTransactionIds[tidString] == NULL)
+                    {
+                        UMTCAP_TransactionIdPoolEntry *e = [[UMTCAP_TransactionIdPoolEntry alloc]init];
+                        e.transactionId = tidString;
+                        e.lastFreed = [NSDate date];
+                        _freeTransactionIds[tidString]=e;
+                        break;
+                    }
+                }
+            }
         }
+        _quarantineRotateTimer = [[UMTimer alloc]initWithTarget:self
+                                                       selector:@selector(quarantineRotate)
+                                                         object:NULL
+                                                        seconds:60 /* every 60 sec */
+                                                           name:@"quarantine-rotate"
+                                                        repeats:YES
+                                                runInForeground:YES];
+        [_quarantineRotateTimer start];
     }
     return self;
 }
@@ -60,9 +99,10 @@
 - (void)quarantineRotate
 {
     [_lock lock];
-    for(NSString *tidString in _quarantineTransactionIds3)
+    for(UMTCAP_TransactionIdPoolEntry *e in _quarantineTransactionIds3)
     {
-        _freeTransactionIds[tidString]=tidString;
+        e.lastFreed = [NSDate date];
+        _freeTransactionIds[e.transactionId]=e;
     }
     _quarantineTransactionIds3 = _quarantineTransactionIds2;
     _quarantineTransactionIds2 = _quarantineTransactionIds1;
@@ -79,11 +119,13 @@
         [_lock lock];
         @autoreleasepool
         {
+            UMTCAP_TransactionIdPoolEntry *e;
+
             NSArray *keys = [_freeTransactionIds allKeys];
             if(keys.count > 0)
             {
                 uint32_t k = [UMUtil random:(uint32_t)keys.count];
-                tidString = keys[k];
+                e = keys[k];
                 [_freeTransactionIds removeObjectForKey:tidString];
             }
             else
@@ -96,12 +138,16 @@
                     tidString = [NSString stringWithFormat:@"%08lX",(long)tid];
                     if(_freeTransactionIds[tidString] == NULL)
                     {
-                        _freeTransactionIds[tidString]=tidString;
+                        e = [[UMTCAP_TransactionIdPoolEntry alloc]init];
+                        e.transactionId = tidString;
+                        e.lastFreed = [NSDate date];
                         found=1;
                     }
                 }
             }
-            _inUseTransactionIds[tidString]=instance;
+            e.lastUse = [NSDate date];
+            e.instance = instance;
+            _inUseTransactionIds[tidString]=e;
         }
         [_lock unlock];
     }
@@ -110,9 +156,9 @@
 
 - (NSString *)findInstanceForTransaction:(NSString *)tidString
 {
-    NSString *instance;
     [_lock lock];
-    instance = _inUseTransactionIds[tidString];
+    UMTCAP_TransactionIdPoolEntry *e = _inUseTransactionIds[tidString];
+    NSString *instance = e.instance;
     [_lock unlock];
     return instance;
 }
@@ -120,8 +166,12 @@
 - (void)returnTransactionId:(NSString *)tidString
 {
     [_lock lock];
-    [_inUseTransactionIds removeObjectForKey:tidString];
-    [_quarantineTransactionIds1 addObject:tidString];
+    UMTCAP_TransactionIdPoolEntry *e = _inUseTransactionIds[tidString];
+    if(e)
+    {
+        [_inUseTransactionIds removeObjectForKey:tidString];
+        [_quarantineTransactionIds1 addObject:e];
+    }
     [_lock unlock];
 }
 
@@ -131,6 +181,5 @@
     d[@"pool-type"]= @"standard";
     return d;
 }
-
 
 @end
