@@ -59,41 +59,44 @@
 
 - (void)main
 {
-    UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
+    @autoreleasepool
+    {
+        UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
 
-    UMTCAP_ansi_asn1_transactionPDU *q;
-    
-    if(options[@"ansi-without-permission"])
-    {
-        q = [[UMTCAP_ansi_asn1_queryWithoutPerm alloc]init];
-    }
-    else
-    {
-        q = [[UMTCAP_ansi_asn1_queryWithPerm alloc]init];
-    }
+        UMTCAP_ansi_asn1_transactionPDU *q;
+        
+        if(options[@"ansi-without-permission"])
+        {
+            q = [[UMTCAP_ansi_asn1_queryWithoutPerm alloc]init];
+        }
+        else
+        {
+            q = [[UMTCAP_ansi_asn1_queryWithPerm alloc]init];
+        }
 
-    UMTCAP_ansi_asn1_transactionID *tid = [[UMTCAP_ansi_asn1_transactionID alloc]init];
-    tid.tid = transactionId;
-    
-    UMTCAP_ansi_asn1_componentSequence *compSequence = [[UMTCAP_ansi_asn1_componentSequence alloc]init];
-    for(id item in components)
-    {
-        [compSequence addComponent:(UMTCAP_ansi_asn1_componentPDU *)item];
+        UMTCAP_ansi_asn1_transactionID *tid = [[UMTCAP_ansi_asn1_transactionID alloc]init];
+        tid.tid = transactionId;
+        
+        UMTCAP_ansi_asn1_componentSequence *compSequence = [[UMTCAP_ansi_asn1_componentSequence alloc]init];
+        for(id item in components)
+        {
+            [compSequence addComponent:(UMTCAP_ansi_asn1_componentPDU *)item];
+        }
+        q.identifier = tid;
+        q.componentPortion = compSequence;
+        
+        NSData *pdu = [q berEncoded];
+        
+        [tcap.attachedLayer sccpNUnidata:pdu
+                            callingLayer:tcap
+                                 calling:callingAddress
+                                  called:calledAddress
+                        qualityOfService:0
+                                   class:SCCP_CLASS_BASIC
+                                handling:SCCP_HANDLING_RETURN_ON_ERROR
+                                 options:options];
+        [t touch];
     }
-    q.identifier = tid;
-    q.componentPortion = compSequence;
-    
-    NSData *pdu = [q berEncoded];
-    
-    [tcap.attachedLayer sccpNUnidata:pdu
-                        callingLayer:tcap
-                             calling:callingAddress
-                              called:calledAddress
-                    qualityOfService:0
-                               class:SCCP_CLASS_BASIC
-                            handling:SCCP_HANDLING_RETURN_ON_ERROR
-                             options:options];
-    [t touch];
 }
 
 @end

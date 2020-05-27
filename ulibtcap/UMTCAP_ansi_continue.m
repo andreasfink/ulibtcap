@@ -15,7 +15,10 @@
 
 - (void)main
 {
-    NSLog(@"Implement me: UMTCAP_ansi_continue");
+    @autoreleasepool
+    {
+        NSLog(@"Implement me: UMTCAP_ansi_continue");
+    }
 }
 
 @end

@@ -1241,7 +1241,12 @@
     UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
     [self queueFromAdmin:task];
 //    ulib_set_thread_name(@"tcap-housekeeping");
-//    [task main];
+#if 0
+    @autoreleasepool
+    {
+        [task main];
+    }
+#endif
 }
 
 -(NSUInteger)pendingTransactionCount

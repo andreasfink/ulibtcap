@@ -52,8 +52,10 @@
 
 - (void)main
 {
-    
-    @throw([NSException exceptionWithName:@"NOT_IMPL" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
-    /* this should be overriden by itu and ANSI versions */
+    @autoreleasepool
+    {
+        @throw([NSException exceptionWithName:@"NOT_IMPL" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        /* this should be overriden by itu and ANSI versions */
+    }
 }
 @end

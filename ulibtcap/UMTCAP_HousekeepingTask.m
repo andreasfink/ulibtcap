@@ -27,7 +27,10 @@
 
 - (void)main
 {
-    [tcapLayer housekeeping];
+    @autoreleasepool
+    {
+        [tcapLayer housekeeping];
+    }
 }
 
 @end

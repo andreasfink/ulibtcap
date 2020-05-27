@@ -53,6 +53,9 @@
 
 - (void)main
 {
-    @throw([NSException exceptionWithName:@"NOT_IMPL" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+    @autoreleasepool
+    {
+        @throw([NSException exceptionWithName:@"NOT_IMPL" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+    }
 }
 @end

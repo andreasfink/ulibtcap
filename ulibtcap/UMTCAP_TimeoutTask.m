@@ -30,7 +30,10 @@
 
 - (void) main
 {
-    [transaction timeOut];
+    @autoreleasepool
+    {
+        [transaction timeOut];
+    }
 }
 
 @end

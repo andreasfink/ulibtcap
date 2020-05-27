@@ -71,54 +71,57 @@
 
 - (void)main
 {
-    NSUInteger pos = 0;
-    BOOL decodeOnly = [_options[@"decode-only"] boolValue];
-    _mtp3_pdu =_options[@"mtp3-pdu"];
-    NSDate *ts = [NSDate new];
-    _options[@"tcap-timestamp"] = ts;
-
-    if(_tcapLayer.logLevel <= UMLOG_DEBUG)
+    @autoreleasepool
     {
-        [_tcapLayer.logFeed debugText:[NSString stringWithFormat:@"task sccpNUnidata:\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"PDU:%@\n",
-                                 _src,
-                                 _dst,
-                                 [_data hexString]
-                                 ]];
-    }
+        NSUInteger pos = 0;
+        BOOL decodeOnly = [_options[@"decode-only"] boolValue];
+        _mtp3_pdu =_options[@"mtp3-pdu"];
+        NSDate *ts = [NSDate new];
+        _options[@"tcap-timestamp"] = ts;
 
-    _options[@"tcap-pdu"] = [_data hexString];
-    @try
-    {
-        [self startDecodingOfPdu];
-        _asn1 = [[UMTCAP_asn1 alloc] initWithBerData:_data atPosition:&pos context:self];
-
-        BOOL furtherProcessing = [self endDecodingOfPdu];
-        if(furtherProcessing)
+        if(_tcapLayer.logLevel <= UMLOG_DEBUG)
         {
-            if(decodeOnly==NO)
+            [_tcapLayer.logFeed debugText:[NSString stringWithFormat:@"task sccpNUnidata:\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"PDU:%@\n",
+                                     _src,
+                                     _dst,
+                                     [_data hexString]
+                                     ]];
+        }
+
+        _options[@"tcap-pdu"] = [_data hexString];
+        @try
+        {
+            [self startDecodingOfPdu];
+            _asn1 = [[UMTCAP_asn1 alloc] initWithBerData:_data atPosition:&pos context:self];
+
+            BOOL furtherProcessing = [self endDecodingOfPdu];
+            if(furtherProcessing)
             {
-                [self handlePdu];
+                if(decodeOnly==NO)
+                {
+                    [self handlePdu];
+                }
             }
         }
-    }
-    @catch(NSException *ex)
-    {
-        NSLog(@"Exception: %@",ex);
-        [self errorDecodingPdu];
-        if(decodeOnly)
+        @catch(NSException *ex)
         {
-            _decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
-        }
-        if(_currentRemoteTransactionId != NULL)
-        {
-            [_tcapLayer sendPAbort:_currentRemoteTransactionId
-                             cause:UMTCAP_pAbortCause_badlyFormattedTransactionPortion
-                    callingAddress:_dst
-                     calledAddress:_src
-                           options:@{}];
+            NSLog(@"Exception: %@",ex);
+            [self errorDecodingPdu];
+            if(decodeOnly)
+            {
+                _decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
+            }
+            if(_currentRemoteTransactionId != NULL)
+            {
+                [_tcapLayer sendPAbort:_currentRemoteTransactionId
+                                 cause:UMTCAP_pAbortCause_badlyFormattedTransactionPortion
+                        callingAddress:_dst
+                         calledAddress:_src
+                               options:@{}];
+            }
         }
     }
 }

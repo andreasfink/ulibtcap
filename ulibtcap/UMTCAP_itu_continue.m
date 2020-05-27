@@ -19,51 +19,53 @@
 
 - (void)main
 {
-    UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
-    UMTCAP_itu_asn1_continue *q = [[UMTCAP_itu_asn1_continue alloc]init];
-    
-    if(components_itu.count>0)
+    @autoreleasepool
     {
-        UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
-        for(UMTCAP_itu_asn1_componentPDU *item in components_itu)
+        UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
+        UMTCAP_itu_asn1_continue *q = [[UMTCAP_itu_asn1_continue alloc]init];
+        
+        if(components_itu.count>0)
         {
-            [componentsPortion addComponent:item];
+            UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
+            for(UMTCAP_itu_asn1_componentPDU *item in components_itu)
+            {
+                [componentsPortion addComponent:item];
+            }
+            q.componentPortion = componentsPortion;
         }
-        q.componentPortion = componentsPortion;
-    }
-    
-    if(transactionId)
-    {
-        UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
-        otid.transactionId = transactionId;
-        q.otid = otid;
-    }
-    if((t.remoteTransactionId) && !(t.noDestinationTransationIdInContinue))
-    {
-        UMTCAP_itu_asn1_dtid *dtid;
-        if(t.doubleOriginationTransationIdInContinue)
+        
+        if(transactionId)
         {
-            dtid =(UMTCAP_itu_asn1_dtid *)[[UMTCAP_itu_asn1_otid alloc]init];
+            UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
+            otid.transactionId = transactionId;
+            q.otid = otid;
         }
-        else
+        if((t.remoteTransactionId) && !(t.noDestinationTransationIdInContinue))
         {
-            dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+            UMTCAP_itu_asn1_dtid *dtid;
+            if(t.doubleOriginationTransationIdInContinue)
+            {
+                dtid =(UMTCAP_itu_asn1_dtid *)[[UMTCAP_itu_asn1_otid alloc]init];
+            }
+            else
+            {
+                dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+            }
+            dtid.transactionId = t.remoteTransactionId;
+            q.dtid = dtid;
         }
-        dtid.transactionId = t.remoteTransactionId;
-        q.dtid = dtid;
+        q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
+        
+        NSData *pdu = [q berEncoded];
+        [tcap.attachedLayer sccpNUnidata:pdu
+                            callingLayer:tcap
+                                 calling:callingAddress
+                                  called:calledAddress
+                        qualityOfService:0
+                                   class:SCCP_CLASS_BASIC
+                                handling:SCCP_HANDLING_RETURN_ON_ERROR
+                                 options:options];
+        [t touch];
     }
-    q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
-    
-    NSData *pdu = [q berEncoded];
-    [tcap.attachedLayer sccpNUnidata:pdu
-                        callingLayer:tcap
-                             calling:callingAddress
-                              called:calledAddress
-                    qualityOfService:0
-                               class:SCCP_CLASS_BASIC
-                            handling:SCCP_HANDLING_RETURN_ON_ERROR
-                             options:options];
-    [t touch];
 }
-
 @end

@@ -64,35 +64,38 @@
 
 - (void)main
 {
-    UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
-    UMTCAP_itu_asn1_end *q = [[UMTCAP_itu_asn1_end alloc]init];
-
-    UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
-    dtid.transactionId = t.remoteTransactionId;
-    q.dtid = dtid;
-    q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
-    
-    if(components.count > 0)
+    @autoreleasepool
     {
-        UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
-        for(id item in components)
-        {
-            [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
-        }
-        q.componentPortion = componentsPortion;
-    }
+        UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
+        UMTCAP_itu_asn1_end *q = [[UMTCAP_itu_asn1_end alloc]init];
 
-    NSData *pdu = [q berEncoded];
-    
-    [tcap.attachedLayer sccpNUnidata:pdu
-                        callingLayer:tcap
-                             calling:callingAddress
-                              called:calledAddress
-                    qualityOfService:0
-                               class:SCCP_CLASS_BASIC
-                            handling:SCCP_HANDLING_RETURN_ON_ERROR
-                             options:options];
-    t.transactionIsClosed = YES;
+        UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+        dtid.transactionId = t.remoteTransactionId;
+        q.dtid = dtid;
+        q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
+        
+        if(components.count > 0)
+        {
+            UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
+            for(id item in components)
+            {
+                [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
+            }
+            q.componentPortion = componentsPortion;
+        }
+
+        NSData *pdu = [q berEncoded];
+        
+        [tcap.attachedLayer sccpNUnidata:pdu
+                            callingLayer:tcap
+                                 calling:callingAddress
+                                  called:calledAddress
+                        qualityOfService:0
+                                   class:SCCP_CLASS_BASIC
+                                handling:SCCP_HANDLING_RETURN_ON_ERROR
+                                 options:options];
+        t.transactionIsClosed = YES;
+    }
 }
 
 @end

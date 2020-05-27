@@ -61,33 +61,36 @@
 
 - (void)main
 {
-    NSUInteger pos = 0;
-    BOOL decodeOnly = [_options[@"decode-only"] boolValue];
-    _mtp3_pdu =_options[@"mtp3-pdu"];
+    @autoreleasepool
+    {
+        NSUInteger pos = 0;
+        BOOL decodeOnly = [_options[@"decode-only"] boolValue];
+        _mtp3_pdu =_options[@"mtp3-pdu"];
 
-    if(_options)
-    {
-        NSMutableDictionary *o = [_options mutableCopy];
-        o[@"tcap-pdu"] = [_data hexString];
-        _options = o;
-    }
-    else
-    {
-        _options = @{@"tcap-pdu":[_data hexString]};
-    }
-    @try
-    {
-        [self startDecodingOfPdu];
-        _asn1 = [[UMTCAP_asn1 alloc] initWithBerData:_data atPosition:&pos context:self];
-        [self endDecodingOfPdu];
-    }
-    @catch(NSException *ex)
-    {
-        NSLog(@"Exception: %@",ex);
-        [self errorDecodingPdu];
-        if(decodeOnly)
+        if(_options)
         {
-            _decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
+            NSMutableDictionary *o = [_options mutableCopy];
+            o[@"tcap-pdu"] = [_data hexString];
+            _options = o;
+        }
+        else
+        {
+            _options = @{@"tcap-pdu":[_data hexString]};
+        }
+        @try
+        {
+            [self startDecodingOfPdu];
+            _asn1 = [[UMTCAP_asn1 alloc] initWithBerData:_data atPosition:&pos context:self];
+            [self endDecodingOfPdu];
+        }
+        @catch(NSException *ex)
+        {
+            NSLog(@"Exception: %@",ex);
+            [self errorDecodingPdu];
+            if(decodeOnly)
+            {
+                _decodeError = [NSString stringWithFormat:@"Error while decoding: %@\r\n",ex];
+            }
         }
     }
 }
