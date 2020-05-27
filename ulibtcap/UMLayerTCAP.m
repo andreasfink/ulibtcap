@@ -1177,7 +1177,10 @@
                                              called:NULL
                                    qualityOfService:0
                                             options:@{ @"decode-only" : @YES }];
-    [task main];
+    @autoreleasepool
+    {
+        [task main];
+    }
     UMASN1Object *asn1 = task.asn1;
     if(asn1)
     {
