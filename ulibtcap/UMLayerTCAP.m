@@ -131,46 +131,49 @@
              handling:(SCCP_Handling)handling
               options:(NSDictionary *)options
 {
-    NSData *rawMtp3 = options[@"mtp3-pdu"];
-    if(data.length < 3)
+    @autoreleasepool
     {
-        [sccpLayer.mtp3.problematicPacketDumper logRawPacket:rawMtp3];
-        return;
-    }
+        NSData *rawMtp3 = options[@"mtp3-pdu"];
+        if(data.length < 3)
+        {
+            [sccpLayer.mtp3.problematicPacketDumper logRawPacket:rawMtp3];
+            return;
+        }
 
-    const uint8_t *bytes = data.bytes;
-    uint8_t tag = bytes[0];
-    UMTCAP_sccpNUnitdata *task = [UMTCAP_sccpNUnitdata alloc];
-    
-    if( ((tag>>6) & 0x3) == UMASN1Class_Private)
-    {
-        task.tcapVariant = TCAP_VARIANT_ANSI;
-    }
-    else
-    {
-        task.tcapVariant = TCAP_VARIANT_ITU;
-    }
-    task.sccpVariant = sccpLayer.sccpVariant;
+        const uint8_t *bytes = data.bytes;
+        uint8_t tag = bytes[0];
+        UMTCAP_sccpNUnitdata *task = [UMTCAP_sccpNUnitdata alloc];
+        
+        if( ((tag>>6) & 0x3) == UMASN1Class_Private)
+        {
+            task.tcapVariant = TCAP_VARIANT_ANSI;
+        }
+        else
+        {
+            task.tcapVariant = TCAP_VARIANT_ITU;
+        }
+        task.sccpVariant = sccpLayer.sccpVariant;
 
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"sccpNUnidata:\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"PDU:%@\n",
-                                 src,
-                                 dst,
-                                 [data hexString]
-                                 ]];
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"sccpNUnidata:\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"PDU:%@\n",
+                                     src,
+                                     dst,
+                                     [data hexString]
+                                     ]];
+        }
+        task = [task initForTcap:self
+                            sccp:sccpLayer
+                        userData:data
+                         calling:src
+                          called:dst
+                qualityOfService:qos
+                         options:options];
+        [self queueFromLower:task];
     }
-    task = [task initForTcap:self
-                        sccp:sccpLayer
-                    userData:data
-                     calling:src
-                      called:dst
-            qualityOfService:qos
-                     options:options];
-    [self queueFromLower:task];
 }
 
 - (void)sccpNNotice:(NSData *)data
@@ -180,48 +183,51 @@
              reason:(int)reason
             options:(NSDictionary *)options
 {
-    if(data.length < 3)
+    @autoreleasepool
     {
-        return;
-    }
-    
-    const uint8_t *bytes = data.bytes;
-    uint8_t tag = bytes[0];
-    UMTCAP_sccpNNotice *task = [UMTCAP_sccpNNotice alloc];
-    
-    if( ((tag>>6) & 0x3) == UMASN1Class_Private)
-    {
-        task.tcapVariant = TCAP_VARIANT_ANSI;
-    }
-    else
-    {
-        task.tcapVariant = TCAP_VARIANT_ITU;
-    }
-    task.sccpVariant = sccpLayer.sccpVariant;
-    
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"sccpNNotice:\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"PDU:%@\n"
-                                 @"Reason:%d",
-                                 src,
-                                 dst,
-                                 [data hexString],
-                                 reason
-                                 ]];
-    }
-    task = [task initForTcap:self
-                        sccp:sccpLayer
-                    userData:data
-                     calling:src
-                      called:dst
-                      reason:reason
-                     options:options];
-    [self queueFromLower:task];
-}
 
+        if(data.length < 3)
+        {
+            return;
+        }
+        
+        const uint8_t *bytes = data.bytes;
+        uint8_t tag = bytes[0];
+        UMTCAP_sccpNNotice *task = [UMTCAP_sccpNNotice alloc];
+        
+        if( ((tag>>6) & 0x3) == UMASN1Class_Private)
+        {
+            task.tcapVariant = TCAP_VARIANT_ANSI;
+        }
+        else
+        {
+            task.tcapVariant = TCAP_VARIANT_ITU;
+        }
+        task.sccpVariant = sccpLayer.sccpVariant;
+        
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"sccpNNotice:\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"PDU:%@\n"
+                                     @"Reason:%d",
+                                     src,
+                                     dst,
+                                     [data hexString],
+                                     reason
+                                     ]];
+        }
+        task = [task initForTcap:self
+                            sccp:sccpLayer
+                        userData:data
+                         calling:src
+                          called:dst
+                          reason:reason
+                         options:options];
+        [self queueFromLower:task];
+    }
+}
 
 /*****/
 
@@ -237,33 +243,35 @@
                        components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                           options:(NSDictionary *)options
 {
-    if(variant != TCAP_VARIANT_DEFAULT)
+    @autoreleasepool
     {
-        tcapVariant = variant;
+        if(variant != TCAP_VARIANT_DEFAULT)
+        {
+            tcapVariant = variant;
+        }
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUnidirectionalRequest:\n"
+                                     @"userDialogId:%@\n"
+                                     @"transactionId:%@\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"dialoguePortion:%@\n"
+                                     @"components:%@\n"
+                                     @"options:%@\n",
+                                     ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                     userDialogId.description,
+                                     tcapTransactionId,
+                                     src,
+                                     dst,
+                                     xdialoguePortion,
+                                     components,
+                                     options
+                                     ]];
+        }
+        /* FIXME: to be done */
     }
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUnidirectionalRequest:\n"
-                                 @"userDialogId:%@\n"
-                                 @"transactionId:%@\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"dialoguePortion:%@\n"
-                                 @"components:%@\n"
-                                 @"options:%@\n",
-                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId.description,
-                                 tcapTransactionId,
-                                 src,
-                                 dst,
-                                 xdialoguePortion,
-                                 components,
-                                 options
-                                 ]];
-    }
-    /* FIXME: to be done */
 }
-
 
 - (void)tcapBeginRequest:(NSString *)tcapTransactionId
             userDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId
@@ -275,63 +283,66 @@
               components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                  options:(NSDictionary *)options
 {
-    if(variant == TCAP_VARIANT_DEFAULT)
+    @autoreleasepool
     {
-        variant = tcapVariant;
-    }
 
-    UMTCAP_begin *begin;
-    
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapBeginReq:\n"
-                                 @"userDialogId:%@\n"
-                                 @"transactionId:%@\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"dialoguePortion:%@\n"
-                                 @"components:%@\n"
-                                 @"options:%@\n",
-                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId.description,
-                                 tcapTransactionId,
-                                 src,
-                                 dst,
-                                 xdialoguePortion,
-                                 components,
-                                 options
-                                 ]];
-    }
-    if(variant ==TCAP_VARIANT_ITU)
-    {
-        begin = [[UMTCAP_itu_begin alloc]initForTcap:self
-                                       transactionId:tcapTransactionId
-                                        userDialogId:userDialogId
-                                             variant:variant
-                                                user:user
-                                      callingAddress:src
-                                       calledAddress:dst
-                                     dialoguePortion:xdialoguePortion
-                                          components:components
-                                             options:options];
-    }
-    else if(variant ==TCAP_VARIANT_ANSI)
-    {
-        begin = [[UMTCAP_ansi_begin alloc]initForTcap:self
-                                        transactionId:tcapTransactionId
-                                         userDialogId:userDialogId
-                                              variant:variant
-                                                 user:user
-                                       callingAddress:src
-                                        calledAddress:dst
-                                      dialoguePortion:xdialoguePortion
-                                           components:components
-                                              options:options];
+        if(variant == TCAP_VARIANT_DEFAULT)
+        {
+            variant = tcapVariant;
+        }
 
+        UMTCAP_begin *begin;
+        
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapBeginReq:\n"
+                                     @"userDialogId:%@\n"
+                                     @"transactionId:%@\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"dialoguePortion:%@\n"
+                                     @"components:%@\n"
+                                     @"options:%@\n",
+                                     ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                     userDialogId.description,
+                                     tcapTransactionId,
+                                     src,
+                                     dst,
+                                     xdialoguePortion,
+                                     components,
+                                     options
+                                     ]];
+        }
+        if(variant ==TCAP_VARIANT_ITU)
+        {
+            begin = [[UMTCAP_itu_begin alloc]initForTcap:self
+                                           transactionId:tcapTransactionId
+                                            userDialogId:userDialogId
+                                                 variant:variant
+                                                    user:user
+                                          callingAddress:src
+                                           calledAddress:dst
+                                         dialoguePortion:xdialoguePortion
+                                              components:components
+                                                 options:options];
+        }
+        else if(variant ==TCAP_VARIANT_ANSI)
+        {
+            begin = [[UMTCAP_ansi_begin alloc]initForTcap:self
+                                            transactionId:tcapTransactionId
+                                             userDialogId:userDialogId
+                                                  variant:variant
+                                                     user:user
+                                           callingAddress:src
+                                            calledAddress:dst
+                                          dialoguePortion:xdialoguePortion
+                                               components:components
+                                                  options:options];
+
+        }
+        [self queueFromUpper:begin];
     }
-    [self queueFromUpper:begin];
 }
-
 
 
 - (void)tcapContinueRequest:(NSString *)tcapTransactionId
@@ -345,74 +356,78 @@
              components_itu:(NSArray<UMTCAP_itu_asn1_componentPDU *>*)components_itu
                     options:(NSDictionary *)options
 {
-    if(variant == TCAP_VARIANT_DEFAULT)
+    @autoreleasepool
     {
-        variant = tcapVariant;
-    }
-    
-    UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
-    if(transaction == NULL)
-    {
-        NSString *s = [NSString stringWithFormat:@"tcapContinueRequest with unknown transaction ID '%@'",tcapTransactionId];
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
-    }
-    [transaction touch];
-    [transaction setOptions:options];
-    UMTCAP_continue *continueRequest = NULL;
 
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapContinueReq:\n"
-                                 @"userDialogId:%@\n"
-                                 @"transactionId:%@\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"dialoguePortion:%@\n"
-                                 @"components_ansi:%@\n"
-                                 @"components_itu:%@\n"
-                                 @"options:%@\n",
-                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId.description,
-                                 tcapTransactionId,
-                                 src,
-                                 dst,
-                                 xdialoguePortion,
-                                 components_ansi,
-                                 components_itu,
-                                 options
-                                 ]];
-    }
-    if(variant ==TCAP_VARIANT_ITU)
-    {
-        continueRequest = [[UMTCAP_itu_continue alloc]initForTcap:self
-                                                    transactionId:tcapTransactionId
-                                                     userDialogId:userDialogId
-                                                          variant:variant
-                                                             user:user
-                                                   callingAddress:src
-                                                    calledAddress:dst
-                                                  dialoguePortion:xdialoguePortion
-                                                  components_ansi:NULL
-                                                   components_itu:components_itu
-                                                          options:options];
-
-    }
-    else if(variant ==TCAP_VARIANT_ANSI)
-    {
-        continueRequest = [[UMTCAP_ansi_continue alloc]initForTcap:self
-                                                     transactionId:tcapTransactionId
-                                                      userDialogId:userDialogId
-                                                           variant:variant
-                                                              user:user
-                                                    callingAddress:src
-                                                     calledAddress:dst
-                                                   dialoguePortion:xdialoguePortion
-                                                   components_ansi:components_ansi
-                                                    components_itu:NULL
-                                                           options:options];
+        if(variant == TCAP_VARIANT_DEFAULT)
+        {
+            variant = tcapVariant;
+        }
         
+        UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
+        if(transaction == NULL)
+        {
+            NSString *s = [NSString stringWithFormat:@"tcapContinueRequest with unknown transaction ID '%@'",tcapTransactionId];
+            @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        }
+        [transaction touch];
+        [transaction setOptions:options];
+        UMTCAP_continue *continueRequest = NULL;
+
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapContinueReq:\n"
+                                     @"userDialogId:%@\n"
+                                     @"transactionId:%@\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"dialoguePortion:%@\n"
+                                     @"components_ansi:%@\n"
+                                     @"components_itu:%@\n"
+                                     @"options:%@\n",
+                                     ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                     userDialogId.description,
+                                     tcapTransactionId,
+                                     src,
+                                     dst,
+                                     xdialoguePortion,
+                                     components_ansi,
+                                     components_itu,
+                                     options
+                                     ]];
+        }
+        if(variant ==TCAP_VARIANT_ITU)
+        {
+            continueRequest = [[UMTCAP_itu_continue alloc]initForTcap:self
+                                                        transactionId:tcapTransactionId
+                                                         userDialogId:userDialogId
+                                                              variant:variant
+                                                                 user:user
+                                                       callingAddress:src
+                                                        calledAddress:dst
+                                                      dialoguePortion:xdialoguePortion
+                                                      components_ansi:NULL
+                                                       components_itu:components_itu
+                                                              options:options];
+
+        }
+        else if(variant ==TCAP_VARIANT_ANSI)
+        {
+            continueRequest = [[UMTCAP_ansi_continue alloc]initForTcap:self
+                                                         transactionId:tcapTransactionId
+                                                          userDialogId:userDialogId
+                                                               variant:variant
+                                                                  user:user
+                                                        callingAddress:src
+                                                         calledAddress:dst
+                                                       dialoguePortion:xdialoguePortion
+                                                       components_ansi:components_ansi
+                                                        components_itu:NULL
+                                                               options:options];
+            
+        }
+        [self queueFromUpper:continueRequest];
     }
-    [self queueFromUpper:continueRequest];
 }
 
 - (void)tcapEndRequest:(NSString *)tcapTransactionId
@@ -425,72 +440,76 @@
             components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                options:(NSDictionary *)options
 {
-    if(variant == TCAP_VARIANT_DEFAULT)
+    @autoreleasepool
     {
-        variant = tcapVariant;
-    }
-    UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
-    if(transaction == NULL)
-    {
-        NSString *s = [NSString stringWithFormat:@"tcapEndRequest with unknown transaction ID '%@'",tcapTransactionId];
-        NSLog(@"%@",s);
-        return;
-//        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
-    }
 
-    [transaction touch];
-    UMTCAP_end *endRequest;
-    
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapEndReq:\n"
-                                 @"userDialogId:%@\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"localTransactionId:%@\n"
-                                 @"dialoguePortion:%@\n"
-                                 @"components:%@\n"
-                                 @"options:%@\n",
-                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 userDialogId.description,
-                                 src,
-                                 dst,
-                                 tcapTransactionId,
-                                 xdialoguePortion,
-                                 components,
-                                 options
-                                 ]];
-    }
-    if(variant ==TCAP_VARIANT_ITU)
-    {
-        endRequest = [[UMTCAP_itu_end alloc]initForTcap:self
-                                          transactionId:tcapTransactionId
-                                           userDialogId:userDialogId
-                                                variant:variant
-                                                   user:user
-                                         callingAddress:src
-                                          calledAddress:dst
-                                        dialoguePortion:xdialoguePortion
-                                             components:components
-                                             permission:transaction.withPermission
-                                                options:options];
-    }
-    else if(variant ==TCAP_VARIANT_ANSI)
-    {
-        endRequest = [[UMTCAP_ansi_end alloc]initForTcap:self
-                                           transactionId:tcapTransactionId
-                                            userDialogId:userDialogId
-                                                 variant:variant
-                                                    user:user
-                                          callingAddress:src
-                                           calledAddress:dst
-                                         dialoguePortion:xdialoguePortion
-                                              components:components
-                                              permission:transaction.withPermission
-                                                 options:options];
+        if(variant == TCAP_VARIANT_DEFAULT)
+        {
+            variant = tcapVariant;
+        }
+        UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
+        if(transaction == NULL)
+        {
+            NSString *s = [NSString stringWithFormat:@"tcapEndRequest with unknown transaction ID '%@'",tcapTransactionId];
+            NSLog(@"%@",s);
+            return;
+    //        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        }
 
+        [transaction touch];
+        UMTCAP_end *endRequest;
+        
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapEndReq:\n"
+                                     @"userDialogId:%@\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"localTransactionId:%@\n"
+                                     @"dialoguePortion:%@\n"
+                                     @"components:%@\n"
+                                     @"options:%@\n",
+                                     ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                     userDialogId.description,
+                                     src,
+                                     dst,
+                                     tcapTransactionId,
+                                     xdialoguePortion,
+                                     components,
+                                     options
+                                     ]];
+        }
+        if(variant ==TCAP_VARIANT_ITU)
+        {
+            endRequest = [[UMTCAP_itu_end alloc]initForTcap:self
+                                              transactionId:tcapTransactionId
+                                               userDialogId:userDialogId
+                                                    variant:variant
+                                                       user:user
+                                             callingAddress:src
+                                              calledAddress:dst
+                                            dialoguePortion:xdialoguePortion
+                                                 components:components
+                                                 permission:transaction.withPermission
+                                                    options:options];
+        }
+        else if(variant ==TCAP_VARIANT_ANSI)
+        {
+            endRequest = [[UMTCAP_ansi_end alloc]initForTcap:self
+                                               transactionId:tcapTransactionId
+                                                userDialogId:userDialogId
+                                                     variant:variant
+                                                        user:user
+                                              callingAddress:src
+                                               calledAddress:dst
+                                             dialoguePortion:xdialoguePortion
+                                                  components:components
+                                                  permission:transaction.withPermission
+                                                     options:options];
+
+        }
+        [self queueFromUpper:endRequest];
     }
-    [self queueFromUpper:endRequest];
 }
 
 - (void)tcapUAbortRequest:(NSString *)tcapTransactionId
@@ -504,76 +523,79 @@
                components:(TCAP_NSARRAY_OF_COMPONENT_PDU *)components
                   options:(NSDictionary *)options
 {
-    if(variant==TCAP_VARIANT_DEFAULT)
+    @autoreleasepool
     {
-        variant = tcapVariant;
-    }
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUAbortReq:\n"
-                                 @"transactionId:%@\n"
-                                 @"userDialogId:%@\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"dialoguePortion:%@\n"
-                                 @"components:%@\n"
-                                 @"options:%@\n",
-                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 tcapTransactionId,
-                                 userDialogId,
-                                 src,
-                                 dst,
-                                 xdialoguePortion,
-                                 components,
-                                 options
-                                 ]];
-    }
 
-    UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
-    if(transaction == NULL)
-    {
-        NSString *s = [NSString stringWithFormat:@"tcapUAbortRequest with unknown transaction ID '%@'",tcapTransactionId];
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
-    }
-    if(transaction.remoteTransactionId==NULL)
-    {
-        return;
-    }
-    [transaction touch];
-    UMTCAP_abort *abortRequest;
+        if(variant==TCAP_VARIANT_DEFAULT)
+        {
+            variant = tcapVariant;
+        }
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapUAbortReq:\n"
+                                     @"transactionId:%@\n"
+                                     @"userDialogId:%@\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"dialoguePortion:%@\n"
+                                     @"components:%@\n"
+                                     @"options:%@\n",
+                                     ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                     tcapTransactionId,
+                                     userDialogId,
+                                     src,
+                                     dst,
+                                     xdialoguePortion,
+                                     components,
+                                     options
+                                     ]];
+        }
 
-    if(variant ==TCAP_VARIANT_ITU)
-    {
-        abortRequest = [[UMTCAP_itu_abort alloc]initForTcap:self
-                                              transactionId:tcapTransactionId
-                                               userDialogId:userDialogId
-                                                    variant:variant
-                                                       user:user
-                                             callingAddress:src
-                                              calledAddress:dst
-                                                      cause:cause
-                                              dialogPortion:xdialoguePortion
-                                                    options:options];
+        UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
+        if(transaction == NULL)
+        {
+            NSString *s = [NSString stringWithFormat:@"tcapUAbortRequest with unknown transaction ID '%@'",tcapTransactionId];
+            @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        }
+        if(transaction.remoteTransactionId==NULL)
+        {
+            return;
+        }
+        [transaction touch];
+        UMTCAP_abort *abortRequest;
+
+        if(variant ==TCAP_VARIANT_ITU)
+        {
+            abortRequest = [[UMTCAP_itu_abort alloc]initForTcap:self
+                                                  transactionId:tcapTransactionId
+                                                   userDialogId:userDialogId
+                                                        variant:variant
+                                                           user:user
+                                                 callingAddress:src
+                                                  calledAddress:dst
+                                                          cause:cause
+                                                  dialogPortion:xdialoguePortion
+                                                        options:options];
 
 
+        }
+        else if(variant ==TCAP_VARIANT_ANSI)
+        {
+            abortRequest = [[UMTCAP_ansi_abort alloc]initForTcap:self
+                                                   transactionId:tcapTransactionId
+                                                    userDialogId:userDialogId
+                                                         variant:variant
+                                                            user:user
+                                                  callingAddress:src
+                                                   calledAddress:dst
+                                                           cause:cause
+                                                   dialogPortion:xdialoguePortion
+                                                         options:options];
+
+        }
+        [self queueFromUpper:abortRequest];
     }
-    else if(variant ==TCAP_VARIANT_ANSI)
-    {
-        abortRequest = [[UMTCAP_ansi_abort alloc]initForTcap:self
-                                               transactionId:tcapTransactionId
-                                                userDialogId:userDialogId
-                                                     variant:variant
-                                                        user:user
-                                              callingAddress:src
-                                               calledAddress:dst
-                                                       cause:cause
-                                               dialogPortion:xdialoguePortion
-                                                     options:options];
-
-    }
-    [self queueFromUpper:abortRequest];
 }
-
 
 - (void)tcapPAbortRequest:(NSString *)tcapTransactionId
                   variant:(UMTCAP_Variant)variant
@@ -582,69 +604,71 @@
                     cause:(int64_t)cause
                   options:(NSDictionary *)options
 {
-    if(variant==TCAP_VARIANT_DEFAULT)
+    @autoreleasepool
     {
-        variant = tcapVariant;
+        if(variant==TCAP_VARIANT_DEFAULT)
+        {
+            variant = tcapVariant;
+        }
+        if(self.logLevel <= UMLOG_DEBUG)
+        {
+            [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapPAbortReq:\n"
+                                     @"transactionId:%@\n"
+                                     @"SccpCallingAddress:%@\n"
+                                     @"SccpCalledAddress:%@\n"
+                                     @"cause:%lld\n"
+                                     @"options:%@\n",
+                                     ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
+                                     tcapTransactionId,
+                                     src,
+                                     dst,
+                                     (long long)cause,
+                                     options
+                                     ]];
+        }
+
+        UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
+        if(transaction == NULL)
+        {
+            NSString *s = [NSString stringWithFormat:@"tcapUAbortRequest with unknown transaction ID '%@'",tcapTransactionId];
+            @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
+        }
+
+        [transaction touch];
+        UMTCAP_abort *abortRequest;
+
+        if(variant ==TCAP_VARIANT_ITU)
+        {
+            abortRequest = [[UMTCAP_itu_abort alloc]initForTcap:self
+                                                  transactionId:tcapTransactionId
+                                                   userDialogId:NULL
+                                                        variant:variant
+                                                           user:NULL
+                                                 callingAddress:src
+                                                  calledAddress:dst
+                                                          cause:cause
+                                                  dialogPortion:NULL
+                                                        options:options];
+
+
+        }
+        else if(variant ==TCAP_VARIANT_ANSI)
+        {
+            abortRequest = [[UMTCAP_ansi_abort alloc]initForTcap:self
+                                                   transactionId:tcapTransactionId
+                                                    userDialogId:NULL
+                                                         variant:variant
+                                                            user:NULL
+                                                  callingAddress:src
+                                                   calledAddress:dst
+                                                           cause:cause
+                                                   dialogPortion:NULL
+                                                         options:options];
+
+        }
+        [self queueFromUpper:abortRequest];
     }
-    if(self.logLevel <= UMLOG_DEBUG)
-    {
-        [self.logFeed debugText:[NSString stringWithFormat:@"%@ tcapPAbortReq:\n"
-                                 @"transactionId:%@\n"
-                                 @"SccpCallingAddress:%@\n"
-                                 @"SccpCalledAddress:%@\n"
-                                 @"cause:%lld\n"
-                                 @"options:%@\n",
-                                 ((variant == TCAP_VARIANT_ITU) ? @"itu" : @"ansi"),
-                                 tcapTransactionId,
-                                 src,
-                                 dst,
-                                 (long long)cause,
-                                 options
-                                 ]];
-    }
-
-    UMTCAP_Transaction *transaction = [self findTransactionByLocalTransactionId:tcapTransactionId];
-    if(transaction == NULL)
-    {
-        NSString *s = [NSString stringWithFormat:@"tcapUAbortRequest with unknown transaction ID '%@'",tcapTransactionId];
-        @throw([NSException exceptionWithName:@"API_EXCEPTION" reason:s userInfo:@{@"backtrace": UMBacktrace(NULL,0)}]);
-    }
-
-    [transaction touch];
-    UMTCAP_abort *abortRequest;
-
-    if(variant ==TCAP_VARIANT_ITU)
-    {
-        abortRequest = [[UMTCAP_itu_abort alloc]initForTcap:self
-                                              transactionId:tcapTransactionId
-                                               userDialogId:NULL
-                                                    variant:variant
-                                                       user:NULL
-                                             callingAddress:src
-                                              calledAddress:dst
-                                                      cause:cause
-                                              dialogPortion:NULL
-                                                    options:options];
-
-
-    }
-    else if(variant ==TCAP_VARIANT_ANSI)
-    {
-        abortRequest = [[UMTCAP_ansi_abort alloc]initForTcap:self
-                                               transactionId:tcapTransactionId
-                                                userDialogId:NULL
-                                                     variant:variant
-                                                        user:NULL
-                                              callingAddress:src
-                                               calledAddress:dst
-                                                       cause:cause
-                                               dialogPortion:NULL
-                                                     options:options];
-
-    }
-    [self queueFromUpper:abortRequest];
 }
-
 - (void)setGenericComponents:(UMTCAP_generic_asn1_componentPDU *)pdu
                       params:(UMASN1Object *)params
                      variant:(UMTCAP_Variant)variant
@@ -1051,27 +1075,30 @@
 
 - (void)startUp
 {
-    if(_isStarted==NO)
+    @autoreleasepool
     {
-        if(ssn)
+        if(_isStarted==NO)
         {
-            [attachNumber setSsnFromInt:ssn.ssn];
-            [attachedLayer setUser:self forSubsystem:ssn number:attachNumber];
+            if(ssn)
+            {
+                [attachNumber setSsnFromInt:ssn.ssn];
+                [attachedLayer setUser:self forSubsystem:ssn number:attachNumber];
+            }
+            else
+            {
+                [attachedLayer setDefaultUser:self];
+            }
+            /* lets call housekeeping once per 2.6 seconds */
+            houseKeepingTimer = [[UMTimer alloc]initWithTarget:self
+                                                      selector:@selector(housekeepingTask)
+                                                        object:NULL
+                                                       seconds:2.6
+                                                          name:@"tcap-housekeeping"
+                                                       repeats:YES
+                                               runInForeground:YES];
+            [houseKeepingTimer start];
+            _isStarted=YES;
         }
-        else
-        {
-            [attachedLayer setDefaultUser:self];
-        }
-        /* lets call housekeeping once per 2.6 seconds */
-        houseKeepingTimer = [[UMTimer alloc]initWithTarget:self
-                                                  selector:@selector(housekeepingTask)
-                                                    object:NULL
-                                                   seconds:2.6
-                                                      name:@"tcap-housekeeping"
-                                                   repeats:YES
-                                           runInForeground:YES];
-        [houseKeepingTimer start];
-        _isStarted=YES;
     }
 }
 
@@ -1124,30 +1151,36 @@
 }
 - (UMTCAP_Transaction *)getNewOutgoingTransactionForUserDialogId:(UMTCAP_UserDialogIdentifier *)userDialogId user:(id <UMTCAP_UserProtocol>)usr
 {
-    UMTCAP_Transaction *t = [[UMTCAP_Transaction alloc]init];
-    t.localTransactionId = [self getNewTransactionId];
-    t.remoteTransactionId = NULL;
-    t.userDialogId = userDialogId;
-    t.user = usr;
-    t.incoming=NO;
-    t.timeoutInSeconds = self.transactionTimeoutInSeconds;
-    [t touch];
+    @autoreleasepool
+    {
+        UMTCAP_Transaction *t = [[UMTCAP_Transaction alloc]init];
+        t.localTransactionId = [self getNewTransactionId];
+        t.remoteTransactionId = NULL;
+        t.userDialogId = userDialogId;
+        t.user = usr;
+        t.incoming=NO;
+        t.timeoutInSeconds = self.transactionTimeoutInSeconds;
+        [t touch];
 
-    _transactionsByLocalTransactionId[t.localTransactionId] = t;
-    return t;
+        _transactionsByLocalTransactionId[t.localTransactionId] = t;
+        return t;
+    }
 }
 
 - (UMTCAP_Transaction *)getNewIncomingTransactionForRemoteTransactionId:(NSString *)remoteTransactionId
-{    
-    UMTCAP_Transaction *t = [[UMTCAP_Transaction alloc]init];
-    t.localTransactionId = [self getNewTransactionId];
-    t.remoteTransactionId = remoteTransactionId;
-    t.userDialogId = NULL;
-    t.incoming=YES;
-    t.timeoutInSeconds = self.transactionTimeoutInSeconds;
-    [t touch];
-    _transactionsByLocalTransactionId[t.localTransactionId] = t;
-    return t;
+{
+    @autoreleasepool
+    {
+        UMTCAP_Transaction *t = [[UMTCAP_Transaction alloc]init];
+        t.localTransactionId = [self getNewTransactionId];
+        t.remoteTransactionId = remoteTransactionId;
+        t.userDialogId = NULL;
+        t.incoming=YES;
+        t.timeoutInSeconds = self.transactionTimeoutInSeconds;
+        [t touch];
+        _transactionsByLocalTransactionId[t.localTransactionId] = t;
+        return t;
+    }
 }
 
 - (UMTCAP_Transaction *)findTransactionByLocalTransactionId:(NSString *)s
@@ -1169,84 +1202,96 @@
 
 - (id)decodePdu:(NSData *)data /* should return a type which can be converted to json */
 {
-    UMTCAP_sccpNUnitdata *task;
-    task = [[UMTCAP_sccpNUnitdata alloc]initForTcap:self
-                                               sccp:NULL
-                                           userData:data
-                                            calling:NULL
-                                             called:NULL
-                                   qualityOfService:0
-                                            options:@{ @"decode-only" : @YES }];
     @autoreleasepool
     {
-        [task main];
-    }
-    UMASN1Object *asn1 = task.asn1;
-    if(asn1)
-    {
-        return asn1.objectValue;
-    }
-    else
-    {
-        UMSynchronizedSortedDictionary *e = [[UMSynchronizedSortedDictionary alloc]init];
-        e[@"decode-error"] = task.decodeError;
-        return e;
+        UMTCAP_sccpNUnitdata *task;
+        task = [[UMTCAP_sccpNUnitdata alloc]initForTcap:self
+                                                   sccp:NULL
+                                               userData:data
+                                                calling:NULL
+                                                 called:NULL
+                                       qualityOfService:0
+                                                options:@{ @"decode-only" : @YES }];
+        @autoreleasepool
+        {
+            [task main];
+        }
+        UMASN1Object *asn1 = task.asn1;
+        if(asn1)
+        {
+            return asn1.objectValue;
+        }
+        else
+        {
+            UMSynchronizedSortedDictionary *e = [[UMSynchronizedSortedDictionary alloc]init];
+            e[@"decode-error"] = task.decodeError;
+            return e;
+        }
     }
 }
 
 + (id)decodePdu:(NSData *)pdu /* should return a type which can be converted to json */
 {
-    NSUInteger pos = 0;
-    UMASN1Object *asn1 = [[UMTCAP_asn1 alloc] initWithBerData:pdu atPosition:&pos context:NULL];
-    return asn1;
+    @autoreleasepool
+    {
+        NSUInteger pos = 0;
+        UMASN1Object *asn1 = [[UMTCAP_asn1 alloc] initWithBerData:pdu atPosition:&pos context:NULL];
+        return asn1;
+    }
 }
 
 - (NSString *)status
 {
-    return [NSString stringWithFormat:@"IS:%lu",(unsigned long)[_transactionsByLocalTransactionId count]];
+    @autoreleasepool
+    {
+        return [NSString stringWithFormat:@"IS:%lu",(unsigned long)[_transactionsByLocalTransactionId count]];
+    }
 }
 
 - (void)housekeeping
 {
-    if([_housekeeping_lock tryLock] == 0)
+    @autoreleasepool
     {
-        NSMutableArray *tasksToQueue = [[NSMutableArray alloc]init];
-        self.housekeeping_running = YES;
-        NSArray *keys = [_transactionsByLocalTransactionId allKeys];
-        for(NSString *key in keys)
+        if([_housekeeping_lock tryLock] == 0)
         {
-            UMTCAP_Transaction *t = _transactionsByLocalTransactionId[key];
-            if(t.transactionIsClosed)
+            NSMutableArray *tasksToQueue = [[NSMutableArray alloc]init];
+            self.housekeeping_running = YES;
+            NSArray *keys = [_transactionsByLocalTransactionId allKeys];
+            for(NSString *key in keys)
             {
-                [self removeTransaction:t];
+                UMTCAP_Transaction *t = _transactionsByLocalTransactionId[key];
+                if(t.transactionIsClosed)
+                {
+                    [self removeTransaction:t];
+                }
+                else if([t isTimedOut]==YES)
+                {
+                    UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
+                    [tasksToQueue addObject:task];
+                }
             }
-            else if([t isTimedOut]==YES)
+            self.housekeeping_running = NO;
+            [_houseKeepingTimerRun touch];
+            [_housekeeping_lock unlock];
+            for(UMTCAP_TimeoutTask *task in tasksToQueue)
             {
-                UMTCAP_TimeoutTask *task = [[UMTCAP_TimeoutTask alloc]initForTCAP:self transaction:t];
-                [tasksToQueue addObject:task];
+                [self queueFromLower:task];
             }
-        }
-        self.housekeeping_running = NO;
-        [_houseKeepingTimerRun touch];
-        [_housekeeping_lock unlock];
-        for(UMTCAP_TimeoutTask *task in tasksToQueue)
-        {
-            [self queueFromLower:task];
         }
     }
 }
 
 - (void)housekeepingTask
 {
-    UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
-    [self queueFromAdmin:task];
-//    ulib_set_thread_name(@"tcap-housekeeping");
-#if 0
     @autoreleasepool
     {
-        [task main];
-    }
+        UMTCAP_HousekeepingTask *task = [[UMTCAP_HousekeepingTask alloc]initForTcap:self];
+        [self queueFromAdmin:task];
+    //    ulib_set_thread_name(@"tcap-housekeeping");
+#if 0
+            [task main];
 #endif
+    }
 }
 
 -(NSUInteger)pendingTransactionCount
@@ -1256,6 +1301,7 @@
 
 - (void)dump:(NSFileHandle *)filehandler
 {
+
     [super dump:filehandler];
     
     NSArray *allTransactionIds = [_transactionsByLocalTransactionId allKeys];
@@ -1278,80 +1324,87 @@
            options:(NSDictionary *)options
 
 {
-    if(self.logLevel <= UMLOG_DEBUG)
+    @autoreleasepool
     {
-        [self.logFeed debugText:[NSString stringWithFormat:@"sendingPAbort for remoteTransaction %@",remoteTransactionId]];
-    }
 
-    UMTCAP_itu_asn1_abort *q = [[UMTCAP_itu_asn1_abort alloc]init];
-    UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
-    dtid.transactionId = remoteTransactionId;
-    q.dtid = dtid;
-    q.pAbortCause = [[UMTCAP_itu_asn1_pAbortCause alloc]initWithValue:cause];
-
-    NSData *pdu;
-    @try
-    {
-        pdu = [q berEncoded];
-    }
-    @catch(NSException *e)
-    {
-        [self.logFeed majorErrorText:[NSString stringWithFormat:@"BER encoding of PDU failed with exception %@",e]];
-    }
-    if(pdu)
-    {
         if(self.logLevel <= UMLOG_DEBUG)
         {
-            NSString *s = [NSString stringWithFormat:@"Sending PDU to %@: %@",self.attachedLayer.layerName, pdu];
-            [self.logFeed debugText:s];
+            [self.logFeed debugText:[NSString stringWithFormat:@"sendingPAbort for remoteTransaction %@",remoteTransactionId]];
         }
-        [self.attachedLayer sccpNUnidata:pdu
-                             callingLayer:self
-                                  calling:src
-                                   called:dst
-                         qualityOfService:0
-                                   class:SCCP_CLASS_BASIC
-                                handling:SCCP_HANDLING_RETURN_ON_ERROR
-                                  options:options];
+
+        UMTCAP_itu_asn1_abort *q = [[UMTCAP_itu_asn1_abort alloc]init];
+        UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+        dtid.transactionId = remoteTransactionId;
+        q.dtid = dtid;
+        q.pAbortCause = [[UMTCAP_itu_asn1_pAbortCause alloc]initWithValue:cause];
+
+        NSData *pdu;
+        @try
+        {
+            pdu = [q berEncoded];
+        }
+        @catch(NSException *e)
+        {
+            [self.logFeed majorErrorText:[NSString stringWithFormat:@"BER encoding of PDU failed with exception %@",e]];
+        }
+        if(pdu)
+        {
+            if(self.logLevel <= UMLOG_DEBUG)
+            {
+                NSString *s = [NSString stringWithFormat:@"Sending PDU to %@: %@",self.attachedLayer.layerName, pdu];
+                [self.logFeed debugText:s];
+            }
+            [self.attachedLayer sccpNUnidata:pdu
+                                 callingLayer:self
+                                      calling:src
+                                       called:dst
+                             qualityOfService:0
+                                       class:SCCP_CLASS_BASIC
+                                    handling:SCCP_HANDLING_RETURN_ON_ERROR
+                                      options:options];
+        }
     }
 }
 
 - (NSDictionary *)apiStatus
 {
-    NSMutableDictionary *d = [[NSMutableDictionary alloc]init];
-    switch(tcapVariant)
+    @autoreleasepool
     {
-        case TCAP_VARIANT_DEFAULT:
-            d[@"variant"] =  @"default";
-            break;
-        case TCAP_VARIANT_UNSPECIFIED:
-            d[@"variant"] =  @"unspecified";
-            break;
-        case TCAP_VARIANT_ITU:
-            d[@"variant"] =  @"itu";
-            break;
-        case TCAP_VARIANT_ANSI:
-            d[@"variant"] =  @"ansi";
-            break;
+        NSMutableDictionary *d = [[NSMutableDictionary alloc]init];
+        switch(tcapVariant)
+        {
+            case TCAP_VARIANT_DEFAULT:
+                d[@"variant"] =  @"default";
+                break;
+            case TCAP_VARIANT_UNSPECIFIED:
+                d[@"variant"] =  @"unspecified";
+                break;
+            case TCAP_VARIANT_ITU:
+                d[@"variant"] =  @"itu";
+                break;
+            case TCAP_VARIANT_ANSI:
+                d[@"variant"] =  @"ansi";
+                break;
+        }
+        d[@"tcapUserByOperation-count"] =  @(tcapUserByOperation.count);
+        d[@"transactionsByLocalTransactionId-count"] =  @(_transactionsByLocalTransactionId.count);
+        d[@"transactionsByLocalTransactionId-count"] =  @(_transactionsByLocalTransactionId.count);
+        d[@"transactionTimeoutInSeconds"] =  @(_transactionTimeoutInSeconds);
+        if(ssn)
+        {
+            d[@"ssn"] =  @(ssn.ssn);
+        }
+        if(attachNumber)
+        {
+            d[@"attachNumber"] =  [attachNumber dictionaryValue];
+        }
+        d[@"lastDialogId"]      =  @(lastDialogId);
+        d[@"lastTransactionId"] =  @(lastTransactionId);
+        d[@"houseKeeping-timer-run"] =  [_houseKeepingTimerRun.date stringValue];
+        d[@"housekeeping-currently-running"] =  _housekeeping_running ? @"YES" : @"NO";
+        d[@"tid-pool"] =  [_tidPool objectValue];
+        return d;
     }
-    d[@"tcapUserByOperation-count"] =  @(tcapUserByOperation.count);
-    d[@"transactionsByLocalTransactionId-count"] =  @(_transactionsByLocalTransactionId.count);
-    d[@"transactionsByLocalTransactionId-count"] =  @(_transactionsByLocalTransactionId.count);
-    d[@"transactionTimeoutInSeconds"] =  @(_transactionTimeoutInSeconds);
-    if(ssn)
-    {
-        d[@"ssn"] =  @(ssn.ssn);
-    }
-    if(attachNumber)
-    {
-        d[@"attachNumber"] =  [attachNumber dictionaryValue];
-    }
-    d[@"lastDialogId"]      =  @(lastDialogId);
-    d[@"lastTransactionId"] =  @(lastTransactionId);
-    d[@"houseKeeping-timer-run"] =  [_houseKeepingTimerRun.date stringValue];
-    d[@"housekeeping-currently-running"] =  _housekeeping_running ? @"YES" : @"NO";
-    d[@"tid-pool"] =  [_tidPool objectValue];
-    return d;
 }
 
 @end
