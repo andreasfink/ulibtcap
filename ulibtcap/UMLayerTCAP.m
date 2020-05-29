@@ -1254,8 +1254,9 @@
     {
         if([_housekeeping_lock tryLock] == 0)
         {
-            NSMutableArray *tasksToQueue = [[NSMutableArray alloc]init];
+            ulib_set_thread_name(@"tcap-housekeeping");
             self.housekeeping_running = YES;
+            NSMutableArray *tasksToQueue = [[NSMutableArray alloc]init];
             NSArray *keys = [_transactionsByLocalTransactionId allKeys];
             for(NSString *key in keys)
             {
@@ -1270,13 +1271,10 @@
                     [tasksToQueue addObject:task];
                 }
             }
-            self.housekeeping_running = NO;
             [_houseKeepingTimerRun touch];
             [_housekeeping_lock unlock];
-            for(UMTCAP_TimeoutTask *task in tasksToQueue)
-            {
-                [self queueFromLower:task];
-            }
+            [self queueMultiFromAdmin:tasksToQueue];
+            self.housekeeping_running = NO;
         }
     }
 }
