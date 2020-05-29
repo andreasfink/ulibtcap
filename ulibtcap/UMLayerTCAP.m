@@ -53,6 +53,7 @@
 #import "UMTCAP_TimeoutTask.h"
 #import "UMTCAP_TransactionIdPool.h"
 #import "UMTCAP_TransactionIdPoolSequential.h"
+#import "UMTCAP_TransactionIdFastPool.h"
 #import "UMTCAP_Filter.h"
 
 @implementation UMLayerTCAP
@@ -94,7 +95,8 @@
     return [self initWithTaskQueueMulti:tq tidPool:tidPool name:@""];
 }
 
-- (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq tidPool:(id<UMTCAP_TransactionIdPoolProtocol>)tidPool name:(NSString *)name
+- (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq
+                                tidPool:(id<UMTCAP_TransactionIdPoolProtocol>)tidPool name:(NSString *)name
 {
     self = [super initWithTaskQueueMulti:tq name:name];
     if(self)
@@ -117,7 +119,7 @@
     if(self)
     {
         [self genericInitialisation];
-        _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:100000 start:0 end:0x3FFFFFFF];
+        _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:16 start:0 end:15]; /* this gets overwritten by config. This is only a failsafe */
     }
     return self;
 }
@@ -1018,6 +1020,11 @@
         NSLog(@"TCAP Transaction Timeout is above 120s. Setting it to 60s");
         _transactionTimeoutInSeconds = 90.0;
     }
+
+    NSInteger istart = 0;
+    NSInteger iend   = 0x3FFFFFFF;
+    NSInteger icount = 100000;
+
     if (cfg[@"transaction-id-range"])
     {
         NSString *s = cfg[@"transaction-id-range"];
@@ -1032,15 +1039,22 @@
             NSString *a1 = a[1];
             a0 = [a0 trim];
             a1 = [a1 trim];
-            NSNumber *start = [[NSNumber alloc]initWithInteger:[a0 integerValue]];
-            NSNumber *end   = [[NSNumber alloc]initWithInteger:[a1 integerValue]];
-            if(start && end)
-            {
-                UMTCAP_TransactionIdPoolSequential *pool = [[UMTCAP_TransactionIdPoolSequential alloc]init];
-                pool.first = start;
-                pool.last = end;
-                _tidPool = pool;
-            }
+            istart = [a0 integerValue];
+            iend = [a1 integerValue]+1;
+            icount = iend -istart;
+        }
+    }
+
+    if (cfg[@"transaction-id-pool-type"])
+    {
+        NSString *s = [cfg[@"transaction-id-pool-type"] stringValue];
+        if([s isEqualToStringCaseInsensitive:@"fast"])
+        {
+            _tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
+        }
+        else
+        {
+            _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
         }
     }
 }

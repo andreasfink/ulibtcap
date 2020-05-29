@@ -118,7 +118,6 @@
     @autoreleasepool
     {
         UMTCAP_TransactionIdPoolEntry *e;
-
         NSArray *keys = [_freeTransactionIds allKeys];
         if(keys.count > 0)
         {

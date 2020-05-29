@@ -31,6 +31,8 @@
 		A63EEB241FEC28190051A2A3 /* UMTCAP_ComponentStateWaitForReject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63EEB221FEC28190051A2A3 /* UMTCAP_ComponentStateWaitForReject.m */; };
 		A63EEB271FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.h in Headers */ = {isa = PBXBuildFile; fileRef = A63EEB251FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A63EEB281FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.m in Sources */ = {isa = PBXBuildFile; fileRef = A63EEB261FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.m */; };
+		A640CC98248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h in Headers */ = {isa = PBXBuildFile; fileRef = A640CC96248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h */; };
+		A640CC99248190BF00196E41 /* UMTCAP_TransactionIdFastPool.m in Sources */ = {isa = PBXBuildFile; fileRef = A640CC97248190BF00196E41 /* UMTCAP_TransactionIdFastPool.m */; };
 		A641CE591B42010A00854472 /* ulibtcap.h in Headers */ = {isa = PBXBuildFile; fileRef = A641CE581B42010A00854472 /* ulibtcap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A641CE5F1B42010A00854472 /* ulibtcap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A641CE531B42010A00854472 /* ulibtcap.framework */; };
 		A641CE661B42010A00854472 /* ulibtcapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CE651B42010A00854472 /* ulibtcapTests.m */; };
@@ -271,6 +273,8 @@
 		A63EEB221FEC28190051A2A3 /* UMTCAP_ComponentStateWaitForReject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ComponentStateWaitForReject.m; sourceTree = "<group>"; };
 		A63EEB251FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ComponentStateRejectPending.h; sourceTree = "<group>"; };
 		A63EEB261FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ComponentStateRejectPending.m; sourceTree = "<group>"; };
+		A640CC96248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdFastPool.h; sourceTree = "<group>"; };
+		A640CC97248190BF00196E41 /* UMTCAP_TransactionIdFastPool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionIdFastPool.m; sourceTree = "<group>"; };
 		A641CE531B42010A00854472 /* ulibtcap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ulibtcap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A641CE571B42010A00854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A641CE581B42010A00854472 /* ulibtcap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ulibtcap.h; sourceTree = "<group>"; };
@@ -571,6 +575,8 @@
 				A6B37B8E1FC885D500794057 /* UMTCAP_TransactionIdPoolProtocol.h */,
 				A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */,
 				A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */,
+				A640CC96248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h */,
+				A640CC97248190BF00196E41 /* UMTCAP_TransactionIdFastPool.m */,
 				A6B37B891FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.h */,
 				A6B37B8A1FC880BF00794057 /* UMTCAP_TransactionIdPoolSequential.m */,
 				A648DF50247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h */,
@@ -960,6 +966,7 @@
 				A6DE4EA01CC1A3A000211137 /* UMTCAP_itu_asn1_componentPDU.h in Headers */,
 				A645E4C21CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h in Headers */,
 				A6ED5C521B4358F100854472 /* UMLayerTCAP.h in Headers */,
+				A640CC98248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h in Headers */,
 				A6680A441FE1E95A007B1857 /* UMTCAP_UserDialogIdentifier.h in Headers */,
 				A6814BCA1CA9982000211137 /* UMTCAP_ansi_asn1_problem.h in Headers */,
 				A6814B9E1CA96B5100211137 /* UMTCAP_ansi_asn1_abortPDU.h in Headers */,
@@ -1190,6 +1197,7 @@
 				A68252721CCFD9DD00211137 /* UMTCAP_asn1_AARQ_apdu.m in Sources */,
 				A6814B7B1CA9639100211137 /* UMTCAP_ansi_asn1_response.m in Sources */,
 				A6D03B851CA48AAD00211137 /* UMTCAP_sccpNUnitdata.m in Sources */,
+				A640CC99248190BF00196E41 /* UMTCAP_TransactionIdFastPool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
