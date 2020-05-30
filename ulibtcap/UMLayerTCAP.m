@@ -119,7 +119,8 @@
     if(self)
     {
         [self genericInitialisation];
-        _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:16 start:0 end:15]; /* this gets overwritten by config. This is only a failsafe */
+        _tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:16 start:0 end:15]; /* this gets overwritten by config. This is only a failsafe */
+
     }
     return self;
 }
@@ -1048,13 +1049,13 @@
     if (cfg[@"transaction-id-pool-type"])
     {
         NSString *s = [cfg[@"transaction-id-pool-type"] stringValue];
-        if([s isEqualToStringCaseInsensitive:@"fast"])
+        if([s isEqualToStringCaseInsensitive:@"legacy"])
         {
-            _tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
+            _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
         }
         else
         {
-            _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
+            _tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
         }
     }
 }
