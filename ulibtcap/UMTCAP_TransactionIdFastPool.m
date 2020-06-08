@@ -35,16 +35,13 @@
         _quarantineTransactionIds2 = [[NSMutableArray alloc]init];
         _quarantineTransactionIds3 = [[NSMutableArray alloc]init];
 
-        int sequential = 0;
         uint32_t max = end - start;
         if(count>max)
         {
             count = max;
-            sequential=1;
         }
         if((count * 3) > max)
         {
-            sequential = 1;
         }
         uint32_t xstart = [UMUtil random:max];
         

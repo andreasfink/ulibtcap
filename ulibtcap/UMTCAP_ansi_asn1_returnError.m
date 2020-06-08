@@ -15,7 +15,6 @@
 @implementation UMTCAP_ansi_asn1_returnError
 
 
-@synthesize errorCode;
 
 - (UMTCAP_ansi_asn1_returnError *)processAfterDecodeWithContext:(id)context
 {
@@ -23,7 +22,7 @@
     ansi_componentIDs = [[UMTCAP_ansi_asn1_componentIDs alloc]initWithASN1Object:o context:context];
 
     o = [self getObjectAtPosition:1];
-    errorCode = [[UMTCAP_ansi_asn1_errorCode alloc]initWithASN1Object:o context:context];
+    _ansiErrorCode = [[UMTCAP_ansi_asn1_errorCode alloc]initWithASN1Object:o context:context];
     params = [self getObjectAtPosition:2];
     return self;
 }
@@ -31,30 +30,30 @@
 
 - (int64_t)errorCodeInt
 {
-    return errorCode.code.value;
+    return _ansiErrorCode.code.value;
 }
 
 - (void)setErrorCodeInt:(int64_t)i
 {
-    if(!errorCode)
+    if(!_ansiErrorCode)
     {
-        errorCode = [[UMTCAP_ansi_asn1_errorCode alloc]init];
+        _ansiErrorCode = [[UMTCAP_ansi_asn1_errorCode alloc]init];
     }
-    errorCode.code.value = i;
+    _ansiErrorCode.code.value = i;
 }
 
 -(BOOL)errorCodeIsPrivate
 {
-    return errorCode.isPrivate;
+    return _ansiErrorCode.isPrivate;
 }
 
 -(void)setErrorCodeIsPrivate:(BOOL)priv
 {
-    if(!errorCode)
+    if(!_ansiErrorCode)
     {
-        errorCode = [[UMTCAP_ansi_asn1_errorCode alloc]init];
+        _ansiErrorCode = [[UMTCAP_ansi_asn1_errorCode alloc]init];
     }
-    errorCode.isPrivate = priv;
+    _ansiErrorCode.isPrivate = priv;
 
 }
 
@@ -80,9 +79,9 @@
                                                 @"backtrace": UMBacktrace(NULL,0)}
                 ]);
     }
-    if(errorCode)
+    if(_ansiErrorCode)
     {
-        [_asn1_list addObject:errorCode];
+        [_asn1_list addObject:_ansiErrorCode];
     }
     else
     {

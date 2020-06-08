@@ -15,11 +15,11 @@
 
 @interface UMTCAP_ansi_asn1_returnError : UMTCAP_ansi_asn1_componentPDU
 {
-    UMTCAP_ansi_asn1_errorCode *errorCode;
+    UMTCAP_ansi_asn1_errorCode *_ansiErrorCode;
 }
 
 
-@property(readwrite,strong) UMTCAP_ansi_asn1_errorCode *errorCode;
+@property(readwrite,strong) UMTCAP_ansi_asn1_errorCode *ansiErrorCode;
 
 @property(readwrite,assign) int64_t errorCodeInt;
 @property(readwrite,assign) BOOL errorCodeIsPrivate;
