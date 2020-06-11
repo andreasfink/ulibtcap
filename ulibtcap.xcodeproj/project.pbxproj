@@ -31,7 +31,7 @@
 		A63EEB241FEC28190051A2A3 /* UMTCAP_ComponentStateWaitForReject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63EEB221FEC28190051A2A3 /* UMTCAP_ComponentStateWaitForReject.m */; };
 		A63EEB271FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.h in Headers */ = {isa = PBXBuildFile; fileRef = A63EEB251FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A63EEB281FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.m in Sources */ = {isa = PBXBuildFile; fileRef = A63EEB261FEC28210051A2A3 /* UMTCAP_ComponentStateRejectPending.m */; };
-		A640CC98248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h in Headers */ = {isa = PBXBuildFile; fileRef = A640CC96248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h */; };
+		A640CC98248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h in Headers */ = {isa = PBXBuildFile; fileRef = A640CC96248190BF00196E41 /* UMTCAP_TransactionIdFastPool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A640CC99248190BF00196E41 /* UMTCAP_TransactionIdFastPool.m in Sources */ = {isa = PBXBuildFile; fileRef = A640CC97248190BF00196E41 /* UMTCAP_TransactionIdFastPool.m */; };
 		A641CE591B42010A00854472 /* ulibtcap.h in Headers */ = {isa = PBXBuildFile; fileRef = A641CE581B42010A00854472 /* ulibtcap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A641CE5F1B42010A00854472 /* ulibtcap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A641CE531B42010A00854472 /* ulibtcap.framework */; };

@@ -1022,41 +1022,32 @@
         _transactionTimeoutInSeconds = 90.0;
     }
 
-    NSInteger istart = 0;
-    NSInteger iend   = 0x3FFFFFFF;
-    NSInteger icount = 100000;
-
-    if (cfg[@"transaction-id-range"])
+    NSString *range = [cfg[@"transaction-id-range"] stringValue];
+    if((range.length>0) || (_tidPool == NULL))
     {
-        NSString *s = cfg[@"transaction-id-range"];
-        NSArray *a = [s componentsSeparatedByString:@"-"];
-        if(a.count !=2)
+        NSInteger istart = 0;
+        NSInteger iend   = 0x3FFFFFFF;
+        NSInteger icount = 100000;
+        if (range.length > 0)
         {
-            NSLog(@"tcap: config option 'transaction-id-range' ignored. should be <from> - <to>");
+            NSString *s = cfg[@"transaction-id-range"];
+            NSArray *a = [s componentsSeparatedByString:@"-"];
+            if(a.count !=2)
+            {
+                NSLog(@"tcap: config option 'transaction-id-range' ignored. should be <from> - <to>");
+            }
+            else
+            {
+                NSString *a0 = a[0];
+                NSString *a1 = a[1];
+                a0 = [a0 trim];
+                a1 = [a1 trim];
+                istart = [a0 integerValue];
+                iend = [a1 integerValue]+1;
+                icount = iend -istart;
+            }
         }
-        else
-        {
-            NSString *a0 = a[0];
-            NSString *a1 = a[1];
-            a0 = [a0 trim];
-            a1 = [a1 trim];
-            istart = [a0 integerValue];
-            iend = [a1 integerValue]+1;
-            icount = iend -istart;
-        }
-    }
-
-    if (cfg[@"transaction-id-pool-type"])
-    {
-        NSString *s = [cfg[@"transaction-id-pool-type"] stringValue];
-        if([s isEqualToStringCaseInsensitive:@"legacy"])
-        {
-            _tidPool = [[UMTCAP_TransactionIdPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
-        }
-        else
-        {
-            _tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
-        }
+        _tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
     }
 }
 

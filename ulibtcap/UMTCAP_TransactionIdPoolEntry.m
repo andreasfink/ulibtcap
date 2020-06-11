@@ -11,5 +11,9 @@
 
 @implementation UMTCAP_TransactionIdPoolEntry
 
-
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"TransactionIdPoolEntry{tid=%@, instance=%@, lastUse=%@, lastFreed=%@, lastQuarantined=%@",
+            _transactionId,_instance,_lastUse,_lastFreed,_lastQuarantined];
+}
 @end

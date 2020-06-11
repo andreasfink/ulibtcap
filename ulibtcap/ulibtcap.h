@@ -68,6 +68,7 @@
 #import "UMTCAP_TransactionIdPoolProtocol.h"
 #import "UMTCAP_TransactionIdPool.h"
 #import "UMTCAP_TransactionIdPoolSequential.h"
+#import "UMTCAP_TransactionIdFastPool.h"
 
 #import "UMTCAP_all_tasks.h"
 #import "UMTCAP_ansi_asn1.h"
