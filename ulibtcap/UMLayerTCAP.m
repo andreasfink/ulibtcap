@@ -1411,4 +1411,37 @@
     }
 }
 
++(NSString *)tcapCommandAsString:(UMTCAP_Command)cmd
+{
+    switch(cmd)
+    {
+        case TCAP_TAG_ANSI_UNIDIRECTIONAL:
+            return @"ansi-unidirectional";
+        case TCAP_TAG_ANSI_QUERY_WITH_PERM:
+            return @"ansi-query-with-perm";
+        case TCAP_TAG_ANSI_QUERY_WITHOUT_PERM:
+            return @"ansi-query-without-perm";
+        case TCAP_TAG_ANSI_RESPONSE:
+            return @"ansi-response";
+        case TCAP_TAG_ANSI_CONVERSATION_WITH_PERM:
+            return @"ansi-conversation-with-perm";
+        case TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM:
+            return @"ansi-conversation-without-perm";
+        case TCAP_TAG_ANSI_ABORT:
+            return @"ansi-abort";
+        case TCAP_TAG_ITU_UNIDIRECTIONAL:
+            return @"unidirectional";
+        case TCAP_TAG_ITU_BEGIN:
+            return @"begin";
+        case TCAP_TAG_ITU_END:
+            return @"end";
+        case TCAP_TAG_ITU_CONTINUE:
+            return @"continue";
+        case TCAP_TAG_ITU_ABORT:
+            return @"abort";
+        default:
+            return @"unknown";
+    }
+}
+
 @end

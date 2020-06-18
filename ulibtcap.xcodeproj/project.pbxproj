@@ -230,6 +230,11 @@
 		A6DE4EA91CC2EEF000211137 /* UMTCAP_itu_asn1_errorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DE4EA71CC2EEF000211137 /* UMTCAP_itu_asn1_errorCode.m */; };
 		A6ED5C521B4358F100854472 /* UMLayerTCAP.h in Headers */ = {isa = PBXBuildFile; fileRef = A6ED5C501B4358F100854472 /* UMLayerTCAP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6ED5C531B4358F100854472 /* UMLayerTCAP.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED5C511B4358F100854472 /* UMLayerTCAP.m */; };
+		A6FDF9C6249B7D06001C11DC /* UMTCAP_StatisticDb.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FDF9C4249B7D06001C11DC /* UMTCAP_StatisticDb.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6FDF9C7249B7D06001C11DC /* UMTCAP_StatisticDb.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FDF9C5249B7D06001C11DC /* UMTCAP_StatisticDb.m */; };
+		A6FDF9CA249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FDF9C8249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6FDF9CB249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FDF9C9249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m */; };
+		A6FDF9CD249B8A21001C11DC /* ulibdb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDF9CC249B8A1B001C11DC /* ulibdb.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -481,6 +486,11 @@
 		A6F694061B4E84240090FC94 /* Makefile.osx.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.osx.in; sourceTree = "<group>"; };
 		A6F694071B4E84240090FC94 /* ulibtcap.pc.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = ulibtcap.pc.in; sourceTree = "<group>"; };
 		A6F694081B4E84240090FC94 /* VERSION */ = {isa = PBXFileReference; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		A6FDF9C4249B7D06001C11DC /* UMTCAP_StatisticDb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_StatisticDb.h; sourceTree = "<group>"; };
+		A6FDF9C5249B7D06001C11DC /* UMTCAP_StatisticDb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_StatisticDb.m; sourceTree = "<group>"; };
+		A6FDF9C8249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_StatisticDbRecord.h; sourceTree = "<group>"; };
+		A6FDF9C9249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_StatisticDbRecord.m; sourceTree = "<group>"; };
+		A6FDF9CC249B8A1B001C11DC /* ulibdb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibdb.framework; path = "../Application Support/FinkTelecomServices/frameworks/ulibdb.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,6 +500,7 @@
 			files = (
 				A67989E222BB69BD0019806C /* ulib.framework in Frameworks */,
 				A6B7FBC91B44B97F00854472 /* sctp.framework in Frameworks */,
+				A6FDF9CD249B8A21001C11DC /* ulibdb.framework in Frameworks */,
 				A67989DF22BB69A20019806C /* ulibgt.framework in Frameworks */,
 				A67989E322BB69C50019806C /* ulibasn1.framework in Frameworks */,
 			);
@@ -609,6 +620,10 @@
 				A6DA61751FC6CC7F00D0E708 /* UMTCAP_Filter.m */,
 				A6DA617C1FC6CC9D00D0E708 /* UMTCAP_FilterRule.h */,
 				A6DA617D1FC6CC9D00D0E708 /* UMTCAP_FilterRule.m */,
+				A6FDF9C4249B7D06001C11DC /* UMTCAP_StatisticDb.h */,
+				A6FDF9C5249B7D06001C11DC /* UMTCAP_StatisticDb.m */,
+				A6FDF9C8249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h */,
+				A6FDF9C9249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m */,
 				A688B7441CCA2305005D3906 /* asn1 */,
 				A688B7421CCA22CA005D3906 /* unidirectional */,
 				A688B73A1CCA223A005D3906 /* begin */,
@@ -859,6 +874,7 @@
 		A6ED5C581B43593900854472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6FDF9CC249B8A1B001C11DC /* ulibdb.framework */,
 				A68D214C2411543E004C629A /* ulibsccp.framework */,
 				A67989E122BB69B70019806C /* ulib.framework */,
 				A67989DE22BB699A0019806C /* ulibgt.framework */,
@@ -972,6 +988,7 @@
 				A6814B9E1CA96B5100211137 /* UMTCAP_ansi_asn1_abortPDU.h in Headers */,
 				A682527D1CCFDAC100211137 /* UMTCAP_asn1_objectIdentifier.h in Headers */,
 				A658BC641CAB6E5000211137 /* UMTCAP_Variant.h in Headers */,
+				A6FDF9C6249B7D06001C11DC /* UMTCAP_StatisticDb.h in Headers */,
 				A6DDA3F41CAD341C00754B9E /* UMTCAP_operationClass.h in Headers */,
 				A6091FBA1CB407060076BD59 /* UMTCAP_ansi_asn1_confidentiality.h in Headers */,
 				A6D03B781CA48A0800211137 /* UMTCAP_itu_continue.h in Headers */,
@@ -983,6 +1000,7 @@
 				A6CB6B241FEC80270087B28F /* UMTCAP_InvokeId.h in Headers */,
 				A68252651CCFD8BB00211137 /* UMTCAP_itu_asn1_asn1Type.h in Headers */,
 				A6D03B701CA489EB00211137 /* UMTCAP_itu_begin.h in Headers */,
+				A6FDF9CA249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h in Headers */,
 				A648DF52247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h in Headers */,
 				A6D03B541CA4896900211137 /* UMTCAP_ansi_unidirectional.h in Headers */,
 				A658BC5C1CAB6A0F00211137 /* UMTCAP_Transaction.h in Headers */,
@@ -1099,6 +1117,7 @@
 				A6D03B711CA489EB00211137 /* UMTCAP_itu_begin.m in Sources */,
 				A6814BFB1CAA145700211137 /* UMTCAP_itu_asn1_dtid.m in Sources */,
 				A6814BBF1CA987F900211137 /* UMTCAP_ansi_asn1_invoke.m in Sources */,
+				A6FDF9C7249B7D06001C11DC /* UMTCAP_StatisticDb.m in Sources */,
 				A6680A451FE1E95A007B1857 /* UMTCAP_UserDialogIdentifier.m in Sources */,
 				A6D03B7D1CA48A1A00211137 /* UMTCAP_itu_abort.m in Sources */,
 				A645E4C31CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m in Sources */,
@@ -1186,6 +1205,7 @@
 				A6814BDB1CAA125800211137 /* UMTCAP_itu_asn1_unidirectional.m in Sources */,
 				A678596C1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m in Sources */,
 				A6814B871CA963F000211137 /* UMTCAP_ansi_asn1_conversationWithoutPerm.m in Sources */,
+				A6FDF9CB249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m in Sources */,
 				A63EEB241FEC28190051A2A3 /* UMTCAP_ComponentStateWaitForReject.m in Sources */,
 				A61BC5361DD44BF600211137 /* UMTCAP_asn1_dialoguePortion.m in Sources */,
 				A6DA617F1FC6CC9D00D0E708 /* UMTCAP_FilterRule.m in Sources */,
@@ -1352,6 +1372,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -1375,6 +1396,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
 				);
 				FRAMEWORK_VERSION = A;

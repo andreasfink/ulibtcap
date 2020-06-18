@@ -20,6 +20,8 @@
 #import "UMLayerTCAPApplicationContextProtocol.h"
 #import "UMTCAP_ansi_asn1_componentPDU.h"
 #import "UMTCAP_itu_asn1_componentPDU.h"
+#import "UMTCAP_Command.h"
+
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;
 @class UMTCAP_TransactionIdPool;
@@ -246,5 +248,6 @@
 - (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */
 + (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */
 - (NSDictionary *)apiStatus;
++(NSString *)tcapCommandAsString:(UMTCAP_Command)cmd;
 
 @end
