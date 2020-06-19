@@ -68,7 +68,7 @@
 
 -(UMMTP3Variant) variant
 {
-    return attachedLayer.variant;
+    return attachedLayer.mtp3variant;
 }
 
 - (void)genericInitialisation
