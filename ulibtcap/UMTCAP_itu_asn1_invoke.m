@@ -125,7 +125,266 @@
         }
         [_asn1_list addObject:_itu_globalOperationCode];
     }
-
+    else if(_useGlobalOperationCode==4)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_boolean;
+        asn1.asn1_tag.tagClass = UMASN1Class_Universal;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==5)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_enumerated;
+        asn1.asn1_tag.tagClass = UMASN1Class_Universal;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==6)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_sequence;
+        asn1.asn1_tag.tagClass = UMASN1Class_Universal;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==7)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_null;
+        asn1.asn1_tag.tagClass = UMASN1Class_Universal;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    
+    else if(_useGlobalOperationCode==10)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_integer;
+        asn1.asn1_tag.tagClass = UMASN1Class_Private;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==11)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_object_identifier;
+        asn1.asn1_tag.tagClass = UMASN1Class_Private;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==14)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_boolean;
+        asn1.asn1_tag.tagClass = UMASN1Class_Private;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==15)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_enumerated;
+        asn1.asn1_tag.tagClass = UMASN1Class_Private;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==16)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_sequence;
+        asn1.asn1_tag.tagClass = UMASN1Class_Private;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==17)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_null;
+        asn1.asn1_tag.tagClass = UMASN1Class_Private;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==18)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_null;
+        asn1.asn1_tag.tagClass = UMASN1Class_Private;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==20)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_integer;
+        asn1.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==21)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_object_identifier;
+        asn1.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==24)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_boolean;
+        asn1.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==25)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_enumerated;
+        asn1.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==26)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_sequence;
+        asn1.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==27)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_null;
+        asn1.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==28)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_null;
+        asn1.asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==30)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_integer;
+        asn1.asn1_tag.tagClass = UMASN1Class_Application;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==31)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_object_identifier;
+        asn1.asn1_tag.tagClass = UMASN1Class_Application;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    
+    else if(_useGlobalOperationCode==34)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_boolean;
+        asn1.asn1_tag.tagClass = UMASN1Class_Application;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==35)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+       asn1.asn1_tag.tagNumber = UMASN1Primitive_enumerated;
+        asn1.asn1_tag.tagClass = UMASN1Class_Application;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==36)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_sequence;
+        asn1.asn1_tag.tagClass = UMASN1Class_Application;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==37)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_null;
+        asn1.asn1_tag.tagClass = UMASN1Class_Application;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
+    else if(_useGlobalOperationCode==38)
+    {
+       uint8_t b = (uint8_t)[_itu_localOperationCode value];
+       UMASN1Object *asn1 = [[UMASN1Object alloc]init];
+        asn1.asn1_tag.tagNumber = UMASN1Primitive_null;
+        asn1.asn1_tag.tagClass = UMASN1Class_Application;
+       [asn1.asn1_tag setTagIsPrimitive];
+       asn1.asn1_data = [NSData dataWithBytes:&b length:1];
+       [_asn1_list addObject:asn1];
+    }
     else
     {
         if(_itu_localOperationCode)
