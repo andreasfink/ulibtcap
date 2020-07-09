@@ -72,12 +72,12 @@
     @throw(NOT_IMPLEMENTED_EXCEPTION);
 }
 
-- (int64_t)operationCodeFamily
+- (int64_t)operationCodeFamilyOrEncoding
 {
     @throw(NOT_IMPLEMENTED_EXCEPTION);
 }
 
-- (void) setOperationCodeFamily:(int64_t)i
+- (void) setOperationCodeFamilyOrEncoding:(int64_t)i
 {
      @throw(NOT_IMPLEMENTED_EXCEPTION);
 }
@@ -99,7 +99,7 @@
 
 - (void)setOperationCodeGlobal:(UMASN1ObjectIdentifier *)op
 {
-        @throw(NOT_IMPLEMENTED_EXCEPTION);
+    @throw(NOT_IMPLEMENTED_EXCEPTION);
 }
 
 

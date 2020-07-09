@@ -11,9 +11,11 @@
 
 #import <ulib/ulib.h>
 #import "UMTCAP_begin.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 
 @interface UMTCAP_itu_begin : UMTCAP_begin
 {
+    UMTCAP_itu_operationCodeEncoding _encoding;
 }
 
 @end

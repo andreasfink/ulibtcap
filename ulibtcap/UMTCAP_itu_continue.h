@@ -10,10 +10,11 @@
 // the author.
 
 #import "UMTCAP_continue.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 
 @interface UMTCAP_itu_continue : UMTCAP_continue
 {
-    
+    UMTCAP_itu_operationCodeEncoding _encoding;
 }
 
 @end

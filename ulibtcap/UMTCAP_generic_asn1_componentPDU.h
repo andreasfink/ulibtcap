@@ -23,7 +23,7 @@
     UMASN1Object *params;
     BOOL isLast;
 
-    NSString *operationName;
+    NSString                *operationName;
     UMTCAP_InternalOperation operationType;
     id                      operationUser;
     int64_t                 err;
@@ -65,8 +65,8 @@
 - (int64_t)operationCode;
 - (void) setOperationCode:(int64_t)i;
 
-- (int64_t)operationCodeFamily;
-- (void) setOperationCodeFamily:(int64_t)i;
+- (int64_t)operationCodeFamilyOrEncoding;
+- (void) setOperationCodeFamilyOrEncoding:(int64_t)i;
 
 - (BOOL)operationNational;
 - (void) setOperationNational:(BOOL)i;

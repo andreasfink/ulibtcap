@@ -167,40 +167,17 @@
     _itu_globalOperationCode= [[UMASN1ObjectIdentifier alloc]initWithValue:d];
 }
 
-- (int64_t)operationCodeFamily
+- (int64_t)operationCodeFamilyOrEncoding
 {
-    if(_useGlobalOperationCode==3)
-    {
-        return UMTCAP_itu_operationCodeFamily_LocalAndGlobal;
-    }
-    if(_useGlobalOperationCode==2)
-    {
-        return UMTCAP_itu_operationCodeFamily_GlobalAndLocal;
-    }
-    if(_useGlobalOperationCode==1)
-    {
-        return UMTCAP_itu_operationCodeFamily_Global;
-    }
-    return UMTCAP_itu_operationCodeFamily_Local;
+    return (int64_t)_operationCodeEncoding;
 }
 
-- (void) setOperationCodeFamily:(int64_t)i
+- (void) setOperationCodeFamilyOrEncoding:(int64_t)i
 {
-    if(i==UMTCAP_itu_operationCodeFamily_LocalAndGlobal)
+    UMTCAP_itu_operationCodeEncoding _encoding = (UMTCAP_itu_operationCodeEncoding)i;
+    if(_encoding != UMTCAP_itu_operationCodeEncoding_default)
     {
-        _useGlobalOperationCode = 3;
-    }
-    else if(i==UMTCAP_itu_operationCodeFamily_GlobalAndLocal)
-    {
-        _useGlobalOperationCode = 2;
-    }
-    else if(i==UMTCAP_itu_operationCodeFamily_Global)
-    {
-        _useGlobalOperationCode = 1;
-    }
-    else
-    {
-        _useGlobalOperationCode = 0;
+        _operationCodeEncoding = _encoding;
     }
 }
 
@@ -214,14 +191,11 @@
     _itu_globalOperationCode = op;
     if(op!=NULL)
     {
-        if(_useGlobalOperationCode==0)
-        {
-            _useGlobalOperationCode = 1;
-        }
+        _operationCodeEncoding = UMTCAP_itu_operationCodeEncoding_Global;
     }
     else
     {
-        _useGlobalOperationCode = 0;
+        _operationCodeEncoding = UMTCAP_itu_operationCodeEncoding_default;
     }
 }
 

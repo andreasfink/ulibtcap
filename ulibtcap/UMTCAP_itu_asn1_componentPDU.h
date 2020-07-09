@@ -11,11 +11,23 @@
 
 #import <ulibasn1/ulibasn1.h>
 #import "UMTCAP_generic_asn1_componentPDU.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 
-#define UMTCAP_itu_operationCodeFamily_Local    0
-#define UMTCAP_itu_operationCodeFamily_Global   1
-#define UMTCAP_itu_operationCodeFamily_GlobalAndLocal   2
-#define UMTCAP_itu_operationCodeFamily_LocalAndGlobal   3
+typedef enum UMTCAP_itu_operationCodeEncoding
+{
+    UMTCAP_itu_operationCodeEncoding_default              = -1,
+    UMTCAP_itu_operationCodeEncoding_Local                = 0,
+    UMTCAP_itu_operationCodeEncoding_Global               = 1,
+    UMTCAP_itu_operationCodeEncoding_GlobalAndLocal       = 2,
+    UMTCAP_itu_operationCodeEncoding_LocalAndGlobal       = 3,
+    UMTCAP_itu_operationCodeEncoding_AsBoolean            = 4,
+    UMTCAP_itu_operationCodeEncoding_AsEnumerated         = 5,
+    UMTCAP_itu_operationCodeEncoding_AsPrimitiveSequence  = 6,
+    UMTCAP_itu_operationCodeEncoding_AsNull               = 7,
+    UMTCAP_itu_operationCodeEncoding_AsPrivate            = 8,
+    UMTCAP_itu_operationCodeEncoding_AsContextSpecific    = 9,
+    UMTCAP_itu_operationCodeEncoding_AsApplication        = 10,
+} UMTCAP_itu_operationCodeEncoding;
 
 @class UMTCAP_itu_asn1_invoke;
 @class UMTCAP_itu_asn1_returnResult;
@@ -30,14 +42,14 @@
     UMASN1Integer *_itu_linkedId;
     UMASN1Integer *_itu_localOperationCode;
     UMASN1ObjectIdentifier *_itu_globalOperationCode;
-    int    _useGlobalOperationCode;
+    UMTCAP_itu_operationCodeEncoding    _operationCodeEncoding;
 }
 
 @property(readwrite,strong) UMASN1Integer *itu_invokeId;
 @property(readwrite,strong) UMASN1Integer *itu_linkedId;
 @property(readwrite,strong) UMASN1Integer *itu_localOperationCode;
 @property(readwrite,strong) UMASN1ObjectIdentifier *itu_globalOperationCode;
-@property(readwrite,assign) int useGlobalOperationCode;
+@property(readwrite,assign) UMTCAP_itu_operationCodeEncoding operationCodeEncoding;
 
 
 @end

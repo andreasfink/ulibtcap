@@ -23,12 +23,17 @@
     {
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_continue *q = [[UMTCAP_itu_asn1_continue alloc]init];
-        
+        _encoding = t.encoding;
+
         if(components_itu.count>0)
         {
             UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
             for(UMTCAP_itu_asn1_componentPDU *item in components_itu)
             {
+                if(_encoding != UMTCAP_itu_operationCodeEncoding_default)
+                {
+                    item.operationCodeEncoding = _encoding;
+                }
                 [componentsPortion addComponent:item];
             }
             q.componentPortion = componentsPortion;

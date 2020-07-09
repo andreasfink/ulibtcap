@@ -68,17 +68,23 @@
     {
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_end *q = [[UMTCAP_itu_asn1_end alloc]init];
+        _encoding = t.encoding;
 
         UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
         dtid.transactionId = t.remoteTransactionId;
         q.dtid = dtid;
         q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
-        
+        _encoding = t.encoding;
+
         if(components.count > 0)
         {
             UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
-            for(id item in components)
+            for(UMTCAP_itu_asn1_componentPDU *item in components)
             {
+                if(_encoding != UMTCAP_itu_operationCodeEncoding_default)
+                {
+                    item.operationCodeEncoding = _encoding;
+                }
                 [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
             }
             q.componentPortion = componentsPortion;

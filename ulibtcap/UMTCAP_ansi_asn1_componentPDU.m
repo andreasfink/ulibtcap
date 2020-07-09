@@ -186,7 +186,7 @@
     ansi_operationCode.operationCode = i;
 }
 
-- (int64_t)operationCodeFamily
+- (int64_t)operationCodeFamilyOrEncoding
 {
     if(ansi_operationCode == NULL)
     {
@@ -195,7 +195,7 @@
     return ansi_operationCode.family;
 }
 
-- (void) setOperationCodeFamily:(int64_t)i
+- (void) setOperationCodeFamilyOrEncoding:(int64_t)i
 {
     if(ansi_operationCode == NULL)
     {

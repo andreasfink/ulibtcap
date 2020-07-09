@@ -16,7 +16,7 @@
 
 #import "UMTCAP_TransactionState.h"
 #import "UMTCAP_ComponentState.h"
-
+#import "UMTCAP_itu_asn1_componentPDU.h"
 /* see Q.774 Figure 1 page 10 */
 
 @interface UMTCAP_Transaction : UMObject
@@ -44,6 +44,7 @@
     BOOL _startWithContinue;
     BOOL _noDestinationTransationIdInContinue;
     BOOL _doubleOriginationTransationIdInContinue;
+    UMTCAP_itu_operationCodeEncoding    _encoding;
 }
 
 @property(readwrite,assign) UMTCAP_Variant          tcapVariant;
@@ -73,6 +74,7 @@
 @property(readwrite,assign) BOOL startWithContinue;
 @property(readwrite,assign) BOOL noDestinationTransationIdInContinue;
 @property(readwrite,assign) BOOL doubleOriginationTransationIdInContinue;
+@property(readwrite,assign) UMTCAP_itu_operationCodeEncoding encoding;
 
 
 - (void)touch;

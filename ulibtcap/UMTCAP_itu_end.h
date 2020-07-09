@@ -11,8 +11,12 @@
 
 #import <ulib/ulib.h>
 #import "UMTCAP_end.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 
 @interface UMTCAP_itu_end : UMTCAP_end
+{
+    UMTCAP_itu_operationCodeEncoding _encoding;
+}
 
 - (UMTCAP_itu_end *)initForTcap:(UMLayerTCAP *)xtcap
                   transactionId:(NSString *)xtransactionId

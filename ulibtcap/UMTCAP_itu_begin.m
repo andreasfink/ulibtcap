@@ -24,7 +24,6 @@
 {
     @autoreleasepool
     {
-
         if(tcap.logLevel <= UMLOG_DEBUG)
         {
             [tcap.logFeed debugText:[NSString stringWithFormat:@"UMTCAP_itu_begin for transaction %@",transactionId]];
@@ -33,7 +32,7 @@
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_begin *q = [[UMTCAP_itu_asn1_begin alloc]init];
         UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
-        
+        _encoding = t.encoding;
         if(transactionId == NULL)
         {
             [tcap.logFeed majorErrorText:@"why is the transaction ID not yet set?!?"];
@@ -44,7 +43,7 @@
 
         q.otid = otid;
         q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
-            
+        
         if(components.count > 0)
         {
             if(tcap.logLevel <= UMLOG_DEBUG)
@@ -52,8 +51,12 @@
                 [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: components count = %d",transactionId,(int)components.count]];
             }
             UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
-            for(id item in components)
+            for(UMTCAP_itu_asn1_componentPDU *item in components)
             {
+                if(_encoding != UMTCAP_itu_operationCodeEncoding_default)
+                {
+                    item.operationCodeEncoding = _encoding;
+                }
                 [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
             }
             q.componentPortion = componentsPortion;

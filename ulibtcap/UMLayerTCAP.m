@@ -679,7 +679,7 @@
                     linkedId:(int64_t)lnkId
                  useLinkedId:(BOOL)useLinkedId
                  opCodeValue:(int64_t)op
-                opCodeFamily:(int64_t)opf
+      opCodeFamilyOrEncoding:(int64_t)opf
                 opCodeGlobal:(UMASN1ObjectIdentifier *)oi
               opCodeNational:(BOOL)nat
                       isLast:(BOOL)last
@@ -694,7 +694,7 @@
         [pdu clearLinkedId];
     }
     pdu.operationCode = op;
-    pdu.operationCodeFamily = opf;
+    pdu.operationCodeFamilyOrEncoding = opf;
     pdu.operationCodeGlobal = oi;
     pdu.operationNational = nat;
     pdu.params = params;
@@ -704,14 +704,14 @@
 
 /* component handling primitives */
 - (UMTCAP_generic_asn1_componentPDU *)tcapInvokeNotLast:(UMASN1Object *)params
-                            variant:(UMTCAP_Variant)variant
-                           invokeId:(int64_t)invId
-                           linkedId:(int64_t)lnkId
-                        useLinkedId:(BOOL)useLinkedId
-                        opCodeValue:(int64_t)op
-                       opCodeFamily:(int64_t)opf
-                       opCodeGlobal:(UMASN1ObjectIdentifier *)oi
-                     opCodeNational:(BOOL)nat
+                                                variant:(UMTCAP_Variant)variant
+                                               invokeId:(int64_t)invId
+                                               linkedId:(int64_t)lnkId
+                                            useLinkedId:(BOOL)useLinkedId
+                                            opCodeValue:(int64_t)op
+                                 opCodeFamilyOrEncoding:(int64_t)opf
+                                           opCodeGlobal:(UMASN1ObjectIdentifier *)oi
+                                         opCodeNational:(BOOL)nat
 {
     if(variant==TCAP_VARIANT_DEFAULT)
     {
@@ -724,21 +724,21 @@
                    linkedId:lnkId
                 useLinkedId:useLinkedId
                 opCodeValue:op
-               opCodeFamily:opf
+     opCodeFamilyOrEncoding:opf
                opCodeGlobal:oi
              opCodeNational:nat
                        last:NO];
 }
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapInvokeLast:(UMASN1Object *)params
-                         variant:(UMTCAP_Variant)variant
-                           invokeId:(int64_t)invId
-                           linkedId:(int64_t)lnkId
-                        useLinkedId:(BOOL)useLinkedId
-                     opCodeValue:(int64_t)op
-                    opCodeFamily:(int64_t)opf
-                    opCodeGlobal:(UMASN1ObjectIdentifier *)oi
-                  opCodeNational:(BOOL)nat
+                                             variant:(UMTCAP_Variant)variant
+                                            invokeId:(int64_t)invId
+                                            linkedId:(int64_t)lnkId
+                                         useLinkedId:(BOOL)useLinkedId
+                                         opCodeValue:(int64_t)op
+                              opCodeFamilyOrEncoding:(int64_t)opf
+                                        opCodeGlobal:(UMASN1ObjectIdentifier *)oi
+                                      opCodeNational:(BOOL)nat
 {
     if(variant==TCAP_VARIANT_DEFAULT)
     {
@@ -751,7 +751,7 @@
                    linkedId:lnkId
                 useLinkedId:useLinkedId
                 opCodeValue:op
-               opCodeFamily:opf
+     opCodeFamilyOrEncoding:opf
                opCodeGlobal:oi
              opCodeNational:nat
                        last:YES];
@@ -759,15 +759,15 @@
 
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapInvoke:(UMASN1Object *)params
-                     variant:(UMTCAP_Variant)variant
-                    invokeId:(int64_t)invId
-                    linkedId:(int64_t)lnkId
-                 useLinkedId:(BOOL)useLinkedId
-                 opCodeValue:(int64_t)op
-                opCodeFamily:(int64_t)opf
-                opCodeGlobal:(UMASN1ObjectIdentifier *)oi
-              opCodeNational:(BOOL)nat
-                        last:(BOOL)last
+                                         variant:(UMTCAP_Variant)variant
+                                        invokeId:(int64_t)invId
+                                        linkedId:(int64_t)lnkId
+                                     useLinkedId:(BOOL)useLinkedId
+                                     opCodeValue:(int64_t)op
+                          opCodeFamilyOrEncoding:(int64_t)opf
+                                    opCodeGlobal:(UMASN1ObjectIdentifier *)oi
+                                  opCodeNational:(BOOL)nat
+                                            last:(BOOL)last
 {
     if(variant == TCAP_VARIANT_DEFAULT)
     {
@@ -789,13 +789,13 @@
     }
 
     [self setGenericComponents:inv
-                        params: params
+                        params:params
                        variant:variant
                       invokeId:invId
                       linkedId:lnkId
                    useLinkedId:useLinkedId
                    opCodeValue:op
-                  opCodeFamily:opf
+        opCodeFamilyOrEncoding:opf
                   opCodeGlobal:oi
                 opCodeNational:nat
                         isLast:last];
@@ -808,7 +808,7 @@
                                linkedId:(int64_t)lnkId
                             useLinkedId:(BOOL)useLinkedId
                             opCodeValue:(int64_t)op
-                           opCodeFamily:(int64_t)opf
+                 opCodeFamilyOrEncoding:(int64_t)opf
                            opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                          opCodeNational:(BOOL)nat
 {
@@ -852,7 +852,7 @@
                       linkedId:lnkId
                    useLinkedId:useLinkedId
                    opCodeValue:op
-                  opCodeFamily:opf
+        opCodeFamilyOrEncoding:opf
                   opCodeGlobal:oi
                 opCodeNational:nat
                         isLast:YES];
@@ -866,7 +866,7 @@
                                   linkedId:(int64_t)lnkId
                                useLinkedId:(BOOL)useLinkedId
                                opCodeValue:(int64_t)op
-                              opCodeFamily:(int64_t)opf
+                    opCodeFamilyOrEncoding:(int64_t)opf
                               opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                             opCodeNational:(BOOL)nat;
 {
@@ -896,18 +896,18 @@
                       linkedId:lnkId
                    useLinkedId:useLinkedId
                    opCodeValue:op
-                  opCodeFamily:opf
-                 opCodeGlobal:oi
+        opCodeFamilyOrEncoding:opf
+                  opCodeGlobal:oi
                 opCodeNational:nat
                         isLast:NO];
     return rrl;
 }
 
 - (UMTCAP_generic_asn1_componentPDU *)tcapUErrorRequest:(UMASN1Object *)params
-                            variant:(UMTCAP_Variant)variant
-                           invokeId:(int64_t)invId
-                          errorCode:(int64_t)errCode
-                     isPrivateError:(BOOL)priv;
+                                                variant:(UMTCAP_Variant)variant
+                                               invokeId:(int64_t)invId
+                                              errorCode:(int64_t)errCode
+                                         isPrivateError:(BOOL)priv;
 {
     if(variant == TCAP_VARIANT_DEFAULT)
     {
@@ -935,7 +935,7 @@
                       linkedId:0 /* not used */
                    useLinkedId:NO /* not used */
                    opCodeValue:0 /* not used */
-                  opCodeFamily:0 /* not used */
+        opCodeFamilyOrEncoding:0 /* not used */
                   opCodeGlobal:NULL
                 opCodeNational:NO /* not used */
                         isLast:NO]; /* not used */
@@ -948,7 +948,7 @@
                              variant:(UMTCAP_Variant)variant
                             invokeId:(int64_t)invId
                          opCodeValue:(int64_t)op
-                        opCodeFamily:(int64_t)fam
+              opCodeFamilyOrEncoding:(int64_t)fam
                         opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                       opCodeNational:(BOOL)nat;
 

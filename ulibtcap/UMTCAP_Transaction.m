@@ -162,6 +162,66 @@
                 _doubleOriginationTransationIdInContinue = YES;
                 remoteTransactionId = localTransactionId;
             }
+            if([option hasPrefix:@"encoding="])
+            {
+                NSArray *a = [option componentsSeparatedByString:@"="];
+                if(a.count==2)
+                {
+                    NSString *encoding = a[1];
+                    if([encoding isEqualToString:@"default"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_default;
+                    }
+                    if([encoding isEqualToString:@"local"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_Local;
+                    }
+                    else if([encoding isEqualToString:@"global"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_Global;
+                    }
+                    else if([encoding isEqualToString:@"global-local"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_GlobalAndLocal;
+                    }
+                    else if([encoding isEqualToString:@"local-glocal"])
+                    {
+                     _encoding = UMTCAP_itu_operationCodeEncoding_LocalAndGlobal;
+                    }
+                    else if([encoding isEqualToString:@"boolean"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_AsBoolean;
+                    }
+                    else if([encoding isEqualToString:@"enumerated"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_AsEnumerated;
+                    }
+                    else if([encoding isEqualToString:@"primitive-sequence"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_AsPrimitiveSequence;
+                    }
+                    else if([encoding isEqualToString:@"null"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_AsNull;
+                    }
+                    else if([encoding isEqualToString:@"private"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_AsPrivate;
+                    }
+                    else if([encoding isEqualToString:@"context-specific"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_AsContextSpecific;
+                    }
+                    else if([encoding isEqualToString:@"application"])
+                    {
+                        _encoding = UMTCAP_itu_operationCodeEncoding_AsApplication;
+                    }
+                    else if([encoding isEqualToString:@"application"])
+                    {
+                        _encoding = (UMTCAP_itu_operationCodeEncoding) [encoding intValue];
+                    }
+                }
+            }
         }
     }
 }

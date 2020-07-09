@@ -167,7 +167,7 @@
                                         linkedId:(int64_t)lnkId
                                      useLinkedId:(BOOL)useLinkedId
                                      opCodeValue:(int64_t)op
-                                    opCodeFamily:(int64_t)fam
+                          opCodeFamilyOrEncoding:(int64_t)fam
                                     opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                   opCodeNational:(BOOL)nat
                                             last:(BOOL)last;
@@ -178,7 +178,7 @@
                                             linkedId:(int64_t)lnkId
                                          useLinkedId:(BOOL)useLinkedId
                                          opCodeValue:(int64_t)op
-                                        opCodeFamily:(int64_t)fam
+                              opCodeFamilyOrEncoding:(int64_t)fam
                                         opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                       opCodeNational:(BOOL)nat;
 
@@ -188,7 +188,7 @@
                                                linkedId:(int64_t)lnkId
                                             useLinkedId:(BOOL)useLinkedId
                                             opCodeValue:(int64_t)op
-                                           opCodeFamily:(int64_t)fam
+                                 opCodeFamilyOrEncoding:(int64_t)fam
                                            opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                          opCodeNational:(BOOL)nat;
 
@@ -198,7 +198,7 @@
                                                    linkedId:(int64_t)lnkId
                                                 useLinkedId:(BOOL)useLinkedId
                                                 opCodeValue:(int64_t)op
-                                               opCodeFamily:(int64_t)fam
+                                     opCodeFamilyOrEncoding:(int64_t)fam
                                                opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                              opCodeNational:(BOOL)nat;
 
@@ -208,7 +208,7 @@
                                                       linkedId:(int64_t)lnkId
                                                    useLinkedId:(BOOL)useLinkedId
                                                    opCodeValue:(int64_t)op
-                                                  opCodeFamily:(int64_t)fam
+                                        opCodeFamilyOrEncoding:(int64_t)fam
                                                   opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                                 opCodeNational:(BOOL)nat;
 
@@ -222,7 +222,7 @@
                                                  variant:(UMTCAP_Variant)variant
                                                 invokeId:(int64_t)invId
                                              opCodeValue:(int64_t)op
-                                            opCodeFamily:(int64_t)fam
+                                  opCodeFamilyOrEncoding:(int64_t)fam
                                             opCodeGlobal:(UMASN1ObjectIdentifier *)oi
                                           opCodeNational:(BOOL)nat;
 
