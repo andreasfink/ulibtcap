@@ -58,6 +58,7 @@
         _started = [NSDate new];
         //_transactionState = [[UMTCAP_TransactionStateIdle alloc]init];
         _componentStates = [[UMSynchronizedDictionary alloc]init];
+        _encoding = UMTCAP_itu_operationCodeEncoding_default;
         [self touch];
     }
     return self;
