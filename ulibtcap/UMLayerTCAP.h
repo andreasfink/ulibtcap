@@ -79,14 +79,15 @@
 /* this is called from lower layer to deliver data to the TCAP Layer */
 - (NSString *)status;
 
-- (void)sccpNUnitdata:(NSData *)data
+- (BOOL)sccpNUnitdata:(NSData *)data
          callingLayer:(UMLayerSCCP *)sccpLayer
               calling:(SccpAddress *)src
                called:(SccpAddress *)dst
      qualityOfService:(int)qos
                 class:(SCCP_ServiceClass)pclass
              handling:(SCCP_Handling)handling
-              options:(NSDictionary *)options;
+              options:(NSDictionary *)options
+     verifyAcceptance:(BOOL)verifyAcceptance;
 
 /* this is called from uppper layer */
 

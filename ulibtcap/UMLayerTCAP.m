@@ -131,22 +131,45 @@
                called:(SccpAddress *)dst
      qualityOfService:(int)qos
                 class:(SCCP_ServiceClass)pclass
-             handling:(SCCP_Handling)handling
+             handling:(int)handling
               options:(NSDictionary *)options
 {
+    [self sccpNUnitdata:data
+           callingLayer:sccpLayer
+                calling:src
+                 called:dst
+       qualityOfService:qos
+                  class:pclass
+               handling:handling
+                options:options
+       verifyAcceptance:NO];
+ }
+
+
+- (BOOL)sccpNUnitdata:(NSData *)data
+         callingLayer:(UMLayerSCCP *)sccpLayer
+              calling:(SccpAddress *)src
+               called:(SccpAddress *)dst
+     qualityOfService:(int)qos
+                class:(SCCP_ServiceClass)pclass
+             handling:(SCCP_Handling)handling
+              options:(NSDictionary *)options
+     verifyAcceptance:(BOOL)verifyAcceptance
+{
+    BOOL returnValue = YES; /* we always accept (for now) but pass it to other tcap instances in the same pool if needed */
     @autoreleasepool
     {
         NSData *rawMtp3 = options[@"mtp3-pdu"];
         if(data.length < 3)
         {
             [sccpLayer.mtp3.problematicPacketDumper logRawPacket:rawMtp3];
-            return;
+            return returnValue;
         }
 
         const uint8_t *bytes = data.bytes;
         uint8_t tag = bytes[0];
         UMTCAP_sccpNUnitdata *task = [UMTCAP_sccpNUnitdata alloc];
-        
+        task.verifyAcceptance = verifyAcceptance;
         if( ((tag>>6) & 0x3) == UMASN1Class_Private)
         {
             task.tcapVariant = TCAP_VARIANT_ANSI;
@@ -177,6 +200,7 @@
                          options:options];
         [self queueFromLower:task];
     }
+    return YES;
 }
 
 - (void)sccpNNotice:(NSData *)data
@@ -1027,7 +1051,7 @@
     {
         NSInteger istart = 0;
         NSInteger iend   = 0x3FFFFFFF;
-        NSInteger icount = 100000;
+        NSInteger icount = 10000;
         if (range.length > 0)
         {
             NSString *s = cfg[@"transaction-id-range"];
@@ -1048,6 +1072,7 @@
             }
         }
         _tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:(uint32_t)icount start:(uint32_t)istart end:(uint32_t)iend];
+        _tidPool.isShared = NO;
     }
 }
 
@@ -1235,6 +1260,7 @@
         }
     }
 }
+
 
 + (id)decodePdu:(NSData *)pdu /* should return a type which can be converted to json */
 {
