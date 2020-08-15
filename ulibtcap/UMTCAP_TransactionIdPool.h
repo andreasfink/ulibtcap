@@ -20,7 +20,7 @@
     NSMutableDictionary<NSString *,UMTCAP_TransactionIdPoolEntry *> *_inUseTransactionIds; /* key is transaction ID in hex,  content is instance name */
     UMMutex             *_lock;
     UMTimer             *_quarantineRotateTimer;
-
+    BOOL                _isShared;
 }
 
 
@@ -30,5 +30,6 @@
 - (void)returnTransactionId:(NSString *)tidString;
 - (NSString *)findInstanceForTransaction:(NSString *)tid;
 - (void)quarantineRotate;
+@property(readwrite,assign,atomic)  BOOL isShared;
 
 @end

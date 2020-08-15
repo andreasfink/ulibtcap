@@ -14,5 +14,6 @@
 - (void)returnTransactionId:(NSString *)tidString;
 - (NSString *)findInstanceForTransaction:(NSString *)tid;
 - (UMSynchronizedSortedDictionary *)objectValue;
+@property(readwrite,assign,atomic)  BOOL isShared;
 
 @end

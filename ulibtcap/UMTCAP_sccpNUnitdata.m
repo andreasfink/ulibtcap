@@ -56,6 +56,7 @@
         _data = xdata;
         _src = xsrc;
         _dst = xdst;
+        _verifyAcceptance = NO;
         if(xoptions)
         {
             _options = [xoptions mutableCopy];
@@ -71,6 +72,13 @@
 
 - (void)main
 {
+    _verifyAcceptance=NO;
+    [self mainWithResult];
+}
+
+- (BOOL)mainWithResult /* returns true if accepted . false if no transaction found for this */
+{
+    BOOL returnValue = NO;
     @autoreleasepool
     {
         NSUInteger pos = 0;
@@ -102,7 +110,7 @@
             {
                 if(decodeOnly==NO)
                 {
-                    [self handlePdu];
+                    returnValue = [self handlePdu];
                 }
             }
         }
@@ -116,14 +124,22 @@
             }
             if(_currentRemoteTransactionId != NULL)
             {
-                [_tcapLayer sendPAbort:_currentRemoteTransactionId
-                                 cause:UMTCAP_pAbortCause_badlyFormattedTransactionPortion
-                        callingAddress:_dst
-                         calledAddress:_src
-                               options:@{}];
+                if(_verifyAcceptance == YES)
+                {
+                    returnValue = NO;
+                }
+                else
+                {
+                    [_tcapLayer sendPAbort:_currentRemoteTransactionId
+                                     cause:UMTCAP_pAbortCause_badlyFormattedTransactionPortion
+                            callingAddress:_dst
+                             calledAddress:_src
+                                   options:@{}];
+                }
             }
         }
     }
+    return returnValue;
 }
 
 - (void) startDecodingOfPdu
@@ -183,8 +199,9 @@
     return YES;
 }
 
-- (void) handlePdu
+- (BOOL) handlePdu
 {
+    BOOL returnValue = NO;
     BOOL destroyTransaction = YES;
     tcapUser = [_tcapLayer tcapDefaultUser];
     _tcapVariant = TCAP_VARIANT_ITU;
@@ -196,6 +213,7 @@
             _tcapVariant = TCAP_VARIANT_ANSI;
         case TCAP_TAG_ITU_UNIDIRECTIONAL:
         {
+            returnValue = YES;
             [tcapUser tcapUnidirectionalIndication:NULL
                                  tcapTransactionId:NULL
                            tcapRemoteTransactionId:_currentTransaction.remoteTransactionId
@@ -218,16 +236,17 @@
             UMTCAP_UserDialogIdentifier *userDialogId = [tcapUser getNewUserDialogId];
             _currentTransaction.userDialogId = userDialogId;
             destroyTransaction = NO;
-                [tcapUser tcapBeginIndication:userDialogId
-                            tcapTransactionId:_currentTransaction.localTransactionId
-                      tcapRemoteTransactionId:_currentTransaction.remoteTransactionId
-                                      variant:_tcapVariant
-                               callingAddress:_src
-                                calledAddress:_dst
-                              dialoguePortion:_dialoguePortion
-                                 callingLayer:_tcapLayer
-                                   components:_currentComponents
-                                      options:_options];
+            returnValue = YES;
+            [tcapUser tcapBeginIndication:userDialogId
+                        tcapTransactionId:_currentTransaction.localTransactionId
+                  tcapRemoteTransactionId:_currentTransaction.remoteTransactionId
+                                  variant:_tcapVariant
+                           callingAddress:_src
+                            calledAddress:_dst
+                          dialoguePortion:_dialoguePortion
+                             callingLayer:_tcapLayer
+                               components:_currentComponents
+                                  options:_options];
         }
             break;
 
@@ -265,6 +284,7 @@
                                     _options];
                 [_tcapLayer.logFeed debugText:dbgTxt];
             }
+            returnValue = YES;
             [tcapUser tcapBeginIndication:userDialogId
                         tcapTransactionId:_currentTransaction.localTransactionId
                   tcapRemoteTransactionId:_currentTransaction.remoteTransactionId
@@ -275,8 +295,8 @@
                              callingLayer:_tcapLayer
                                components:_currentComponents
                                   options:_options];
-        }
             break;
+        }
 
         
         case TCAP_TAG_ANSI_RESPONSE:
@@ -768,12 +788,18 @@
     _currentTransaction = [_tcapLayer findTransactionByLocalTransactionId:_currentLocalTransactionId];
     if(_currentTransaction==NULL)
     {
+        NSLog(@"Transaction ID %@ not found. lets look for alternative ones",_currentLocalTransactionId);
         NSString *instance = [_tcapLayer.tidPool findInstanceForTransaction:_dtid];
         if(instance)
         {
+            NSLog(@"  found one in instance %@",instance);
             UMLayerTCAP *handlingLayer = [_tcapLayer.appContext getTCAP:instance];
             _currentTransaction = [handlingLayer findTransactionByLocalTransactionId:_dtid];
             tcapUser = _currentTransaction.user;
+        }
+        else
+        {
+            NSLog(@"  also not found");
         }
     }
 }

@@ -77,7 +77,7 @@
 
     NSString                *_currentLocalTransactionId;
     NSString                *_currentRemoteTransactionId;
-
+    BOOL                    _verifyAcceptance;
     id<UMTCAP_UserProtocol> tcapUser;
 }
 
@@ -93,6 +93,7 @@
 @property(readwrite,assign) SccpVariant sccpVariant;
 @property(readwrite,strong) UMTCAP_asn1 *asn1;
 @property(readwrite,assign) BOOL ansi_permission;
+@property(readwrite,assign) BOOL verifyAcceptance;
 
 @property(readwrite,strong) NSString *otid;
 @property(readwrite,strong) NSString *dtid;
@@ -134,8 +135,8 @@
 
 - (void) startDecodingOfPdu;
 - (BOOL) endDecodingOfPdu; /* returns yes if processing should be done , no if PDU is redirected or fitlered away */
-- (void) handlePdu;
-
+- (BOOL) handlePdu;
+- (BOOL) mainWithResult;
 
 @end
 

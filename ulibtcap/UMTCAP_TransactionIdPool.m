@@ -34,7 +34,7 @@
         _quarantineTransactionIds1 = [[NSMutableArray alloc]init];
         _quarantineTransactionIds2 = [[NSMutableArray alloc]init];
         _quarantineTransactionIds3 = [[NSMutableArray alloc]init];
-
+        _isShared = NO;
         int sequential = 0;
         uint32_t max = end - start;
         if(count>max)
