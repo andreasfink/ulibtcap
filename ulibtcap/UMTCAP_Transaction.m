@@ -217,7 +217,7 @@
                     {
                         _encoding = UMTCAP_itu_operationCodeEncoding_AsApplication;
                     }
-                    else if([encoding isEqualToString:@"application"])
+                    else
                     {
                         _encoding = (UMTCAP_itu_operationCodeEncoding) [encoding intValue];
                     }
