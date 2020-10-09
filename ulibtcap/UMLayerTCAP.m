@@ -1058,7 +1058,7 @@
             NSArray *a = [s componentsSeparatedByString:@"-"];
             if(a.count !=2)
             {
-                NSLog(@"tcap: config option 'transaction-id-range' ignored. should be <from> - <to>");
+                NSLog(@"tcap: config option '3' ignored. should be <from> - <to>");
             }
             else
             {
