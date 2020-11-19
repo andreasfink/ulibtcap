@@ -11,6 +11,6 @@
 
 #import <ulib/ulib.h>
 
-@interface UMTCAP_ansi_queryWithoutPermission : UMTask
+@interface UMTCAP_ansi_queryWithoutPermission : UMTaskQueueTask
 
 @end

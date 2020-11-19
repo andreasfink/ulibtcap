@@ -11,6 +11,6 @@
 
 #import <ulib/ulib.h>
 
-@interface UMTCAP_itu_unidirectional : UMTask
+@interface UMTCAP_itu_unidirectional : UMTaskQueueTask
 
 @end
