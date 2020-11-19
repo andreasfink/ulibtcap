@@ -17,7 +17,7 @@ MAJORVER=`echo $VERSION | cut -f1 -d.`
 MINORVER=`echo $VERSION | cut -f2 -d.`
 REVISION=`echo $VERSION | cut -f3 -d.`
 CONFIG_HEADER=ulibtcap_config.h
-DEPENDENT_PKGCONFIGS="ulibsccp"
+DEPENDENT_PKGCONFIGS="ulibsccp ulibasn1"
 FRAMEWORKS="-framework ulib"
 PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 export PKG_CONFIG_PATH
