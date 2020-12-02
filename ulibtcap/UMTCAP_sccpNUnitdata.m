@@ -155,7 +155,6 @@
     [_currentTransaction touch];
 
     UMTCAP_Filter *inboundFilter = _tcapLayer.inboundFilter;
-
     if(inboundFilter)
     {
         if(_tcapLayer.logLevel <= UMLOG_DEBUG)
