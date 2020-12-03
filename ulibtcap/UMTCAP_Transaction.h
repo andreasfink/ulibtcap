@@ -38,6 +38,7 @@
     id<UMTCAP_UserProtocol>     user;
 
     BOOL                        _transactionIsClosed;
+    BOOL                        _transactionIsEnding;
     NSTimeInterval              _timeoutInSeconds;
     UMAtomicDate                *_lastActivity;
     
@@ -67,6 +68,7 @@
 //@property(readwrite,strong) UMTCAP_TransactionState *state;
 
 @property(readwrite,assign) BOOL transactionIsClosed;
+@property(readwrite,assign) BOOL transactionIsEnding;
 @property(readwrite,assign,atomic) NSTimeInterval timeoutInSeconds;
 
 @property(readwrite,strong) NSDate *timeoutDate;

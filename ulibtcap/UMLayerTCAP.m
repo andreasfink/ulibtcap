@@ -535,6 +535,8 @@
                                                      options:options];
 
         }
+        transaction.transactionIsEnding = YES;
+        //transaction.transactionIsClosed = YES;
         [self queueFromUpper:endRequest];
     }
 }
