@@ -385,7 +385,6 @@
 {
     @autoreleasepool
     {
-
         if(variant == TCAP_VARIANT_DEFAULT)
         {
             variant = tcapVariant;

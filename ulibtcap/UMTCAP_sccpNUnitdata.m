@@ -236,6 +236,7 @@
             _currentTransaction.userDialogId = userDialogId;
             destroyTransaction = NO;
             returnValue = YES;
+            [_currentTransaction.incomingLock lock];
             [tcapUser tcapBeginIndication:userDialogId
                         tcapTransactionId:_currentTransaction.localTransactionId
                   tcapRemoteTransactionId:_currentTransaction.remoteTransactionId
@@ -246,6 +247,7 @@
                              callingLayer:_tcapLayer
                                components:_currentComponents
                                   options:_options];
+            [_currentTransaction.incomingLock unlock];
         }
             break;
 
@@ -284,6 +286,7 @@
                 [_tcapLayer.logFeed debugText:dbgTxt];
             }
             returnValue = YES;
+            [_currentTransaction.incomingLock lock];
             [tcapUser tcapBeginIndication:userDialogId
                         tcapTransactionId:_currentTransaction.localTransactionId
                   tcapRemoteTransactionId:_currentTransaction.remoteTransactionId
@@ -294,6 +297,7 @@
                              callingLayer:_tcapLayer
                                components:_currentComponents
                                   options:_options];
+            [_currentTransaction.incomingLock unlock];
             break;
         }
 
@@ -315,6 +319,7 @@
             }
             else
             {
+                [_currentTransaction.incomingLock lock];
                 destroyTransaction = YES;
                 [tcapUser tcapEndIndication:_currentTransaction.userDialogId
                           tcapTransactionId:_currentTransaction.localTransactionId
@@ -327,6 +332,7 @@
                                  components:_currentComponents
                                     options:_options];
                 /* remove transaction data */
+                [_currentTransaction.incomingLock unlock];
             }
         }
             break;
@@ -347,6 +353,7 @@
             }
             else
             {
+                [_currentTransaction.incomingLock lock];
                 destroyTransaction = YES;
                 if(_tcapLayer.logLevel <= UMLOG_DEBUG)
                 {
@@ -381,6 +388,7 @@
                                  components:_currentComponents
                                     options:_options];
                 /* remove transaction data */
+                [_currentTransaction.incomingLock unlock];
             }
             break;
         }
@@ -406,6 +414,7 @@
             }
             else
             {
+                [_currentTransaction.incomingLock lock];
                 destroyTransaction = NO;
                 [tcapUser tcapContinueIndication:_currentTransaction.userDialogId
                                tcapTransactionId:_currentTransaction.localTransactionId
@@ -417,6 +426,7 @@
                                     callingLayer:_handlingLayer
                                       components:_currentComponents
                                          options:_options];
+                [_currentTransaction.incomingLock unlock];
             }
         }
             break;
@@ -437,6 +447,7 @@
             else
             {
                 _currentTransaction.remoteTransactionId = _otid;
+                [_currentTransaction.incomingLock lock];
                 destroyTransaction = NO;
                 if(_tcapLayer.logLevel <= UMLOG_DEBUG)
                 {
@@ -477,6 +488,7 @@
                                     callingLayer:_handlingLayer
                                       components:_currentComponents
                                          options:_options];
+                [_currentTransaction.incomingLock unlock];
             }
         }
             break;
@@ -488,6 +500,7 @@
             [self findTransactionAndUser];
             if(tcapUser)
             {
+                [_currentTransaction.incomingLock lock];
                 destroyTransaction = YES;
                 [tcapUser tcapUAbortIndication:_currentTransaction.userDialogId
                              tcapTransactionId:_currentTransaction.localTransactionId
@@ -499,6 +512,7 @@
                                   callingLayer:_handlingLayer
                                           asn1:(UMASN1Object *)_asn1
                                        options:_options];
+                [_currentTransaction.incomingLock unlock];
             }
         }
             break;

@@ -21,6 +21,8 @@
 
 @interface UMTCAP_Transaction : UMObject
 {
+    UMMutex                     *_incomingLock;
+    UMMutex                     *_outgoingLock;
     UMTCAP_Variant              _tcapVariant;
     //UMTCAP_TransactionState     *_transactionState;
     UMSynchronizedDictionary    *_componentStates; /* dictionary of UMTCAP_ComponentState object. The key is an InvokeID's description value (string of integer) */
@@ -77,6 +79,8 @@
 @property(readwrite,assign) BOOL noDestinationTransationIdInContinue;
 @property(readwrite,assign) BOOL doubleOriginationTransationIdInContinue;
 @property(readwrite,assign) UMTCAP_itu_operationCodeEncoding encoding;
+@property(readwrite,strong) UMMutex *incomingLock;
+@property(readwrite,strong) UMMutex *outgoingLock;
 
 
 - (void)touch;
