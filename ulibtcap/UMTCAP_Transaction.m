@@ -59,8 +59,8 @@
         //_transactionState = [[UMTCAP_TransactionStateIdle alloc]init];
         _componentStates = [[UMSynchronizedDictionary alloc]init];
         _encoding = UMTCAP_itu_operationCodeEncoding_default;
-        _incomingLock = [[UMMutex alloc]init];
-        _outgoingLock = [[UMMutex alloc]init];
+        _incomingLock = [[UMMutex alloc]initWithName:@"tcap-incoming"];
+        _outgoingLock = [[UMMutex alloc]initWithName:@"tcap-outgoing"];
         [self touch];
     }
     return self;
