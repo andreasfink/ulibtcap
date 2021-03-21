@@ -1217,7 +1217,6 @@
 
 - (UMTCAP_Transaction *)findTransactionByLocalTransactionId:(NSString *)s
 {
-
     UMTCAP_Transaction *t = _transactionsByLocalTransactionId[s];
     return t;
 }

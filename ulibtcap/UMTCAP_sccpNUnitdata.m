@@ -802,12 +802,12 @@
     if(_currentTransaction==NULL)
     {
         NSLog(@"Transaction ID %@ not found. lets look for alternative ones",_currentLocalTransactionId);
-        NSString *instance = [_tcapLayer.tidPool findInstanceForTransaction:_dtid];
+        NSString *instance = [_tcapLayer.tidPool findInstanceForTransaction:_currentLocalTransactionId];
         if(instance)
         {
             NSLog(@"  found one in instance %@",instance);
             UMLayerTCAP *handlingLayer = [_tcapLayer.appContext getTCAP:instance];
-            _currentTransaction = [handlingLayer findTransactionByLocalTransactionId:_dtid];
+            _currentTransaction = [handlingLayer findTransactionByLocalTransactionId:_currentLocalTransactionId];
             tcapUser = _currentTransaction.user;
         }
         else
