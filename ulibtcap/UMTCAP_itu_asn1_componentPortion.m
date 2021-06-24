@@ -50,4 +50,18 @@
     return [_asn1_list copy];
 }
 
+- (NSArray *)arrayOfOperationCodes;
+{
+    NSMutableArray *list = [[NSMutableArray alloc]init];
+    for(UMASN1Object *o in _asn1_list)
+    {
+        UMTCAP_itu_asn1_componentPDU *c = [[UMTCAP_itu_asn1_componentPDU alloc]initWithASN1Object:o context:context];
+        UMASN1Integer *i = c.itu_localOperationCode;
+        if(i)
+        {
+            [list addObject: @(i)];
+        }
+    }
+    return = list;
+}
 @end
