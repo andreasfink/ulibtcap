@@ -94,6 +94,16 @@
     return self;
 }
 
+- (UMLayerTCAP *)initWithoutExecutionQueue:(NSString *)name;
+{
+    self = [super initWithoutExecutionQueue:name];
+    if(self)
+    {
+        [self genericInitialisation];
+        _tidPool = NULL;
+    }
+    return self;
+}
 
 - (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq
                                    name:(NSString *)name

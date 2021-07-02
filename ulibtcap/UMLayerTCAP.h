@@ -71,6 +71,7 @@
 
 - (UMMTP3Variant) variant;
 
+- (UMLayerTCAP *)initWithoutExecutionQueue:(NSString *)name;
 - (UMLayerTCAP *)initWithTaskQueueMulti:(UMTaskQueueMulti *)tq
                                 tidPool:(id<UMTCAP_TransactionIdPoolProtocol>)tidPool
                                    name:(NSString *)name;
