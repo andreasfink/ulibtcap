@@ -44,7 +44,7 @@ install: ${LIB} ${SLIB}
 	ln -s "${LIB}.${MAJORVER}"                         "${DESTDIR}/usr/local/lib/${LIB}"
 	-install -b -g wheel -o root -m 644 ${PKGCONFIGFILE} ${DESTDIR}/usr/local/lib/pkgconfig/
 	-mkdir -p ${DESTDIR}/usr/local/include/@PROJECT_NAME@
-	cp $(HFILES) ${DESTDIR}/usr/local/include/@PROJECT_NAME@
+	cp $(HFILES) ${DESTDIR}/usr/local/include/@PROJECT_NAME@/
 	ldconfig
 
 clean:
