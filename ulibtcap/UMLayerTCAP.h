@@ -251,6 +251,8 @@
 - (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */
 + (id)decodePdu:(NSData *)data; /* should return a type which can be converted to json */
 - (NSDictionary *)apiStatus;
-+(NSString *)tcapCommandAsString:(UMTCAP_Command)cmd;
++ (NSString *)tcapCommandAsString:(UMTCAP_Command)cmd;
+- (NSString *) getAppContextFromDialogPortion:(UMASN1Object *)o;
+- (NSNumber *) getOperationFromComponentPortion:(UMASN1Object *)o;
 
 @end

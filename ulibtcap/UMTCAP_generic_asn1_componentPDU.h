@@ -31,7 +31,6 @@
     UMASN1ObjectIdentifier *_operationCodeGlobal;
 }
 
-
 - (UMASN1ObjectIdentifier *)operationCodeGlobal;
 - (void)setOperationCodeGlobal:(UMASN1ObjectIdentifier *)op;
 

@@ -1457,4 +1457,32 @@
     }
 }
 
+- (NSString *) getAppContextFromDialogPortion:(UMASN1Object *)o
+{
+    UMTCAP_itu_asn1_dialoguePortion *dp = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o context:NULL];
+
+    NSString *s = NULL;
+    if(dp.dialogRequest.objectIdentifier)
+    {
+       s = dp.dialogRequest.objectIdentifier.hexStringValue;
+    }
+    else if(dp.dialogResponse.objectIdentifier)
+    {
+        s = dp.dialogRequest.objectIdentifier.hexStringValue;
+    }
+    return s;
+}
+
+- (NSNumber *) getOperationFromComponentPortion:(UMASN1Object *)o
+{
+    UMTCAP_itu_asn1_componentPortion *cp = [[UMTCAP_itu_asn1_componentPortion alloc]initWithASN1Object:o context:NULL];
+    NSArray *a = cp.arrayOfOperationCodes;
+    if(a.count>0)
+    {
+        return a[0];
+    }
+    return NULL;
+}
+
+
 @end
