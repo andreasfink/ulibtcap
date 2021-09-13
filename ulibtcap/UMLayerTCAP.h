@@ -27,14 +27,14 @@
 @class UMTCAP_TransactionIdPool;
 @class UMTCAP_Filter;
 
-@interface UMLayerTCAP : UMLayer<UMSCCP_UserProtocol>
+@interface UMLayerTCAP : UMLayer<UMSCCP_UserProtocol,sccp_tcapDecoder>
 {
     id<UMTCAP_UserProtocol> tcapDefaultUser;
-    UMSynchronizedDictionary *tcapUserByOperation;
+    UMSynchronizedDictionary    *tcapUserByOperation;
     
-    NSString        *attachTo;
-    UMLayerSCCP     *attachedLayer;
-    UMTCAP_Variant tcapVariant;
+    NSString                    *attachTo;
+    UMLayerSCCP                 *attachedLayer;
+    UMTCAP_Variant              tcapVariant;
     
     UMSynchronizedDictionary *_transactionsByLocalTransactionId;
     NSTimeInterval _transactionTimeoutInSeconds;
