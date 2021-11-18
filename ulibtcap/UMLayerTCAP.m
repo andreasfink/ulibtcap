@@ -1055,7 +1055,7 @@
                 a0 = [a0 trim];
                 a1 = [a1 trim];
                 istart = [a0 integerValue];
-                iend = [a1 integerValue]+1;
+                iend   = [a1 integerValue]+1;
                 icount = iend -istart;
             }
         }
@@ -1068,9 +1068,8 @@
 {
     NSMutableDictionary *cfg = [[NSMutableDictionary alloc]init];
     [self addLayerConfig:cfg];
-    
-    cfg[@"attach-to"] = attachTo;
 
+    cfg[@"attach-to"] = attachTo;
     if(tcapVariant==TCAP_VARIANT_ITU)
     {
         cfg[@"variant"] = @"itu";
