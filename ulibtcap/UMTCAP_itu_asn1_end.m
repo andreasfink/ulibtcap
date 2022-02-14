@@ -63,7 +63,22 @@
     [_asn1_tag setTagIsConstructed];
     _asn1_tag.tagNumber = TCAP_TAG_ITU_END;
     _asn1_tag.tagClass = UMASN1Class_Application;
-
+    switch(_classEncoding)
+    {
+        case UMTCAP_itu_classEncoding_Universal:
+            _asn1_tag.tagClass = UMASN1Class_Universal;
+            break;
+        case UMTCAP_itu_classEncoding_ContextSpecific:
+            _asn1_tag.tagClass = UMASN1Class_ContextSpecific;
+            break;
+        case UMTCAP_itu_classEncoding_Private:
+            _asn1_tag.tagClass = UMASN1Class_Private;
+            break;
+        case UMTCAP_itu_classEncoding_default:
+        case UMTCAP_itu_classEncoding_Application:
+        default:
+            _asn1_tag.tagClass = UMASN1Class_Application;
+    }
     _asn1_list = [[NSMutableArray alloc]init];
     
     

@@ -24,18 +24,28 @@
 
 @interface UMTCAP_begin : UMLayerTask
 {
-    UMLayerTCAP             *tcap;
-    
-    NSString *transactionId;
-    UMTCAP_UserDialogIdentifier *userDialogId;
-    UMTCAP_Variant variant;
-    id<UMLayerUserProtocol> user;
-    SccpAddress *callingAddress;
-    SccpAddress *calledAddress;
-    TCAP_NSARRAY_OF_COMPONENT_PDU *components;
-    NSDictionary *options;
-    UMTCAP_asn1_dialoguePortion *dialoguePortion;
+    UMLayerTCAP                     *_tcap;
+    NSString                        *_transactionId;
+    UMTCAP_UserDialogIdentifier     *_userDialogId;
+    UMTCAP_Variant                  _variant;
+    id<UMLayerUserProtocol>         _user;
+    SccpAddress                     *_callingAddress;
+    SccpAddress                     *_calledAddress;
+    TCAP_NSARRAY_OF_COMPONENT_PDU   *_components;
+    NSDictionary                    *_options;
+    UMTCAP_asn1_dialoguePortion     *_dialoguePortion;
 }
+
+@property(readwrite,strong,atomic)  UMLayerTCAP                     *tcap;
+@property(readwrite,strong,atomic)  NSString                        *transactionId;
+@property(readwrite,strong,atomic)  UMTCAP_UserDialogIdentifier     *userDialogId;
+@property(readwrite,assign,atomic)  UMTCAP_Variant                  variant;
+@property(readwrite,strong,atomic)  id<UMLayerUserProtocol>         user;
+@property(readwrite,strong,atomic)  SccpAddress                     *callingAddress;
+@property(readwrite,strong,atomic)  SccpAddress                     *calledAddress;
+@property(readwrite,strong,atomic)  TCAP_NSARRAY_OF_COMPONENT_PDU   *components;
+@property(readwrite,strong,atomic)  NSDictionary                    *options;
+@property(readwrite,strong,atomic)  UMTCAP_asn1_dialoguePortion     *dialoguePortion;
 
 - (UMTCAP_begin *)initForTcap:(UMLayerTCAP *)xtcap
                 transactionId:(NSString *)transactionId

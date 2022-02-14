@@ -36,16 +36,16 @@
        requiresSynchronisation:NO];
     if(self)
     {
-        tcap = xtcap;
-        transactionId = xtransactionId;
-        userDialogId = xuserDialogId;
-        variant = xvariant;
-        user =xuser;
-        dialoguePortion = xdialoguePortion;
-        callingAddress=xsrc;
-        calledAddress=xdst;
-        components=xcomponents;
-        options=xoptions;
+        _tcap = xtcap;
+        _transactionId = xtransactionId;
+        _userDialogId = xuserDialogId;
+        _variant = xvariant;
+        _user =xuser;
+        _dialoguePortion = xdialoguePortion;
+        _callingAddress=xsrc;
+        _calledAddress=xdst;
+        _components=xcomponents;
+        _options=xoptions;
     }
     return self;
 }

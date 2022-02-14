@@ -15,9 +15,11 @@
 #import "UMTCAP_itu_asn1_componentPortion.h"
 #import "UMTCAP_itu_asn1_otid.h"
 #import "UMTCAP_itu_asn1_dtid.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 
 @interface UMTCAP_itu_asn1_continue : UMTCAP_asn1
 {
+    UMTCAP_itu_classEncoding        _classEncoding;
     UMTCAP_itu_asn1_otid            *_otid;
     UMTCAP_itu_asn1_dtid            *_dtid;
     UMTCAP_itu_asn1_dialoguePortion *_dialoguePortion;

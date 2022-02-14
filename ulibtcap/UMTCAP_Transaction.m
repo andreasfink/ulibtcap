@@ -193,7 +193,6 @@
                         _classEncoding = UMTCAP_itu_classEncoding_Private;
                     }
                 }
-
             }
             if(([option hasPrefix:@"encoding="]) || ([option hasPrefix:@"op-encoding="]))
             {

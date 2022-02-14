@@ -81,6 +81,7 @@
 @property(readwrite,assign) BOOL noDestinationTransationIdInContinue;
 @property(readwrite,assign) BOOL doubleOriginationTransationIdInContinue;
 @property(readwrite,assign) UMTCAP_itu_operationCodeEncoding operationEncoding;
+@property(readwrite,assign) UMTCAP_itu_classEncoding classEncoding;
 @property(readwrite,strong) UMMutex *incomingLock;
 @property(readwrite,strong) UMMutex *outgoingLock;
 

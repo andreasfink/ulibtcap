@@ -15,14 +15,17 @@
 #import "UMTCAP_itu_asn1_dialoguePortion.h"
 #import "UMTCAP_itu_asn1_componentPortion.h"
 #import "UMTCAP_itu_asn1_otid.h"
+#import "UMTCAP_itu_asn1_componentPDU.h"
 
 @interface UMTCAP_itu_asn1_begin : UMTCAP_asn1
 {
+    UMTCAP_itu_classEncoding            _classEncoding;
     UMTCAP_itu_asn1_otid                *_otid;
     UMTCAP_itu_asn1_dialoguePortion     *_dialoguePortion;
     UMTCAP_itu_asn1_componentPortion    *_componentPortion;
 }
 
+@property(readwrite,assign) UMTCAP_itu_classEncoding        classEncoding;
 @property(readwrite,strong) UMTCAP_itu_asn1_otid            *otid;
 @property(readwrite,strong) UMTCAP_itu_asn1_dialoguePortion *dialoguePortion;
 @property(readwrite,strong) UMTCAP_itu_asn1_componentPortion *componentPortion;

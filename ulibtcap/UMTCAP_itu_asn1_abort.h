@@ -15,8 +15,11 @@
 @class UMTCAP_itu_asn1_dialoguePortion;
 @class UMTCAP_itu_asn1_pAbortCause;
 
+#import "UMTCAP_itu_asn1_componentPDU.h"
+
 @interface UMTCAP_itu_asn1_abort : UMTCAP_asn1
 {
+    UMTCAP_itu_classEncoding        _classEncoding;
     UMTCAP_itu_asn1_dtid            *_dtid;
     UMTCAP_itu_asn1_pAbortCause     *_pAbortCause;
     UMTCAP_itu_asn1_dialoguePortion *_uAbortCause;

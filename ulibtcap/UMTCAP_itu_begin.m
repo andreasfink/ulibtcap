@@ -24,38 +24,39 @@
 {
     @autoreleasepool
     {
-        if(tcap.logLevel <= UMLOG_DEBUG)
+        if(_tcap.logLevel <= UMLOG_DEBUG)
         {
-            [tcap.logFeed debugText:[NSString stringWithFormat:@"UMTCAP_itu_begin for transaction %@",transactionId]];
+            [_tcap.logFeed debugText:[NSString stringWithFormat:@"UMTCAP_itu_begin for transaction %@",_transactionId]];
         }
 
-        UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
+        UMTCAP_Transaction *t = [_tcap findTransactionByLocalTransactionId:_transactionId];
         UMTCAP_itu_asn1_begin *q = [[UMTCAP_itu_asn1_begin alloc]init];
         UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
-        _encoding = t.operationEncoding;
-        if(transactionId == NULL)
+        _operationEncoding = t.operationEncoding;
+        _classEncoding = t.classEncoding;
+        if(_transactionId == NULL)
         {
-            [tcap.logFeed majorErrorText:@"why is the transaction ID not yet set?!?"];
-            transactionId = [tcap getNewTransactionId];
+            [_tcap.logFeed majorErrorText:@"why is the transaction ID not yet set?!?"];
+            _transactionId = [_tcap getNewTransactionId];
         }
 
-        otid.transactionId = transactionId;
-
+        otid.transactionId =_transactionId;
+        q.classEncoding = _classEncoding;
         q.otid = otid;
-        q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
+        q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)_dialoguePortion;
         
-        if(components.count > 0)
+        if(_components.count > 0)
         {
-            if(tcap.logLevel <= UMLOG_DEBUG)
+            if(_tcap.logLevel <= UMLOG_DEBUG)
             {
-                [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: components count = %d",transactionId,(int)components.count]];
+                [_tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: components count = %d",_transactionId,(int)_components.count]];
             }
             UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
-            for(UMTCAP_itu_asn1_componentPDU *item in components)
+            for(UMTCAP_itu_asn1_componentPDU *item in _components)
             {
-                if(_encoding != UMTCAP_itu_operationCodeEncoding_default)
+                if(_operationEncoding != UMTCAP_itu_operationCodeEncoding_default)
                 {
-                    item.operationCodeEncoding = _encoding;
+                    item.operationCodeEncoding = _operationEncoding;
                 }
                 [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
             }
@@ -63,12 +64,12 @@
         }
         else
         {
-            [tcap.logFeed majorErrorText:@"componentsCount is zero"];
+            [_tcap.logFeed majorErrorText:@"componentsCount is zero"];
         }
         [t touch];
-        if(tcap.logLevel <= UMLOG_DEBUG)
+        if(_tcap.logLevel <= UMLOG_DEBUG)
         {
-            [tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: encoding PDU now",transactionId]];
+            [_tcap.logFeed debugText:[NSString stringWithFormat:@" transaction %@: encoding PDU now",_transactionId]];
         }
 
         NSData *pdu;
@@ -78,27 +79,27 @@
         }
         @catch(NSException *e)
         {
-            [tcap.logFeed majorErrorText:[NSString stringWithFormat:@"BER encoding of PDU failed with exception %@",e]];
+            [_tcap.logFeed majorErrorText:[NSString stringWithFormat:@"BER encoding of PDU failed with exception %@",e]];
         }
         if(pdu)
         {
-            if(tcap.logLevel <= UMLOG_DEBUG)
+            if(_tcap.logLevel <= UMLOG_DEBUG)
             {
-                NSString *s = [NSString stringWithFormat:@"Sending PDU to %@: %@", tcap.attachedLayer.layerName, pdu];
-                [tcap.logFeed debugText:s];
+                NSString *s = [NSString stringWithFormat:@"Sending PDU to %@: %@", _tcap.attachedLayer.layerName, pdu];
+                [_tcap.logFeed debugText:s];
             }
-            [tcap.attachedLayer sccpNUnidata:pdu
-                                callingLayer:tcap
-                                     calling:callingAddress
-                                      called:calledAddress
+            [_tcap.attachedLayer sccpNUnidata:pdu
+                                callingLayer:_tcap
+                                     calling:_callingAddress
+                                      called:_calledAddress
                             qualityOfService:0
                                        class:SCCP_CLASS_BASIC
                                     handling:SCCP_HANDLING_RETURN_ON_ERROR
-                                     options:options];
+                                     options:_options];
         }
-        if(tcap.logLevel <= UMLOG_DEBUG)
+        if(_tcap.logLevel <= UMLOG_DEBUG)
         {
-            [tcap.logFeed debugText:[NSString stringWithFormat:@" done with sending tcapBegin for transaction %@",transactionId]];
+            [_tcap.logFeed debugText:[NSString stringWithFormat:@" done with sending tcapBegin for transaction %@",_transactionId]];
         }
     }
 }

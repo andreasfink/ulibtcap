@@ -61,11 +61,11 @@
 {
     @autoreleasepool
     {
-        UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
+        UMTCAP_Transaction *t = [_tcap findTransactionByLocalTransactionId:_transactionId];
 
         UMTCAP_ansi_asn1_transactionPDU *q;
         
-        if(options[@"ansi-without-permission"])
+        if(_options[@"ansi-without-permission"])
         {
             q = [[UMTCAP_ansi_asn1_queryWithoutPerm alloc]init];
         }
@@ -75,10 +75,10 @@
         }
 
         UMTCAP_ansi_asn1_transactionID *tid = [[UMTCAP_ansi_asn1_transactionID alloc]init];
-        tid.tid = transactionId;
+        tid.tid = _transactionId;
         
         UMTCAP_ansi_asn1_componentSequence *compSequence = [[UMTCAP_ansi_asn1_componentSequence alloc]init];
-        for(id item in components)
+        for(id item in _components)
         {
             [compSequence addComponent:(UMTCAP_ansi_asn1_componentPDU *)item];
         }
@@ -87,14 +87,14 @@
         
         NSData *pdu = [q berEncoded];
         
-        [tcap.attachedLayer sccpNUnidata:pdu
-                            callingLayer:tcap
-                                 calling:callingAddress
-                                  called:calledAddress
+        [_tcap.attachedLayer sccpNUnidata:pdu
+                            callingLayer:_tcap
+                                 calling:_callingAddress
+                                  called:_calledAddress
                         qualityOfService:0
                                    class:SCCP_CLASS_BASIC
                                 handling:SCCP_HANDLING_RETURN_ON_ERROR
-                                 options:options];
+                                 options:_options];
         [t touch];
     }
 }

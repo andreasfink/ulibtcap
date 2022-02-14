@@ -15,7 +15,9 @@
 
 @interface UMTCAP_itu_begin : UMTCAP_begin
 {
-    UMTCAP_itu_operationCodeEncoding _encoding;
+    UMTCAP_itu_operationCodeEncoding _operationEncoding;
+    UMTCAP_itu_classEncoding         _classEncoding;
 }
+
 
 @end
