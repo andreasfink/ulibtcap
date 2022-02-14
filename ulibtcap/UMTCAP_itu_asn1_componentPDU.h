@@ -29,6 +29,15 @@ typedef enum UMTCAP_itu_operationCodeEncoding
     UMTCAP_itu_operationCodeEncoding_AsApplication        = 10,
 } UMTCAP_itu_operationCodeEncoding;
 
+typedef enum UMTCAP_itu_classEncoding
+{
+    UMTCAP_itu_classEncoding_default                      = -1,
+    UMTCAP_itu_classEncoding_Universal                    = 0,
+    UMTCAP_itu_classEncoding_Application                  = 1,
+    UMTCAP_itu_classEncoding_ContextSpecific              = 2,
+    UMTCAP_itu_classEncoding_Private                      = 3,
+} UMTCAP_itu_classEncoding;
+
 @class UMTCAP_itu_asn1_invoke;
 @class UMTCAP_itu_asn1_returnResult;
 @class UMTCAP_itu_asn1_returnError;

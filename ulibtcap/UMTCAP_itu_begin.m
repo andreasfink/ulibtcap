@@ -32,7 +32,7 @@
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_begin *q = [[UMTCAP_itu_asn1_begin alloc]init];
         UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
-        _encoding = t.encoding;
+        _encoding = t.operationEncoding;
         if(transactionId == NULL)
         {
             [tcap.logFeed majorErrorText:@"why is the transaction ID not yet set?!?"];

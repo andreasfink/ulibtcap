@@ -68,13 +68,13 @@
     {
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_end *q = [[UMTCAP_itu_asn1_end alloc]init];
-        _encoding = t.encoding;
+        _encoding = t.operationEncoding;
 
         UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
         dtid.transactionId = t.remoteTransactionId;
         q.dtid = dtid;
         q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
-        _encoding = t.encoding;
+        _encoding = t.operationEncoding;
 
         if(components.count > 0)
         {

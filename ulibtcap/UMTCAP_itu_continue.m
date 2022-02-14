@@ -23,7 +23,7 @@
     {
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_continue *q = [[UMTCAP_itu_asn1_continue alloc]init];
-        _encoding = t.encoding;
+        _encoding = t.operationEncoding;
 
         if(components_itu.count>0)
         {

@@ -47,7 +47,9 @@
     BOOL _startWithContinue;
     BOOL _noDestinationTransationIdInContinue;
     BOOL _doubleOriginationTransationIdInContinue;
-    UMTCAP_itu_operationCodeEncoding    _encoding;
+    UMTCAP_itu_operationCodeEncoding    _operationEncoding;
+    UMTCAP_itu_classEncoding            _classEncoding;
+
 }
 
 @property(readwrite,assign) UMTCAP_Variant          tcapVariant;
@@ -78,7 +80,7 @@
 @property(readwrite,assign) BOOL startWithContinue;
 @property(readwrite,assign) BOOL noDestinationTransationIdInContinue;
 @property(readwrite,assign) BOOL doubleOriginationTransationIdInContinue;
-@property(readwrite,assign) UMTCAP_itu_operationCodeEncoding encoding;
+@property(readwrite,assign) UMTCAP_itu_operationCodeEncoding operationEncoding;
 @property(readwrite,strong) UMMutex *incomingLock;
 @property(readwrite,strong) UMMutex *outgoingLock;
 
