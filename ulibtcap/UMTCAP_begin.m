@@ -56,7 +56,7 @@
         _calledAddress=xdst;
         _components=xcomponents;
         _options=xoptions;
-        _sccpServiceClass = SCCP_CLASS_BASIC;
+        _sccpServiceClass = SCCP_CLASS_INSEQ_CL;
         _sccpHandling = SCCP_HANDLING_RETURN_ON_ERROR;
         _sccpQoS = 0;
         
