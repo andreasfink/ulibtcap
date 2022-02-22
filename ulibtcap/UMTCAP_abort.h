@@ -32,6 +32,9 @@
     SccpAddress                 *_callingAddress;
     SccpAddress                 *_calledAddress;
     NSDictionary                *_options;
+    int                             _sccpQoS;
+    SCCP_ServiceClass               _sccpServiceClass;
+    SCCP_Handling                   _sccpHandling;
 }
 
 

@@ -35,6 +35,9 @@
     NSArray<UMTCAP_ansi_asn1_componentPDU *> *components_ansi;
     NSArray<UMTCAP_itu_asn1_componentPDU *> *components_itu;
     NSDictionary *options;
+    int                             _sccpQoS;
+    SCCP_ServiceClass               _sccpServiceClass;
+    SCCP_Handling                   _sccpHandling;
 }
 
 /*

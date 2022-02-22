@@ -69,6 +69,7 @@
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_end *q = [[UMTCAP_itu_asn1_end alloc]init];
         _encoding = t.operationEncoding;
+        q.classEncoding = _classEncoding;
 
         UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
         dtid.transactionId = t.remoteTransactionId;
@@ -91,15 +92,14 @@
         }
 
         NSData *pdu = [q berEncoded];
-        
-        [tcap.attachedLayer sccpNUnidata:pdu
-                            callingLayer:tcap
-                                 calling:callingAddress
-                                  called:calledAddress
-                        qualityOfService:0
-                                   class:SCCP_CLASS_BASIC
-                                handling:SCCP_HANDLING_RETURN_ON_ERROR
-                                 options:options];
+        [_tcap.attachedLayer sccpNUnidata:pdu
+                            callingLayer:_tcap
+                                 calling:_callingAddress
+                                  called:_calledAddress
+                        qualityOfService:_sccpQoS
+                                   class:_sccpServiceClass
+                                handling:_sccpHandling
+                                 options:_options];
         t.transactionIsClosed = YES;
     }
 }

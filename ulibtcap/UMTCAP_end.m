@@ -15,6 +15,18 @@
 @implementation UMTCAP_end
 
 
+- (UMTCAP_end *)init
+{
+    self = [super init];
+    if(self)
+    {
+        _sccpServiceClass = SCCP_CLASS_INSEQ_CL;
+        _sccpHandling = SCCP_HANDLING_RETURN_ON_ERROR;
+        _sccpQoS = 0;
+    }
+    return self;
+}
+
 - (UMTCAP_end *)initForTcap:(UMLayerTCAP *)xtcap
               transactionId:(NSString *)xtransactionId
                userDialogId:(UMTCAP_UserDialogIdentifier *)xuserDialogId
@@ -47,6 +59,9 @@
         components=xcomponents;
         permission = xpermission;
         options=xoptions;
+        _sccpServiceClass = SCCP_CLASS_INSEQ_CL;
+        _sccpHandling = SCCP_HANDLING_RETURN_ON_ERROR;
+        _sccpQoS = 0;
     }
     return self;
 }

@@ -39,6 +39,9 @@
     UMTCAP_asn1_dialoguePortion *dialoguePortion;
     BOOL permission;
     NSDictionary *options;
+    int                             _sccpQoS;
+    SCCP_ServiceClass               _sccpServiceClass;
+    SCCP_Handling                   _sccpHandling;
 }
 
 - (UMTCAP_end *)initForTcap:(UMLayerTCAP *)xtcap

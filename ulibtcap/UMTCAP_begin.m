@@ -19,9 +19,9 @@
     self = [super init];
     if(self)
     {
+        _sccpServiceClass = SCCP_CLASS_INSEQ_CL;
+        _sccpHandling = SCCP_HANDLING_RETURN_ON_ERROR;
         _sccpQoS = 0;
-        _sccpServiceClass = 1;
-        _sccpHandling = 1;
     }
     return self;
 }
