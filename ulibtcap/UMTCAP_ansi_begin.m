@@ -91,9 +91,9 @@
                             callingLayer:_tcap
                                  calling:_callingAddress
                                   called:_calledAddress
-                        qualityOfService:0
-                                   class:SCCP_CLASS_BASIC
-                                handling:SCCP_HANDLING_RETURN_ON_ERROR
+                         qualityOfService:_sccpQoS
+                                    class:_sccpServiceClass
+                                 handling:_sccpHandling
                                  options:_options];
         [t touch];
     }

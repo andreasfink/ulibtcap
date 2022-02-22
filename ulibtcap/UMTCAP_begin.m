@@ -14,7 +14,17 @@
 #import "UMTCAP_asn1_dialoguePortion.h"
 
 @implementation UMTCAP_begin
-
+- (UMTCAP_begin *)init
+{
+    self = [super init];
+    if(self)
+    {
+        _sccpQoS = 0;
+        _sccpServiceClass = 1;
+        _sccpHandling = 1;
+    }
+    return self;
+}
 
 - (UMTCAP_begin *)initForTcap:(UMLayerTCAP *)xtcap
                 transactionId:(NSString *)xtransactionId
@@ -46,6 +56,26 @@
         _calledAddress=xdst;
         _components=xcomponents;
         _options=xoptions;
+        _sccpServiceClass = SCCP_CLASS_BASIC;
+        _sccpHandling = SCCP_HANDLING_RETURN_ON_ERROR;
+        _sccpQoS = 0;
+        
+        NSArray <NSString *> *tcap_options = _options[@"tcap-options"];
+        if(tcap_options.count > 0)
+        {
+            for(NSString *option in tcap_options)
+            {
+                
+                if([option isEqualToString:@"class1"])
+                {
+                    _sccpServiceClass = SCCP_CLASS_INSEQ_CL;
+                }
+                else if([option isEqualToString:@"no-return-on-error"])
+                {
+                    _sccpHandling = SCCP_HANDLING_NO_SPECIAL_OPTIONS;
+                }
+            }
+        }
     }
     return self;
 }

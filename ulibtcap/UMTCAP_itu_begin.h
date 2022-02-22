@@ -18,6 +18,4 @@
     UMTCAP_itu_operationCodeEncoding _operationEncoding;
     UMTCAP_itu_classEncoding         _classEncoding;
 }
-
-
 @end

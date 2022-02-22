@@ -34,6 +34,9 @@
     TCAP_NSARRAY_OF_COMPONENT_PDU   *_components;
     NSDictionary                    *_options;
     UMTCAP_asn1_dialoguePortion     *_dialoguePortion;
+    int                             _sccpQoS;
+    SCCP_ServiceClass               _sccpServiceClass;
+    SCCP_Handling                   _sccpHandling;
 }
 
 @property(readwrite,strong,atomic)  UMLayerTCAP                     *tcap;
@@ -46,6 +49,10 @@
 @property(readwrite,strong,atomic)  TCAP_NSARRAY_OF_COMPONENT_PDU   *components;
 @property(readwrite,strong,atomic)  NSDictionary                    *options;
 @property(readwrite,strong,atomic)  UMTCAP_asn1_dialoguePortion     *dialoguePortion;
+@property(readwrite,assign,atomic)  int                             sccpQos;
+@property(readwrite,assign,atomic)  SCCP_ServiceClass               sccpServiceClass;
+@property(readwrite,assign,atomic)  SCCP_Handling                   sccpHandling;
+
 
 - (UMTCAP_begin *)initForTcap:(UMLayerTCAP *)xtcap
                 transactionId:(NSString *)transactionId
