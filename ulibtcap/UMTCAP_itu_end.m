@@ -69,7 +69,7 @@
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_end *q = [[UMTCAP_itu_asn1_end alloc]init];
         _operationEncoding = t.operationEncoding;
-        q.classEncoding = UMTCAP_itu_classEncoding_Application;;
+        q.classEncoding = UMTCAP_itu_classEncoding_Application;
 
         UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
         dtid.transactionId = t.remoteTransactionId;
