@@ -26,6 +26,7 @@
     UMTCAP_itu_asn1_componentPortion *_componentPortion;
 }
 
+@property(readwrite,assign) UMTCAP_itu_classEncoding        classEncoding;
 @property(readwrite,strong) UMTCAP_itu_asn1_otid            *otid;
 @property(readwrite,strong) UMTCAP_itu_asn1_dtid            *dtid;
 @property(readwrite,strong) UMTCAP_itu_asn1_dialoguePortion *dialoguePortion;

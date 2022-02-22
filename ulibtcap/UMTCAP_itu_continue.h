@@ -14,7 +14,11 @@
 
 @interface UMTCAP_itu_continue : UMTCAP_continue
 {
-    UMTCAP_itu_operationCodeEncoding _encoding;
+    UMTCAP_itu_operationCodeEncoding _operationEncoding;
+    UMTCAP_itu_classEncoding         _classEncoding;
 }
+
+@property(readwrite,assign,atomic)  UMTCAP_itu_operationCodeEncoding operationEncoding;
+@property(readwrite,assign,atomic)  UMTCAP_itu_classEncoding         classEncoding;
 
 @end

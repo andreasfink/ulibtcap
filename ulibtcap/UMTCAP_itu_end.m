@@ -68,23 +68,22 @@
     {
         UMTCAP_Transaction *t = [tcap findTransactionByLocalTransactionId:transactionId];
         UMTCAP_itu_asn1_end *q = [[UMTCAP_itu_asn1_end alloc]init];
-        _encoding = t.operationEncoding;
-        q.classEncoding = _classEncoding;
+        _operationEncoding = t.operationEncoding;
+        q.classEncoding = UMTCAP_itu_classEncoding_Application;;
 
         UMTCAP_itu_asn1_dtid *dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
         dtid.transactionId = t.remoteTransactionId;
         q.dtid = dtid;
         q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)dialoguePortion;
-        _encoding = t.operationEncoding;
 
         if(components.count > 0)
         {
             UMTCAP_itu_asn1_componentPortion *componentsPortion = [[UMTCAP_itu_asn1_componentPortion alloc]init];
             for(UMTCAP_itu_asn1_componentPDU *item in components)
             {
-                if(_encoding != UMTCAP_itu_operationCodeEncoding_default)
+                if(_operationEncoding != UMTCAP_itu_operationCodeEncoding_default)
                 {
-                    item.operationCodeEncoding = _encoding;
+                    item.operationCodeEncoding = _operationEncoding;
                 }
                 [componentsPortion addComponent:(UMTCAP_itu_asn1_componentPDU *)item];
             }
@@ -92,14 +91,14 @@
         }
 
         NSData *pdu = [q berEncoded];
-        [_tcap.attachedLayer sccpNUnidata:pdu
-                            callingLayer:_tcap
-                                 calling:_callingAddress
-                                  called:_calledAddress
+        [tcap.attachedLayer sccpNUnidata:pdu
+                            callingLayer:tcap
+                                 calling:callingAddress
+                                  called:calledAddress
                         qualityOfService:_sccpQoS
                                    class:_sccpServiceClass
                                 handling:_sccpHandling
-                                 options:_options];
+                                 options:options];
         t.transactionIsClosed = YES;
     }
 }
