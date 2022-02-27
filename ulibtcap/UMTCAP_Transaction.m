@@ -216,7 +216,7 @@
                     {
                         _operationEncoding = UMTCAP_itu_operationCodeEncoding_GlobalAndLocal;
                     }
-                    else if([encoding isEqualToString:@"local-glocal"])
+                    else if([encoding isEqualToString:@"local-global"])
                     {
                      _operationEncoding = UMTCAP_itu_operationCodeEncoding_LocalAndGlobal;
                     }
