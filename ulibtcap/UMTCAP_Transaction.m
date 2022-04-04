@@ -218,7 +218,7 @@
                     }
                     else if([encoding isEqualToString:@"local-global"])
                     {
-                     _operationEncoding = UMTCAP_itu_operationCodeEncoding_LocalAndGlobal;
+                        _operationEncoding = UMTCAP_itu_operationCodeEncoding_LocalAndGlobal;
                     }
                     else if([encoding isEqualToString:@"boolean"])
                     {
