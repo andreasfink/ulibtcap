@@ -152,7 +152,7 @@
             {
                 _startWithContinue = YES;
             }
-            else if([option isEqualToString:@"handshake"])
+            else if([option hasSuffix:@"handshake"])
             {
                 _useHandshake = YES;
             }
