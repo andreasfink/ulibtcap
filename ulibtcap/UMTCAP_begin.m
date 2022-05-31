@@ -65,7 +65,6 @@
         {
             for(NSString *option in tcap_options)
             {
-                
                 if([option isEqualToString:@"class1"])
                 {
                     _sccpServiceClass = SCCP_CLASS_INSEQ_CL;

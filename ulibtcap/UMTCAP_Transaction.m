@@ -152,6 +152,10 @@
             {
                 _startWithContinue = YES;
             }
+            else if([option isEqualToString:@"handshake"])
+            {
+                _useHandshake = YES;
+            }
             else if([option isEqualToString:@"no-dtid-in-continue"])
             {
                 _noDestinationTransationIdInContinue = YES;

@@ -47,6 +47,7 @@
     BOOL _startWithContinue;
     BOOL _noDestinationTransationIdInContinue;
     BOOL _doubleOriginationTransationIdInContinue;
+    BOOL    _useHandshake;
     UMTCAP_itu_operationCodeEncoding    _operationEncoding;
     UMTCAP_itu_classEncoding            _classEncoding;
 
@@ -73,6 +74,7 @@
 
 @property(readwrite,assign) BOOL transactionIsClosed;
 @property(readwrite,assign) BOOL transactionIsEnding;
+@property(readwrite,assign) BOOL useHandshake;
 @property(readwrite,assign,atomic) NSTimeInterval timeoutInSeconds;
 
 @property(readwrite,strong) NSDate *timeoutDate;
