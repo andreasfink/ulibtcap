@@ -646,29 +646,22 @@
                 break;
         }
 
-        NSString *xoperationName = NULL;
         if(component.hasGlobalOperationCode)
         {
             UMTCAP_itu_asn1_componentPDU *icomponent = (UMTCAP_itu_asn1_componentPDU *)component;
             NSData *d =  icomponent.itu_globalOperationCode.value;
             if(d.length == 1)
             {
-                uint8_t op = *(uint8_t *)d.bytes;
-                component.params = [user decodeASN1:component.params
-                                      operationCode:op
-                                      operationType:component.operationType
-                                      operationName:&xoperationName
-                                            context:self];
+                _currentOperationCode = *(uint8_t *)d.bytes;
             }
         }
-        else
-        {
-            component.params = [user decodeASN1:component.params
-                                  operationCode:component.operationCode
-                                  operationType:component.operationType
-                                  operationName:&xoperationName
-                                        context:self];
-        }
+        
+        NSString *xoperationName = NULL;
+        component.params = [user decodeASN1:component.params
+                              operationCode:_currentOperationCode
+                              operationType:component.operationType
+                              operationName:&xoperationName
+                                    context:self];
         if(xoperationName)
         {
             component.operationName = xoperationName;
