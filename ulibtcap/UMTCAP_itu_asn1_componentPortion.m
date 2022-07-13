@@ -57,9 +57,19 @@
     {
         UMTCAP_itu_asn1_componentPDU *c = [[UMTCAP_itu_asn1_componentPDU alloc]initWithASN1Object:o context:NULL];
         UMASN1Integer *i = c.itu_localOperationCode;
+        UMASN1ObjectIdentifier *g = c.itu_globalOperationCode;
         if(i)
         {
             [list addObject: @(i.value)];
+        }
+        else if(g)
+        {
+            NSData *d = g.value;
+            if(d.length ==1)
+            {
+                int j = *(uint8_t *)d.bytes;
+                [list addObject:@(j)];
+            }
         }
     }
     return list;

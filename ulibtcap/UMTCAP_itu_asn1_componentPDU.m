@@ -153,6 +153,16 @@
     _itu_localOperationCode.value = i;
 }
 
+- (BOOL)hasGlobalOperationCode
+{
+    return (_itu_globalOperationCode != NULL);
+}
+
+- (BOOL)hasLocalOperationCode
+{
+    return (_itu_localOperationCode != NULL);
+}
+
 - (NSData *)globalOperationCode
 {
     if(_itu_globalOperationCode==NULL)
@@ -208,7 +218,6 @@
 {
     
 }
-
 
 - (NSString *)objectName
 {

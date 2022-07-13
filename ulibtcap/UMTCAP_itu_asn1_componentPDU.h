@@ -61,7 +61,12 @@ typedef enum UMTCAP_itu_classEncoding
 @property(readwrite,assign) UMTCAP_itu_operationCodeEncoding operationCodeEncoding;
 
 
+- (BOOL)hasGlobalOperationCode;
+- (BOOL)hasLocalOperationCode;
+
 @end
+
+
 
 #define TCAP_ITU_COMPONENT_INVOKE                   1
 #define TCAP_ITU_COMPONENT_RETURN_RESULT_LAST       2

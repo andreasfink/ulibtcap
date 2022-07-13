@@ -70,6 +70,9 @@
 - (BOOL)operationNational;
 - (void) setOperationNational:(BOOL)i;
 
+- (BOOL)hasGlobalOperationCode;
+- (BOOL)hasLocalOperationCode;
+
 @end
 
 

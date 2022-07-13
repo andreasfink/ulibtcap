@@ -102,6 +102,15 @@
     @throw(NOT_IMPLEMENTED_EXCEPTION);
 }
 
+- (BOOL)hasGlobalOperationCode
+{
+    @throw(NOT_IMPLEMENTED_EXCEPTION);
+}
+
+- (BOOL)hasLocalOperationCode
+{
+    @throw(NOT_IMPLEMENTED_EXCEPTION);
+}
 
 - (BOOL)errorCodePrivate
 {
