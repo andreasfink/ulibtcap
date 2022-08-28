@@ -573,6 +573,7 @@
         _currentTransaction.transactionIsClosed = YES;
         [_tcapLayer removeTransaction:_currentTransaction];
     }
+    return returnValue;
 }
 
 
