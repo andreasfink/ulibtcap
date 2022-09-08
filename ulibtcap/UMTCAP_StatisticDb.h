@@ -15,7 +15,7 @@
 {
     UMDbPool    *_pool;
     UMDbTable   *_table;
-    UMMutex     *_lock;
+    UMMutex     *_mtp3StatisticDbLock;
     UMSynchronizedDictionary *_entries;
     NSDateFormatter *_ymdhDateFormatter;
     NSString *_instance;

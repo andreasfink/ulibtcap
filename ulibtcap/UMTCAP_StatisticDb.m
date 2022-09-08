@@ -46,7 +46,7 @@ static dbFieldDef UMSCCP_StatisticDb_fields[] =
         _poolName = poolName;
         _pool = [appContext dbPools][_poolName];
         _table = [[UMDbTable alloc]initWithConfig:config andPools:appContext.dbPools];
-        _lock = [[UMMutex alloc]initWithName:@"UMMTP3StatisticDb-lock"];
+        _mtp3StatisticDbLock = [[UMMutex alloc]initWithName:@"UMMTP3StatisticDb-lock"];
         _entries = [[UMSynchronizedDictionary alloc]init];
         _instance = instance;
         NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"UTC"];
@@ -96,7 +96,7 @@ static dbFieldDef UMSCCP_StatisticDb_fields[] =
                                                        inbound:inbound
                                                    tcapCommand:cmdString
                                                       instance:_instance];
-        [_lock lock];
+        [_mtp3StatisticDbLock lock];
         UMTCAP_StatisticDbRecord *rec = _entries[key];
         if(rec == NULL)
         {
@@ -109,7 +109,7 @@ static dbFieldDef UMSCCP_StatisticDb_fields[] =
             rec.instance = _instance;
             _entries[key] = rec;
         }
-        [_lock unlock];
+        [_mtp3StatisticDbLock unlock];
         [rec increaseMsuCount:1 byteCount:byteCount];
     }
 }
@@ -118,10 +118,10 @@ static dbFieldDef UMSCCP_StatisticDb_fields[] =
 {
     @autoreleasepool
     {
-        [_lock lock];
+        [_mtp3StatisticDbLock lock];
         UMSynchronizedDictionary *tmp = _entries;
         _entries = [[UMSynchronizedDictionary alloc]init];
-        [_lock unlock];
+        [_mtp3StatisticDbLock unlock];
         
         NSArray *keys = [tmp allKeys];
         for(NSString *key in keys)

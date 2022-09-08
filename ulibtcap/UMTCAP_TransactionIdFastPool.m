@@ -27,7 +27,7 @@
     self = [super init];
     if(self)
     {
-        _lock = [[UMMutex alloc]initWithName:@"transaction-id-fastpool-lock"];
+        _fastPoolLock = [[UMMutex alloc]initWithName:@"transaction-id-fastpool-lock"];
         NSMutableArray *xfreeTransactionIds = [[NSMutableArray alloc]init];
         _inUseTransactionIds = [[NSMutableDictionary alloc]init];
 
@@ -78,71 +78,71 @@
 /* that way after 3 rotations they end up in the free pool again */
 - (void)quarantineRotate
 {
-    [_lock lock];
+    [_fastPoolLock lock];
     [_freeTransactionIds addObjectsFromArray:_quarantineTransactionIds3];
     _quarantineTransactionIds3 = _quarantineTransactionIds2;
     _quarantineTransactionIds2 = _quarantineTransactionIds1;
     _quarantineTransactionIds1 = [[NSMutableArray alloc]init];
-    [_lock unlock];
+    [_fastPoolLock unlock];
 }
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
-    UMAssert(_lock!=NULL,@"no locking in place");
+    UMAssert(_fastPoolLock!=NULL,@"no locking in place");
     
     UMTCAP_TransactionIdPoolEntry *e = NULL;
-    [_lock lock];
+    [_fastPoolLock lock];
     while(_freeTransactionIds.count <1)
     {
-        [_lock unlock];
+        [_fastPoolLock unlock];
         usleep(1000);
-        [_lock lock];
+        [_fastPoolLock lock];
     }
     
     e = [_freeTransactionIds objectAtIndex:0];
     [_freeTransactionIds removeObjectAtIndex:0];
-    [_lock unlock];
+    [_fastPoolLock unlock];
     e.lastUse = [NSDate date];
     e.instance = instance;
     NSString *tidString = e.transactionId;
-    [_lock lock];
+    [_fastPoolLock lock];
     _inUseTransactionIds[tidString]=e;
-    [_lock unlock];
+    [_fastPoolLock unlock];
     return tidString;
 }
 
 - (NSString *)findInstanceForTransaction:(NSString *)tidString
 {
-    [_lock lock];
+    [_fastPoolLock lock];
     UMTCAP_TransactionIdPoolEntry *e = _inUseTransactionIds[tidString];
     NSString *instance = e.instance;
-    [_lock unlock];
+    [_fastPoolLock unlock];
     return instance;
 }
 
 - (void)returnTransactionId:(NSString *)tidString
 {
-    [_lock lock];
+    [_fastPoolLock lock];
     UMTCAP_TransactionIdPoolEntry *e = _inUseTransactionIds[tidString];
     if(e)
     {
         [_inUseTransactionIds removeObjectForKey:tidString];
         [_quarantineTransactionIds1 addObject:e];
     }
-    [_lock unlock];
+    [_fastPoolLock unlock];
 }
 
 - (UMSynchronizedSortedDictionary *)objectValue
 {
     UMSynchronizedSortedDictionary *d = [[UMSynchronizedSortedDictionary alloc]init];
     d[@"pool-type"]= @"fast";
-    [_lock lock];
+    [_fastPoolLock lock];
     d[@"free-count"]= @(_freeTransactionIds.count);
     d[@"inuse-count"]= @(_inUseTransactionIds.count);
     d[@"quarantine1-count"]= @(_quarantineTransactionIds1.count);
     d[@"quarantine2-count"]= @(_quarantineTransactionIds2.count);
     d[@"quarantine3-count"]= @(_quarantineTransactionIds3.count);
-    [_lock unlock];
+    [_fastPoolLock unlock];
     return d;
 }
 

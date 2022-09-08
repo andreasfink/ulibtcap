@@ -19,7 +19,7 @@
     NSString *_tcap_command;
     int     _msu_count;
     int     _bytes_count;
-    UMMutex *_lock;
+    UMMutex *_recordLock;
 }
 
 

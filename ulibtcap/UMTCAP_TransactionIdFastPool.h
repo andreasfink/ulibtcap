@@ -19,7 +19,7 @@
 
     NSMutableArray<UMTCAP_TransactionIdPoolEntry *> *_freeTransactionIds; /* key is transaction ID in hex, content is UMTCAP_TransactionIdPoolEntry object */
     NSMutableDictionary<NSString *,UMTCAP_TransactionIdPoolEntry *> *_inUseTransactionIds; /* key is transaction ID in hex,  content is UMTCAP_TransactionIdPoolEntry */
-    UMMutex             *_lock;
+    UMMutex             *_fastPoolLock;
     UMTimer             *_quarantineRotateTimer;
     BOOL                _isShared;
 }
