@@ -155,7 +155,13 @@
 
         const uint8_t *bytes = data.bytes;
         uint8_t tag = bytes[0];
-        UMTCAP_sccpNUnitdata *task = [UMTCAP_sccpNUnitdata alloc];
+        UMTCAP_sccpNUnitdata *task = [[UMTCAP_sccpNUnitdata alloc]initForTcap:self
+                                                                        sccp:sccpLayer
+                                                                     userData:data
+                                                                      calling:src
+                                                                       called:dst
+                                                             qualityOfService:qos
+                                                                      options:options];
         task.verifyAcceptance = verifyAcceptance;
         if( ((tag>>6) & 0x3) == UMASN1Class_Private)
         {
@@ -178,13 +184,6 @@
                                      [data hexString]
                                      ]];
         }
-        task = [task initForTcap:self
-                            sccp:sccpLayer
-                        userData:data
-                         calling:src
-                          called:dst
-                qualityOfService:qos
-                         options:options];
         [self queueFromLower:task];
     }
     return YES;
@@ -207,8 +206,14 @@
         
         const uint8_t *bytes = data.bytes;
         uint8_t tag = bytes[0];
-        UMTCAP_sccpNNotice *task = [UMTCAP_sccpNNotice alloc];
-        
+        UMTCAP_sccpNNotice *task = [[UMTCAP_sccpNNotice alloc]initForTcap:self
+                                                                     sccp:sccpLayer
+                                                                 userData:data
+                                                                  calling:src
+                                                                   called:dst
+                                                                   reason:reason
+                                                                  options:options];
+
         if( ((tag>>6) & 0x3) == UMASN1Class_Private)
         {
             task.tcapVariant = TCAP_VARIANT_ANSI;
@@ -232,13 +237,6 @@
                                      reason
                                      ]];
         }
-        task = [task initForTcap:self
-                            sccp:sccpLayer
-                        userData:data
-                         calling:src
-                          called:dst
-                          reason:reason
-                         options:options];
         [self queueFromLower:task];
     }
 }
