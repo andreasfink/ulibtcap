@@ -210,6 +210,7 @@
     {
         case TCAP_TAG_ANSI_UNIDIRECTIONAL:
             _tcapVariant = TCAP_VARIANT_ANSI;
+            __attribute__((fallthrough));
         case TCAP_TAG_ITU_UNIDIRECTIONAL:
         {
             returnValue = YES;
@@ -228,6 +229,7 @@
 
         case TCAP_TAG_ANSI_QUERY_WITHOUT_PERM:
             perm=NO;
+            __attribute__((fallthrough));
 #pragma unused(perm) /* silence warning for now */
         case TCAP_TAG_ANSI_QUERY_WITH_PERM:
         {
@@ -397,6 +399,7 @@
             perm = NO;
 #pragma unused(perm) /* silence warning for now */
         }
+            __attribute__((fallthrough));
         case TCAP_TAG_ANSI_CONVERSATION_WITHOUT_PERM:
         {
             _tcapVariant = TCAP_VARIANT_ANSI;
@@ -564,6 +567,7 @@
              ];
             }
         }
+            break;
         default:
             break;
             
