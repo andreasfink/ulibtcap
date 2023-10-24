@@ -10,9 +10,9 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_ansi_asn1_componentIDs.h"
-#import "UMTCAP_ansi_asn1_operationCode.h"
-#import "UMTCAP_generic_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_componentIDs.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_operationCode.h>
+#import <ulibtcap/UMTCAP_generic_asn1_componentPDU.h>
 
 @interface UMTCAP_ansi_asn1_componentPDU : UMTCAP_generic_asn1_componentPDU
 {

@@ -11,16 +11,16 @@
 
 #import <ulibgt/ulibgt.h>
 #import <ulibsccp/ulibsccp.h>
-#import "UMTCAP_Variant.h"
-#import "UMTCAP_UserProtocol.h"
-#import "UMTCAP_operationClass.h"
-#import "UMTCAP_generic_asn1_componentPDU.h"
-#import "UMTCAP_TransactionIdPoolProtocol.h"
-#import "UMTCAP_UserDialogIdentifier.h"
+#import <ulibtcap/UMTCAP_Variant.h>
+#import <ulibtcap/UMTCAP_UserProtocol.h>
+#import <ulibtcap/UMTCAP_operationClass.h>
+#import <ulibtcap/UMTCAP_generic_asn1_componentPDU.h>
+#import <ulibtcap/UMTCAP_TransactionIdPoolProtocol.h>
+#import <ulibtcap/UMTCAP_UserDialogIdentifier.h>
 #import "UMLayerTCAPApplicationContextProtocol.h"
-#import "UMTCAP_ansi_asn1_componentPDU.h"
-#import "UMTCAP_itu_asn1_componentPDU.h"
-#import "UMTCAP_Command.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_componentPDU.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
+#import <ulibtcap/UMTCAP_Command.h>
 
 @class UMTCAP_Transaction;
 @class UMLayerSCCP;

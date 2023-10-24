@@ -7,7 +7,7 @@
 //
 
 #import <ulib/ulib.h>
-#import "UMTCAP_TransactionIdPool.h"
+#import <ulibtcap/UMTCAP_TransactionIdPool.h>
 
 @interface UMTCAP_TransactionIdPoolSequential : UMTCAP_TransactionIdPool
 {

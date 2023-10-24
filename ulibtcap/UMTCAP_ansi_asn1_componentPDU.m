@@ -9,18 +9,18 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_ansi_asn1_componentPDU.h"
-#import "UMTCAP_ansi_asn1_componentIDs.h"
-#import "UMTCAP_ansi_asn1_operationCode.h"
-#import "UMTCAP_ansi_asn1_invoke.h"
-#import "UMTCAP_ansi_asn1_returnResult.h"
-#import "UMTCAP_ansi_asn1_returnError.h"
-#import "UMTCAP_ansi_asn1_reject.h"
-#import "UMTCAP_ansi_asn1_invoke.h"
-#import "UMTCAP_ansi_asn1_returnResult.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_componentPDU.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_componentIDs.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_operationCode.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_invoke.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_returnResult.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_returnError.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_reject.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_invoke.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_returnResult.h>
 
-#import "UMTCAP_ansi_asn1_operationCode.h"
-#import "UMTCAP_ansi_asn1_componentIDs.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_operationCode.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_componentIDs.h>
 
 @implementation UMTCAP_ansi_asn1_componentPDU
 

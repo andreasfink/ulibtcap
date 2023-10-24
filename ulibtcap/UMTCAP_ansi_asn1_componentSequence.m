@@ -9,8 +9,8 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_ansi_asn1_componentSequence.h"
-#import "UMTCAP_ansi_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_componentSequence.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_componentPDU.h>
 
 @implementation UMTCAP_ansi_asn1_componentSequence
 

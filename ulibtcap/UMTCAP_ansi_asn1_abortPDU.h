@@ -12,8 +12,8 @@
 #import <ulibasn1/ulibasn1.h>
 
 
-#import "UMTCAP_ansi_asn1_transactionID.h"
-#import "UMTCAP_ansi_asn1_dialoguePortion.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_transactionID.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_dialoguePortion.h>
 
 
 @interface UMTCAP_ansi_asn1_abortPDU : UMASN1ObjectConstructed

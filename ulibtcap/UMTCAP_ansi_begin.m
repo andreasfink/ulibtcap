@@ -9,13 +9,13 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_ansi_begin.h"
-#import "UMTCAP_ansi_asn1_transactionPDU.h"
+#import <ulibtcap/UMTCAP_ansi_begin.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_transactionPDU.h>
 #import "UMLayerTCAP.h"
-#import "UMTCAP_ansi_asn1_dialoguePortion.h"
-#import "UMTCAP_ansi_asn1_queryWithoutPerm.h"
-#import "UMTCAP_ansi_asn1_queryWithPerm.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_dialoguePortion.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithoutPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithPerm.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_ansi_begin
 

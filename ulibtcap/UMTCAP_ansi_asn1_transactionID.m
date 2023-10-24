@@ -9,7 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_ansi_asn1_transactionID.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_transactionID.h>
 
 @implementation UMTCAP_ansi_asn1_transactionID
 

@@ -15,10 +15,10 @@
 #import <ulibgt/ulibgt.h>
 #import <ulibasn1/ulibasn1.h>
 #import <ulibsccp/ulibsccp.h>
-#import "UMTCAP_Variant.h"
-#import "UMTCAP_UserProtocol.h"
-#import "UMTCAP_asn1_objectIdentifier.h"
-#import "UMTCAP_asn1_external.h"
+#import <ulibtcap/UMTCAP_Variant.h>
+#import <ulibtcap/UMTCAP_UserProtocol.h>
+#import <ulibtcap/UMTCAP_asn1_objectIdentifier.h>
+#import <ulibtcap/UMTCAP_asn1_external.h>
 
 @interface UMTCAP_abort : UMLayerTask
 {

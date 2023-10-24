@@ -10,7 +10,7 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1_dialoguePortion.h"
+#import <ulibtcap/UMTCAP_asn1_dialoguePortion.h>
 /*
 DialoguePortion
 ATIS-1000114.2004

@@ -9,7 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_continue.h"
+#import <ulibtcap/UMTCAP_continue.h>
 
 @interface UMTCAP_ansi_continue : UMTCAP_continue
 {

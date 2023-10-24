@@ -11,7 +11,7 @@
 
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_ansi_asn1_transactionPDU.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_transactionPDU.h>
 
 @interface UMTCAP_ansi_asn1_queryWithPerm : UMTCAP_ansi_asn1_transactionPDU
 {

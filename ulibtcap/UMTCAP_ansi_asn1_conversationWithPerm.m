@@ -9,10 +9,10 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_ansi_asn1_conversationWithPerm.h"
-#import "UMTCAP_sccpNUnitdata.h"
-#import "UMTCAP_sccpNNotice.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithPerm.h>
+#import <ulibtcap/UMTCAP_sccpNUnitdata.h>
+#import <ulibtcap/UMTCAP_sccpNNotice.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_ansi_asn1_conversationWithPerm
 

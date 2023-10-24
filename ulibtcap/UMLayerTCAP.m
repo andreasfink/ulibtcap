@@ -10,51 +10,51 @@
 // the author.
 
 #import "UMLayerTCAP.h"
-#import "UMTCAP_all_tasks.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_all_tasks.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_itu_asn1_invoke.h"
-#import "UMTCAP_ansi_asn1_invoke.h"
-#import "UMTCAP_itu_asn1_returnResult.h"
-#import "UMTCAP_ansi_asn1_returnResult.h"
-#import "UMTCAP_itu_asn1_returnError.h"
-#import "UMTCAP_ansi_asn1_returnError.h"
+#import <ulibtcap/UMTCAP_itu_asn1_invoke.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_invoke.h>
+#import <ulibtcap/UMTCAP_itu_asn1_returnResult.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_returnResult.h>
+#import <ulibtcap/UMTCAP_itu_asn1_returnError.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_returnError.h>
 
-#import "UMTCAP_continue.h"
-#import "UMTCAP_ansi_continue.h"
-#import "UMTCAP_itu_asn1_continue.h"
-#import "UMTCAP_itu_continue.h"
+#import <ulibtcap/UMTCAP_continue.h>
+#import <ulibtcap/UMTCAP_ansi_continue.h>
+#import <ulibtcap/UMTCAP_itu_asn1_continue.h>
+#import <ulibtcap/UMTCAP_itu_continue.h>
 
-#import "UMTCAP_end.h"
-#import "UMTCAP_ansi_response.h"
-#import "UMTCAP_itu_end.h"
-#import "UMTCAP_itu_asn1_end.h"
-#import "UMTCAP_ansi_end.h"
+#import <ulibtcap/UMTCAP_end.h>
+#import <ulibtcap/UMTCAP_ansi_response.h>
+#import <ulibtcap/UMTCAP_itu_end.h>
+#import <ulibtcap/UMTCAP_itu_asn1_end.h>
+#import <ulibtcap/UMTCAP_ansi_end.h>
 
 
-#import "UMTCAP_abort.h"
-#import "UMTCAP_itu_abort.h"
-#import "UMTCAP_itu_asn1_abort.h"
-#import "UMTCAP_ansi_abort.h"
-#import "UMTCAP_itu_asn1_pAbortCause.h"
+#import <ulibtcap/UMTCAP_abort.h>
+#import <ulibtcap/UMTCAP_itu_abort.h>
+#import <ulibtcap/UMTCAP_itu_asn1_abort.h>
+#import <ulibtcap/UMTCAP_ansi_abort.h>
+#import <ulibtcap/UMTCAP_itu_asn1_pAbortCause.h>
 
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_Transaction.h>
 #import <ulibgt/ulibgt.h>
 #import <ulibsccp/ulibsccp.h>
 
-#import "UMTCAP_begin.h"
-#import "UMTCAP_ansi_begin.h"
-#import "UMTCAP_itu_begin.h"
-#import "UMTCAP_itu_asn1_begin.h"
-#import "UMTCAP_sccpNUnitdata.h"
-#import "UMTCAP_sccpNNotice.h"
+#import <ulibtcap/UMTCAP_begin.h>
+#import <ulibtcap/UMTCAP_ansi_begin.h>
+#import <ulibtcap/UMTCAP_itu_begin.h>
+#import <ulibtcap/UMTCAP_itu_asn1_begin.h>
+#import <ulibtcap/UMTCAP_sccpNUnitdata.h>
+#import <ulibtcap/UMTCAP_sccpNNotice.h>
 #import "UMLayerTCAPApplicationContextProtocol.h"
-#import "UMTCAP_HousekeepingTask.h"
-#import "UMTCAP_TimeoutTask.h"
-#import "UMTCAP_TransactionIdPool.h"
-#import "UMTCAP_TransactionIdPoolSequential.h"
-#import "UMTCAP_TransactionIdFastPool.h"
-#import "UMTCAP_Filter.h"
+#import <ulibtcap/UMTCAP_HousekeepingTask.h>
+#import <ulibtcap/UMTCAP_TimeoutTask.h>
+#import <ulibtcap/UMTCAP_TransactionIdPool.h>
+#import <ulibtcap/UMTCAP_TransactionIdPoolSequential.h>
+#import <ulibtcap/UMTCAP_TransactionIdFastPool.h>
+#import <ulibtcap/UMTCAP_Filter.h>
 
 @implementation UMLayerTCAP
 

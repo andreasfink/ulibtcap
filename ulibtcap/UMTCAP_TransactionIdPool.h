@@ -7,8 +7,8 @@
 //
 
 #import <ulib/ulib.h>
-#import "UMTCAP_TransactionIdPoolProtocol.h"
-#import "UMTCAP_TransactionIdPoolEntry.h"
+#import <ulibtcap/UMTCAP_TransactionIdPoolProtocol.h>
+#import <ulibtcap/UMTCAP_TransactionIdPoolEntry.h>
 
 @interface UMTCAP_TransactionIdPool : UMObject<UMTCAP_TransactionIdPoolProtocol>
 {

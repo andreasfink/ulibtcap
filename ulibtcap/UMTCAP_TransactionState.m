@@ -6,8 +6,8 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_TransactionState.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_TransactionState.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_TransactionState
 

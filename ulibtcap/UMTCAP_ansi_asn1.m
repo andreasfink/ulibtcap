@@ -10,15 +10,15 @@
 // the author.
 
 #if 0
-#import "UMTCAP_asn1.h"
+#import <ulibtcap/UMTCAP_asn1.h>
 
-#import "UMTCAP_ansi_asn1_unidirectional.h"
-#import "UMTCAP_ansi_asn1_queryWithPerm.h"
-#import "UMTCAP_ansi_asn1_queryWithoutPerm.h"
-#import "UMTCAP_ansi_asn1_response.h"
-#import "UMTCAP_ansi_asn1_conversationWithPerm.h"
-#import "UMTCAP_ansi_asn1_conversationWithoutPerm.h"
-#import "UMTCAP_ansi_asn1_abort.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_unidirectional.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithoutPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_response.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithoutPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_abort.h>
 
 @implementation UMTCAP_ansi_asn1
 

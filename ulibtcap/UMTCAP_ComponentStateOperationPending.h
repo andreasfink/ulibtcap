@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_ComponentState.h"
+#import <ulibtcap/UMTCAP_ComponentState.h>
 
 @interface UMTCAP_ComponentStateOperationPending : UMTCAP_ComponentState
 

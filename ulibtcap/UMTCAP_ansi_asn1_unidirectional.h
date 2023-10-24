@@ -10,7 +10,7 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_ansi_asn1_uniTransactionPDU.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_uniTransactionPDU.h>
 
 @interface UMTCAP_ansi_asn1_unidirectional : UMTCAP_ansi_asn1_uniTransactionPDU
 {

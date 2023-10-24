@@ -10,7 +10,7 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_ansi_asn1_abortPDU.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_abortPDU.h>
 
 @interface UMTCAP_ansi_asn1_abort : UMTCAP_ansi_asn1_abortPDU
 {

@@ -23,9 +23,9 @@
  
  */
 
-#import "UMTCAP_ansi_asn1_transactionID.h"
-#import "UMTCAP_ansi_asn1_componentSequence.h"
-#import "UMTCAP_ansi_asn1_dialoguePortion.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_transactionID.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_componentSequence.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_dialoguePortion.h>
 
 @interface UMTCAP_ansi_asn1_transactionPDU : UMASN1ObjectConstructed
 {

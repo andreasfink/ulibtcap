@@ -10,8 +10,8 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_ansi_asn1_errorCode.h"
-#import "UMTCAP_ansi_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_errorCode.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_componentPDU.h>
 
 @interface UMTCAP_ansi_asn1_returnError : UMTCAP_ansi_asn1_componentPDU
 {

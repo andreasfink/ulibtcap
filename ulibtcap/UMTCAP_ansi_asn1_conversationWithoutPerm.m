@@ -11,10 +11,10 @@
 
 #import <ulib/ulib.h>
 
-#import "UMTCAP_ansi_asn1_conversationWithoutPerm.h"
-#import "UMTCAP_sccpNUnitdata.h"
-#import "UMTCAP_sccpNNotice.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithoutPerm.h>
+#import <ulibtcap/UMTCAP_sccpNUnitdata.h>
+#import <ulibtcap/UMTCAP_sccpNNotice.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_ansi_asn1_conversationWithoutPerm
 

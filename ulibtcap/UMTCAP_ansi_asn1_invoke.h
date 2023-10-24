@@ -10,7 +10,7 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_ansi_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_componentPDU.h>
 
 /*
  Invoke{ InvokeID: InvokeIdSet, OPERATION: Operations } ::= SEQUENCE { componentIDs [PRIVATE 15] IMPLICIT OCTET STRING SIZE(0..2)
