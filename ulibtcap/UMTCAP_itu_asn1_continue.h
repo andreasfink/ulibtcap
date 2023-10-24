@@ -10,12 +10,12 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1.h"
-#import "UMTCAP_itu_asn1_dialoguePortion.h"
-#import "UMTCAP_itu_asn1_componentPortion.h"
-#import "UMTCAP_itu_asn1_otid.h"
-#import "UMTCAP_itu_asn1_dtid.h"
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_asn1.h>
+#import <ulibtcap/UMTCAP_itu_asn1_dialoguePortion.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPortion.h>
+#import <ulibtcap/UMTCAP_itu_asn1_otid.h>
+#import <ulibtcap/UMTCAP_itu_asn1_dtid.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 
 @interface UMTCAP_itu_asn1_continue : UMTCAP_asn1
 {

@@ -7,7 +7,7 @@
 //
 /* wrapper around NSString so it can show up on UMObject statistics */
 
-#import "UMTCAP_TransactionIdPoolEntry.h"
+#import <ulibtcap/UMTCAP_TransactionIdPoolEntry.h>
 
 @implementation UMTCAP_TransactionIdPoolEntry
 

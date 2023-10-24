@@ -12,11 +12,11 @@
 #import <ulib/ulib.h>
 #import <ulibsccp/ulibsccp.h>
 #import <ulibgt/ulibgt.h>
-#import "UMTCAP_Variant.h"
-#import "UMTCAP_UserProtocol.h"
-#import "UMTCAP_Operation.h"
-#import "UMTCAP_asn1.h"
-#import "UMTCAP_Command.h"
+#import <ulibtcap/UMTCAP_Variant.h>
+#import <ulibtcap/UMTCAP_UserProtocol.h>
+#import <ulibtcap/UMTCAP_Operation.h>
+#import <ulibtcap/UMTCAP_asn1.h>
+#import <ulibtcap/UMTCAP_Command.h>
 
 @class UMLayerTCAP;
 @class UMLayerSCCP;

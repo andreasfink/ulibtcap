@@ -9,7 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_abort.h"
+#import <ulibtcap/UMTCAP_abort.h>
 
 @interface UMTCAP_itu_abort : UMTCAP_abort
 

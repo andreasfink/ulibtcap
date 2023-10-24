@@ -9,24 +9,24 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_asn1.h"
+#import <ulibtcap/UMTCAP_asn1.h>
 
-#import "UMTCAP_ansi_asn1_unidirectional.h"
-#import "UMTCAP_ansi_asn1_queryWithPerm.h"
-#import "UMTCAP_ansi_asn1_queryWithoutPerm.h"
-#import "UMTCAP_ansi_asn1_response.h"
-#import "UMTCAP_ansi_asn1_conversationWithPerm.h"
-#import "UMTCAP_ansi_asn1_conversationWithoutPerm.h"
-#import "UMTCAP_ansi_asn1_abort.h"
+#import <ulibtcap/UMTCAP_ansi_asn1_unidirectional.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithoutPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_response.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithoutPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_abort.h>
 
-#import "UMTCAP_itu_asn1_unidirectional.h"
-#import "UMTCAP_itu_asn1_begin.h"
-#import "UMTCAP_itu_asn1_end.h"
-#import "UMTCAP_itu_asn1_continue.h"
-#import "UMTCAP_itu_asn1_abort.h"
-#import "UMTCAP_Command.h"
-#import "UMTCAP_sccpNUnitdata.h"
-#import "UMTCAP_sccpNNotice.h"
+#import <ulibtcap/UMTCAP_itu_asn1_unidirectional.h>
+#import <ulibtcap/UMTCAP_itu_asn1_begin.h>
+#import <ulibtcap/UMTCAP_itu_asn1_end.h>
+#import <ulibtcap/UMTCAP_itu_asn1_continue.h>
+#import <ulibtcap/UMTCAP_itu_asn1_abort.h>
+#import <ulibtcap/UMTCAP_Command.h>
+#import <ulibtcap/UMTCAP_sccpNUnitdata.h>
+#import <ulibtcap/UMTCAP_sccpNNotice.h>
 
 @implementation UMTCAP_asn1
 

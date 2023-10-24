@@ -9,7 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_itu_asn1_unidirectional.h"
+#import <ulibtcap/UMTCAP_itu_asn1_unidirectional.h>
 
 @implementation UMTCAP_itu_asn1_unidirectional
 

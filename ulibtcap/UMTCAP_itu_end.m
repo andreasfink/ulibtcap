@@ -9,13 +9,13 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_itu_end.h"
+#import <ulibtcap/UMTCAP_itu_end.h>
 #import "UMLayerTCAP.h"
-#import "UMTCAP_itu_asn1_dialoguePortion.h"
-#import "UMTCAP_itu_asn1_end.h"
-#import "UMTCAP_itu_asn1_dtid.h"
-#import "UMTCAP_itu_asn1_componentPortion.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_itu_asn1_dialoguePortion.h>
+#import <ulibtcap/UMTCAP_itu_asn1_end.h>
+#import <ulibtcap/UMTCAP_itu_asn1_dtid.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPortion.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_itu_end
 

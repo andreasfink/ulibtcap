@@ -10,12 +10,12 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1.h"
+#import <ulibtcap/UMTCAP_asn1.h>
 @class UMTCAP_itu_asn1_dtid;
 @class UMTCAP_itu_asn1_dialoguePortion;
 @class UMTCAP_itu_asn1_pAbortCause;
 
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 
 @interface UMTCAP_itu_asn1_abort : UMTCAP_asn1
 {

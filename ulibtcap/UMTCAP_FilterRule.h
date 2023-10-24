@@ -8,8 +8,8 @@
 
 #import <ulib/ulib.h>
 #import <ulibgt/ulibgt.h>
-#import "UMTCAP_Command.h"
-#import "UMTCAP_FilterResult.h"
+#import <ulibtcap/UMTCAP_Command.h>
+#import <ulibtcap/UMTCAP_FilterResult.h>
 
 @interface UMTCAP_FilterRule : UMObject
 {

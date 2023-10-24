@@ -9,30 +9,30 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_sccpNUnitdata.h"
+#import <ulibtcap/UMTCAP_sccpNUnitdata.h>
 #import "UMLayerTCAP.h"
-#import "UMTCAP_Operation.h"
-#import "UMTCAP_Transaction.h"
-#import "UMTCAP_asn1.h"
-#import "UMTCAP_ansi_asn1_queryWithPerm.h"
-#import "UMTCAP_ansi_asn1_queryWithoutPerm.h"
-#import "UMTCAP_ansi_asn1_conversationWithPerm.h"
-#import "UMTCAP_ansi_asn1_conversationWithoutPerm.h"
-#import "UMTCAP_ansi_asn1_invoke.h"
-#import "UMTCAP_ansi_asn1_transactionPDU.h"
-#import "UMTCAP_ansi_asn1_uniTransactionPDU.h"
-#import "UMTCAP_ansi_asn1_transactionID.h"
-#import "UMTCAP_Transaction.h"
-#import "UMTCAP_asn1.h"
-#import "UMTCAP_itu_asn1_begin.h"
-#import "UMTCAP_itu_asn1_invoke.h"
-#import "UMTCAP_itu_asn1_returnResult.h"
-#import "UMTCAP_itu_asn1_reject.h"
-#import "UMTCAP_itu_asn1_returnError.h"
-#import "UMTCAP_Variant.h"
+#import <ulibtcap/UMTCAP_Operation.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
+#import <ulibtcap/UMTCAP_asn1.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_queryWithoutPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_conversationWithoutPerm.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_invoke.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_transactionPDU.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_uniTransactionPDU.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_transactionID.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
+#import <ulibtcap/UMTCAP_asn1.h>
+#import <ulibtcap/UMTCAP_itu_asn1_begin.h>
+#import <ulibtcap/UMTCAP_itu_asn1_invoke.h>
+#import <ulibtcap/UMTCAP_itu_asn1_returnResult.h>
+#import <ulibtcap/UMTCAP_itu_asn1_reject.h>
+#import <ulibtcap/UMTCAP_itu_asn1_returnError.h>
+#import <ulibtcap/UMTCAP_Variant.h>
 #import "UMLayerTCAP.h"
-#import "UMTCAP_Filter.h"
-#import "UMTCAP_itu_asn1_pAbortCause.h"
+#import <ulibtcap/UMTCAP_Filter.h>
+#import <ulibtcap/UMTCAP_itu_asn1_pAbortCause.h>
 
 @implementation UMTCAP_sccpNUnitdata
 

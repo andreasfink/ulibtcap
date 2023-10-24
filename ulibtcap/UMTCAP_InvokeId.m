@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_InvokeId.h"
+#import <ulibtcap/UMTCAP_InvokeId.h>
 
 @implementation UMTCAP_InvokeId
 

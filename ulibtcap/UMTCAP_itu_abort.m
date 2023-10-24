@@ -11,15 +11,15 @@
 
 
 #import "UMLayerTCAP.h"
-#import "UMTCAP_abort.h"
-#import "UMTCAP_itu_abort.h"
-#import "UMTCAP_itu_asn1_abort.h"
-#import "UMTCAP_itu_asn1_dialoguePortion.h"
-#import "UMTCAP_itu_asn1_otid.h"
-#import "UMTCAP_itu_asn1_dtid.h"
-#import "UMTCAP_Transaction.h"
-#import "UMTCAP_Filter.h"
-#import "UMTCAP_itu_asn1_pAbortCause.h"
+#import <ulibtcap/UMTCAP_abort.h>
+#import <ulibtcap/UMTCAP_itu_abort.h>
+#import <ulibtcap/UMTCAP_itu_asn1_abort.h>
+#import <ulibtcap/UMTCAP_itu_asn1_dialoguePortion.h>
+#import <ulibtcap/UMTCAP_itu_asn1_otid.h>
+#import <ulibtcap/UMTCAP_itu_asn1_dtid.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
+#import <ulibtcap/UMTCAP_Filter.h>
+#import <ulibtcap/UMTCAP_itu_asn1_pAbortCause.h>
 
 @implementation UMTCAP_itu_abort
 

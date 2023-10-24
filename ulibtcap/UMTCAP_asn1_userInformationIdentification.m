@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_asn1_userInformationIdentification.h"
+#import <ulibtcap/UMTCAP_asn1_userInformationIdentification.h>
 
 
 /*

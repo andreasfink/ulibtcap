@@ -28,7 +28,7 @@
 	}
  }*/
 
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 
 @interface UMTCAP_itu_asn1_reject : UMTCAP_itu_asn1_componentPDU
 {

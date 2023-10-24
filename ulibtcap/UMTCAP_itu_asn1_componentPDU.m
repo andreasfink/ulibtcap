@@ -9,12 +9,12 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 
-#import "UMTCAP_itu_asn1_invoke.h"
-#import "UMTCAP_itu_asn1_returnResult.h"
-#import "UMTCAP_itu_asn1_returnError.h"
-#import "UMTCAP_itu_asn1_reject.h"
+#import <ulibtcap/UMTCAP_itu_asn1_invoke.h>
+#import <ulibtcap/UMTCAP_itu_asn1_returnResult.h>
+#import <ulibtcap/UMTCAP_itu_asn1_returnError.h>
+#import <ulibtcap/UMTCAP_itu_asn1_reject.h>
 
 @implementation UMTCAP_itu_asn1_componentPDU
 

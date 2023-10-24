@@ -10,8 +10,8 @@
 // the author.
 
 #import <ulib/ulib.h>
-#import "UMTCAP_end.h"
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_end.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 
 @interface UMTCAP_itu_end : UMTCAP_end
 {

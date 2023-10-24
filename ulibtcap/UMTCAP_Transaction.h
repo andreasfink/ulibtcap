@@ -10,13 +10,13 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_Variant.h"
-#import "UMTCAP_operationClass.h"
-#import "UMTCAP_UserProtocol.h"
+#import <ulibtcap/UMTCAP_Variant.h>
+#import <ulibtcap/UMTCAP_operationClass.h>
+#import <ulibtcap/UMTCAP_UserProtocol.h>
 
-#import "UMTCAP_TransactionState.h"
-#import "UMTCAP_ComponentState.h"
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_TransactionState.h>
+#import <ulibtcap/UMTCAP_ComponentState.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 /* see Q.774 Figure 1 page 10 */
 
 @interface UMTCAP_Transaction : UMObject

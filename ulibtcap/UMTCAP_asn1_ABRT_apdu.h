@@ -11,8 +11,8 @@
 
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1_AbortSource.h"
-#import "UMTCAP_asn1_userInformation.h"
+#import <ulibtcap/UMTCAP_asn1_AbortSource.h>
+#import <ulibtcap/UMTCAP_asn1_userInformation.h>
 
 /*
  ABRT-apdu ::= [APPLICATION 4] IMPLICIT SEQUENCE {

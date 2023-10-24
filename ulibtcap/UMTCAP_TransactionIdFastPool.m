@@ -6,8 +6,8 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_TransactionIdFastPool.h"
-#import "UMTCAP_TransactionIdPoolEntry.h"
+#import <ulibtcap/UMTCAP_TransactionIdFastPool.h>
+#import <ulibtcap/UMTCAP_TransactionIdPoolEntry.h>
 #include <stdlib.h>
 
 @implementation UMTCAP_TransactionIdFastPool

@@ -6,8 +6,8 @@
 //  Copyright © 2020 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_StatisticDb.h"
-#import "UMTCAP_StatisticDbRecord.h"
+#import <ulibtcap/UMTCAP_StatisticDb.h>
+#import <ulibtcap/UMTCAP_StatisticDbRecord.h>
 #import "UMLayerTCAPApplicationContextProtocol.h"
 #import "UMLayerTCAP.h"
 

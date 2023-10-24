@@ -48,7 +48,7 @@
 #import <ulibtcap/UMTCAP_itu_asn1_begin.h>
 #import <ulibtcap/UMTCAP_sccpNUnitdata.h>
 #import <ulibtcap/UMTCAP_sccpNNotice.h>
-#import "UMLayerTCAPApplicationContextProtocol.h"
+#import <ulibtcap/UMLayerTCAPApplicationContextProtocol.h>
 #import <ulibtcap/UMTCAP_HousekeepingTask.h>
 #import <ulibtcap/UMTCAP_TimeoutTask.h>
 #import <ulibtcap/UMTCAP_TransactionIdPool.h>

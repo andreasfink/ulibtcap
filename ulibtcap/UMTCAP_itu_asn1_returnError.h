@@ -10,7 +10,7 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 @class UMTCAP_itu_asn1_errorCode;
 
 @interface UMTCAP_itu_asn1_returnError : UMTCAP_itu_asn1_componentPDU

@@ -7,7 +7,7 @@
 //
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1_contextNegotiation.h"
+#import <ulibtcap/UMTCAP_asn1_contextNegotiation.h>
 /*
 
     identification CHOICE

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_Operation.h"
+#import <ulibtcap/UMTCAP_Operation.h>
 
 @implementation UMTCAP_Operation
 

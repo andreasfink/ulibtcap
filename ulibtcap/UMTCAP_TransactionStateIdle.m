@@ -6,10 +6,10 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_TransactionStateIdle.h"
-#import "UMTCAP_TransactionStateInitReceived.h"
-#import "UMTCAP_TransactionStateInitSent.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_TransactionStateIdle.h>
+#import <ulibtcap/UMTCAP_TransactionStateInitReceived.h>
+#import <ulibtcap/UMTCAP_TransactionStateInitSent.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_TransactionStateIdle
 

@@ -9,7 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_asn1_AARE_apdu.h"
+#import <ulibtcap/UMTCAP_asn1_AARE_apdu.h>
 
 @implementation UMTCAP_asn1_AARE_apdu
 

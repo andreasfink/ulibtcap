@@ -11,10 +11,10 @@
 
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1_objectIdentifier.h"
-#import "UMTCAP_asn1_userInformation.h"
-#import "UMTCAP_asn1_Associate_result.h"
-#import "UMTCAP_asn1_Associate_source_diagnostic.h"
+#import <ulibtcap/UMTCAP_asn1_objectIdentifier.h>
+#import <ulibtcap/UMTCAP_asn1_userInformation.h>
+#import <ulibtcap/UMTCAP_asn1_Associate_result.h>
+#import <ulibtcap/UMTCAP_asn1_Associate_source_diagnostic.h>
 
 /*
  AARE-apdu ::= [APPLICATION 1] IMPLICIT SEQUENCE {

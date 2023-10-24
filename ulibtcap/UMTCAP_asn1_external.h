@@ -11,7 +11,7 @@
 
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1_objectIdentifier.h"
+#import <ulibtcap/UMTCAP_asn1_objectIdentifier.h>
 
 @interface UMTCAP_asn1_external : UMASN1Sequence
 {

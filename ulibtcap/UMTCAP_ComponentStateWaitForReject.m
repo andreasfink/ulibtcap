@@ -6,10 +6,10 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_ComponentStateWaitForReject.h"
-#import "UMTCAP_ComponentStateRejectPending.h"
-#import "UMTCAP_ComponentStateIdle.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_ComponentStateWaitForReject.h>
+#import <ulibtcap/UMTCAP_ComponentStateRejectPending.h>
+#import <ulibtcap/UMTCAP_ComponentStateIdle.h>
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_ComponentStateWaitForReject
 

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_QualityOfService.h"
+#import <ulibtcap/UMTCAP_QualityOfService.h>
 
 @implementation UMTCAP_QualityOfService
 

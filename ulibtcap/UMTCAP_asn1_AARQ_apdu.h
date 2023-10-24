@@ -12,8 +12,8 @@
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
 
-#import "UMTCAP_asn1_objectIdentifier.h"
-#import "UMTCAP_asn1_userInformation.h"
+#import <ulibtcap/UMTCAP_asn1_objectIdentifier.h>
+#import <ulibtcap/UMTCAP_asn1_userInformation.h>
 /*
  AARQ-apdu ::= [APPLICATION 0] IMPLICIT SEQUENCE {
  protocol-version

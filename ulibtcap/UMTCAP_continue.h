@@ -13,11 +13,11 @@
 #import <ulibgt/ulibgt.h>
 #import <ulibasn1/ulibasn1.h>
 #import <ulibsccp/ulibsccp.h>
-#import "UMTCAP_Variant.h"
-#import "UMTCAP_UserProtocol.h"
-#import "UMTCAP_asn1_objectIdentifier.h"
-#import "UMTCAP_ansi_asn1_componentPDU.h"
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_Variant.h>
+#import <ulibtcap/UMTCAP_UserProtocol.h>
+#import <ulibtcap/UMTCAP_asn1_objectIdentifier.h>
+#import <ulibtcap/UMTCAP_ansi_asn1_componentPDU.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 
 @class UMLayerTCAP;
 @class UMTCAP_asn1_dialoguePortion;

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_StatisticDbRecord.h"
+#import <ulibtcap/UMTCAP_StatisticDbRecord.h>
 #import <ulibdb/ulibdb.h>
 
 @implementation UMTCAP_StatisticDbRecord

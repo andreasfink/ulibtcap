@@ -17,7 +17,7 @@
 #import <ulibtcap/UMTCAP_generic_asn1_componentPDU.h>
 #import <ulibtcap/UMTCAP_TransactionIdPoolProtocol.h>
 #import <ulibtcap/UMTCAP_UserDialogIdentifier.h>
-#import "UMLayerTCAPApplicationContextProtocol.h"
+#import <ulibtcap/UMLayerTCAPApplicationContextProtocol.h>
 #import <ulibtcap/UMTCAP_ansi_asn1_componentPDU.h>
 #import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 #import <ulibtcap/UMTCAP_Command.h>

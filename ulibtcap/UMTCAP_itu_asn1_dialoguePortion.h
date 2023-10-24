@@ -10,11 +10,11 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1_AARQ_apdu.h"
-#import "UMTCAP_asn1_AARE_apdu.h"
-#import "UMTCAP_asn1_ABRT_apdu.h"
-#import "UMTCAP_asn1_external.h"
-#import "UMTCAP_asn1_dialoguePortion.h"
+#import <ulibtcap/UMTCAP_asn1_AARQ_apdu.h>
+#import <ulibtcap/UMTCAP_asn1_AARE_apdu.h>
+#import <ulibtcap/UMTCAP_asn1_ABRT_apdu.h>
+#import <ulibtcap/UMTCAP_asn1_external.h>
+#import <ulibtcap/UMTCAP_asn1_dialoguePortion.h>
 /*
 
  DialoguePDU ::= CHOICE {

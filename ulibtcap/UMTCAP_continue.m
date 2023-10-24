@@ -9,9 +9,9 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_continue.h"
+#import <ulibtcap/UMTCAP_continue.h>
 #import "UMLayerTCAP.h"
-#import "UMTCAP_asn1_dialoguePortion.h"
+#import <ulibtcap/UMTCAP_asn1_dialoguePortion.h>
 
 @implementation UMTCAP_continue
 

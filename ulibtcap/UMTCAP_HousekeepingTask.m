@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_HousekeepingTask.h"
+#import <ulibtcap/UMTCAP_HousekeepingTask.h>
 #import "UMLayerTCAP.h"
 
 @implementation UMTCAP_HousekeepingTask

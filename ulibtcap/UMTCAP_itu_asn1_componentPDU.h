@@ -10,8 +10,8 @@
 // the author.
 
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_generic_asn1_componentPDU.h"
-#import "UMTCAP_itu_asn1_componentPDU.h"
+#import <ulibtcap/UMTCAP_generic_asn1_componentPDU.h>
+#import <ulibtcap/UMTCAP_itu_asn1_componentPDU.h>
 
 typedef enum UMTCAP_itu_operationCodeEncoding
 {

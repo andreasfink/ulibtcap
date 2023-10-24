@@ -6,7 +6,7 @@
 //  Copyright © 2018 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_asn1_AbortSource.h"
+#import <ulibtcap/UMTCAP_asn1_AbortSource.h>
 
 @implementation UMTCAP_asn1_AbortSource
 

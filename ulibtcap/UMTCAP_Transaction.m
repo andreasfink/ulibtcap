@@ -9,9 +9,9 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_Transaction.h"
-#import "UMTCAP_TransactionStateIdle.h"
-#import "UMTCAP_ComponentStateIdle.h"
+#import <ulibtcap/UMTCAP_Transaction.h>
+#import <ulibtcap/UMTCAP_TransactionStateIdle.h>
+#import <ulibtcap/UMTCAP_ComponentStateIdle.h>
 
 @implementation UMTCAP_Transaction
 

@@ -11,7 +11,7 @@
 
 #import <ulib/ulib.h>
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_asn1_userInformationIdentification.h"
+#import <ulibtcap/UMTCAP_asn1_userInformationIdentification.h>
 
 /*
 
@@ -32,7 +32,7 @@
  } OPTIONAL
  */
 
-#import "UMTCAP_asn1_external.h"
+#import <ulibtcap/UMTCAP_asn1_external.h>
 
 @interface UMTCAP_asn1_userInformation : UMASN1Sequence
 {

@@ -9,9 +9,9 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_asn1_userInformation.h"
-#import "UMTCAP_asn1_external.h"
-#import "UMTCAP_asn1_userInformationIdentification.h"
+#import <ulibtcap/UMTCAP_asn1_userInformation.h>
+#import <ulibtcap/UMTCAP_asn1_external.h>
+#import <ulibtcap/UMTCAP_asn1_userInformationIdentification.h>
 
 @implementation UMTCAP_asn1_userInformation
 

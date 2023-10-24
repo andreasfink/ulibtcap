@@ -6,9 +6,9 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_Filter.h"
-#import "UMTCAP_FilterRule.h"
-#import "UMTCAP_FilterResult.h"
+#import <ulibtcap/UMTCAP_Filter.h>
+#import <ulibtcap/UMTCAP_FilterRule.h>
+#import <ulibtcap/UMTCAP_FilterResult.h>
 
 @implementation UMTCAP_Filter
 

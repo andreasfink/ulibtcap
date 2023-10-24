@@ -11,9 +11,9 @@
 
 #import <ulibasn1/ulibasn1.h>
 #import <ulibasn1/ulibasn1.h>
-#import "UMTCAP_Variant.h"
-#import "UMTCAP_Operation.h"
-#import "UMTCAP_UserProtocol.h"
+#import <ulibtcap/UMTCAP_Variant.h>
+#import <ulibtcap/UMTCAP_Operation.h>
+#import <ulibtcap/UMTCAP_UserProtocol.h>
 
 #define TCAP_UNDEFINED_LINKED_ID    INT_MAX
 

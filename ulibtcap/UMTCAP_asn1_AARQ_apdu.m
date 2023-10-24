@@ -9,8 +9,8 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_asn1_AARQ_apdu.h"
-#import "UMTCAP_sccpNUnitdata.h"
+#import <ulibtcap/UMTCAP_asn1_AARQ_apdu.h>
+#import <ulibtcap/UMTCAP_sccpNUnitdata.h>
 
 @implementation UMTCAP_asn1_AARQ_apdu
 

@@ -9,7 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import "UMTCAP_asn1_Associate_source_diagnostic.h"
+#import <ulibtcap/UMTCAP_asn1_Associate_source_diagnostic.h>
 
 /*
  Associate-source-diagnostic ::= CHOICE {

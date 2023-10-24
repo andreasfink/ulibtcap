@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_asn1_dialoguePortion.h"
+#import <ulibtcap/UMTCAP_asn1_dialoguePortion.h>
 
 @implementation UMTCAP_asn1_dialoguePortion
 

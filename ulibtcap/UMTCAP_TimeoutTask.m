@@ -6,10 +6,10 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import "UMTCAP_TimeoutTask.h"
+#import <ulibtcap/UMTCAP_TimeoutTask.h>
 
 #import "UMLayerTCAP.h"
-#import "UMTCAP_Transaction.h"
+#import <ulibtcap/UMTCAP_Transaction.h>
 
 @implementation UMTCAP_TimeoutTask
 

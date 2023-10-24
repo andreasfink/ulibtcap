@@ -8,8 +8,8 @@
 
 #import <ulib/ulib.h>
 #import <ulibdb/ulibdb.h>
-#import "UMLayerTCAPApplicationContextProtocol.h"
-#import "UMTCAP_Command.h"
+#import <ulibtcap/UMLayerTCAPApplicationContextProtocol.h>
+#import <ulibtcap/UMTCAP_Command.h>
 
 @interface UMTCAP_StatisticDb : UMObject
 {
