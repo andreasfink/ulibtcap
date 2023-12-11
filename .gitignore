@@ -16,7 +16,8 @@ BUILDNR
 make_buildnr.sh
 buildnumber.c
 buildnumber.h
-
+ulibtcap/ulibtcap_configure.h
+ulibtcap.pc
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects
