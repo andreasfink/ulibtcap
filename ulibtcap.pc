@@ -6,11 +6,11 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
 Cflags: -I${includedir} 
-Libs: -L${libdir} -l:libulibtcap.dylib.1.16
+Libs: -L${libdir} -l:libulibtcap.so.2.0
 
 Name: ulibtcap
 Description: universal SS7 TCAP library
-Version: 1.16.3
+Version: 2.0.0
 Requires:  ulibsccp ulibasn1
 
 
