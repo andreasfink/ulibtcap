@@ -1,0 +1,16 @@
+# pkg-config source file
+
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Cflags: -I${includedir} 
+Libs: -L${libdir} -l:libulibtcap.dylib.1.16
+
+Name: ulibtcap
+Description: universal SS7 TCAP library
+Version: 1.16.3
+Requires:  ulibsccp ulibasn1
+
+
