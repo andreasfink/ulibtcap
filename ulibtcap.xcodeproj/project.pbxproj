@@ -1375,7 +1375,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
-				DSTROOT = "/Library/Application Support/";
+				DSTROOT = "/Library/Application Support";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
 				DYLIB_CURRENT_VERSION = 2.0.0;
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
@@ -1390,7 +1390,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = ulibtcap/Info.plist;
-				INSTALL_PATH = /FinkTelecomServices/frameworks;
+				INSTALL_PATH = FinkTelecomServices/frameworks;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1411,7 +1411,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
-				DSTROOT = "/Library/Application Support/";
+				DSTROOT = "/Library/Application Support";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
 				DYLIB_CURRENT_VERSION = 2.0.0;
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
@@ -1426,7 +1426,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = ulibtcap/Info.plist;
-				INSTALL_PATH = /FinkTelecomServices/frameworks;
+				INSTALL_PATH = FinkTelecomServices/frameworks;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
