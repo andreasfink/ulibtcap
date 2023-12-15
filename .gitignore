@@ -16,7 +16,7 @@ BUILDNR
 make_buildnr.sh
 buildnumber.c
 buildnumber.h
-ulibtcap/ulibtcap_configure.h
+ulibtcap/ulibtcap_config.h
 ulibtcap.pc
 *.m.d
 
