@@ -1374,6 +1374,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.0;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = "/Library/Application Support";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
@@ -1410,6 +1411,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.0;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2GSNWPNR77;
 				DSTROOT = "/Library/Application Support";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
