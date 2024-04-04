@@ -9,7 +9,7 @@
 
 typedef enum UMTCAP_Termination
 {
-    UMTCAP_Termination_PrearrangedEnd = 0
-    UMTCAP_Termination_BasicEnd = 1
+    UMTCAP_Termination_PrearrangedEnd = 0,
+    UMTCAP_Termination_BasicEnd = 1,
 } UMTCAP_Termination;
 

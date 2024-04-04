@@ -96,3 +96,12 @@
 
 #import <ulibtcap/UMTCAP_StatisticDb.h>
 #import <ulibtcap/UMTCAP_StatisticDbRecord.h>
+
+#import <ulibtcap/UMTCAP_ComponentStateRejectPending.h>
+#import <ulibtcap/UMTCAP_ComponentStateWaitForReject.h>
+#import <ulibtcap/UMTCAP_QualityOfService.h>
+#import <ulibtcap/UMTCAP_ComponentStateOperationPending.h>
+#import <ulibtcap/UMTCAP_InvokeId.h>
+#import <ulibtcap/UMTCAP_ComponentStateIdle.h>
+#import <ulibtcap/UMTCAP_Termination.h>
+#import <ulibtcap/UMTCAP_ComponentStateOperationSent.h>
