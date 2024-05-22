@@ -3,6 +3,9 @@
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 *.o
+install
+libulibtcap.a
+libulibtcap.so
 Makefile
 Makefile.linux
 Makefile.osx
@@ -18,7 +21,10 @@ buildnumber.c
 buildnumber.h
 ulibtcap/ulibtcap_config.h
 ulibtcap.pc
-*.m.d
+version.h
+buildnumber.c
+buildnumber.h
+*.d
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects
