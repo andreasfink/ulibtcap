@@ -47,7 +47,7 @@
     {
         @try
         {
-            [_recordLock lock];
+            UMMUTEX_LOCK(_recordLock);
             UMDbQuery *query = [UMDbQuery queryForFile:__FILE__ line: __LINE__];
             if(!query.isInCache)
             {
@@ -94,7 +94,7 @@
         }
         @finally
         {
-            [_recordLock unlock];
+            UMMUTEX_UNLOCK(_recordLock);
         }
     }
     return success;
@@ -107,7 +107,7 @@
     {
         @try
         {
-            [_recordLock lock];
+            UMMUTEX_LOCK(_recordLock);
             UMDbQuery *query = [UMDbQuery queryForFile:__FILE__ line: __LINE__];
             if(!query.isInCache)
             {
@@ -141,7 +141,7 @@
         }
         @finally
         {
-            [_recordLock unlock];
+            UMMUTEX_UNLOCK(_recordLock);
         }
     }
     return success;
@@ -149,17 +149,17 @@
 
 - (void)increaseMsuCount:(int)msuCount byteCount:(int)byteCount
 {
-    [_recordLock lock];
+    UMMUTEX_LOCK(_recordLock);
     _msu_count   += msuCount;
     _bytes_count += byteCount;
-    [_recordLock unlock];
+    UMMUTEX_UNLOCK(_recordLock);
 }
 
 - (void)flushToPool:(UMDbPool *)pool table:(UMDbTable *)table
 {
     NSLog(@"TCAP Statistic: %@",self.description);
 
-    [_recordLock lock];
+    UMMUTEX_LOCK(_recordLock);
     BOOL success = [self updateDb:pool table:table];
     if(success == NO)
     {
@@ -174,7 +174,7 @@
             NSLog(@"TCAP Statistics: insert into DB failed");
         }
     }
-    [_recordLock unlock];
+    UMMUTEX_UNLOCK(_recordLock);
 }
 
 

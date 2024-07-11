@@ -97,7 +97,7 @@
 /* that way after 3 rotations they end up in the free pool again */
 - (void)quarantineRotate
 {
-    [_poolLock lock];
+    UMMUTEX_LOCK(_poolLock);
     for(UMTCAP_TransactionIdPoolEntry *e in _quarantineTransactionIds3)
     {
         e.lastFreed = [NSDate date];
@@ -106,14 +106,14 @@
     _quarantineTransactionIds3 = _quarantineTransactionIds2;
     _quarantineTransactionIds2 = _quarantineTransactionIds1;
     _quarantineTransactionIds1 = [[NSMutableArray alloc]init];
-    [_poolLock unlock];
+    UMMUTEX_UNLOCK(_poolLock);
 }
 
 - (NSString *)newTransactionIdForInstance:(NSString *)instance
 {
     UMAssert(_poolLock!=NULL,@"no locking in place");
     
-    [_poolLock lock];
+    UMMUTEX_LOCK(_poolLock);
     NSString *tidString;
     @autoreleasepool
     {
@@ -147,9 +147,9 @@
                 cnt++;
                 if(cnt % 100)
                 {
-                    [_poolLock unlock];
+                    UMMUTEX_UNLOCK(_poolLock);
                     sleep(1);
-                    [_poolLock lock];
+                    UMMUTEX_LOCK(_poolLock);
                 }
             }
         }
@@ -157,30 +157,30 @@
         e.instance = instance;
         _inUseTransactionIds[tidString]=e;
     }
-    [_poolLock unlock];
+    UMMUTEX_UNLOCK(_poolLock);
     UMAssert(tidString.length > 0,@"no transaction id to return");
     return tidString;
 }
 
 - (NSString *)findInstanceForTransaction:(NSString *)tidString
 {
-    [_poolLock lock];
+    UMMUTEX_LOCK(_poolLock);
     UMTCAP_TransactionIdPoolEntry *e = _inUseTransactionIds[tidString];
     NSString *instance = e.instance;
-    [_poolLock unlock];
+    UMMUTEX_UNLOCK(_poolLock);
     return instance;
 }
 
 - (void)returnTransactionId:(NSString *)tidString
 {
-    [_poolLock lock];
+    UMMUTEX_LOCK(_poolLock);
     UMTCAP_TransactionIdPoolEntry *e = _inUseTransactionIds[tidString];
     if(e)
     {
         [_inUseTransactionIds removeObjectForKey:tidString];
         [_quarantineTransactionIds1 addObject:e];
     }
-    [_poolLock unlock];
+    UMMUTEX_UNLOCK(_poolLock);
 }
 
 - (UMSynchronizedSortedDictionary *)objectValue
