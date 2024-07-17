@@ -240,7 +240,7 @@
             destroyTransaction = NO;
             returnValue = YES;
             
-            UMMUTEX_LOCK(_currentTransaction.incomingLock);
+            ummutex_lock(_currentTransaction.incomingLock);
             @try
             {
                 [tcapUser tcapBeginIndication:userDialogId
@@ -256,7 +256,7 @@
             }
             @finally
             {
-                UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                ummutex_unlock(_currentTransaction.incomingLock);
             }
         }
             break;
@@ -296,7 +296,7 @@
                 [_tcapLayer.logFeed debugText:dbgTxt];
             }
             returnValue = YES;
-            UMMUTEX_LOCK(_currentTransaction.incomingLock);
+            ummutex_lock(_currentTransaction.incomingLock);
             @try
             {
                 [tcapUser tcapBeginIndication:userDialogId
@@ -312,7 +312,7 @@
             }
             @finally
             {
-                UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                ummutex_unlock(_currentTransaction.incomingLock);
             }
         }
             break;
@@ -333,7 +333,7 @@
             }
             else
             {
-                UMMUTEX_LOCK(_currentTransaction.incomingLock);
+                ummutex_lock(_currentTransaction.incomingLock);
                 @try
                 {
                     destroyTransaction = YES;
@@ -351,7 +351,7 @@
                 @finally
                 {
                     /* remove transaction data */
-                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                    ummutex_unlock(_currentTransaction.incomingLock);
                 }
             }
         }
@@ -373,7 +373,7 @@
             }
             else
             {
-                UMMUTEX_LOCK(_currentTransaction.incomingLock);
+                ummutex_lock(_currentTransaction.incomingLock);
                 @try
                 {
                     destroyTransaction = YES;
@@ -413,7 +413,7 @@
                 }
                 @finally
                 {
-                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                    ummutex_unlock(_currentTransaction.incomingLock);
                 }
             }
         }
@@ -441,7 +441,7 @@
             }
             else
             {
-                UMMUTEX_LOCK(_currentTransaction.incomingLock);
+                ummutex_lock(_currentTransaction.incomingLock);
                 @try
                 {
                     destroyTransaction = NO;
@@ -458,7 +458,7 @@
                 }
                 @finally
                 {
-                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                    ummutex_unlock(_currentTransaction.incomingLock);
                 }
             }
         }
@@ -481,7 +481,7 @@
             {
                 _currentTransaction.remoteTransactionId = _otid;
                 destroyTransaction = NO;
-                UMMUTEX_LOCK(_currentTransaction.incomingLock);
+                ummutex_lock(_currentTransaction.incomingLock);
                 @try
                 {
                     
@@ -525,7 +525,7 @@
                 }
                 @finally
                 {
-                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                    ummutex_unlock(_currentTransaction.incomingLock);
                 }
             }
         }
@@ -538,7 +538,7 @@
             [self findTransactionAndUser];
             if(tcapUser)
             {
-                UMMUTEX_LOCK(_currentTransaction.incomingLock);
+                ummutex_lock(_currentTransaction.incomingLock);
                 @try
                 {
                     destroyTransaction = YES;
@@ -552,11 +552,11 @@
                                       callingLayer:_handlingLayer
                                               asn1:(UMASN1Object *)_asn1
                                            options:_options];
-                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                    ummutex_unlock(_currentTransaction.incomingLock);
                 }
                 @finally
                 {
-                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                    ummutex_unlock(_currentTransaction.incomingLock);
                 }
             }
         }
@@ -567,7 +567,7 @@
             [self findTransactionAndUser];
             if(tcapUser)
             {
-                UMMUTEX_LOCK(_currentTransaction.incomingLock);
+                ummutex_lock(_currentTransaction.incomingLock);
                 @try
                 {
                     
@@ -612,7 +612,7 @@
                 }
                 @finally
                 {
-                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
+                    ummutex_unlock(_currentTransaction.incomingLock);
                 }
             }
         }

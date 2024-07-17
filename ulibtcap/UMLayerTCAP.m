@@ -66,7 +66,7 @@
 @synthesize attachedLayer;
 @synthesize ssn;
 
--(UMMTP3Variant) variant
+- (UMMTP3Variant) variant
 {
     return attachedLayer.mtp3variant;
 }
@@ -1268,9 +1268,7 @@
 {
     @autoreleasepool
     {
-        int r=0;
-        UMMUTEX_TRYLOCK1(_housekeeping_lock,r);
-        if(r == 0)
+        if(ummutex_trylock(_housekeeping_lock)==0)
         {
             ulib_set_thread_name(@"tcap-housekeeping");
             self.housekeeping_running = YES;
@@ -1290,7 +1288,7 @@
                 }
             }
             [_houseKeepingTimerRun touch];
-            UMMUTEX_UNLOCK(_housekeeping_lock);
+            ummutex_unlock(_housekeeping_lock);
             [self queueMultiFromAdmin:tasksToQueue];
             self.housekeeping_running = NO;
         }
