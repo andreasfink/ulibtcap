@@ -552,7 +552,7 @@
                                       callingLayer:_handlingLayer
                                               asn1:(UMASN1Object *)_asn1
                                            options:_options];
-                    [_currentTransaction.incomingLock unlock];
+                    UMMUTEX_UNLOCK(_currentTransaction.incomingLock);
                 }
                 @finally
                 {

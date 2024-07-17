@@ -1268,7 +1268,9 @@
 {
     @autoreleasepool
     {
-        if([_housekeeping_lock tryLock] == 0)
+        int r=0;
+        UMMUTEX_TRYLOCK1(_housekeeping_lock,r);
+        if(r == 0)
         {
             ulib_set_thread_name(@"tcap-housekeeping");
             self.housekeeping_running = YES;
@@ -1288,7 +1290,7 @@
                 }
             }
             [_houseKeepingTimerRun touch];
-            [_housekeeping_lock unlock];
+            UMMUTEX_UNLOCK(_housekeeping_lock);
             [self queueMultiFromAdmin:tasksToQueue];
             self.housekeeping_running = NO;
         }
