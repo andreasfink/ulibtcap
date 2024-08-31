@@ -49,15 +49,15 @@
     SccpVariant _sccpVariant;
     UMTCAP_Variant _tcapVariant;
     NSString *_decodeError;
-//    UMTCAP_ansi_asn1_invoke         *ansiInvoke;
-//    UMTCAP_ansi_asn1_transactionPDU *ansiTransaction;
-//    UMTCAP_ansi_asn1_transactionID  *ansiIdentifier;
+    //    UMTCAP_ansi_asn1_invoke         *ansiInvoke;
+    //    UMTCAP_ansi_asn1_transactionPDU *ansiTransaction;
+    //    UMTCAP_ansi_asn1_transactionID  *ansiIdentifier;
     
     
     /* temporary variables used while parsing */
     UMTCAP_Transaction      *_currentTransaction;
     
-  //  id<UMTCAP_UserProtocol> tcapUser;
+    //  id<UMTCAP_UserProtocol> tcapUser;
     UMTCAP_Command          _currentCommand;         /* begin, continue,end abort, query with perm etc */
     UMTCAP_InternalOperation        _currentOperationType;  /* request/response/error/reject/unidirectional */
     NSMutableArray          *_currentComponents;
@@ -74,11 +74,13 @@
     UMASN1BitString *_dialogProtocolVersion;
     UMTCAP_asn1_dialoguePortion *_dialoguePortion;
     NSString                *_ansiTransactionId;
-
+    
     NSString                *_currentLocalTransactionId;
     NSString                *_currentRemoteTransactionId;
     BOOL                    _verifyAcceptance;
-    id<UMTCAP_UserProtocol> tcapUser;
+    id<UMTCAP_UserProtocol> _tcapUser;
+    BOOL                    _perm;
+    BOOL                    _destroyTransaction;
 }
 
 @property(readwrite,strong) UMLayerSCCP *sccpLayer;
@@ -109,6 +111,9 @@
 
 @property(readwrite,strong) NSString                *currentLocalTransactionId;
 @property(readwrite,strong) NSString                *currentRemoteTransactionId;
+@property(readwrite,assign) BOOL  perm;
+@property(readwrite,assign) BOOL  destroyTransaction;
+@property(readwrite,strong) id<UMTCAP_UserProtocol> tcapUser;
 
 - (UMTCAP_sccpNUnitdata *)initForTcap:(UMLayerTCAP *)tcap
                                  sccp:(UMLayerSCCP *)sccp
@@ -116,7 +121,9 @@
                               calling:(SccpAddress *)xsrc
                                called:(SccpAddress *)xdst
                      qualityOfService:(int)xqos
-                              options:(NSDictionary *)xoptions;
+                              options:(NSDictionary *)xoptions 
+                     verifyAcceptance:(BOOL)verAcc;
+
 
 - (void)handleItuDialogue:(UMTCAP_itu_asn1_dialoguePortion *)d;
 

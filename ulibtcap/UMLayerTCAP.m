@@ -161,8 +161,8 @@
                                                                       calling:src
                                                                        called:dst
                                                              qualityOfService:qos
-                                                                      options:options];
-        task.verifyAcceptance = verifyAcceptance;
+                                                                      options:options
+                                                             verifyAcceptance:verifyAcceptance];
         if( ((tag>>6) & 0x3) == UMASN1Class_Private)
         {
             task.tcapVariant = TCAP_VARIANT_ANSI;
@@ -184,9 +184,9 @@
                                      [data hexString]
                                      ]];
         }
-        [self queueFromLower:task];
+        returnValue = [task mainWithResult];        
     }
-    return YES;
+    return returnValue;
 }
 
 - (void)sccpNNotice:(NSData *)data
@@ -1221,12 +1221,14 @@
     {
         UMTCAP_sccpNUnitdata *task;
         task = [[UMTCAP_sccpNUnitdata alloc]initForTcap:self
-                                                   sccp:NULL
-                                               userData:data
-                                                calling:NULL
-                                                 called:NULL
-                                       qualityOfService:0
-                                                options:@{ @"decode-only" : @YES }];
+                                                    sccp:NULL
+                                                userData:data
+                                                 calling:NULL
+                                                  called:NULL
+                                        qualityOfService:0
+                                                 options:@{ @"decode-only" : @YES }
+                                        verifyAcceptance:NO];
+                
         @autoreleasepool
         {
             [task main];
