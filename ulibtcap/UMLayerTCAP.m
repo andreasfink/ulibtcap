@@ -1177,7 +1177,6 @@
         t.incoming=NO;
         t.timeoutInSeconds = self.transactionTimeoutInSeconds;
         [t touch];
-
         _transactionsByLocalTransactionId[t.localTransactionId] = t;
         return t;
     }
