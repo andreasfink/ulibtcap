@@ -114,6 +114,7 @@
 @property(readwrite,assign) BOOL  perm;
 @property(readwrite,assign) BOOL  destroyTransaction;
 @property(readwrite,strong) id<UMTCAP_UserProtocol> tcapUser;
+@property(readwrite,assign) BOOL  localSSN;
 
 - (UMTCAP_sccpNUnitdata *)initForTcap:(UMLayerTCAP *)tcap
                                  sccp:(UMLayerSCCP *)sccp

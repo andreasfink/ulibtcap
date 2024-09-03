@@ -281,7 +281,7 @@
                                      options
                                      ]];
         }
-        /* FIXME: to be done */
+        /* FIXME: we should do something with it */
     }
 }
 

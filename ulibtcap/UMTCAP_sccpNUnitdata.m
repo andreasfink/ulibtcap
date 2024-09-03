@@ -206,10 +206,8 @@
 - (BOOL) handlePdu
 {
     BOOL returnValue = NO;
-    BOOL destroyTransaction = YES;
     _tcapUser = [_tcapLayer tcapDefaultUser];
     _tcapVariant = TCAP_VARIANT_ITU;
-    BOOL perm = YES;
 
     switch(_currentCommand)
     {
@@ -275,6 +273,10 @@
 
 - (BOOL)handleUnidirectional
 {
+    if(_tcapLayer.ssn.ssn != _dst.ssn.ssn)
+    {
+        return NO;
+    }
     [_tcapUser tcapUnidirectionalIndication:NULL
                           tcapTransactionId:NULL
                     tcapRemoteTransactionId:_currentTransaction.remoteTransactionId
@@ -302,6 +304,10 @@
 
 - (BOOL)handleAnsiQuery
 {
+    if(_tcapLayer.ssn.ssn != _dst.ssn.ssn)
+    {
+        return NO;
+    }
     _tcapVariant = TCAP_VARIANT_ANSI;
     _currentTransaction = [_tcapLayer getNewIncomingTransactionForRemoteTransactionId:_currentRemoteTransactionId];
     UMTCAP_UserDialogIdentifier *userDialogId = [_tcapUser getNewUserDialogId];
@@ -330,6 +336,10 @@
 
 - (BOOL)handleItuBegin
 {
+    if(_tcapLayer.ssn.ssn != _dst.ssn.ssn)
+    {
+        return NO;
+    }
     _tcapVariant = TCAP_VARIANT_ITU;
     _currentTransaction = [_tcapLayer getNewIncomingTransactionForRemoteTransactionId:_currentRemoteTransactionId];
     UMTCAP_UserDialogIdentifier *userDialogId = [_tcapUser getNewUserDialogId];

@@ -29,16 +29,16 @@
 
 @interface UMLayerTCAP : UMLayer<UMSCCP_UserProtocol,sccp_tcapDecoder>
 {
-    id<UMTCAP_UserProtocol> tcapDefaultUser;
+    id<UMTCAP_UserProtocol>     tcapDefaultUser;
     UMSynchronizedDictionary    *tcapUserByOperation;
     
     NSString                    *attachTo;
     UMLayerSCCP                 *attachedLayer;
     UMTCAP_Variant              tcapVariant;
     
-    UMSynchronizedDictionary *_transactionsByLocalTransactionId;
+    UMSynchronizedDictionary    *_transactionsByLocalTransactionId;
     NSTimeInterval _transactionTimeoutInSeconds;
-    SccpSubSystemNumber *ssn;
+    SccpSubSystemNumber         *ssn;
     SccpAddress *attachNumber;
     int64_t lastDialogId;
     int64_t lastTransactionId;
