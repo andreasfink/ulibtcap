@@ -125,6 +125,13 @@
                               options:(NSDictionary *)xoptions 
                      verifyAcceptance:(BOOL)verAcc;
 
+- (UMTCAP_sccpNUnitdata *)initForTcap:(UMLayerTCAP *)tcap
+                                 sccp:(UMLayerSCCP *)sccp
+                             userData:(NSData *)xdata
+                              calling:(SccpAddress *)xsrc
+                               called:(SccpAddress *)xdst
+                     qualityOfService:(int)xqos
+                              options:(NSDictionary *)xoptions;
 
 - (void)handleItuDialogue:(UMTCAP_itu_asn1_dialoguePortion *)d;
 

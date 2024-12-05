@@ -36,6 +36,25 @@
 
 @implementation UMTCAP_sccpNUnitdata
 
+/* fallback */
+- (UMTCAP_sccpNUnitdata *)initForTcap:(UMLayerTCAP *)tcap
+                                 sccp:(UMLayerSCCP *)sccp
+                             userData:(NSData *)xdata
+                              calling:(SccpAddress *)xsrc
+                               called:(SccpAddress *)xdst
+                     qualityOfService:(int)xqos
+                              options:(NSDictionary *)xoptions
+{
+    return [self initForTcap:tcap
+                        sccp:sccp
+                    userData:xdata
+                     calling:xsrc
+                      called:xdst
+            qualityOfService:xqos
+                     options:xoptions
+            verifyAcceptance:NO];
+
+}
 
 - (UMTCAP_sccpNUnitdata *)initForTcap:(UMLayerTCAP *)tcap
                                  sccp:(UMLayerSCCP *)sccp
