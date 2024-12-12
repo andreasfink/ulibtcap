@@ -38,6 +38,7 @@
     int                             _sccpQoS;
     SCCP_ServiceClass               _sccpServiceClass;
     SCCP_Handling                   _sccpHandling;
+    int                             _encodingOption;
 }
 
 @property(readwrite,strong,atomic)  UMLayerTCAP                     *tcap;
@@ -54,6 +55,7 @@
 @property(readwrite,assign,atomic)  int                             sccpQos;
 @property(readwrite,assign,atomic)  SCCP_ServiceClass               sccpServiceClass;
 @property(readwrite,assign,atomic)  SCCP_Handling                   sccpHandling;
+@property(readwrite,assign,atomic)  int                             encodingOption;
 
 
 - (UMTCAP_begin *)initForTcap:(UMLayerTCAP *)xtcap

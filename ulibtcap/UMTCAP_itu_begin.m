@@ -51,7 +51,7 @@
         q.otid = otid;
         q.dtid = dtid;
         q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)_dialoguePortion;
-        
+        q.encodingOption = _encodingOption;
         if(_components.count > 0)
         {
             if(_tcap.logLevel <= UMLOG_DEBUG)

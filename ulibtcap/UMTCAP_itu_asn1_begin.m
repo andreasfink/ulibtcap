@@ -84,23 +84,64 @@
         default:
             _asn1_tag.tagClass = UMASN1Class_Application;
     }
+    
     _asn1_list = [[NSMutableArray alloc]init];
-    if(_otid!=NULL)
+    if(_encodingOption == 1)
     {
-        [_asn1_list addObject:_otid];
+        if(_componentPortion)
+        {
+            [_asn1_list addObject:_componentPortion];
+        }
+        if(_otid!=NULL)
+        {
+            [_asn1_list addObject:_otid];
+        }
+        if(_dtid!=NULL)
+        {
+            [_asn1_list addObject:_dtid];
+        }
+        if(_dialoguePortion)
+        {
+            [_asn1_list addObject:_dialoguePortion];
+        }
     }
-    if(_dtid!=NULL)
+    else if(_encodingOption == 2)
     {
-        [_asn1_list addObject:_dtid];
+        if(_dialoguePortion)
+        {
+            [_asn1_list addObject:_dialoguePortion];
+        }
+        if(_otid!=NULL)
+        {
+            [_asn1_list addObject:_otid];
+        }
+        if(_dtid!=NULL)
+        {
+            [_asn1_list addObject:_dtid];
+        }
+        if(_componentPortion)
+        {
+            [_asn1_list addObject:_componentPortion];
+        }
     }
-
-    if(_dialoguePortion)
+    else
     {
-        [_asn1_list addObject:_dialoguePortion];
-    }
-    if(_componentPortion)
-    {
-        [_asn1_list addObject:_componentPortion];
+        if(_otid!=NULL)
+        {
+            [_asn1_list addObject:_otid];
+        }
+        if(_dtid!=NULL)
+        {
+            [_asn1_list addObject:_dtid];
+        }
+        if(_dialoguePortion)
+        {
+            [_asn1_list addObject:_dialoguePortion];
+        }
+        if(_componentPortion)
+        {
+            [_asn1_list addObject:_componentPortion];
+        }
     }
 }
 

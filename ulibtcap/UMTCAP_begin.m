@@ -63,7 +63,6 @@
         if([_options[@"tbwdid"] boolValue]==YES)
         {
             _remoteTransactionId = xtransactionId;
-
         }
         NSArray <NSString *> *tcap_options = _options[@"tcap-options"];
         if(tcap_options.count > 0)
@@ -81,6 +80,11 @@
                 if([option isEqualToString:@"tbwdid"])
                 {
                     _remoteTransactionId = xtransactionId;
+                }
+                if([option hasPrefix:@"eo"])
+                {
+                    NSString *p = [option substringFromIndex:2];
+                    _encodingOption = [p intValue];
                 }
             }
         }
