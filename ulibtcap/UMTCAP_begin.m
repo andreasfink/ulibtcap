@@ -78,7 +78,7 @@
                 {
                     _sccpHandling = SCCP_HANDLING_NO_SPECIAL_OPTIONS;
                 }
-                if([option isEqualToString:@"include-dtid"])
+                if([option isEqualToString:@"tbwdid"])
                 {
                     _remoteTransactionId = xtransactionId;
                 }
