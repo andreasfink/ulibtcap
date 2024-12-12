@@ -26,6 +26,7 @@
 {
     UMLayerTCAP                     *_tcap;
     NSString                        *_transactionId;
+    NSString                        *_remoteTransactionId;
     UMTCAP_UserDialogIdentifier     *_userDialogId;
     UMTCAP_Variant                  _variant;
     id<UMLayerUserProtocol>         _user;
@@ -41,6 +42,7 @@
 
 @property(readwrite,strong,atomic)  UMLayerTCAP                     *tcap;
 @property(readwrite,strong,atomic)  NSString                        *transactionId;
+@property(readwrite,strong,atomic)  NSString                        *remoteTransactionId;
 @property(readwrite,strong,atomic)  UMTCAP_UserDialogIdentifier     *userDialogId;
 @property(readwrite,assign,atomic)  UMTCAP_Variant                  variant;
 @property(readwrite,strong,atomic)  id<UMLayerUserProtocol>         user;

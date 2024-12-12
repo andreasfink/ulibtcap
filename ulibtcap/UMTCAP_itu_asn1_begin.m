@@ -37,8 +37,16 @@
     {
         @throw([NSException exceptionWithName:@"identifier section is missing in tcap_begin" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
     }
-    _otid =  [[UMTCAP_itu_asn1_otid alloc]initWithASN1Object:o context:context];
-    o = [self getObjectAtPosition:p++];
+    if((o) && (o.asn1_tag.tagNumber ==8) && (o.asn1_tag.tagClass == UMASN1Class_Application))
+    {
+        _otid =  [[UMTCAP_itu_asn1_otid alloc]initWithASN1Object:o context:context];
+        o = [self getObjectAtPosition:p++];
+    }
+    if((o) && (o.asn1_tag.tagNumber ==9) && (o.asn1_tag.tagClass == UMASN1Class_Application))
+    {
+        _dtid =  [[UMTCAP_itu_asn1_dtid alloc]initWithASN1Object:o context:context];
+        o = [self getObjectAtPosition:p++];
+    }
     if((o) && (o.asn1_tag.tagNumber ==11) && (o.asn1_tag.tagClass == UMASN1Class_Application))
     {
         _dialoguePortion = [[UMTCAP_itu_asn1_dialoguePortion alloc]initWithASN1Object:o context:context];
@@ -81,6 +89,11 @@
     {
         [_asn1_list addObject:_otid];
     }
+    if(_dtid!=NULL)
+    {
+        [_asn1_list addObject:_dtid];
+    }
+
     if(_dialoguePortion)
     {
         [_asn1_list addObject:_dialoguePortion];
@@ -104,6 +117,10 @@
     if(_otid)
     {
         dict[@"otid"] = _otid.objectValue;
+    }
+    if(_dtid)
+    {
+        dict[@"dtid"] = _dtid.objectValue;
     }
     if(_dialoguePortion)
     {

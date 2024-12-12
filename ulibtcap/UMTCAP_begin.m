@@ -60,6 +60,11 @@
         _sccpHandling = SCCP_HANDLING_RETURN_ON_ERROR;
         _sccpQoS = 0;
         
+        if([_options[@"tbwdid"] boolValue]==YES)
+        {
+            _remoteTransactionId = xtransactionId;
+
+        }
         NSArray <NSString *> *tcap_options = _options[@"tcap-options"];
         if(tcap_options.count > 0)
         {
@@ -72,6 +77,10 @@
                 else if([option isEqualToString:@"no-return-on-error"])
                 {
                     _sccpHandling = SCCP_HANDLING_NO_SPECIAL_OPTIONS;
+                }
+                if([option isEqualToString:@"include-dtid"])
+                {
+                    _remoteTransactionId = xtransactionId;
                 }
             }
         }

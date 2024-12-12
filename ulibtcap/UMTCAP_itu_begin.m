@@ -14,6 +14,7 @@
 #import <ulibtcap/UMTCAP_itu_asn1_dialoguePortion.h>
 #import <ulibtcap/UMTCAP_itu_asn1_begin.h>
 #import <ulibtcap/UMTCAP_itu_asn1_otid.h>
+#import <ulibtcap/UMTCAP_itu_asn1_dtid.h>
 #import <ulibtcap/UMTCAP_itu_asn1_componentPortion.h>
 #import <ulibtcap/UMTCAP_Transaction.h>
 
@@ -31,6 +32,7 @@
         UMTCAP_Transaction *t = [_tcap findTransactionByLocalTransactionId:_transactionId];
         UMTCAP_itu_asn1_begin *q = [[UMTCAP_itu_asn1_begin alloc]init];
         UMTCAP_itu_asn1_otid *otid = [[UMTCAP_itu_asn1_otid alloc]init];
+        UMTCAP_itu_asn1_dtid *dtid = NULL;
         _operationEncoding = t.operationEncoding;
         _classEncoding = t.classEncoding;
         if(_transactionId == NULL)
@@ -40,8 +42,14 @@
         }
 
         otid.transactionId =_transactionId;
+        if(_remoteTransactionId)
+        {
+            dtid = [[UMTCAP_itu_asn1_dtid alloc]init];
+            dtid.transactionId = _remoteTransactionId = [_tcap getNewTransactionId];
+        }
         q.classEncoding = _classEncoding;
         q.otid = otid;
+        q.dtid = dtid;
         q.dialoguePortion = (UMTCAP_itu_asn1_dialoguePortion *)_dialoguePortion;
         
         if(_components.count > 0)
