@@ -124,6 +124,87 @@
             [_asn1_list addObject:_componentPortion];
         }
     }
+    if(_encodingOption == 3)
+    {
+        
+        if(_otid!=NULL)
+        {
+            [_asn1_list addObject:_otid];
+        }
+        if(_dtid!=NULL)
+        {
+            [_asn1_list addObject:_dtid];
+        }
+        if(_dialoguePortion)
+        {
+            [_asn1_list addObject:_dialoguePortion];
+            [_asn1_list addObject:_dialoguePortion];
+        }
+        if(_componentPortion)
+        {
+            [_asn1_list addObject:_componentPortion];
+        }
+    }
+    else if(_encodingOption == 4)
+    {
+        if(_otid!=NULL)
+        {
+            [_asn1_list addObject:_otid];
+            [_asn1_list addObject:_otid];
+        }
+        if(_dtid!=NULL)
+        {
+            [_asn1_list addObject:_dtid];
+        }
+        if(_dialoguePortion)
+        {
+            [_asn1_list addObject:_dialoguePortion];
+        }
+        if(_componentPortion)
+        {
+            [_asn1_list addObject:_componentPortion];
+        }
+    }
+    else if(_encodingOption == 5)
+    {
+        if(_otid!=NULL)
+        {
+            [_asn1_list addObject:_otid];
+        }
+        if(_dtid!=NULL)
+        {
+            [_asn1_list addObject:_dtid];
+        }
+        if(_dialoguePortion)
+        {
+            [_asn1_list addObject:_dialoguePortion];
+        }
+        if(_componentPortion)
+        {
+            [_asn1_list addObject:_componentPortion];
+            [_asn1_list addObject:_componentPortion];
+        }
+    }
+    else if(_encodingOption == 6)
+    {
+        if(_otid!=NULL)
+        {
+            [_asn1_list addObject:_otid];
+        }
+        if(_dtid!=NULL)
+        {
+            [_asn1_list addObject:_dtid];
+        }
+        if(_dialoguePortion)
+        {
+            [_asn1_list addObject:_dialoguePortion];
+        }
+        if(_componentPortion)
+        {
+            [_asn1_list addObject:[[UMTCAP_itu_asn1_componentPortion alloc]init]];
+            [_asn1_list addObject:_componentPortion];
+        }
+    }
     else
     {
         if(_otid!=NULL)
