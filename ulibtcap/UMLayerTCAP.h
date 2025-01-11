@@ -68,7 +68,7 @@
 @property(readwrite,strong) UMAtomicDate *houseKeepingTimerRun;
 
 -(NSUInteger)pendingTransactionCount;
-
+- (NSString *)name;
 - (UMMTP3Variant) variant;
 
 - (UMLayerTCAP *)initWithoutExecutionQueue:(NSString *)name;

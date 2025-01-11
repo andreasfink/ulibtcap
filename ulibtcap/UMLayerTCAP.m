@@ -111,6 +111,10 @@
     UMTCAP_TransactionIdFastPool *tidPool = [[UMTCAP_TransactionIdFastPool alloc]initWithPrefabricatedIds:16 start:0 end:15]; /* this gets overwritten by config. This is only a failsafe */
     return [self initWithTaskQueueMulti:tq tidPool:tidPool name:name];
 }
+- (NSString *)name
+{
+    return _layerName;
+}
 
 - (void)sccpNUnitdata:(NSData *)data
          callingLayer:(UMLayerSCCP *)sccpLayer
