@@ -68,6 +68,7 @@ typedef enum UMTCAP_itu_classEncoding
 
 
 
+#define TCAP_ITU_COMPONENT_UNDEFINED                0
 #define TCAP_ITU_COMPONENT_INVOKE                   1
 #define TCAP_ITU_COMPONENT_RETURN_RESULT_LAST       2
 #define TCAP_ITU_COMPONENT_RETURN_ERROR             3

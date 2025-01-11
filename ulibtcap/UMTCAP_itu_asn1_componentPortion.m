@@ -21,8 +21,11 @@
     NSMutableArray *list = [[NSMutableArray alloc]init];
     for(UMASN1Object *o in _asn1_list)
     {
-        UMTCAP_itu_asn1_componentPDU *c = [[UMTCAP_itu_asn1_componentPDU alloc]initWithASN1Object:o context:context];
-        [list addObject:c];
+        if(o.asn1_length > 0)
+        {
+            UMTCAP_itu_asn1_componentPDU *c = [[UMTCAP_itu_asn1_componentPDU alloc]initWithASN1Object:o context:context];
+            [list addObject:c];
+        }
     }
     _asn1_list = list;
     return self;

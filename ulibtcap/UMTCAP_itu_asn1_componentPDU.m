@@ -19,7 +19,6 @@
 @implementation UMTCAP_itu_asn1_componentPDU
 
 
-
 - (UMTCAP_itu_asn1_componentPDU *)processAfterDecodeWithContext:(id)context
 {
     UMTCAP_itu_asn1_componentPDU *r =NULL;
@@ -60,8 +59,10 @@
         }
         default:
         {
-            NSLog(@"I don't know how to process this tcap component %d packet\n%@\n",(int)_asn1_tag.tagNumber,[self.objectValue jsonString]);
+            return NULL;
+/*            NSLog(@"I don't know how to process this tcap component %d packet\n%@\n",(int)_asn1_tag.tagNumber,[self.objectValue jsonString]);
             @throw([NSException exceptionWithName:@"unknown choice in ComponentSequence" reason:NULL userInfo:@{@"backtrace": UMBacktrace(NULL,0)}] );
+ */
         }
     }
     return r;
