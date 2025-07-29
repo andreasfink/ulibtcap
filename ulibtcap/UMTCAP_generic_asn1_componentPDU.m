@@ -28,7 +28,7 @@
     self = [super init];
     if(self)
     {
-        //NSLog(@"debug");
+
     }
     return self;
 }

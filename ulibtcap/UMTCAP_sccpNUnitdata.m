@@ -624,7 +624,6 @@
                                     _currentComponents,
                                     _options
                 ];
-                NSLog(@"DEBUG: %@",dbgTxt);
                 [_tcapLayer.logFeed debugText:dbgTxt];
             }
             [_tcapUser tcapContinueIndication:_currentTransaction.userDialogId
