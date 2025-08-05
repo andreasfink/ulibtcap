@@ -6,10 +6,6 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-<<<<<<< HEAD
-=======
-#import <ulib/ulib.h>
->>>>>>> release-2.1
 #import <ulib/ulib.h>
 
 @class UMLayerTCAP;
