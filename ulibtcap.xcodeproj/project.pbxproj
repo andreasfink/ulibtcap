@@ -1056,7 +1056,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1620;
-				ORGANIZATIONNAME = "Andreas Fink (andreas@fink.org)";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					A641CE521B42010A00854472 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -1070,7 +1070,7 @@
 				};
 			};
 			buildConfigurationList = A641CE4D1B42010A00854472 /* Build configuration list for PBXProject "ulibtcap" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1240,12 +1240,9 @@
 		A641CE671B42010A00854472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					x86_64,
-					aarm64,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1278,6 +1275,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = /;
+				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
+				DYLIB_CURRENT_VERSION = 2.1.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"/Library/Application Support/FinkTelecomServices/frameworks\"";
@@ -1298,7 +1297,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "\"/Library/Application Support/\"";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
@@ -1312,12 +1311,9 @@
 		A641CE681B42010A00854472 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					x86_64,
-					aarm64,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1350,6 +1346,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = /;
+				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
+				DYLIB_CURRENT_VERSION = 2.1.1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"/Library/Application Support/FinkTelecomServices/frameworks\"";
@@ -1363,7 +1361,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "\"/Library/Application Support/\"";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
@@ -1380,13 +1378,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = HG8655K94F;
+				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = "/Library/Application Support";
-				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.0.0;
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1400,20 +1396,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = ulibtcap/Info.plist;
 				INSTALL_PATH = FinkTelecomServices/frameworks;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.--PRODUCT-NAME-rfc1034identifier-";
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.ulibtcap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
 			};
 			name = Debug;
 		};
@@ -1423,13 +1416,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = HG8655K94F;
+				DEVELOPMENT_TEAM = 38L827M334;
 				DSTROOT = "/Library/Application Support";
-				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.0.0;
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1443,20 +1434,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = ulibtcap/Info.plist;
 				INSTALL_PATH = FinkTelecomServices/frameworks;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.--PRODUCT-NAME-rfc1034identifier-";
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.ulibtcap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
 			};
 			name = Release;
 		};

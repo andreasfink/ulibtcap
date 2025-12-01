@@ -31,8 +31,15 @@ ${SLIB}: ${OFILES}
 	ar rcs ${SLIB} ${OFILES}
 	ranlib ${SLIB}
 
-install: ${LIB} ${SLIB}
+install:  install_dev install_bin
+
+install_dev: ${LIB} ${SLIB}
 	-mkdir -p ${DESTDIR}/usr/local/lib/pkgconfig
+	-install -b -g bin -o root -m 644 ${PKGCONFIGFILE} ${DESTDIR}/usr/local/lib/pkgconfig/
+	-mkdir -p ${DESTDIR}/usr/local/include/@PROJECT_NAME@
+	cp $(HFILES) ${DESTDIR}/usr/local/include/@PROJECT_NAME@
+
+install_bin: ${LIB} ${SLIB}
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}.${REVISION}"
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}"
 	rm -f "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}"
@@ -42,9 +49,6 @@ install: ${LIB} ${SLIB}
 	ln -s "${LIB}.${MAJORVER}.${MINORVER}.${REVISION}" "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}.${MINORVER}"
 	ln -s "${LIB}.${MAJORVER}.${MINORVER}"             "${DESTDIR}/usr/local/lib/${LIB}.${MAJORVER}"
 	ln -s "${LIB}.${MAJORVER}"                         "${DESTDIR}/usr/local/lib/${LIB}"
-	-install -b -g bin -o root -m 644 ${PKGCONFIGFILE} ${DESTDIR}/usr/local/lib/pkgconfig/
-	-mkdir -p ${DESTDIR}/usr/local/include/@PROJECT_NAME@
-	cp $(HFILES) ${DESTDIR}/usr/local/include/@PROJECT_NAME@
 	ldconfig
 
 clean:
