@@ -9,8 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import <ulibasn1/ulibasn1.h>
-#import <ulibasn1/ulibasn1.h>
+#import <ulibsccp/ulibsccp.h>
 #import <ulibtcap/UMTCAP_Variant.h>
 #import <ulibtcap/UMTCAP_Operation.h>
 #import <ulibtcap/UMTCAP_UserProtocol.h>

@@ -6,8 +6,7 @@
 //  Copyright © 2020 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import <ulib/ulib.h>
-#import <ulibdb/ulibdb.h>
+#import <ulibsccp/ulibsccp.h>
 #import <ulibtcap/UMLayerTCAPApplicationContextProtocol.h>
 #import <ulibtcap/UMTCAP_Command.h>
 

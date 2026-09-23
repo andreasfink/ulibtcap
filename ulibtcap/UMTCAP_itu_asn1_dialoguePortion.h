@@ -9,7 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import <ulibasn1/ulibasn1.h>
+#import <ulibsccp/ulibsccp.h>
 #import <ulibtcap/UMTCAP_asn1_AARQ_apdu.h>
 #import <ulibtcap/UMTCAP_asn1_AARE_apdu.h>
 #import <ulibtcap/UMTCAP_asn1_ABRT_apdu.h>

@@ -10,9 +10,9 @@
 // the author.
 
 #import "UMLayerTCAP.h"
+
 #import <ulibtcap/UMTCAP_all_tasks.h>
 #import <ulibtcap/UMTCAP_Transaction.h>
-#import <ulibasn1/ulibasn1.h>
 #import <ulibtcap/UMTCAP_itu_asn1_invoke.h>
 #import <ulibtcap/UMTCAP_ansi_asn1_invoke.h>
 #import <ulibtcap/UMTCAP_itu_asn1_returnResult.h>
@@ -39,8 +39,6 @@
 #import <ulibtcap/UMTCAP_itu_asn1_pAbortCause.h>
 
 #import <ulibtcap/UMTCAP_Transaction.h>
-#import <ulibgt/ulibgt.h>
-#import <ulibsccp/ulibsccp.h>
 
 #import <ulibtcap/UMTCAP_begin.h>
 #import <ulibtcap/UMTCAP_ansi_begin.h>
