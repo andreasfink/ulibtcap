@@ -8,8 +8,8 @@
 
 #import <ulibtcap/UMTCAP_StatisticDb.h>
 #import <ulibtcap/UMTCAP_StatisticDbRecord.h>
-#import "UMLayerTCAPApplicationContextProtocol.h"
-#import "UMLayerTCAP.h"
+#import <ulibtcap/UMLayerTCAPApplicationContextProtocol.h>
+#import <ulibtcap/UMLayerTCAP.h>
 
 @implementation UMTCAP_StatisticDb
 
