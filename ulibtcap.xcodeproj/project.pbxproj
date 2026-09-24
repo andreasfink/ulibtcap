@@ -290,6 +290,8 @@
 		A643D7D03063E9C600F9798D /* libulibsccp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulibsccp.a; path = /usr/local/lib/libulibsccp.a; sourceTree = "<absolute>"; };
 		A643D7D33063E9F600F9798D /* libulibmtp3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulibmtp3.a; path = /usr/local/lib/libulibmtp3.a; sourceTree = "<absolute>"; };
 		A643D7D63063E9FF00F9798D /* libulib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulib.a; path = /usr/local/lib/libulib.a; sourceTree = "<absolute>"; };
+		A643D8063065042600F9798D /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		A643D8073065046E00F9798D /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
 		A645E4C01CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_componentPDU.h; sourceTree = "<group>"; };
 		A645E4C11CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1_componentPDU.m; sourceTree = "<group>"; };
 		A648DF50247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPoolEntry.h; sourceTree = "<group>"; };
@@ -478,7 +480,6 @@
 		A6DE4EA71CC2EEF000211137 /* UMTCAP_itu_asn1_errorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_itu_asn1_errorCode.m; sourceTree = "<group>"; };
 		A6ED5C501B4358F100854472 /* UMLayerTCAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMLayerTCAP.h; sourceTree = "<group>"; };
 		A6ED5C511B4358F100854472 /* UMLayerTCAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMLayerTCAP.m; sourceTree = "<group>"; };
-		A6F694041B4E84240090FC94 /* configure.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.in; sourceTree = "<group>"; };
 		A6F694071B4E84240090FC94 /* ulibtcap.pc.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = ulibtcap.pc.in; sourceTree = "<group>"; };
 		A6F694081B4E84240090FC94 /* VERSION */ = {isa = PBXFileReference; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		A6FDF9C4249B7D06001C11DC /* UMTCAP_StatisticDb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_StatisticDb.h; sourceTree = "<group>"; };
@@ -528,11 +529,12 @@
 			isa = PBXGroup;
 			children = (
 				A62C8B061FFBD16B0065D61E /* doc */,
-				A6F694041B4E84240090FC94 /* configure.in */,
+				A643D8063065042600F9798D /* configure.ac */,
+				A643D8073065046E00F9798D /* Makefile.in */,
 				A6F694071B4E84240090FC94 /* ulibtcap.pc.in */,
 				A6F694081B4E84240090FC94 /* VERSION */,
+				A643D805306503F200F9798D /* Libraries */,
 				A641CE551B42010A00854472 /* ulibtcap */,
-				A6ED5C581B43593900854472 /* Frameworks */,
 				A641CE621B42010A00854472 /* ulibtcapTests */,
 				A641CE541B42010A00854472 /* Products */,
 			);
@@ -654,6 +656,16 @@
 				A641CE641B42010A00854472 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A643D805306503F200F9798D /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				A643D7D63063E9FF00F9798D /* libulib.a */,
+				A643D7D33063E9F600F9798D /* libulibmtp3.a */,
+				A643D7D03063E9C600F9798D /* libulibsccp.a */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		A688B73A1CCA223A005D3906 /* begin */ = {
@@ -863,17 +875,6 @@
 			);
 			name = itu;
 			sourceTree = "<group>";
-		};
-		A6ED5C581B43593900854472 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A643D7D63063E9FF00F9798D /* libulib.a */,
-				A643D7D33063E9F600F9798D /* libulibmtp3.a */,
-				A643D7D03063E9C600F9798D /* libulibsccp.a */,
-			);
-			name = Frameworks;
-			path = /Library/Frameworks;
-			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
 
