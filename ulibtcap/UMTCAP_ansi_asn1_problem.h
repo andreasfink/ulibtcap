@@ -9,9 +9,7 @@
 // Version 3 from 29 June 2007 and other commercial licenses available by
 // the author.
 
-#import <ulibasn1/ulibasn1.h>
-
-
+#import <ulibsccp/ulibsccp.h>
 
 typedef    enum UMTCAP_ansi_asn1_problem_code
 {

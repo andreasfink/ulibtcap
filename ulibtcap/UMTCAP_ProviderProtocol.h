@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import <ulib/ulib.h>
+#import <ulibsccp/ulibsccp.h>
 
 
 /*
@@ -16,10 +16,6 @@
  – Class 3 – Only success is reported.
  – Class 4 – Neither success, nor failure is reported.
  */
-#import <ulib/ulib.h>
-#import <ulibasn1/ulibasn1.h>
-#import <ulibgt/ulibgt.h>
-#import <ulibsccp/ulibsccp.h>
 #import <ulibtcap/UMTCAP_generic_asn1_componentPDU.h>
 #import <ulibtcap/UMTCAP_Operation.h>
 #import <ulibtcap/UMTCAP_asn1_objectIdentifier.h>

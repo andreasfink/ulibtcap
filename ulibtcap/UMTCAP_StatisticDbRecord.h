@@ -6,8 +6,7 @@
 //  Copyright © 2020 Andreas Fink (andreas@fink.org). All rights reserved.
 //
 
-#import <ulib/ulib.h>
-#import <ulibdb/ulibdb.h>
+#import <ulibsccp/ulibsccp.h>
 
 @interface UMTCAP_StatisticDbRecord : UMObject
 {

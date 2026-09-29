@@ -10,12 +10,8 @@
 // the author.
 
 
-#import <ulib/ulib.h>
-#import <ulibsctp/ulibsctp.h>
-#import <ulibm2pa/ulibm2pa.h>
-#import <ulibmtp3/ulibmtp3.h>
+
 #import <ulibsccp/ulibsccp.h>
-#import <ulibgt/ulibgt.h>
 
 #import <ulibtcap/UMLayerTCAPApplicationContextProtocol.h>
 #import <ulibtcap/UMTCAP_Variant.h>

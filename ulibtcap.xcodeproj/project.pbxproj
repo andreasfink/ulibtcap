@@ -36,6 +36,12 @@
 		A641CE591B42010A00854472 /* ulibtcap.h in Headers */ = {isa = PBXBuildFile; fileRef = A641CE581B42010A00854472 /* ulibtcap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A641CE5F1B42010A00854472 /* ulibtcap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A641CE531B42010A00854472 /* ulibtcap.framework */; };
 		A641CE661B42010A00854472 /* ulibtcapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A641CE651B42010A00854472 /* ulibtcapTests.m */; };
+		A643D7D13063E9C600F9798D /* libulibsccp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7D03063E9C600F9798D /* libulibsccp.a */; };
+		A643D7D23063E9C600F9798D /* libulibsccp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7D03063E9C600F9798D /* libulibsccp.a */; };
+		A643D7D43063E9F600F9798D /* libulibmtp3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7D33063E9F600F9798D /* libulibmtp3.a */; };
+		A643D7D53063E9F600F9798D /* libulibmtp3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7D33063E9F600F9798D /* libulibmtp3.a */; };
+		A643D7D73063E9FF00F9798D /* libulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7D63063E9FF00F9798D /* libulib.a */; };
+		A643D7D83063E9FF00F9798D /* libulib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A643D7D63063E9FF00F9798D /* libulib.a */; };
 		A645E4C21CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h in Headers */ = {isa = PBXBuildFile; fileRef = A645E4C01CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A645E4C31CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = A645E4C11CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m */; };
 		A648DF52247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = A648DF50247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,9 +53,6 @@
 		A6680A451FE1E95A007B1857 /* UMTCAP_UserDialogIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A6680A431FE1E95A007B1857 /* UMTCAP_UserDialogIdentifier.m */; };
 		A678596B1E56D54400FF1075 /* UMTCAP_TransactionIdPool.h in Headers */ = {isa = PBXBuildFile; fileRef = A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A678596C1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m in Sources */ = {isa = PBXBuildFile; fileRef = A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */; };
-		A67989DF22BB69A20019806C /* ulibgt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989DE22BB699A0019806C /* ulibgt.framework */; };
-		A67989E222BB69BD0019806C /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989E122BB69B70019806C /* ulib.framework */; };
-		A67989E322BB69C50019806C /* ulibasn1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67989E022BB69AC0019806C /* ulibasn1.framework */; };
 		A6814B3C1CA94E0B00211137 /* UMTCAP_ansi_asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = A6814B3A1CA94E0B00211137 /* UMTCAP_ansi_asn1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6814B3D1CA94E0B00211137 /* UMTCAP_ansi_asn1.m in Sources */ = {isa = PBXBuildFile; fileRef = A6814B3B1CA94E0B00211137 /* UMTCAP_ansi_asn1.m */; };
 		A6814B401CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.h in Headers */ = {isa = PBXBuildFile; fileRef = A6814B3E1CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -233,7 +236,6 @@
 		A6FDF9C7249B7D06001C11DC /* UMTCAP_StatisticDb.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FDF9C5249B7D06001C11DC /* UMTCAP_StatisticDb.m */; };
 		A6FDF9CA249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FDF9C8249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6FDF9CB249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FDF9C9249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m */; };
-		A6FDF9CD249B8A21001C11DC /* ulibdb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDF9CC249B8A1B001C11DC /* ulibdb.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,6 +287,11 @@
 		A641CE5E1B42010A00854472 /* ulibtcapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ulibtcapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A641CE641B42010A00854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A641CE651B42010A00854472 /* ulibtcapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ulibtcapTests.m; sourceTree = "<group>"; };
+		A643D7D03063E9C600F9798D /* libulibsccp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulibsccp.a; path = /usr/local/lib/libulibsccp.a; sourceTree = "<absolute>"; };
+		A643D7D33063E9F600F9798D /* libulibmtp3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulibmtp3.a; path = /usr/local/lib/libulibmtp3.a; sourceTree = "<absolute>"; };
+		A643D7D63063E9FF00F9798D /* libulib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libulib.a; path = /usr/local/lib/libulib.a; sourceTree = "<absolute>"; };
+		A643D8063065042600F9798D /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		A643D8073065046E00F9798D /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
 		A645E4C01CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_componentPDU.h; sourceTree = "<group>"; };
 		A645E4C11CB78E27006C6CCD /* UMTCAP_ansi_asn1_componentPDU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1_componentPDU.m; sourceTree = "<group>"; };
 		A648DF50247CF10100F25226 /* UMTCAP_TransactionIdPoolEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPoolEntry.h; sourceTree = "<group>"; };
@@ -296,11 +303,6 @@
 		A6680A431FE1E95A007B1857 /* UMTCAP_UserDialogIdentifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_UserDialogIdentifier.m; sourceTree = "<group>"; };
 		A67859691E56D54400FF1075 /* UMTCAP_TransactionIdPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionIdPool.h; sourceTree = "<group>"; };
 		A678596A1E56D54400FF1075 /* UMTCAP_TransactionIdPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionIdPool.m; sourceTree = "<group>"; };
-		A67989DE22BB699A0019806C /* ulibgt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibgt.framework; path = "/Library/Frameworks/../Application Support/FinkTelecomServices/frameworks/ulibgt.framework"; sourceTree = "<absolute>"; };
-		A67989E022BB69AC0019806C /* ulibasn1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibasn1.framework; path = "/Library/Frameworks/../Application Support/FinkTelecomServices/frameworks/ulibasn1.framework"; sourceTree = "<absolute>"; };
-		A67989E122BB69B70019806C /* ulib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulib.framework; path = "/Library/Frameworks/../Application Support/FinkTelecomServices/frameworks/ulib.framework"; sourceTree = "<absolute>"; };
-		A67989E422BB69D10019806C /* ulibsctp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibsctp.framework; path = "/Library/Frameworks/../Application Support/FinkTelecomServices/frameworks/ulibsctp.framework"; sourceTree = "<absolute>"; };
-		A67989E622BB69E70019806C /* ulibmtp3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibmtp3.framework; path = "../Application Support/FinkTelecomServices/frameworks/ulibmtp3.framework"; sourceTree = "<group>"; };
 		A6814B3A1CA94E0B00211137 /* UMTCAP_ansi_asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1.h; sourceTree = "<group>"; };
 		A6814B3B1CA94E0B00211137 /* UMTCAP_ansi_asn1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_ansi_asn1.m; sourceTree = "<group>"; };
 		A6814B3E1CA9507D00211137 /* UMTCAP_ansi_asn1_queryWithPerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_ansi_asn1_queryWithPerm.h; sourceTree = "<group>"; };
@@ -396,7 +398,6 @@
 		A68C231E1FEA6D9600A02B91 /* UMTCAP_TransactionStateInitReceived.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionStateInitReceived.m; sourceTree = "<group>"; };
 		A68C23211FEA6DA300A02B91 /* UMTCAP_TransactionStateActive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_TransactionStateActive.h; sourceTree = "<group>"; };
 		A68C23221FEA6DA300A02B91 /* UMTCAP_TransactionStateActive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_TransactionStateActive.m; sourceTree = "<group>"; };
-		A68D214C2411543E004C629A /* ulibsccp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibsccp.framework; path = "/Library/Application Support/FinkTelecomServices/frameworks/ulibsccp.framework"; sourceTree = "<absolute>"; };
 		A690D8B91FC6D4030039A1DD /* UMTCAP_FilterResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_FilterResult.h; sourceTree = "<group>"; };
 		A6955FD21CC8132F00211137 /* UMTCAP_Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_Operation.h; sourceTree = "<group>"; };
 		A69DB80E1E390D2000E0C84E /* UMTCAP_HousekeepingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTCAP_HousekeepingTask.h; sourceTree = "<group>"; };
@@ -479,16 +480,12 @@
 		A6DE4EA71CC2EEF000211137 /* UMTCAP_itu_asn1_errorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_itu_asn1_errorCode.m; sourceTree = "<group>"; };
 		A6ED5C501B4358F100854472 /* UMLayerTCAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMLayerTCAP.h; sourceTree = "<group>"; };
 		A6ED5C511B4358F100854472 /* UMLayerTCAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMLayerTCAP.m; sourceTree = "<group>"; };
-		A6F694041B4E84240090FC94 /* configure.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.in; sourceTree = "<group>"; };
-		A6F694051B4E84240090FC94 /* Makefile.linux.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.linux.in; sourceTree = "<group>"; };
-		A6F694061B4E84240090FC94 /* Makefile.osx.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.osx.in; sourceTree = "<group>"; };
 		A6F694071B4E84240090FC94 /* ulibtcap.pc.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = ulibtcap.pc.in; sourceTree = "<group>"; };
 		A6F694081B4E84240090FC94 /* VERSION */ = {isa = PBXFileReference; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		A6FDF9C4249B7D06001C11DC /* UMTCAP_StatisticDb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_StatisticDb.h; sourceTree = "<group>"; };
 		A6FDF9C5249B7D06001C11DC /* UMTCAP_StatisticDb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_StatisticDb.m; sourceTree = "<group>"; };
 		A6FDF9C8249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMTCAP_StatisticDbRecord.h; sourceTree = "<group>"; };
 		A6FDF9C9249B7D3D001C11DC /* UMTCAP_StatisticDbRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMTCAP_StatisticDbRecord.m; sourceTree = "<group>"; };
-		A6FDF9CC249B8A1B001C11DC /* ulibdb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulibdb.framework; path = "../Application Support/FinkTelecomServices/frameworks/ulibdb.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,10 +493,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A67989E222BB69BD0019806C /* ulib.framework in Frameworks */,
-				A6FDF9CD249B8A21001C11DC /* ulibdb.framework in Frameworks */,
-				A67989DF22BB69A20019806C /* ulibgt.framework in Frameworks */,
-				A67989E322BB69C50019806C /* ulibasn1.framework in Frameworks */,
+				A643D7D13063E9C600F9798D /* libulibsccp.a in Frameworks */,
+				A643D7D53063E9F600F9798D /* libulibmtp3.a in Frameworks */,
+				A643D7D73063E9FF00F9798D /* libulib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +503,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A643D7D43063E9F600F9798D /* libulibmtp3.a in Frameworks */,
+				A643D7D23063E9C600F9798D /* libulibsccp.a in Frameworks */,
 				A641CE5F1B42010A00854472 /* ulibtcap.framework in Frameworks */,
+				A643D7D83063E9FF00F9798D /* libulib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,13 +529,12 @@
 			isa = PBXGroup;
 			children = (
 				A62C8B061FFBD16B0065D61E /* doc */,
-				A6F694041B4E84240090FC94 /* configure.in */,
-				A6F694051B4E84240090FC94 /* Makefile.linux.in */,
-				A6F694061B4E84240090FC94 /* Makefile.osx.in */,
+				A643D8063065042600F9798D /* configure.ac */,
+				A643D8073065046E00F9798D /* Makefile.in */,
 				A6F694071B4E84240090FC94 /* ulibtcap.pc.in */,
 				A6F694081B4E84240090FC94 /* VERSION */,
+				A643D805306503F200F9798D /* Libraries */,
 				A641CE551B42010A00854472 /* ulibtcap */,
-				A6ED5C581B43593900854472 /* Frameworks */,
 				A641CE621B42010A00854472 /* ulibtcapTests */,
 				A641CE541B42010A00854472 /* Products */,
 			);
@@ -658,6 +656,16 @@
 				A641CE641B42010A00854472 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A643D805306503F200F9798D /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				A643D7D63063E9FF00F9798D /* libulib.a */,
+				A643D7D33063E9F600F9798D /* libulibmtp3.a */,
+				A643D7D03063E9C600F9798D /* libulibsccp.a */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		A688B73A1CCA223A005D3906 /* begin */ = {
@@ -868,21 +876,6 @@
 			name = itu;
 			sourceTree = "<group>";
 		};
-		A6ED5C581B43593900854472 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A6FDF9CC249B8A1B001C11DC /* ulibdb.framework */,
-				A68D214C2411543E004C629A /* ulibsccp.framework */,
-				A67989E122BB69B70019806C /* ulib.framework */,
-				A67989DE22BB699A0019806C /* ulibgt.framework */,
-				A67989E022BB69AC0019806C /* ulibasn1.framework */,
-				A67989E422BB69D10019806C /* ulibsctp.framework */,
-				A67989E622BB69E70019806C /* ulibmtp3.framework */,
-			);
-			name = Frameworks;
-			path = /Library/Frameworks;
-			sourceTree = "<absolute>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1055,7 +1048,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					A641CE521B42010A00854472 = {
@@ -1247,7 +1240,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1274,12 +1267,13 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 38L827M334;
+				DSTROOT = "";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
 				DYLIB_CURRENT_VERSION = 2.1.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"/Library/Application Support/FinkTelecomServices/frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1295,13 +1289,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "\"/Library/Application Support/\"";
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INSTALL_PATH = /usr/local/lib;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WARNING_CFLAGS = "-Wimplicit-fallthrough";
@@ -1318,7 +1318,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1345,12 +1345,13 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = /;
+				DEVELOPMENT_TEAM = 38L827M334;
+				DSTROOT = "";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
 				DYLIB_CURRENT_VERSION = 2.1.1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"/Library/Application Support/FinkTelecomServices/frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1359,13 +1360,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "/Library/Application Support/FinkTelecomServices/frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "\"/Library/Application Support/\"";
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INSTALL_PATH = /usr/local/lib;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WARNING_CFLAGS = "-Wimplicit-fallthrough";
@@ -1375,32 +1382,17 @@
 		A641CE6A1B42010A00854472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = "/Library/Application Support";
+				DSTROOT = "";
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = ulibtcap/Info.plist;
-				INSTALL_PATH = FinkTelecomServices/frameworks;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.ulibtcap";
@@ -1413,32 +1405,17 @@
 		A641CE6B1B42010A00854472 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
-				DSTROOT = "/Library/Application Support";
+				DSTROOT = "";
 				DYLIB_INSTALL_NAME_BASE = "$(DSTROOT)/$(INSTALL_PATH)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/../Application\\ Support/FinkTelecomServices/frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Application\\ Support/FinkTelecomServices/frameworks",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = ulibtcap/Info.plist;
-				INSTALL_PATH = FinkTelecomServices/frameworks;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fink-telecom.ulibtcap";
@@ -1454,7 +1431,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -1482,7 +1458,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 38L827M334;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",

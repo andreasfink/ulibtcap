@@ -7,7 +7,6 @@
 //
 
 #import <ulibtcap/UMTCAP_StatisticDbRecord.h>
-#import <ulibdb/ulibdb.h>
 
 @implementation UMTCAP_StatisticDbRecord
 
